@@ -5,9 +5,9 @@ const routes = [
   {
     path: "/",
     name: "Home",
-    component: Home
+    component: Home,
   },
-  // Weitere Routen, falls vorhanden
+  // Weitere Routen hier hinzufügen
 ];
 
 const router = createRouter({

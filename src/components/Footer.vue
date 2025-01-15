@@ -1,11 +1,11 @@
 <template>
   <footer class="footer">
-    <p>&copy; 2023 Meine Website. Alle Rechte vorbehalten.</p>
+    <p>&copy; 2025 Haus Hamburg. Alle Rechte vorbehalten.</p>
   </footer>
 </template>
 
 <script>
 export default {
-  name: 'Footer'
-}
+  name: "Footer"
+};
 </script>

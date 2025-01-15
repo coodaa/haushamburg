@@ -2,35 +2,33 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: var(--blue);    /* Hintergrundfarbe der Navbar */
-  padding: 1rem;
+  background-color: var(--blue);
+  padding: 1rem 2rem;
+  color: white;
 }
 
-.nav-links {
+.navbar .logo {
+  display: flex;
+  align-items: center;
+}
+
+.navbar .logo img {
+  height: 40px;
+  margin-right: 10px;
+}
+
+.navbar .nav-links {
   list-style: none;
   display: flex;
-  gap: 1rem;
-  margin: 0;
-  padding: 0;
+  gap: 1.5rem;
 }
 
-.nav-links li {
-  margin: 0;
-}
-
-.nav-links a {
-  color: white;                     /* Linkfarbe */
+.navbar .nav-links a {
+  color: white;
   text-decoration: none;
-  font-family: var(--font-body);
   font-weight: 500;
 }
 
-.nav-links a:hover {
-  text-decoration: underline;       /* Hover-Effekt für Links */
-}
-
-.logo {
-  font-family: var(--font-heading);
-  font-size: 1.5rem;
-  color: white;
+.navbar .nav-links a:hover {
+  text-decoration: underline;
 }
