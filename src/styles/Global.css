@@ -14,7 +14,6 @@ body {
   color: var(--blue);
 }
 
-
 .hero {
   display: flex;
   align-items: center;
@@ -59,4 +58,10 @@ body {
   font-family: var(--font-heading);
   font-size: 2rem;
   color: var(--blue);
+}
+
+a {
+  text-decoration: none;
+  color: var(--blue);
+  font-size: 1rem;
 }
