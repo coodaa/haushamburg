@@ -1,16 +1,12 @@
 <template>
   <svg
-  version="1.1"
-  id="Ebene_1"
-  xmlns="http://www.w3.org/2000/svg"
-  xmlns:xlink="http://www.w3.org/1999/xlink"
-  x="0px"
-  y="0px"
-  viewBox="0 0 865.1 355.8"
-  width="150"
-  height="auto"
-  class="logo-svg"
->
+    version="1.1"
+    id="Ebene_1"
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    viewBox="0 0 865.1 355.8"
+    class="logo-svg"
+  >
     <g>
       <path class="st0" d="M501.1,175.5c-2.8,8.5-7,12.8-12.8,12.8c-5.1,0-8.8-2.8-11.3-8.4c-2.6-5.6-4-13.8-4-24.3s1.2-19.3,3.6-24.6
 		c2.4-5.4,6.1-8.1,11.1-8.1c3.2,0,5.9,1.1,8.1,3.2c2.2,2.1,3.9,5.5,5.2,10v-11.9h15.4v63.5h-15.4V175.5z M500.2,141.6
