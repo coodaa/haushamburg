@@ -16,7 +16,8 @@
 </template>
 
 <script>
-import '/styles/home.css';
+import "@/styles/Home.css";
+
 export default {
   name: "Home"
 };
