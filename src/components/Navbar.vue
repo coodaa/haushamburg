@@ -25,7 +25,7 @@
         <ul class="nav-links">
           <li class="contact-link"><a href="#">Kontakt</a></li>
           <li>
-            <button class="cta-button">Buche einen Tisch</button>
+            <button class="cta-button"> Tisch buchen</button>
           </li>
         </ul>
       </div>
@@ -42,7 +42,6 @@
     </div>
   </div>
 </template>
-
 <script>
 import { ref, onUnmounted } from "vue";
 import "@/styles/Navbar.css";
@@ -54,11 +53,16 @@ export default {
     const menuOpen = ref(false);
 
     const handleScroll = () => {
-      isHidden.value = window.scrollY > 100;
+      isHidden.value = window.scrollY > 150;
     };
 
     const toggleMenu = () => {
       menuOpen.value = !menuOpen.value;
+      if (menuOpen.value) {
+        document.body.classList.add("no-scroll");
+      } else {
+        document.body.classList.remove("no-scroll");
+      }
     };
 
     window.addEventListener("scroll", handleScroll);
