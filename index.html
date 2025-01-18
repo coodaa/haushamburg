@@ -1,10 +1,104 @@
 <!doctype html>
-<html lang="en">
+<html lang="de">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + Vue</title>
+    <title>Haus Hamburg – Fischrestaurant in der Altstadt von Leer, Ostfriesland</title>
+    <meta
+      name="description"
+      content="Haus Hamburg – Ihr gemütliches Fischrestaurant in der Altstadt von Leer, Ostfriesland. Neben dem Rathaus genießen Sie frische Fischspezialitäten und regionale Küche."
+    />
+    <meta
+      name="keywords"
+      content="Fischrestaurant Leer, Altstadt Leer, regionale Küche, Haus Hamburg, Fischspezialitäten Ostfriesland, Restaurant neben Rathaus"
+    />
+    <!-- Open Graph -->
+    <meta property="og:title" content="Haus Hamburg – Fischrestaurant in Leer, Ostfriesland" />
+    <meta
+      property="og:description"
+      content="Genießen Sie frische Fischspezialitäten und regionale Küche in der Altstadt von Leer, direkt neben dem Rathaus. Willkommen im Haus Hamburg!"
+    />
+    <meta property="og:image" content="https://haus-hamburg-leer.de/path-to-image.jpg" />
+    <meta property="og:url" content="https://haus-hamburg-leer.de" />
+    <meta property="og:type" content="restaurant" />
+    <!-- Font Awesome -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      rel="stylesheet"
+    />
+    <!-- Canonical -->
+    <link rel="canonical" href="https://haus-hamburg-leer.de" />
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Restaurant",
+      "name": "Restaurant Haus Hamburg",
+      "description": "Gemütliches Fischrestaurant in der Altstadt von Leer, Ostfriesland. Genießen Sie frische Fischspezialitäten und regionale Küche neben dem Rathaus.",
+      "image": "https://haus-hamburg-leer.de/path-to-image.jpg",
+      "@id": "https://haus-hamburg-leer.de",
+      "url": "https://haus-hamburg-leer.de",
+      "telephone": "+49 491 4884",
+      "email": "info@haus-hamburg-leer.de",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Rathausstr. 3 – 5",
+        "addressLocality": "Leer",
+        "postalCode": "26789",
+        "addressCountry": "DE"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 53.2312,
+        "longitude": 7.4616
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Saturday"],
+          "opens": "13:00",
+          "closes": "15:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Saturday"],
+          "opens": "17:00",
+          "closes": "21:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Sunday"],
+          "opens": "12:30",
+          "closes": "14:30"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Sunday"],
+          "opens": "16:00",
+          "closes": "19:30"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Friday"],
+          "opens": "17:00",
+          "closes": "21:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Wednesday", "Thursday"],
+          "opens": "00:00",
+          "closes": "00:00"
+        }
+      ],
+      "servesCuisine": ["Fish", "Regional"],
+      "priceRange": "€€"
+    }
+    </script>
   </head>
   <body>
     <div id="app"></div>
