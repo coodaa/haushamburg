@@ -3,11 +3,11 @@
     <div class="navbar" :class="{'scrolled': isHidden}">
       <div class="scalloped-svg" :class="{'hidden': isHidden}"></div>
 
-      <div class="burger-menu" @click="toggleMenu">
-        <div class="burger-icon"></div>
-        <div class="burger-icon"></div>
-        <div class="burger-icon"></div>
-      </div>
+      <div class="burger-menu" :class="{ open: menuOpen }" @click="toggleMenu">
+  <div class="burger-icon"></div>
+  <div class="burger-icon"></div>
+  <div class="burger-icon"></div>
+</div>
 
       <div class="nav-left">
         <ul class="nav-links">
@@ -17,9 +17,12 @@
         </ul>
       </div>
 
+
       <div class="logo-container">
-        <img src="@/assets/haushamburg_logo.svg" alt="Haus Hamburg Logo" class="logo" />
-      </div>
+  <img :class="{'scrolled': isHidden}" src="@/assets/haushamburg_logo.svg" alt="Haus Hamburg Logo" class="logo" />
+</div>
+
+
 
       <div class="nav-right">
         <ul class="nav-links">
@@ -53,7 +56,7 @@ export default {
     const menuOpen = ref(false);
 
     const handleScroll = () => {
-      isHidden.value = window.scrollY > 150;
+      isHidden.value = window.scrollY > 200;
     };
 
     const toggleMenu = () => {

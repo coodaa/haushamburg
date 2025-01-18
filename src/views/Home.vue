@@ -5,9 +5,9 @@
         <h1>HERZ, KÜCHE,<br /> TISCH!</h1>
         <button class="btn-reservieren">Reservieren</button>
       </div>
-      <!-- <div class="hero-image">
+      <div class="hero-image">
         <img src="../assets/images/haushamburg.jpeg" alt="Haus Hamburg">
-      </div> -->
+      </div>
     </section>
     <section class="description">
       <h2>Das Restaurant</h2>

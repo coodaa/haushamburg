@@ -20,6 +20,10 @@ body {
   padding: 2rem;
 }
 
+.main-content {
+  margin-top: 8em;
+}
+
 .hero-text h1 {
   font-family: var(--font-heading);
   font-size: 3rem;
