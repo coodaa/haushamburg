@@ -1,16 +1,75 @@
+@font-face {
+  font-family: 'Sansita';
+  font-style: normal;
+  font-weight: 400;
+  src: url('@/assets/fonts/Sansita/Sansita-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Sansita';
+  font-style: italic;
+  font-weight: 400;
+  src: url('@/assets/fonts/Sansita/Sansita-RegularItalic.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Sansita';
+  font-style: normal;
+  font-weight: 700;
+  src: url('@/assets/fonts/Sansita/Sansita-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Sansita';
+  font-style: italic;
+  font-weight: 700;
+  src: url('@/assets/fonts/Sansita/Sansita-BoldItalic.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Sansita';
+  font-style: normal;
+  font-weight: 800;
+  src: url('@/assets/fonts/Sansita/Sansita-ExtraBold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Sansita';
+  font-style: italic;
+  font-weight: 800;
+  src: url('@/assets/fonts/Sansita/Sansita-ExtraBoldItalic.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Sansita';
+  font-style: normal;
+  font-weight: 900;
+  src: url('@/assets/fonts/Sansita/Sansita-Black.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Sansita';
+  font-style: italic;
+  font-weight: 900;
+  src: url('@/assets/fonts/Sansita/Sansita-BlackItalic.ttf') format('truetype');
+}
+
 :root {
   --blue: #03305D;
   --gold: #D19E29;
   --beige: #D2C19F;
   --font-body: 'Poppins', sans-serif;
-  --font-heading: 'Sansita One', cursive;
+  --font-heading: 'Sansita One',
 }
 
 body {
   font-family: var(--font-body);
-  margin: 0;
+  margin: 1em;
   padding: 0;
   color: var(--blue);
+  margin-top: 15vh;
+  overflow-x: hidden;
+  box-sizing: border-box;
 }
 
 .hero {

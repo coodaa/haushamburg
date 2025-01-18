@@ -1,31 +1,28 @@
 <template>
-  <main class="main-content">
-    <section class="hero">
-      <div class="hero-content">
-        <div class="text-left">
-          <h1>HERZ, KÜCHE,</h1>
-        </div>
-        <div class="text-right">
-          <h1>TISCH!</h1>
+  <div>
+    <div class="header-text">
+      Herz, Küche
+    </div>
+    <div class="home-container">
+      <img
+        src="@/assets/images/haushamburg.jpeg"
+        alt="Haus Hamburg"
+        class="bg-image"
+      />
+
+      <div class="white-cutout">
+        <div class="fisch-text">
+          Fisch
         </div>
       </div>
-      <div class="hero-image"></div>
-    </section>
-    <section class="description">
-      <h2>Das Restaurant</h2>
-    </section>
-  </main>
+    </div>
+  </div>
 </template>
 
 <script>
-import "@/styles/Home.css";
+import '../styles/Home.css'
 
 export default {
-  name: "Home"
-};
+  name: 'Home'
+}
 </script>
-
-<!-- Optional: Scoped Styles -->
-<style scoped>
-/* Deine CSS-Stile hier */
-</style>

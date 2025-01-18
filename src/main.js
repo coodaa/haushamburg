@@ -1,11 +1,11 @@
-import { createApp } from "vue";
-import App from "./App.vue";
-import { createPinia } from "pinia";
-import router from "./router";
-import "@/styles/Global.css";
+import { createApp } from 'vue'
+import App from './App.vue'
+import router from './router'
+import { createPinia } from 'pinia'
 
+import '@/styles/Global.css' // <-- globale CSS laden
 
-const app = createApp(App);
-app.use(createPinia());
-app.use(router);
-app.mount("#app");
+const app = createApp(App)
+app.use(router)
+app.use(createPinia())
+app.mount('#app')

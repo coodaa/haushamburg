@@ -7,6 +7,8 @@
   flex-direction: column;
   align-items: center;
   gap: 1rem; /* Abstand zwischen den Elementen */
+  margin-top: auto; /* Sorgt dafür, dass der Footer unten andockt */
+  width: 100%;
 }
 
 .social-media {
@@ -27,7 +29,8 @@
 
 .footer-links {
   display: flex;
-  gap: 1.5rem; /* Abstand zwischen den Links */
+  flex-direction: column; /* Links untereinander auf mobilen Geräten */
+  gap: 0.5rem;
   justify-content: center;
 }
 
@@ -47,10 +50,30 @@
   font-size: 0.9rem;
 }
 
-/* Mobile Anpassungen */
-@media (max-width: 767px) {
+/* Wrapper für den Sticky Footer */
+body, html {
+  height: 100%;
+  margin: 0;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1; /* Füllt den restlichen Platz aus */
+}
+
+/* Tablet und größere Geräte */
+@media (min-width: 768px) {
   .footer-links {
-    flex-direction: column; /* Links untereinander auf mobilen Geräten */
-    gap: 0.5rem;
+    flex-direction: row; /* Links nebeneinander auf größeren Geräten */
+    gap: 1.5rem;
+  }
+
+  .footer p {
+    font-size: 1rem;
   }
 }
