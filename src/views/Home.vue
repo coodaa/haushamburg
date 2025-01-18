@@ -1,23 +1,17 @@
 <template>
   <main class="main-content">
     <section class="hero">
-      <div class="hero-text">
-        <h1>HERZ, KÜCHE,<br /> TISCH!</h1>
-        <button class="btn-reservieren">Reservieren</button>
+      <div class="hero-content">
+        <div class="text-left">
+          <h1>HERZ, KÜCHE,</h1>
+        </div>
+        <div class="text-right">
+          <h1>TISCH!</h1>
+        </div>
       </div>
-      <div class="hero-image">
-        <img src="../assets/images/haushamburg.jpeg" alt="Haus Hamburg">
-      </div>
+      <div class="hero-image"></div>
     </section>
     <section class="description">
-      <h2>Das Restaurant</h2>
-    </section> <section class="description">
-      <h2>Das Restaurant</h2>
-    </section> <section class="description">
-      <h2>Das Restaurant</h2>
-    </section> <section class="description">
-      <h2>Das Restaurant</h2>
-    </section> <section class="description">
       <h2>Das Restaurant</h2>
     </section>
   </main>
