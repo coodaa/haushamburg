@@ -1,28 +1,20 @@
 <template>
   <div>
-    <div class="header-text">
+    <div class="big-title">
       Herz, Küche
     </div>
-    <div class="home-container">
-      <img
-        src="@/assets/images/haushamburg.jpeg"
-        alt="Haus Hamburg"
-        class="bg-image"
-      />
 
-      <div class="white-cutout">
-        <div class="fisch-text">
-          Fisch
-        </div>
+    <div class="image-container">
+      <div class="fisch">
+        Fisch
+      </div>
+      <div class="home-container">
+        <img
+          src="@/assets/images/1.jpg"
+          alt="Haus Hamburg"
+          class="inverted-radius"
+        />
       </div>
     </div>
   </div>
 </template>
-
-<script>
-import '../styles/Home.css'
-
-export default {
-  name: 'Home'
-}
-</script>

@@ -54,12 +54,21 @@
   src: url('@/assets/fonts/Sansita/Sansita-BlackItalic.ttf') format('truetype');
 }
 
+@font-face {
+  font-family: 'Thunder';
+  font-style: italic;
+  font-weight: 900;
+  src: url('@/assets/fonts/Thunder/Thunder-ExtraBoldLC.ttf') format('truetype');
+}
+
 :root {
   --blue: #03305D;
   --gold: #D19E29;
   --beige: #D2C19F;
   --font-body: 'Poppins', sans-serif;
   --font-heading: 'Sansita', sans-serif;
+  --font-thunder:
+  'Thunder', sans-serif;
 }
 
 body {
@@ -67,7 +76,7 @@ body {
   margin: 1em;
   padding: 0;
   color: var(--blue);
-  margin-top: 13vh;
+  margin-top: 15vh;
   overflow-x: hidden;
   box-sizing: border-box;
 }

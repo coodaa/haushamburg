@@ -15,7 +15,6 @@
 }
 
 .navbar.scrolled {
-  /* padding: 2em 1em;  */
   transform: translateY(-48px);
 }
 
