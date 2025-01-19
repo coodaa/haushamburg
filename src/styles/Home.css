@@ -1,8 +1,18 @@
 .header-text {
   font-family: var(--font-heading);
-  font-size: 4rem;
+  font-size: 15vw;
   white-space: nowrap;
-  font-weight: 700;
+  font-weight: bold;
+  padding-left: .3em;
+}
+
+.fisch-text {
+  position: absolute;
+  font-size: 15vw;
+  font-weight: bold;
+  font-family: var(--font-heading);
+  padding-left: .3em;
+  right: 1rem
 }
 
 .home-container {
@@ -30,16 +40,8 @@
   position: absolute;
   top: 0;
   right: 0;
-  width: 60%;
-  height: 15%;
+  width: 40vw;
+  height: 14vh;
   background: #fff;
   border-bottom-left-radius: 20px;
-}
-
-.fisch-text {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  font-size: 4rem;
-  font-weight: 700; /* oder "bold" */
 }

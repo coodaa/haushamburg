@@ -28,7 +28,7 @@
         <ul class="nav-links">
           <li class="contact-link"><a href="#">Kontakt</a></li>
           <li>
-            <button class="cta-button"> Tisch buchen</button>
+            <button class="cta-button"> Reservieren</button>
           </li>
         </ul>
       </div>

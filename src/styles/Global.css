@@ -59,7 +59,7 @@
   --gold: #D19E29;
   --beige: #D2C19F;
   --font-body: 'Poppins', sans-serif;
-  --font-heading: 'Sansita One',
+  --font-heading: 'Sansita', sans-serif;
 }
 
 body {
@@ -67,7 +67,7 @@ body {
   margin: 1em;
   padding: 0;
   color: var(--blue);
-  margin-top: 15vh;
+  margin-top: 13vh;
   overflow-x: hidden;
   box-sizing: border-box;
 }
@@ -88,19 +88,6 @@ body {
   font-size: 3rem;
   color: var(--blue);
   line-height: 1.2;
-}
-
-.btn-reservieren {
-  background-color: var(--gold);
-  color: white;
-  border: none;
-  padding: 0.75rem 1.5rem;
-  font-size: 1rem;
-  font-weight: bold;
-  margin-top: 1rem;
-  cursor: pointer;
-  border-radius: 5px;
-  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .hero-image img {
