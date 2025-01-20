@@ -122,20 +122,6 @@
   list-style: none;
 }
 
-.cta-button {
-  display: inline-block !important;
-  padding: 0.5em 0.5em;
-  background-color: var(--gold);
-  font-weight: bold;
-  border-radius: 4px;
-  cursor: pointer;
-  position: relative;
-  z-index: 9999;
-  max-width: 6em;
-  border: 1px solid var(--blue);
-
-}
-
 .nav-right {
   display: flex !important;
   align-items: center;
@@ -190,16 +176,18 @@
 }
 
 .cta-button {
-  display: block;
-  padding: 0.5em .5em;
+  display: inline-block !important;
+  padding: 0.5em 0.5em;
   background-color: var(--gold);
-  color: #fff;
   font-weight: bold;
-  border: none;
-  border-radius: 5px;
+  border-radius: 4px;
   cursor: pointer;
-  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+  position: relative;
+  z-index: 9999;
+  max-width: 6em;
+  border: 2px solid var(--blue);
   transition: background-color 0.3s ease, transform 0.2s ease;
+  color:  var(--blue);
 }
 
 .cta-button:hover {

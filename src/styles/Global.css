@@ -1,36 +1,14 @@
 @font-face {
-  font-family: 'Sansita';
+  font-family: 'Poppins';
   font-style: normal;
-  font-weight: 400;
-  src: url('@/assets/fonts/Sansita/Sansita-Regular.ttf') format('truetype');
+  src: url('@/assets/fonts/Poppins/Poppins-Regular.ttf') format('truetype');
 }
 
 @font-face {
-  font-family: 'Sansita';
+  font-family: 'Poppins';
   font-style: normal;
-  font-weight: 700;
-  src: url('@/assets/fonts/Sansita/Sansita-Bold.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: 'Sansita';
-  font-style: italic;
-  font-weight: 700;
-  src: url('@/assets/fonts/Sansita/Sansita-BoldItalic.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: 'Sansita';
-  font-style: normal;
-  font-weight: 800;
-  src: url('@/assets/fonts/Sansita/Sansita-ExtraBold.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: 'Sansita';
-  font-style: italic;
-  font-weight: 800;
-  src: url('@/assets/fonts/Sansita/Sansita-ExtraBoldItalic.ttf') format('truetype');
+  font-weight: 900;
+  src: url('@/assets/fonts/Poppins/Poppins-Bold.ttf') format('truetype');
 }
 
 @font-face {
@@ -60,8 +38,7 @@
   --beige: #D2C19F;
   --font-body: 'Poppins', sans-serif;
   --font-heading: 'Sansita', sans-serif;
-  --font-thunder:
-  'Thunder', sans-serif;
+  --font-thunder: 'Thunder', sans-serif;
 }
 
 body {
@@ -72,6 +49,16 @@ body {
   margin-top: 15vh;
   overflow-x: hidden;
   box-sizing: border-box;
+}
+
+/* Gemeinsame Titel-Basisklasse */
+.title-base {
+  font-weight: bold;
+  font-family: var(--font-thunder);
+  font-size: 10vh; /* Schriftgröße für Haupttitel */
+  text-transform: uppercase;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 .hero {

@@ -1,34 +1,16 @@
 .big-title {
-  font-weight: bold;
-  font-family: Thunder;
-  font-size: 10vw;
-  text-transform: uppercase;
+  padding-left: 0.2em;
 }
 
-
-.inverted-radius {
-  --r: 40px; /* the radius */
-  --s: 40px; /* size of inner curve */
-  --x: 12em;
-  --y: 4em; 
-  width: 100%;
-  height: auto;
-  border-radius: var(--r);
-  --_m:/calc(2*var(--r)) calc(2*var(--r)) radial-gradient(#000 70%,#0000 72%);
-  --_g:conic-gradient(at calc(100% - var(--r)) var(--r),#0000 25%,#000 0);
-  --_d:(var(--s) + var(--r));
-  mask:
-    calc(100% - var(--_d) - var(--x)) 0 var(--_m),
-    100% calc(var(--_d) + var(--y)) var(--_m),
-    radial-gradient(var(--s) at 100% 0,#0000 99%,#000 calc(100% + 1px))
-     calc(-1*var(--r) - var(--x)) calc(var(--r) + var(--y)),
-    var(--_g) calc(-1*var(--_d) - var(--x)) 0,
-    var(--_g) 0 calc(var(--_d) + var(--y));
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
+.big-title-2 {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding-right: 0.2em;
+  z-index: 10;
 }
 
-
+/* Bildcontainer */
 .image-container {
   position: relative;
   width: 100%;
@@ -36,20 +18,95 @@
   padding: 0;
 }
 
-.home-container {
+/* Maskierung und responsives Design */
+.inverted-radius {
+  --r: 20px;
+  --s: 20px;
+  --x: 35vw;
+  --y: 5vh;
   width: 100%;
+  height: auto;
+  border-radius: var(--r);
+  --_m:/calc(2*var(--r)) calc(2*var(--r)) radial-gradient(#000 70%, #0000 72%);
+  --_g: conic-gradient(at calc(100% - var(--r)) var(--r), #0000 25%, #000 0);
+  --_d: (var(--s) + var(--r));
+  mask:
+    calc(100% - var(--_d) - var(--x)) 0 var(--_m),
+    100% calc(var(--_d) + var(--y)) var(--_m),
+    radial-gradient(var(--s) at 100% 0, #0000 99%, #000 calc(100% + 1px))
+      calc(-1 * var(--r) - var(--x)) calc(var(--r) + var(--y)),
+    var(--_g) calc(-1 * var(--_d) - var(--x)) 0,
+    var(--_g) 0 calc(var(--_d) + var(--y));
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
 }
 
-/* Stil für den Text "Fisch" */
-.fisch {
-  position: absolute;
-  top: 0;
-  right: 0;
-  padding: 0.5rem;
-  font-size: 2rem;
-  z-index: 10;
-  font-weight: bold;
-  font-family: Thunder;
-  font-size: 10vw;
-  text-transform: uppercase;
+/* Header-Row */
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Längliche Blase mit Text und Icon */
+.looping-bubble {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1em;
+  height: calc(.5 * 10vh);
+  background-color: var(--beige); /* Bestehende Farbe */
+  border-radius:200em; /* Längliche, ovale Form */
+  gap: 0.5em; /* Abstand zwischen Text und Icon */
+}
+
+.bubble-text {
+  /* font-family: Thunder; Bestehende Schriftart */
+  font-size: calc(0.4 * 10vh);
+  white-space: nowrap;
+}
+
+.fisch-icon {
+  width: 3em; /* Feste Breite für das Icon */
+  height: auto;
+}
+
+/* Responsives Layout */
+@media (max-width: 768px) {
+  .bubble-text {
+    display: none; /* Blendet den Text auf kleineren Geräten aus */
+  }
+
+  .looping-bubble {
+    justify-content: center; /* Zentriert nur das Icon */
+  }
+
+
+}
+
+@media (min-width: 1024px) {
+  .looping-bubble {
+    height: calc(2 * 10vh); /* Erhöht die Blasenhöhe bei größeren Bildschirmen */
+  }
+  .header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .looping-bubble {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1em;
+    height: calc(1.3 * 10vh);
+    background-color: var(--beige); /* Bestehende Farbe */
+    border-radius:200em; /* Längliche, ovale Form */
+    gap: 0.5em; /* Abstand zwischen Text und Icon */
+  }
+
+  .fisch-icon {
+    width: 10vw;
+    height: auto;
+  }
 }
