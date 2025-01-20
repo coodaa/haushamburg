@@ -4,7 +4,14 @@
     <div class="header-row">
       <h1 class="title-base big-title">herz, küche,</h1>
       <div class="looping-bubble">
-        <span class="bubble-text">Moin!</span>
+        <!-- Dynamische Wörter mit Animationsklasse -->
+        <span
+          class="bubble-text"
+          :class="{ animate: animateText }"
+          @animationend="resetAnimation"
+        >
+          {{ currentWord }}
+        </span>
         <img
           src="@/assets/fish.svg"
           alt="Fisch Icon"
@@ -31,6 +38,33 @@
 import '../styles/Home.css'
 
 export default {
-  name: 'Home'
-}
+  name: 'Home',
+  data() {
+    return {
+      words: ["Moin!", "Willkommen!", "Ahoi!", "Hallo!"], // Liste der Wörter
+      currentIndex: 0, // Index des aktuellen Wortes
+      currentWord: "Moin!", // Aktuelles Wort
+      animateText: false, // Animationsstatus
+    };
+  },
+  mounted() {
+    this.startWordAnimation();
+  },
+  methods: {
+    startWordAnimation() {
+      setInterval(() => {
+        // Trigger Animation
+        this.animateText = true;
+
+        // Wechselt zum nächsten Wort
+        this.currentIndex = (this.currentIndex + 1) % this.words.length;
+        this.currentWord = this.words[this.currentIndex];
+      }, 1000); // Wechselt alle 3 Sekunden
+    },
+    resetAnimation() {
+      // Setzt die Animation zurück, damit sie erneut ausgelöst wird
+      this.animateText = false;
+    },
+  },
+};
 </script>

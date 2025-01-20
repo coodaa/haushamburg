@@ -54,40 +54,57 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 1em;
-  height: calc(.5 * 10vh);
+  height: calc(1 * 10vh);
+  width: 20vw; /* Feste Breite für die Blase */
   background-color: var(--beige); /* Bestehende Farbe */
   border-radius:200em; /* Längliche, ovale Form */
   gap: 0.5em; /* Abstand zwischen Text und Icon */
 }
 
-.bubble-text {
-  /* font-family: Thunder; Bestehende Schriftart */
-  font-size: calc(0.4 * 10vh);
-  white-space: nowrap;
+
+/* Animation für die Wörter */
+@keyframes fadeInUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
+/* Standardstil für den Text */
+.bubble-text {
+  font-size: calc(0.3 * 10vh);
+  white-space: nowrap;
+  display: inline-block;
+  opacity: 1; /* Standardzustand: Sichtbar */
+  transform: translateY(0); /* Standardzustand: Endposition */
+  transition: opacity 0.5s ease-in-out; /* Sanfter Übergang für Ausblenden */
+}
+
+/* Animationsklasse */
+.bubble-text.animate {
+  animation: fadeInUp 0.5s ease-in-out forwards; /* Führt die Animation aus */
+}
+
+
+
+
+
+
 .fisch-icon {
-  width: 3em; /* Feste Breite für das Icon */
+  width: 5em; /* Feste Breite für das Icon */
   height: auto;
 }
 
-/* Responsives Layout */
-@media (max-width: 768px) {
-  .bubble-text {
-    display: none; /* Blendet den Text auf kleineren Geräten aus */
-  }
-
-  .looping-bubble {
-    justify-content: center; /* Zentriert nur das Icon */
-  }
-
-
-}
 
 @media (min-width: 1024px) {
   .looping-bubble {
-    height: calc(2 * 10vh); /* Erhöht die Blasenhöhe bei größeren Bildschirmen */
+    height: calc(2 * 10vh);
   }
+
   .header-row {
     display: flex;
     justify-content: space-between;
