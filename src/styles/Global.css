@@ -29,7 +29,10 @@
   font-family: 'Thunder';
   font-style: italic;
   font-weight: 900;
-  src: url('@/assets/fonts/Thunder/Thunder-ExtraBoldLC.ttf') format('truetype');
+  src: url('/fonts/Thunder/Thunder-ExtraBoldLC.woff2') format('woff2'),
+       url('/fonts/Thunder/Thunder-ExtraBoldLC.woff') format('woff'),
+       url('/fonts/Thunder/Thunder-ExtraBoldLC.ttf') format('truetype');
+  font-display: swap;
 }
 
 :root {
