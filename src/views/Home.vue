@@ -4,11 +4,18 @@
     <div class="header-row">
       <h1 class="title-base big-title">herz, küche,</h1>
       <div class="looping-bubble">
-        <!-- Dynamische Wörter mit Animationsklasse -->
+        <!-- Altes Wort mit Fade-out -->
         <span
-          class="bubble-text"
-          :class="{ animate: animateText }"
-          @animationend="resetAnimation"
+          v-if="previousWordVisible"
+          class="bubble-text animate-out"
+          @animationend="handleFadeOutEnd"
+        >
+          {{ previousWord }}
+        </span>
+        <!-- Neues Wort mit Fade-in -->
+        <span
+          v-if="currentWordVisible"
+          class="bubble-text animate-in"
         >
           {{ currentWord }}
         </span>
@@ -41,10 +48,12 @@ export default {
   name: 'Home',
   data() {
     return {
-      words: ["Moin!", "Willkommen!", "Ahoi!", "Hallo!"], // Liste der Wörter
-      currentIndex: 0, // Index des aktuellen Wortes
-      currentWord: "Moin!", // Aktuelles Wort
-      animateText: false, // Animationsstatus
+      words: ["Moin!", "Ahoi!", "Goden Appetit!"], // Liste der Wörter
+      currentIndex: 0,
+      currentWord: "Moin!",
+      previousWord: "",
+      currentWordVisible: true,
+      previousWordVisible: false,
     };
   },
   mounted() {
@@ -53,17 +62,22 @@ export default {
   methods: {
     startWordAnimation() {
       setInterval(() => {
-        // Trigger Animation
-        this.animateText = true;
+        // Wechsel zum nächsten Wort
+        this.previousWord = this.currentWord; // Altes Wort setzen
+        this.previousWordVisible = true; // Altes Wort sichtbar machen (für Fade-out)
+        this.currentIndex = (this.currentIndex + 1) % this.words.length; // Nächster Index
+        this.currentWord = this.words[this.currentIndex]; // Neues Wort setzen
+        this.currentWordVisible = false; // Neues Wort unsichtbar machen
 
-        // Wechselt zum nächsten Wort
-        this.currentIndex = (this.currentIndex + 1) % this.words.length;
-        this.currentWord = this.words[this.currentIndex];
-      }, 1000); // Wechselt alle 3 Sekunden
+        // Fade-out starten, neues Wort sichtbar machen nach Fade-out
+        setTimeout(() => {
+          this.previousWordVisible = false; // Altes Wort ausblenden
+          this.currentWordVisible = true; // Neues Wort einblenden
+        }, 500); // Wartezeit für Fade-out
+      }, 3000); // Wechselt alle 3 Sekunden
     },
-    resetAnimation() {
-      // Setzt die Animation zurück, damit sie erneut ausgelöst wird
-      this.animateText = false;
+    handleFadeOutEnd() {
+      this.previousWordVisible = false; // Altes Wort komplett ausblenden
     },
   },
 };

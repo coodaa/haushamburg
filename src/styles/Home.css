@@ -55,50 +55,56 @@
   justify-content: space-between;
   padding: 0 1em;
   height: calc(1 * 10vh);
-  width: 20vw; /* Feste Breite für die Blase */
   background-color: var(--beige); /* Bestehende Farbe */
   border-radius:200em; /* Längliche, ovale Form */
   gap: 0.5em; /* Abstand zwischen Text und Icon */
 }
-
-
-/* Animation für die Wörter */
-@keyframes fadeInUp {
-  from {
-    transform: translateY(20px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-/* Standardstil für den Text */
-.bubble-text {
-  font-size: calc(0.3 * 10vh);
-  white-space: nowrap;
-  display: inline-block;
-  opacity: 1; /* Standardzustand: Sichtbar */
-  transform: translateY(0); /* Standardzustand: Endposition */
-  transition: opacity 0.5s ease-in-out; /* Sanfter Übergang für Ausblenden */
-}
-
-/* Animationsklasse */
-.bubble-text.animate {
-  animation: fadeInUp 0.5s ease-in-out forwards; /* Führt die Animation aus */
-}
-
-
-
-
-
 
 .fisch-icon {
   width: 5em; /* Feste Breite für das Icon */
   height: auto;
 }
 
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animation für das Entfernen des alten Wortes */
+@keyframes fadeOutUp {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+
+.bubble-text {
+  font-size: calc(0.3 * 10vh);
+  white-space: nowrap;
+  display: inline-block;
+  width: 17vw;
+  animation: none;
+}
+
+/* Fade-in Animation */
+.bubble-text.animate-in {
+  animation: fadeInUp 0.5s ease-in-out forwards;
+}
+
+/* Fade-out Animation */
+.bubble-text.animate-out {
+  animation: fadeOutUp 0.5s ease-in-out forwards;
+}
 
 @media (min-width: 1024px) {
   .looping-bubble {
