@@ -20,7 +20,7 @@
   {{ currentWord }}
 </span>
         <img
-          src="@/assets/fish.svg"
+          src="@/assets/fishcircle.svg"
           alt="Fisch Icon"
           class="fisch-icon"
           :class="{ wobble: isWobbling }"
@@ -94,7 +94,7 @@ export default {
         setTimeout(() => {
           this.previousWordVisible = false; // Altes Wort ausblenden
           this.currentWordVisible = true; // Neues Wort einblenden
-        }, 400); // Wartezeit für Fade-out
+        }, 500); // Wartezeit für Fade-out
       }, 3000); // Wechselt alle 3 Sekunden
     },
     updateRotationVariable() {

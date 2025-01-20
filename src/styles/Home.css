@@ -1,10 +1,9 @@
 .big-title {
-  padding-left: 0.2em;
+  padding-left: .2em;
 }
 
 .big-title-2 {
   position: absolute;
-  top: 0;
   right: 0;
   padding-right: 0.2em;
   z-index: 10;
@@ -134,16 +133,14 @@
   display: inline-block;
   width: 17vw;
   animation: none;
-  opacity: 0; /* Standardmäßig unsichtbar, bis eingeblendet */
-  transform: translateY(0); /* Ausgangsposition */
+  opacity: 0;
+  transform: translateY(0);
 }
 
-/* Fade-in Animation */
 .bubble-text.animate-in {
-  animation: fadeInUp 0.5s ease-in-out forwards, textWobble var(--animation-text-bounce-smooth);
+  /* animation: fadeInUp 0.5s ease-in-out forwards, textWobble var(--animation-text-bounce-smooth); */
 }
 
-/* Wackelanimation für den Text */
 @keyframes textWobble {
   0% {
     transform: translateY(0);
@@ -162,7 +159,6 @@
   }
 }
 
-/* Fade-out Animation */
 .bubble-text.animate-out {
   animation: fadeOutUp 0.5s ease-in-out forwards;
 }
