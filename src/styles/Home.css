@@ -60,20 +60,56 @@
   gap: 0.5em; /* Abstand zwischen Text und Icon */
 }
 
+
+
+
+
+:root {
+  --animation-bounce-smooth: 0.5s cubic-bezier(0.35, 1.5, 0.6, 1);
+}
+
 .fisch-icon {
   width: 5em; /* Feste Breite für das Icon */
   height: auto;
+  transition: transform 0.5s ease-in-out; /* Hauptrotation */
+}
+
+.fisch-icon.wobble {
+  animation: wobble var(--animation-bounce-smooth) forwards;
+}
+
+/* Keyframes für die Wackelbewegung */
+@keyframes wobble {
+  0% {
+    transform: rotate(var(--rotation-start, 0deg));
+  }
+  25% {
+    transform: rotate(calc(var(--rotation-start, 0deg) - 5deg));
+  }
+  50% {
+    transform: rotate(calc(var(--rotation-start, 0deg) + 3deg));
+  }
+  75% {
+    transform: rotate(calc(var(--rotation-start, 0deg) - 2deg));
+  }
+  100% {
+    transform: rotate(var(--rotation-start, 0deg));
+  }
 }
 
 @keyframes fadeInUp {
   0% {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(100%); /* Startet von unten */
   }
   100% {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0); /* Bewegt sich zur ursprünglichen Position */
   }
+}
+
+.bubble-text.animate-in {
+  animation: fadeInUp 0.5s ease-in-out forwards, textWobble var(--animation-text-bounce-smooth);
 }
 
 /* Animation für das Entfernen des alten Wortes */
@@ -88,17 +124,42 @@
   }
 }
 
+:root {
+  --animation-text-bounce-smooth: 0.5s cubic-bezier(0.35, 1.5, 0.6, 1);
+}
+
 .bubble-text {
   font-size: calc(0.3 * 10vh);
   white-space: nowrap;
   display: inline-block;
   width: 17vw;
   animation: none;
+  opacity: 0; /* Standardmäßig unsichtbar, bis eingeblendet */
+  transform: translateY(0); /* Ausgangsposition */
 }
 
 /* Fade-in Animation */
 .bubble-text.animate-in {
-  animation: fadeInUp 0.5s ease-in-out forwards;
+  animation: fadeInUp 0.5s ease-in-out forwards, textWobble var(--animation-text-bounce-smooth);
+}
+
+/* Wackelanimation für den Text */
+@keyframes textWobble {
+  0% {
+    transform: translateY(0);
+  }
+  25% {
+    transform: translateY(-5px);
+  }
+  50% {
+    transform: translateY(3px);
+  }
+  75% {
+    transform: translateY(-2px);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }
 
 /* Fade-out Animation */
