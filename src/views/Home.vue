@@ -1,13 +1,11 @@
 <template>
   <div>
     <div class="big-title">
-      Herz, Küche
+      herz, küche
     </div>
 
     <div class="image-container">
-      <div class="fisch">
-        Fisch
-      </div>
+      <div class="fisch">tisch</div>
       <div class="home-container">
         <img
           src="@/assets/images/1.jpg"
@@ -18,3 +16,11 @@
     </div>
   </div>
 </template>
+
+<script>
+import '../styles/Home.css'
+
+export default {
+  name: 'Home'
+}
+</script>

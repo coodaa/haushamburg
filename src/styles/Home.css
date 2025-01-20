@@ -1,9 +1,16 @@
+.big-title {
+  font-weight: bold;
+  font-family: Thunder;
+  font-size: 10vw;
+  text-transform: uppercase;
+}
+
 
 .inverted-radius {
   --r: 40px; /* the radius */
   --s: 40px; /* size of inner curve */
-  --x: 1em; /* horizontal offset (no percentange) */
-  --y: 0.5em; /* vertical offset (no percentange) */
+  --x: 12em;
+  --y: 4em; 
   width: 100%;
   height: auto;
   border-radius: var(--r);
@@ -30,18 +37,19 @@
 }
 
 .home-container {
-  width: 100%;       /* Falls ein weiterer Container vorhanden ist */
+  width: 100%;
 }
 
 /* Stil für den Text "Fisch" */
 .fisch {
   position: absolute;
-  top: 0;        /* Abstand vom oberen Rand des Containers */
-  right: 0;      /* Abstand vom rechten Rand des Containers */
-
-  /* Zusätzliche Stile für bessere Sichtbarkeit und Gestaltung */
-  background: rgba(255, 255, 255, 0.7); /* Halbtransparenter Hintergrund für Kontrast */
+  top: 0;
+  right: 0;
   padding: 0.5rem;
   font-size: 2rem;
-  z-index: 10;   /* Stellt sicher, dass der Text über dem Bild liegt */
+  z-index: 10;
+  font-weight: bold;
+  font-family: Thunder;
+  font-size: 10vw;
+  text-transform: uppercase;
 }
