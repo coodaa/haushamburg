@@ -34,7 +34,7 @@
       <h2 class="title-base big-title big-title-2">tisch</h2>
       <div class="home-container">
         <img
-          src="@/assets/images/1.jpg"
+          src="@/assets/images/haushamburg.jpeg"
           alt="Haus Hamburg"
           class="inverted-radius"
         />
@@ -43,7 +43,7 @@
     <section class="restaurant-section">
       <div class="restaurant-header">
         <h3 class="restaurant-heading, big-title-3">das restaurant</h3>
-        <img src="@/assets/images/haushamburg.jpeg" alt="Restaurant" class="restaurant-image" />
+        <img src="@/assets/images/1.jpg" alt="Restaurant" class="restaurant-image" />
       </div>
       <div class="restaurant-text">
         <p>
