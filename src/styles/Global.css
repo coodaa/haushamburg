@@ -1,36 +1,24 @@
 @font-face {
-  font-family: 'Poppins';
+  font-family: 'Thunder';
   font-style: normal;
-  src: url('/fonts/Poppins/Poppins-Regular.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: 'Poppins';
-  font-style: normal;
-  font-weight: 900;
-  src: url('/fonts/Poppins/Poppins-Bold.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: 'Sansita';
-  font-style: normal;
-  font-weight: 900;
-  src: url('/fonts/Sansita/Sansita-Black.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: 'Sansita';
-  font-style: italic;
-  font-weight: 900;
-  src: url('/fonts/Sansita/Sansita-BlackItalic.ttf') format('truetype');
+  font-weight: 600; /* SemiBold */
+  src: url('/fonts/Thunder/Thunder-SemiBoldLC.woff2') format('woff2');
+  font-display: swap;
 }
 
 @font-face {
   font-family: 'Thunder';
-  font-style: italic;
-  font-weight: 900;
-  src: url('/fonts/Thunder/Thunder-ExtraBoldLC.woff2') format('woff2'),
-       url('/fonts/Thunder/Thunder-ExtraBoldLC.woff') format('woff');
+  font-style: normal;
+  font-weight: 700; /* Bold */
+  src: url('/fonts/Thunder/Thunder-BoldLC.woff2') format('woff2');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Thunder';
+  font-style: normal;
+  font-weight: 800; /* ExtraBold, passe ggf. an die tatsächliche Gewichtung an */
+  src: url('/fonts/Thunder/Thunder-ExtraBoldLC.woff2') format('woff2');
   font-display: swap;
 }
 
