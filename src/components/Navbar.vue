@@ -28,7 +28,9 @@
         <ul class="nav-links">
           <li class="contact-link"><a href="#">Kontakt</a></li>
           <li>
-            <button class="cta-button">Tisch buchen</button>
+            <button class="cta-button">
+  <i class="fas fa-calendar-check"></i>
+</button>
           </li>
         </ul>
       </div>
