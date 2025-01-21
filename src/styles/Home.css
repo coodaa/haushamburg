@@ -1,12 +1,21 @@
+.header-row {
+  margin-top: 17vh !important;
+}
+
 .big-title {
-  padding-left: .2em;
+  padding-left: .1em;
+  white-space: nowrap;
 }
 
 .big-title-2 {
   position: absolute;
   right: 0;
-  padding-right: 0.2em;
-  z-index: 10;
+  padding-right: 0.1em;
+  margin-top: -.2em !important;
+}
+
+.restaurant-heading {
+  font-size: 1.5rem; /* Passen Sie diesen Wert nach Bedarf an */
 }
 
 /* Bildcontainer */
@@ -14,6 +23,7 @@
   position: relative;
   width: 100%;
   margin: 0;
+  margin-top: -.5em;
   padding: 0;
 }
 
@@ -21,8 +31,8 @@
 .inverted-radius {
   --r: 20px;
   --s: 20px;
-  --x: 35vw;
-  --y: 5vh;
+  --x: 30vw;
+  --y: 4vh;
   width: 100%;
   height: auto;
   border-radius: var(--r);
@@ -47,28 +57,12 @@
   align-items: center;
 }
 
-/* Längliche Blase mit Text und Icon */
-.looping-bubble {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 1em;
-  height: calc(1 * 10vh);
-  background-color: var(--beige); /* Bestehende Farbe */
-  border-radius:200em; /* Längliche, ovale Form */
-  gap: 0.5em; /* Abstand zwischen Text und Icon */
-}
-
-
-
-
-
 :root {
   --animation-bounce-smooth: 0.5s cubic-bezier(0.35, 1.5, 0.6, 1);
 }
 
 .fisch-icon {
-  width: 5em; /* Feste Breite für das Icon */
+  width: 4em; /* Feste Breite für das Icon */
   height: auto;
   transition: transform 0.5s ease-in-out; /* Hauptrotation */
 }
@@ -127,19 +121,8 @@
   --animation-text-bounce-smooth: 0.5s cubic-bezier(0.35, 1.5, 0.6, 1);
 }
 
-.bubble-text {
-  font-size: calc(0.3 * 10vh);
-  white-space: nowrap;
-  display: inline-block;
-  width: 17vw;
-  animation: none;
-  opacity: 0;
-  transform: translateY(0);
-}
 
-.bubble-text.animate-in {
-  /* animation: fadeInUp 0.5s ease-in-out forwards, textWobble var(--animation-text-bounce-smooth); */
-}
+
 
 @keyframes textWobble {
   0% {
@@ -163,9 +146,141 @@
   animation: fadeOutUp 0.5s ease-in-out forwards;
 }
 
+.bubble-text {
+  display: none;
+}
+
+/* Optional: Blasenhintergrund und Rundung entfernen,
+   falls nur das Fish-Icon ohne sichtbaren Hintergrund gewünscht ist */
+.looping-bubble {
+  background: transparent;
+  border-radius: 0;
+  padding: 0;
+}
+
+.restaurant-section {
+  background-color: var(--beige);
+  border-radius: 20px;
+  padding: 1em;
+  padding-top: 5em; /* Falls nötig, um Platz nach oben zu schaffen */
+  margin-top: -4em; /* Negativer Margin-Wert nach Bedarf */
+}
+
+.restaurant-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.restaurant-heading {
+  align-self: flex-start;
+  margin: 0 0 1em 0;
+}
+
+.restaurant-image {
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+  margin-bottom: 1em;
+}
+
+.restaurant-text p {
+  text-align: left;
+  margin: 1em 0; /* Abstand zwischen Absätzen */
+}
+
+.restaurant-text strong {
+  /* Zusätzliche Stile für hervorgehobenen Text, wenn gewünscht */
+  font-weight: bold;
+  /* weitere Dekorationen wie Farbe, Hintergrund, etc. */
+}
+
+.svg-section {
+  position: relative;
+  padding: 2em 1em 1em 1em;
+  margin-top: -1em;
+}
+
+.svg-section .scalloped-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1.67em;
+  background-image: url('@/assets/dropround.svg'); /* Verwende das gleiche SVG */
+  background-repeat: repeat-x;
+  background-position: top left;
+  z-index: 0;
+}
+
+.svg-section .section-content {
+  position: relative;
+  z-index: 1;                   /* Stellt sicher, dass der Inhalt über dem SVG liegt */
+  padding-top: 1.67em;          /* Platz schaffen für das SVG, damit der Inhalt nicht überlappt */
+  color: var(--blue);           /* Textfarbe nach Bedarf anpassen */
+}
+
+.svg-section h2 {
+  margin-top: 0.5em;
+  /* Weitere Überschriftenstile nach Bedarf */
+}
+
+.svg-section p {
+  margin: 1em 0;
+  /* Weitere Absatzstile nach Bedarf */
+}
+
+
+.fischbroetchen-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+  justify-content: center;
+  margin-top: 1em;
+}
+
+.fischbroetchen {
+  width: 100%;
+  max-width: 300px;       /* Maximale Breite der Bilder, anpassbar */
+  border-radius: 20px;    /* Abgerundete Ecken */
+  object-fit: cover;       /* Sorgt dafür, dass Bilder den Container ausfüllen */
+}
+
+
+@media (min-width: 768px) {
+  .fischbroetchen-gallery {
+    justify-content: flex-start;
+  }
+  .fischbroetchen {
+    max-width: 30%; /* Zeige drei Bilder nebeneinander, anpassbar */
+  }
+}
+
 @media (min-width: 1024px) {
   .looping-bubble {
     height: calc(2 * 10vh);
+  }
+
+  /* Längliche Blase mit Text und Icon */
+.looping-bubble {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1em;
+  height: calc(.7 * 10vh);
+  background-color: var(--beige); /* Bestehende Farbe */
+  border-radius:200em; /* Längliche, ovale Form */
+  gap: 0.5em; /* Abstand zwischen Text und Icon */
+}
+
+  .bubble-text {
+    font-size: calc(0.3 * 10vh);
+    white-space: nowrap;
+    display: inline-block;
+    width: 16vw;
+    animation: none;
+    opacity: 0;
+    transform: translateY(0);
   }
 
   .header-row {
@@ -188,5 +303,18 @@
   .fisch-icon {
     width: 10vw;
     height: auto;
+  }
+
+  .restaurant-header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .restaurant-heading {
+    margin: 0 1em 0 0;
+  }
+  .restaurant-image {
+    width: 50%;
+    margin-bottom: 0;
   }
 }

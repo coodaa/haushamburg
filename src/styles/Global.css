@@ -22,12 +22,93 @@
   font-display: swap;
 }
 
+/* Poppins Thin - Gewicht 100 */
+@font-face {
+  font-family: 'Poppins';
+  src: url('/fonts/Poppins/Poppins-Thin.ttf') format('truetype');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Poppins ExtraLight - Gewicht 200 */
+@font-face {
+  font-family: 'Poppins';
+  src: url('/fonts/Poppins/Poppins-ExtraLight.ttf') format('truetype');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Poppins Light - Gewicht 300 */
+@font-face {
+  font-family: 'Poppins';
+  src: url('/fonts/Poppins/Poppins-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Poppins Regular - Gewicht 400 */
+@font-face {
+  font-family: 'Poppins';
+  src: url('/fonts/Poppins/Poppins-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Poppins Medium - Gewicht 500 */
+@font-face {
+  font-family: 'Poppins';
+  src: url('/fonts/Poppins/Poppins-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Poppins SemiBold - Gewicht 600 */
+@font-face {
+  font-family: 'Poppins';
+  src: url('/fonts/Poppins/Poppins-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Poppins Bold - Gewicht 700 */
+@font-face {
+  font-family: 'Poppins';
+  src: url('/fonts/Poppins/Poppins-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Poppins ExtraBold - Gewicht 800 */
+@font-face {
+  font-family: 'Poppins';
+  src: url('/fonts/Poppins/Poppins-ExtraBold.ttf') format('truetype');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Poppins Black - Gewicht 900 */
+@font-face {
+  font-family: 'Poppins';
+  src: url('/fonts/Poppins/Poppins-Black.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --blue: #03305D;
   --gold: #FCB904;
   --beige: #D2C19F;
   --font-body: 'Poppins', sans-serif;
-  --font-heading: 'Sansita', sans-serif;
+  --font-heading: 'Poppins', sans-serif;
   --font-thunder: 'Thunder', sans-serif;
   --title-size: clamp(5em, 7.5vw, 7.5em);
 }
@@ -43,12 +124,18 @@ body {
 }
 
 /* Gemeinsame Titel-Basisklasse */
-.title-base {
+.title-base, .big-title-3 {
   font-weight: bold;
   font-family: var(--font-thunder);
-  font-size: var(--title-size);
   text-transform: uppercase;
-  margin-bottom: 0;
+  margin: 0;
+}
+.title-base {
+  font-size: var(--title-size);
+}
+
+.big-title-3 {
+  font-size: 3em;
 }
 
 .hero {
