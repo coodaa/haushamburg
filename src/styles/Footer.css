@@ -1,14 +1,14 @@
+
 .footer {
   background-color: var(--blue); /* Dunkelblauer Hintergrund */
   color: #fff; /* Weiße Schrift */
   text-align: center;
-  padding: 2rem 1rem;
+  padding: 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem; /* Abstand zwischen den Elementen */
-  margin-top: auto; /* Sorgt dafür, dass der Footer unten andockt */
-  width: 100%;
+  gap: 1rem;
+  border-radius: 20px;    /* Abgerundete Ecken */
 }
 
 .social-media {
@@ -29,9 +29,9 @@
 
 .footer-links {
   display: flex;
-  flex-direction: column; /* Links untereinander auf mobilen Geräten */
-  gap: 0.5rem;
+  gap: 1.5rem; /* Abstand zwischen den Links */
   justify-content: center;
+  flex-wrap: wrap; /* Zeilenumbruch bei kleinerem Bildschirm */
 }
 
 .footer-links a {
@@ -50,30 +50,10 @@
   font-size: 0.9rem;
 }
 
-/* Wrapper für den Sticky Footer */
-body, html {
-  height: 100%;
-  margin: 0;
-}
-
-#app {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-.main-content {
-  flex: 1; /* Füllt den restlichen Platz aus */
-}
-
-/* Tablet und größere Geräte */
-@media (min-width: 768px) {
+/* Mobile Anpassungen */
+@media (max-width: 767px) {
   .footer-links {
-    flex-direction: row; /* Links nebeneinander auf größeren Geräten */
-    gap: 1.5rem;
-  }
-
-  .footer p {
-    font-size: 1rem;
+    flex-direction: column; /* Links untereinander auf mobilen Geräten */
+    gap: 0.5rem;
   }
 }

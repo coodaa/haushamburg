@@ -150,8 +150,7 @@
   display: none;
 }
 
-/* Optional: Blasenhintergrund und Rundung entfernen,
-   falls nur das Fish-Icon ohne sichtbaren Hintergrund gewünscht ist */
+
 .looping-bubble {
   background: transparent;
   border-radius: 0;

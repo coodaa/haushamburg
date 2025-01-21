@@ -251,10 +251,10 @@
 
   .nav-right {
     display: flex;
-    align-items: center; /* Vertikale Zentrierung */
+    align-items: center; 
     justify-content: flex-end;
     text-align: right;
-    gap: 1em; /* Abstand zwischen den Elementen */
+    gap: 1em;
   }
 
   .nav-right .contact-link {
