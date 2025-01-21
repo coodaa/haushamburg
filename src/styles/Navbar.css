@@ -30,7 +30,7 @@
 }
 
 .logo {
-  height: 4em; /* Standardhöhe */
+  height: 5em; /* Standardhöhe */
   transition: height 0.3s ease, transform 0.3s ease;
   padding-top: 2em;
 }
@@ -251,7 +251,7 @@
 
   .nav-right {
     display: flex;
-    align-items: center; 
+    align-items: center;
     justify-content: flex-end;
     text-align: right;
     gap: 1em;
