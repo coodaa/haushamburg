@@ -1,9 +1,10 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "../views/Home.vue";
-import Contact from "../views/Contact.vue";
+import Kontakt from "../views/Kontakt.vue";
 import Speisekarte from "../views/Speisekarte.vue";
 import Service from "../views/Service.vue";
 import Ueber from "../views/Ueber.vue";
+import NotFound from "../views/NotFound.vue"; // Optional: 404-Seite
 
 const routes = [
   {
@@ -12,9 +13,9 @@ const routes = [
     component: Home,
   },
   {
-    path: "/contact",
-    name: "Contact",
-    component: Contact,
+    path: "/Kontakt",
+    name: "Kontakt",
+    component: Kontakt,
   },
   {
     path: "/speisekarte",
@@ -30,6 +31,12 @@ const routes = [
     path: "/ueber",
     name: "Ueber",
     component: Ueber,
+  },
+  // Optional: 404-Seite
+  {
+    path: "/:pathMatch(.*)*",
+    name: "NotFound",
+    component: NotFound,
   },
 ];
 

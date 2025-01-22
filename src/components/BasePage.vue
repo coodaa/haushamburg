@@ -1,17 +1,11 @@
 <template>
   <div class="base-page">
-    <!-- Titel über dem Bild -->
-    <h2 class="title-base title-above">{{ titleAbove }}</h2>
-
-    <!-- Container für Bild + Haupttitel -->
+    <p class="subtitle">{{ subtitle }}</p>
+    <h1 class="title-base title-above">{{ titleAbove }}</h1>
+    <h2 class="title-base page-title">{{ titleMain }}</h2>
     <div class="image-container">
-      <img :src="imageSrc" :alt="imageAlt" class="rounded-image" />
-
-      <!-- Hauptüberschrift, die das Bild „ausschneidet“ -->
-      <h1 class="title-base page-title">{{ titleMain }}</h1>
+      <img :src="imageSrc" :alt="imageAlt" class="rounded-image" loading="lazy" />
     </div>
-
-    <!-- Restlicher Inhalt -->
     <div class="page-content">
       <slot>
         <p>{{ content }}</p>
@@ -32,17 +26,22 @@ export default {
       type: String,
       default: "Bild",
     },
-    titleAbove: { // Neue Prop für den oberen Titel
+    titleAbove: {
       type: String,
       required: false,
       default: "",
     },
-    titleMain: { // Prop für den Haupttitel
+    titleMain: {
       type: String,
       required: true,
     },
     content: {
       type: String,
+      default: "",
+    },
+    subtitle: {
+      type: String,
+      required: false,
       default: "",
     },
   },
@@ -52,22 +51,35 @@ export default {
 <style scoped>
 .base-page {
   text-align: center;
-  font-family: var(--font-body);
+  padding: 1rem;
+  margin-top: 10em;
 }
 
-/* Minimierter Abstand zwischen den Titeln */
+.subtitle {
+  font-size: 1.3em;
+  font-family: var(--font-perfect);
+}
+
 .title-above {
-  margin-bottom: 0.2em; /* Reduzierter Abstand */
   color: var(--blue);
+  font-size: 20vw;
+  text-transform: uppercase;
+  margin: 0;
+  line-height: 0.85;
 }
 
-/* Container für Bild und Haupttitel */
+.page-title {
+  color: var(--blue);
+  font-size: 20vw;
+  text-transform: uppercase;
+  line-height: 0.85;
+}
+
 .image-container {
   position: relative;
-  margin: 0 auto 1rem;
+  margin: 1rem auto 1rem;
 }
 
-/* Gestylt das Bild */
 .rounded-image {
   display: block;
   width: 100%;
@@ -77,68 +89,59 @@ export default {
   margin: 0 auto;
 }
 
-/* Haupttitel über dem Bild */
-.page-title {
-  position: absolute;
-  top: 5%; /* Reduzierter Abstand zum oberen Rand des Bildes */
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: rgba(255, 255, 255, 0.8); /* Leicht transparente Hintergrundfarbe */
-  padding: 0.3rem 0.7rem; /* Angepasstes Padding */
-  border-radius: 0px 0px 20px 20px;
-  max-width: 80%;
-  white-space: normal; /* Zeilenumbrüche erlauben */
-  text-align: center;
-}
-
-/* Pseudo-Elemente für dekorative Effekte */
-.page-title::before,
-.page-title::after {
-  content: "";
-  position: absolute;
-  background-color: transparent;
-  height: 20px;
-  width: 50px;
-  border-top-left-radius: 20px;
-  box-shadow: -15px -2px 0 0 #fff;
-}
-
-.page-title::before {
-  right: -50px;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.page-title::after {
-  left: -50px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 20px; /* Spiegelung */
-  box-shadow: 15px -2px 0 0 #fff; /* Spiegelung des Schattens */
-  top: 50%;
-  transform: translateY(-50%);
-}
-
 .page-content {
   font-size: 1rem;
   line-height: 1.6;
   color: var(--blue);
+  padding: 1rem;
 }
 
-/* Responsive Anpassungen */
-@media (max-width: 768px) {
-  .title-base {
-    font-size: 3em; /* Angepasste Schriftgröße für kleinere Bildschirme */
+@media (min-width: 768px) {
+  .title-above {
+    font-size: 10vw;
   }
 
   .page-title {
-    padding: 0.2rem 0.5rem; /* Weiter angepasste Padding */
-    top: 3%; /* Weiter reduzierter Abstand */
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 0px 0px 20px 20px;
+    white-space: normal;
+    text-align: center;
+    font-size: 10vw;
+    z-index: 3;
   }
+
+  .subtitle {
+  font-size: 1.5em;
+}
 
   .page-title::before,
   .page-title::after {
-    width: 30px;
-    box-shadow: none; /* Optional: Entferne die Schatten auf kleineren Bildschirmen */
+    content: "";
+    position: absolute;
+    background-color: transparent;
+    height: 20px;
+    width: 50px;
+    border-top-left-radius: 20px;
+    box-shadow: -15px -2px 0 0 #fff;
+  }
+
+  .page-title::before {
+    right: -50px;
+    top: 23%;
+    transform: translateY(-50%);
+  }
+
+  .page-title::after {
+    left: -50px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 20px;
+    box-shadow: 15px -2px 0 0 #fff;
+    top: 23%;
+    transform: translateY(-50%);
   }
 }
 </style>

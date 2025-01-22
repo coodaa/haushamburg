@@ -25,9 +25,9 @@
 
       <div class="nav-right">
         <ul class="nav-links">
-          <li class="contact-link"><router-link to="/contact">Kontakt</router-link></li>
+          <li class="Kontakt-link"><router-link to="/Kontakt">Kontakt</router-link></li>
           <li>
-            <router-link to="/contact">
+            <router-link to="/Kontakt">
               <button class="cta-button">
                 <i class="fas fa-calendar-check"></i>
               </button>
@@ -42,9 +42,9 @@
         <li><router-link to="/speisekarte" @click="closeMenu">Speisekarte</router-link></li>
         <li><router-link to="/service" @click="closeMenu">Service</router-link></li>
         <li><router-link to="/ueber" @click="closeMenu">Über</router-link></li>
-        <li><router-link to="/contact" @click="closeMenu">Kontakt</router-link></li>
+        <li><router-link to="/Kontakt" @click="closeMenu">Kontakt</router-link></li>
         <li>
-          <router-link to="/contact" @click="closeMenu">
+          <router-link to="/Kontakt" @click="closeMenu">
             <button class="cta-button">Buche einen Tisch</button>
           </router-link>
         </li>

@@ -2,8 +2,9 @@
   <BasePage
     imageSrc="/src/assets/images/sunna.webp"
     imageAlt="Haus Hamburg Kontakt"
-    titleAbove="Kontakt und Reservierungen"
-    titleMain="Haus Hamburg"
+    titleAbove="Kontakt"
+    titleMain="Reservierung"
+    subtitle="Wie du uns erreichst?"
   >
     <p>
       Wir freuen uns darauf, von Ihnen zu hören! Bitte zögern Sie nicht, uns bei Fragen,
@@ -31,7 +32,7 @@
 import BasePage from "@/components/BasePage.vue";
 
 export default {
-  name: "Contact",
+  name: "Kontakt",
   components: {
     BasePage,
   },
@@ -39,5 +40,5 @@ export default {
 </script>
 
 <style scoped>
-/* Optional: Zusätzliche Styles, falls nötig */
+/* Falls zusätzliche Stile benötigt werden, können sie hier hinzugefügt werden */
 </style>

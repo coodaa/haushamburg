@@ -1,7 +1,7 @@
 <template>
   <div>
     <BasePage
-      imageSrc="@/assets/service.webp"
+    imageSrc="/src/assets/images/haus_hamburg_leer_048.webp"
       imageAlt="Service"
       titleAbove="Unser Service"
       titleMain="Service"

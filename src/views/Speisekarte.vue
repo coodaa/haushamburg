@@ -1,7 +1,8 @@
 <template>
   <div>
     <BasePage
-      imageSrc="@/assets/speisekarte.webp" 
+    imageSrc="/src/assets/images/haus_hamburg_leer_048.webp"
+
       imageAlt="Speisekarte"
       titleAbove="Unsere Speisen"
       titleMain="Speisekarte"

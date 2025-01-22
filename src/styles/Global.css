@@ -96,15 +96,32 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'Tribun';
+  src: url('/fonts/Tribun/Tribun.otf') format('truetype');
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Perfect';
+  src: url('/fonts/Perfect/perfect.otf') format('truetype');
+  font-style: normal;
+  font-display: swap;
+}
+
+
 /* Root-Variablen */
 :root {
   --blue: #03305D;
   --gold: #FCB904;
-  --beige: #D2C19F;
+  --beige: #E8E1DA;
   --font-body: 'Poppins', sans-serif;
   --font-heading: 'Poppins', sans-serif;
   --font-thunder: 'Thunder', sans-serif;
-  --title-size: clamp(5em, 7.5vw, 7.5em); /* Dynamische Schriftgröße */
+  --font-tribun: 'Tribun', sans-serif;
+  --font-perfect: 'Perfect', sans-serif;
+  --title-size: clamp(5em, 7.5vw, 7.5em);
 }
 
 /* Grundlegende Body-Stile */
@@ -175,3 +192,5 @@ a {
   color: var(--blue);
   font-size: 1rem;
 }
+
+/* Weitere globale Styles hier... */
