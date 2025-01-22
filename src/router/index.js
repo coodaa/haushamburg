@@ -1,7 +1,9 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "../views/Home.vue";
-// Passe den Importpfad für Contact.vue an:
-import Contact from "../components/Contact.vue";
+import Contact from "../views/Contact.vue";
+import Speisekarte from "../views/Speisekarte.vue";
+import Service from "../views/Service.vue";
+import Ueber from "../views/Ueber.vue";
 
 const routes = [
   {
@@ -14,7 +16,21 @@ const routes = [
     name: "Contact",
     component: Contact,
   },
-  // Weitere Routen hier hinzufügen
+  {
+    path: "/speisekarte",
+    name: "Speisekarte",
+    component: Speisekarte,
+  },
+  {
+    path: "/service",
+    name: "Service",
+    component: Service,
+  },
+  {
+    path: "/ueber",
+    name: "Ueber",
+    component: Ueber,
+  },
 ];
 
 const router = createRouter({

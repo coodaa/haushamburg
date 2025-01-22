@@ -4,33 +4,34 @@
       <div class="scalloped-svg" :class="{'hidden': isHidden}"></div>
 
       <div class="burger-menu" :class="{ open: menuOpen }" @click="toggleMenu">
-  <div class="burger-icon"></div>
-  <div class="burger-icon"></div>
-  <div class="burger-icon"></div>
-</div>
+        <div class="burger-icon"></div>
+        <div class="burger-icon"></div>
+        <div class="burger-icon"></div>
+      </div>
 
       <div class="nav-left">
         <ul class="nav-links">
-          <li><a href="#">Speisekarte</a></li>
-          <li><a href="#">Service</a></li>
-          <li><a href="#">Über</a></li>
+          <li><router-link to="/speisekarte">Speisekarte</router-link></li>
+          <li><router-link to="/service">Service</router-link></li>
+          <li><router-link to="/ueber">Über</router-link></li>
         </ul>
       </div>
 
-
       <div class="logo-container">
-  <img :class="{'scrolled': isHidden}" src="@/assets/haushamburg_logo.svg" alt="Haus Hamburg Logo" class="logo" />
-</div>
-
-
+        <router-link to="/">
+          <img :class="{'scrolled': isHidden}" src="@/assets/haushamburg_logo.svg" alt="Haus Hamburg Logo" class="logo" />
+        </router-link>
+      </div>
 
       <div class="nav-right">
         <ul class="nav-links">
-          <li class="contact-link"><a href="#">Kontakt</a></li>
+          <li class="contact-link"><router-link to="/contact">Kontakt</router-link></li>
           <li>
-            <button class="cta-button">
-  <i class="fas fa-calendar-check"></i>
-</button>
+            <router-link to="/contact">
+              <button class="cta-button">
+                <i class="fas fa-calendar-check"></i>
+              </button>
+            </router-link>
           </li>
         </ul>
       </div>
@@ -38,15 +39,20 @@
 
     <div class="mobile-menu" :class="{ open: menuOpen }">
       <ul class="mobile-links">
-        <li><a href="#">Speisekarte</a></li>
-        <li><a href="#">Service</a></li>
-        <li><a href="#">Über</a></li>
-        <li><a href="#">Kontakt</a></li>
-        <li><button class="cta-button">Buche einen Tisch</button></li>
+        <li><router-link to="/speisekarte" @click="closeMenu">Speisekarte</router-link></li>
+        <li><router-link to="/service" @click="closeMenu">Service</router-link></li>
+        <li><router-link to="/ueber" @click="closeMenu">Über</router-link></li>
+        <li><router-link to="/contact" @click="closeMenu">Kontakt</router-link></li>
+        <li>
+          <router-link to="/contact" @click="closeMenu">
+            <button class="cta-button">Buche einen Tisch</button>
+          </router-link>
+        </li>
       </ul>
     </div>
   </div>
 </template>
+
 <script>
 import { ref, onUnmounted } from "vue";
 import "@/styles/Navbar.css";
@@ -70,6 +76,11 @@ export default {
       }
     };
 
+    const closeMenu = () => {
+      menuOpen.value = false;
+      document.body.classList.remove("no-scroll");
+    };
+
     window.addEventListener("scroll", handleScroll);
     onUnmounted(() => {
       window.removeEventListener("scroll", handleScroll);
@@ -79,6 +90,7 @@ export default {
       isHidden,
       menuOpen,
       toggleMenu,
+      closeMenu,
     };
   },
 };

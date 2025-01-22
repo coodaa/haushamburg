@@ -34,7 +34,7 @@
       <h2 class="title-base big-title big-title-2">tisch</h2>
       <div class="home-container">
         <img
-          src="@/assets/images/haushamburg.jpeg"
+          src="@/assets/images/haushamburgstart.webp"
           alt="Haus Hamburg"
           class="inverted-radius"
         />
