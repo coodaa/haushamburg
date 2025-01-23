@@ -1,6 +1,6 @@
 <template>
   <BasePage
-    imageSrc="/src/assets/images/sunna.webp"
+    imageSrc="/public/images/sunna.webp"
     imageAlt="Haus Hamburg Kontakt"
     titleAbove="Kontakt"
     titleMain="Reservierung"

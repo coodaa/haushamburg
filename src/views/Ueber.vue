@@ -1,7 +1,7 @@
 <template>
   <div>
     <BasePage
-    imageSrc="/src/assets/images/haus_hamburg_leer_048.webp"
+    imageSrc="/public/images/haus_hamburg_leer_048.webp"
       imageAlt="Über uns"
       titleAbove="Über Haus Hamburg"
       titleMain="Über uns"

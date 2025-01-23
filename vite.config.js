@@ -12,5 +12,5 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  base: "/", // Passe dies an, wenn die App in einem Unterverzeichnis gehostet wird, z. B. "/app/"
+  base: "/", 
 });

@@ -34,7 +34,7 @@
       <h2 class="title-base big-title big-title-2">tisch</h2>
       <div class="home-container">
         <img
-          src="@/assets/images/haushamburgstart.webp"
+          src="/images/haushamburgstart.webp"
           alt="Haus Hamburg"
           class="inverted-radius"
         />
@@ -43,7 +43,7 @@
     <section class="restaurant-section">
       <div class="restaurant-header">
         <h3 class="restaurant-heading, big-title-3">das restaurant</h3>
-        <img src="@/assets/images/1.jpg" alt="Restaurant" class="restaurant-image" />
+        <img src="/public/images/1.jpg" alt="Restaurant" class="restaurant-image" />
       </div>
       <div class="restaurant-text">
         <p>
@@ -68,9 +68,9 @@
   <div class="section-content">
     <h2>Unsere Fischbrötchen</h2>
     <div class="fischbroetchen-gallery">
-      <img src="@/assets/images/fischbrotchen1.jpg" alt="Fischbrötchen 1" class="fischbroetchen" />
-      <img src="@/assets/images/fischbrotchen2.jpg" alt="Fischbrötchen 2" class="fischbroetchen" />
-      <img src="@/assets/images/fischbrotchen3.jpg" alt="Fischbrötchen 3" class="fischbroetchen" />
+      <img src="/public/images/fischbrotchen1.jpg" alt="Fischbrötchen 1" class="fischbroetchen" />
+      <img src="/public/images/fischbrotchen2.jpg" alt="Fischbrötchen 2" class="fischbroetchen" />
+      <img src="/public/images/fischbrotchen3.jpg" alt="Fischbrötchen 3" class="fischbroetchen" />
       <!-- Füge weitere Bilder nach Bedarf hinzu -->
     </div>
   </div>
