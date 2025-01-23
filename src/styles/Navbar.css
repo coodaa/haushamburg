@@ -37,14 +37,14 @@
   padding-top: 2em;
 }
 
-.navbar.scrolled .logo-container {
+/* .navbar.scrolled .logo-container {
   transform: translate(-50%, -50%) scale(0.97);
   padding-top: 1em;
-}
+} */
 
-.navbar.scrolled .logo {
+/* .navbar.scrolled .logo {
   height: 3em;
-}
+} */
 
 .navbar::after {
   content: "";
@@ -237,14 +237,14 @@
   }
 
 
-  .navbar.scrolled .logo-container {
+  /* .navbar.scrolled .logo-container {
     transform: translate(-50%, -50%) scale(0.97);
     padding-top: 1em;
-  }
+  } */
 
-  .navbar.scrolled .logo {
+  /* .navbar.scrolled .logo {
     height: 4em;
-  }
+  } */
 
   .burger-menu {
     display: none !important;

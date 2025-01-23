@@ -1,16 +1,29 @@
+<!-- Speisekarte.vue -->
 <template>
-  <div>
-    <BasePage
-    imageSrc="/public/images/haus_hamburg_leer_048.webp"
+  <BasePage
+    imageSrc="/images/restaurant-interior.jpg"
+    imageAlt="Restaurant Innenbereich"
+    titleAbove="Speisekarte"
+    titleMain="Haus Hamburg"
+    subtitle="Unsere kulinarische Auswahl"
+  >
+    <p>Entdecke unsere leckeren Spezialitäten...</p>
 
-      imageAlt="Speisekarte"
-      titleAbove="Unsere Speisen"
-      titleMain="Speisekarte"
-    >
-      <p>Hier findest du unsere vielfältige Speisekarte.</p>
-      <!-- Weitere Inhalte hier -->
-    </BasePage>
-  </div>
+    <!-- Du kannst beliebig viel Content einfügen -->
+    <h3>Vorspeisen</h3>
+    <ul>
+      <li>Krabbensuppe - 8,90€</li>
+      <li>Bruschetta - 6,50€</li>
+      <!-- usw... -->
+    </ul>
+
+    <h3>Hauptgerichte</h3>
+    <ul>
+      <li>Kabeljaufilet mit Salzkartoffeln - 14,90€</li>
+      <li>Grünkohl mit Pinkel - 12,50€</li>
+      <!-- usw... -->
+    </ul>
+  </BasePage>
 </template>
 
 <script>
@@ -25,5 +38,5 @@ export default {
 </script>
 
 <style scoped>
-/* Optional: Zusätzliche Styles */
+/* Falls du hier nur seitenbezogene Stile brauchst */
 </style>
