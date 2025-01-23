@@ -4,7 +4,6 @@
   left: 0;
   right: 0;
   z-index: 10;
-  background-color: #fff;
   transition: transform 0.3s ease-out, height 0.3s ease-out, padding 0.3s ease-out;
   display: flex;
   align-items: center;
@@ -14,6 +13,9 @@
   padding-bottom: 1em;
   font-family: var(--font-thunder);
   text-transform: uppercase;
+  background-image: url('/images/noisy.png');
+  background-repeat: repeat;
+  background-color: #F2EDE9;
 }
 
 .navbar.scrolled {
@@ -210,7 +212,6 @@
   .nav-left,
   .nav-right {
     display: none;
-
   }
   .burger-menu {
     display: block;
@@ -223,8 +224,14 @@
 @media (min-width: 768px) {
   .navbar {
     justify-content: space-between;
+    padding: 4em 6em;
   }
 
+
+  .navbar::after {
+    left: 2em;
+    right: 2em;
+  }
   .nav-links {
     flex-direction: row;
   }
