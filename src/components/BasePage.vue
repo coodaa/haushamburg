@@ -3,9 +3,14 @@
     <p class="subtitle">{{ subtitle }}</p>
     <h1 class="title-base title-above">{{ titleAbove }}</h1>
     <h2 class="title-base page-title">{{ titleMain }}</h2>
-    <div class="image-container">
-      <img :src="imageSrc" :alt="imageAlt" class="rounded-image" loading="lazy" />
-    </div>
+
+
+      <div class="image-container">
+        <img :src="imageSrc" :alt="imageAlt" class="rounded-image" loading="lazy" />
+
+      </div>
+
+
     <div class="page-content">
       <slot>
         <p>{{ content }}</p>
@@ -105,13 +110,15 @@ export default {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    background-color: #fff;
     padding: 0.5rem 1rem;
     border-radius: 0px 0px 20px 20px;
     white-space: normal;
     text-align: center;
     font-size: 10vw;
     z-index: 3;
+    background-image: url('/images/noisy.png');
+    background-repeat: repeat;
+
   }
 
   .subtitle {
@@ -123,10 +130,12 @@ export default {
     content: "";
     position: absolute;
     background-color: transparent;
-    height: 20px;
+    height: .2em;
     width: 50px;
     border-top-left-radius: 20px;
-    box-shadow: -15px -2px 0 0 #fff;
+    box-shadow: -15px -4px 0 0 #F2EDE9;
+    /* background-image: url('/images/noisy.png'); */
+
   }
 
   .page-title::before {
@@ -139,9 +148,21 @@ export default {
     left: -50px;
     border-top-left-radius: 0;
     border-top-right-radius: 20px;
-    box-shadow: 15px -2px 0 0 #fff;
+    box-shadow: 15px -4px 0 0 #F2EDE9;
     top: 23%;
     transform: translateY(-50%);
   }
+
+
+
+
+
+
+
+
+
+
+
+
 }
 </style>

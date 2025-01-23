@@ -122,6 +122,8 @@
   --font-tribun: 'Tribun', sans-serif;
   --font-perfect: 'Perfect', sans-serif;
   --title-size: clamp(5em, 7.5vw, 7.5em);
+  --pattern-bg: #F2EDE9 url('/images/noisy.png') repeat;
+
 }
 
 /* Grundlegende Body-Stile */
