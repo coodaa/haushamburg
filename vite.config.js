@@ -5,11 +5,12 @@ import path from "path";
 export default defineConfig({
   plugins: [vue()],
   server: {
-    host: true, // Erlaubt den Zugriff auf localhost von anderen Geräten im Netzwerk
+    host: true,
   },
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "./src"), // Definiert den Alias "@" für den src-Ordner
+      "@": path.resolve(__dirname, "./src"),
     },
   },
+  base: "/", // Passe dies an, wenn die App in einem Unterverzeichnis gehostet wird, z. B. "/app/"
 });
