@@ -122,9 +122,7 @@
   --font-tribun: 'Tribun', sans-serif;
   --font-perfect: 'Perfect', sans-serif;
   --title-size: clamp(5em, 7.5vw, 7.5em);
-  --pattern-bg: #F2EDE9 url('/images/noisy.png') repeat;
-
-}
+ }
 
 /* Grundlegende Body-Stile */
 body {
@@ -135,10 +133,10 @@ body {
   margin-top: 15vh;
   overflow-x: hidden;
   box-sizing: border-box;
-  background-image: url('/images/noisy.png');
-  background-repeat: repeat;
+  /* background-image: url('/images/noisy.png');
+  background-repeat: repeat; */
   background-color: #F2EDE9;
-  /* background-blend-mode: overlay; */
+
 }
 
 /* Gemeinsame Titel-Basisklasse */

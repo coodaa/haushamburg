@@ -1,11 +1,12 @@
 <template>
   <div>
-    <BasePage
-    imageSrc="/public/images/haus_hamburg_leer_048.webp"
-      imageAlt="Service"
-      titleAbove="Unser Service"
-      titleMain="Service"
-    >
+      <BasePage
+    imageSrc="/public/images/fischbrotchen1.jpg"
+    imageAlt="Service"
+    titleAbove="Service"
+    titleMain="Catering"
+    subtitle="Wie ist unser Service?"
+  >
       <p>Wir bieten folgende Services an:</p>
       <!-- Weitere Inhalte hier -->
     </BasePage>

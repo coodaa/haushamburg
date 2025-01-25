@@ -5,7 +5,10 @@
     <h2 class="title-base page-title">{{ titleMain }}</h2>
 
     <div class="image-container">
+      <!-- Hauptbild -->
       <img :src="imageSrc" :alt="imageAlt" class="rounded-image" loading="lazy" />
+      <!-- Noise-Overlay -->
+      <div class="noise-overlay"></div>
     </div>
 
     <div class="page-content">
@@ -91,7 +94,18 @@ export default {
   margin: 0 auto;
 }
 
-
+.noise-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('/images/noisy.png');
+  background-repeat: repeat;
+  background-size: cover;
+  border-radius: 20px;
+  pointer-events: none;
+}
 
 .page-content {
   font-size: 1rem;
@@ -109,14 +123,14 @@ export default {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    padding: 1rem 1rem;
+    padding: 0.5rem 1rem;
     border-radius: 0px 0px 20px 20px;
     white-space: normal;
     text-align: center;
     font-size: 10vw;
     z-index: 3;
-    /* background-image: url('/images/noisy.png');
-    background-repeat: repeat; */
+    background-image: url('/images/noisy.png');
+    background-repeat: repeat;
     background-color: #F2EDE9;
   }
 
@@ -129,10 +143,10 @@ export default {
     content: "";
     position: absolute;
     background-color: transparent;
-    height: .285em;
+    height: .2em;
     width: 50px;
     border-top-left-radius: 20px;
-    box-shadow: -15px -9px 0 0 #F2EDE9;
+    box-shadow: -15px -4px 0 0 #F2EDE9;
   }
 
   .page-title::before {
