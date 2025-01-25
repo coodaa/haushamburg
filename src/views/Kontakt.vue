@@ -1,6 +1,6 @@
 <template>
   <BasePage
-    imageSrc="/images/fischbrotchen1.jpg"
+    imageSrc="/images/sunna.webp"
     imageAlt="Haus Hamburg Kontakt"
     titleAbove="Kontakt"
     titleMain="Reservierung"
