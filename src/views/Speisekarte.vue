@@ -1,7 +1,7 @@
 <!-- Speisekarte.vue -->
 <template>
   <BasePage
-    imageSrc="/images/restaurant-interior.jpg"
+    imageSrc="/images/haus_hamburg_leer_048.webp"
     imageAlt="Restaurant Innenbereich"
     titleAbove="Speisekarte"
     titleMain="Haus Hamburg"
