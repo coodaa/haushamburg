@@ -1,7 +1,7 @@
 <template>
   <div>
       <BasePage
-    imageSrc="/images/fischbrotchen1.jpg"
+    imageSrc="/images/haus_hamburg_leer_048.webp"
     imageAlt="Service"
     titleAbove="Service"
     titleMain="Catering"
