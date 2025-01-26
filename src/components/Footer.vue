@@ -2,10 +2,10 @@
 <template>
   <footer class="footer">
     <div class="social-media">
-      <a href="https://facebook.com" target="_blank" aria-label="Facebook">
+      <a href="https://www.facebook.com/HausHamburgLeer/" target="_blank" aria-label="Facebook">
         <i class="fab fa-facebook-f"></i>
       </a>
-      <a href="https://instagram.com" target="_blank" aria-label="Instagram">
+      <a href="https://www.instagram.com/haus_hamburg_leer/" target="_blank" aria-label="Instagram">
         <i class="fab fa-instagram"></i>
       </a>
     </div>
