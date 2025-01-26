@@ -48,10 +48,11 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 1.67em;
+  height: 5em;
   background-image: url('@/assets/scalloped-navbar.svg');
   background-repeat: repeat-x;
   background-position: top left;
+  background-size: calc(100% / 10); /* Standardgröße mit 10 SVGs */
   transition: transform 0.5s ease-out;
   transform: translateY(0);
   z-index: 0;
@@ -60,6 +61,7 @@
 .scalloped-svg.hidden {
   transform: translateY(-100%) !important;
 }
+
 
 .burger-menu {
   position: relative;
@@ -207,7 +209,7 @@
 }
 
 /* Verstecke den Text im Reservieren-Button auf mobilen Geräten */
-@media (max-width: 767px) {
+@media (max-width: 1024px) {
   .nav-left,
   .nav-right {
     display: none;
@@ -253,10 +255,11 @@
   }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .navbar {
     justify-content: space-between;
     padding: 4em 6em;
+    padding-bottom: 1em;
   }
 
   .navbar::after {
@@ -326,5 +329,19 @@
   /* Anpassung der Navbar beim Scrollen auf Desktop-Geräten */
   .navbar.scrolled .logo {
     height: 6em; /* Beibehalten der festen Höhe */
+  }
+}
+
+
+
+@media (min-width: 1024px) {
+  .scalloped-svg {
+    background-size: calc(100% / 15); /* Mehr Wiederholungen, kleinere SVGs */
+  }
+}
+
+@media (min-width: 1440px) {
+  .scalloped-svg {
+    background-size: calc(100% / 20); /* Noch mehr Wiederholungen */
   }
 }

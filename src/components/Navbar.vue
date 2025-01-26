@@ -15,7 +15,7 @@
         <ul class="nav-links">
           <li><router-link to="/speisekarte">Speisekarte</router-link></li>
           <li><router-link to="/catering">Catering</router-link></li>
-          <li><router-link to="/ueber">Über</router-link></li>
+          <li><router-link to="/ueber">Über uns</router-link></li>
         </ul>
       </div>
 
@@ -52,7 +52,7 @@
       <ul class="mobile-links">
         <li><router-link to="/speisekarte" @click="closeMenu">Speisekarte</router-link></li>
         <li><router-link to="/catering" @click="closeMenu">Catering</router-link></li>
-        <li><router-link to="/ueber" @click="closeMenu">Über</router-link></li>
+        <li><router-link to="/ueber" @click="closeMenu">Über uns</router-link></li>
         <li><router-link to="/Kontakt" @click="closeMenu">Kontakt</router-link></li>
         <li>
           <router-link to="/reservierung" @click="closeMenu">
@@ -75,7 +75,7 @@ export default {
     const menuOpen = ref(false);
 
     const handleScroll = () => {
-      isHidden.value = window.scrollY > 200;
+      isHidden.value = window.scrollY > 300;
     };
 
     const toggleMenu = () => {

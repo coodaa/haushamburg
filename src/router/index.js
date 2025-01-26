@@ -1,47 +1,67 @@
+// src/router/index.js
 import { createRouter, createWebHistory } from "vue-router";
-import Home from "../views/Home.vue";
-import Kontakt from "../views/Kontakt.vue";
-import Speisekarte from "../views/Speisekarte.vue";
-import Catering from "../views/Catering.vue";
-import Ueber from "../views/Ueber.vue";
-import Reservierung from "../views/Reservierung.vue";
-import NotFound from "../views/NotFound.vue";
+
+// Lazy Loading der Komponenten
+const Home = () => import("../views/Home.vue");
+const Kontakt = () => import("../views/Kontakt.vue");
+const Speisekarte = () => import("../views/Speisekarte.vue");
+const Catering = () => import("../views/Catering.vue");
+const Ueber = () => import("../views/Ueber.vue");
+const Reservierung = () => import("../views/Reservierung.vue");
+const Impressum = () => import("../views/Impressum.vue");
+const Datenschutz = () => import("../views/Datenschutz.vue");
+const Stellenangebote = () => import("../views/Stellenangebote.vue");
+const NotFound = () => import("../views/NotFound.vue");
 
 const routes = [
   {
     path: "/",
-    name: "Home",
+    name: "home",
     component: Home,
   },
   {
-    path: "/Kontakt",
-    name: "Kontakt",
+    path: "/kontakt",
+    name: "kontakt",
     component: Kontakt,
   },
   {
     path: "/speisekarte",
-    name: "Speisekarte",
+    name: "speisekarte",
     component: Speisekarte,
   },
   {
     path: "/catering",
-    name: "Catering",
+    name: "catering",
     component: Catering,
   },
   {
     path: "/ueber",
-    name: "Ueber",
+    name: "ueber",
     component: Ueber,
   },
   {
     path: "/reservierung",
-    name: "Reservierung",
+    name: "reservierung",
     component: Reservierung,
   },
-  // Optional: 404-Seite
+  {
+    path: "/impressum",
+    name: "impressum",
+    component: Impressum,
+  },
+  {
+    path: "/datenschutz",
+    name: "datenschutz",
+    component: Datenschutz,
+  },
+  {
+    path: "/stellenangebote",
+    name: "stellenangebote",
+    component: Stellenangebote,
+  },
   {
     path: "/:pathMatch(.*)*",
-    name: "NotFound",
+    name: "notfound",
     component: NotFound,
   },
 ];

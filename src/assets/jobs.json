@@ -1,0 +1,41 @@
+[
+  {
+    "id": 1,
+    "title": "Kellner/in",
+    "location": "Leer",
+    "employmentType": "Teilzeit/Vollzeit",
+    "description": "Wir suchen eine freundliche und motivierte Kellnerin oder einen Kellner zur Unterstützung unseres Serviceteams. Erfahrung in der Gastronomie ist von Vorteil, aber nicht zwingend erforderlich. Wir bieten eine umfassende Einarbeitung und ein angenehmes Arbeitsumfeld.",
+    "tasks": [
+      "Bedienung der Gäste",
+      "Entgegennahme von Bestellungen",
+      "Servieren von Speisen und Getränken",
+      "Bereitstellung eines hervorragenden Kundenservices"
+    ],
+    "benefits": [
+      "Flexible Arbeitszeiten",
+      "Leistungsorientierte Vergütung",
+      "Angenehmes Arbeitsklima",
+      "Weiterbildungsmöglichkeiten"
+    ],
+    "application": "Senden Sie Ihre Bewerbung an <a href='mailto:info@haus-hamburg-leer.de'>info@haus-hamburg-leer.de</a> oder besuchen Sie uns persönlich."
+  },
+  {
+    "id": 2,
+    "title": "Küchenhilfe",
+    "location": "Leer",
+    "employmentType": "Teilzeit/Vollzeit",
+    "description": "Unterstützung unseres Küchenteams bei der Vorbereitung und Zubereitung von Speisen. Erfahrung in der Küche ist von Vorteil.",
+    "tasks": [
+      "Vorbereitung der Zutaten",
+      "Unterstützung bei der Zubereitung von Speisen",
+      "Reinigung und Wartung der Küchenarbeitsplätze"
+    ],
+    "benefits": [
+      "Stabile Arbeitszeiten",
+      "Faire Bezahlung",
+      "Teamorientiertes Arbeitsumfeld",
+      "Weiterbildungsmöglichkeiten"
+    ],
+    "application": "Senden Sie Ihre Bewerbung an <a href='mailto:info@haus-hamburg-leer.de'>info@haus-hamburg-leer.de</a> oder besuchen Sie uns persönlich."
+  }
+]

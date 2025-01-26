@@ -4,7 +4,7 @@
     imageAlt="Haus Hamburg Geschichte"
     titleAbove="Über uns"
     titleMain="Geschichte"
-    subtitle="Erfahren Sie mehr über Haus Hamburg"
+    subtitle="Föhl mehr över’t Haus Hamburg"
     heading="Unsere Geschichte"
     flowText=" Haus Hamburg wurde im Jahr 1920 gegründet und hat sich seitdem zu einem
       Wahrzeichen in Leer, Ostfriesland, entwickelt. Ursprünglich als kleines

@@ -5,7 +5,7 @@
     imageAlt="Restaurant Innenbereich"
     titleAbove="Speisekarte"
     titleMain="Haus "
-    subtitle="Unsere kulinarische Auswahl"
+    subtitle="Use kulinarisch Utwahl"
   >
     <p>Entdecke unsere leckeren Spezialitäten...</p>
 
