@@ -13,8 +13,6 @@
   padding-bottom: 1em;
   font-family: var(--font-thunder);
   text-transform: uppercase;
-  /* background-image: url('/images/noisy.png');
-  background-repeat: repeat; */
   background-color: #F2EDE9;
 }
 
@@ -179,6 +177,7 @@
   color: var(--gold); /* Goldene Farbe beim Hover */
 }
 
+/* Reservieren-Button */
 .cta-button {
   display: inline-block !important;
   padding: 0.3em 1.1em;
@@ -195,9 +194,18 @@
   font-family: var(--font-thunder);
   text-transform: uppercase;
   font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
 }
 
-.cta-button:hover {
+.cta-button i {
+  font-size: 1.2em; /* Anpassung der Icon-Größe */
+  margin-right: 0.5em; /* Abstand zwischen Icon und Text */
+}
+
+.cta-button:hover,
+.cta-button:focus {
   background-color: #e0a824; /* Helleres Gold beim Hover */
   transform: scale(1.05); /* Leichte Vergrößerung */
 }
@@ -207,6 +215,7 @@
   height: 100%; /* Hält die Seite fixiert */
 }
 
+/* Verstecke den Text im Reservieren-Button auf mobilen Geräten */
 @media (max-width: 767px) {
   .nav-left,
   .nav-right {
@@ -219,8 +228,25 @@
     display: block;
   }
 
+  /* Ausblenden des "Kontakt"-Links in der Hauptnavbar auf mobilen Geräten */
   .nav-right .Kontakt-link {
     display: none;
+  }
+
+  /* Verstecke den Reservieren-Text auf mobilen Geräten */
+  .cta-button .cta-text {
+    display: none;
+  }
+
+  /* Optional: Zentriere das Icon im Reservieren-Button auf mobilen Geräten */
+  .cta-button {
+    justify-content: center;
+    max-width: 3em; /* Reduziere die maximale Breite */
+    padding: 0.5em; /* Erhöhe das Padding für bessere Touch-Ziele */
+  }
+
+  .cta-button i {
+    margin: 0; /* Entferne den rechten Margin, da der Text ausgeblendet ist */
   }
 }
 
@@ -239,11 +265,10 @@
   }
 
   .navbar.scrolled .logo-container {
-    /* transform: translate(-50%, -50%) scale(0.97); */
-    /* padding-top: 1em; */
+    /* Optional: Zusätzliche Anpassungen bei Scroll */
   }
 
-    .navbar.scrolled .logo {
+  .navbar.scrolled .logo {
     height: 6em;
   }
 
@@ -296,5 +321,10 @@
   .nav-right .cta-button i {
     font-size: 1.2em; /* Anpassung der Icon-Größe */
     margin-right: 0.5em; /* Abstand zwischen Icon und Text */
+  }
+
+  /* Sichtbar machen des Reservieren-Textes auf Desktop */
+  .cta-button .cta-text {
+    display: inline;
   }
 }

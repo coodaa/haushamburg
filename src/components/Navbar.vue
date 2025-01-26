@@ -36,8 +36,10 @@
           <!-- "Reservieren"-Button -->
           <li>
             <router-link to="/reservierung">
-              <button class="cta-button">
-                <i class="fas fa-calendar-check"></i></button>
+              <button class="cta-button" aria-label="Reservieren" title="Reservieren">
+                <i class="fas fa-utensils"></i>
+                <span class="cta-text">Reservieren</span>
+              </button>
             </router-link>
           </li>
         </ul>

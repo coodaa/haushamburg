@@ -4,7 +4,7 @@
     imageSrc="/images/haus_hamburg_leer_048.webp"
     imageAlt="Restaurant Innenbereich"
     titleAbove="Speisekarte"
-    titleMain="Haus Hamburg"
+    titleMain="Haus "
     subtitle="Unsere kulinarische Auswahl"
   >
     <p>Entdecke unsere leckeren Spezialitäten...</p>
