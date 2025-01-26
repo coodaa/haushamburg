@@ -2,12 +2,12 @@
   <div>
       <BasePage
     imageSrc="/images/haus_hamburg_leer_048.webp"
-    imageAlt="Service"
-    titleAbove="Service"
+    imageAlt="Catering"
+    titleAbove="Catering"
     titleMain="Catering"
-    subtitle="Wie ist unser Service?"
+    subtitle="Wie ist unser Catering?"
   >
-      <p>Wir bieten folgende Services an:</p>
+      <p>Wir bieten folgende Catering an:</p>
       <!-- Weitere Inhalte hier -->
     </BasePage>
   </div>
@@ -17,7 +17,7 @@
 import BasePage from "@/components/BasePage.vue";
 
 export default {
-  name: "Service",
+  name: "Catering",
   components: {
     BasePage,
   },

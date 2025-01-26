@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import Home from "../views/Home.vue";
 import Kontakt from "../views/Kontakt.vue";
 import Speisekarte from "../views/Speisekarte.vue";
-import Service from "../views/Service.vue";
+import Catering from "../views/Catering.vue";
 import Ueber from "../views/Ueber.vue";
 import NotFound from "../views/NotFound.vue"; // Optional: 404-Seite
 
@@ -23,9 +23,9 @@ const routes = [
     component: Speisekarte,
   },
   {
-    path: "/service",
-    name: "Service",
-    component: Service,
+    path: "/catering",
+    name: "Catering",
+    component: Catering,
   },
   {
     path: "/ueber",

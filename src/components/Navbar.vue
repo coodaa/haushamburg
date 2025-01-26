@@ -12,7 +12,7 @@
       <div class="nav-left">
         <ul class="nav-links">
           <li><router-link to="/speisekarte">Speisekarte</router-link></li>
-          <li><router-link to="/service">Service</router-link></li>
+          <li><router-link to="/caterin">Catering</router-link></li>
           <li><router-link to="/ueber">Über</router-link></li>
         </ul>
       </div>
@@ -40,7 +40,7 @@
     <div class="mobile-menu" :class="{ open: menuOpen }">
       <ul class="mobile-links">
         <li><router-link to="/speisekarte" @click="closeMenu">Speisekarte</router-link></li>
-        <li><router-link to="/service" @click="closeMenu">Service</router-link></li>
+        <li><router-link to="/caterin" @click="closeMenu">Catering</router-link></li>
         <li><router-link to="/ueber" @click="closeMenu">Über</router-link></li>
         <li><router-link to="/Kontakt" @click="closeMenu">Kontakt</router-link></li>
         <li>

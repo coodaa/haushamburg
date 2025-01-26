@@ -4,9 +4,24 @@
     <h1 class="title-base title-above">{{ titleAbove }}</h1>
     <h2 class="title-base page-title">{{ titleMain }}</h2>
 
-    <div class="image-container">
-      <img :src="imageSrc" :alt="imageAlt" class="rounded-image" loading="lazy" />
+    <div class="first-section">
+      <div class="image-container">
+        <img :src="imageSrc" :alt="imageAlt" class="rounded-image" loading="lazy" />
+      </div>
+
+      <div class="text-below-image">
+        <h3 class="big-title-3">{{ heading }}</h3>
+        <p class="flow-text">{{ flowText }}</p>
+      </div>
     </div>
+
+    <!-- Parallax Section -->
+    <div
+      class="parallax-section"
+      :style="parallaxStyle"
+      v-if="parallaxImageSrc"
+      :aria-label="parallaxImageAlt"
+    ></div>
 
     <div class="page-content">
       <slot>
@@ -46,6 +61,32 @@ export default {
       required: false,
       default: "",
     },
+    heading: {
+      type: String,
+      required: false,
+      default: "",
+    },
+    flowText: {
+      type: String,
+      required: false,
+      default: "",
+    },
+    parallaxImageSrc: {
+      type: String,
+      required: false,
+      default: "",
+    },
+    parallaxImageAlt: {
+      type: String,
+      default: "Parallax Bild",
+    },
+  },
+  computed: {
+    parallaxStyle() {
+      return {
+        backgroundImage: `url(${this.parallaxImageSrc})`,
+      };
+    },
   },
 };
 </script>
@@ -53,8 +94,12 @@ export default {
 <style scoped>
 .base-page {
   text-align: center;
-  padding: 1rem;
-  margin-top: 10em;
+  margin-top: 14em;
+}
+
+.first-section {
+  background-color: red;
+  border-radius: 20px;
 }
 
 .subtitle {
@@ -91,13 +136,34 @@ export default {
   margin: 0 auto;
 }
 
+.text-below-image {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin: 2rem auto;
+  padding: 1rem;
+  gap: 1rem;
+}
 
+.flow-text {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--blue);
+}
 
 .page-content {
   font-size: 1rem;
   line-height: 1.6;
   color: var(--blue);
   padding: 1rem;
+}
+
+.parallax-section {
+  height: 500px;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 @media (min-width: 768px) {
@@ -148,6 +214,32 @@ export default {
     box-shadow: 15px -4px 0 0 #F2EDE9;
     top: 23%;
     transform: translateY(-50%);
+  }
+
+  .text-below-image {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+  }
+
+  .big-title-3 {
+    flex: 1 1 30%;
+  }
+
+  .flow-text {
+    flex: 2 1 70%;
+  }
+
+  .parallax-section {
+    height: 600px; /* Anpassung für größere Bildschirme */
+  }
+}
+
+@media (max-width: 767px) {
+  .parallax-section {
+    background-attachment: scroll;
+    height: 300px;
   }
 }
 </style>

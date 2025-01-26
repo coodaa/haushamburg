@@ -5,6 +5,10 @@
     titleAbove="Kontakt"
     titleMain="Reservierung"
     subtitle="Wie du uns erreichst?"
+    heading="Erreiche uns"
+    flowText="Wir freuen uns, dich bei uns begrüßen zu dürfen! Egal, ob du Fragen hast, eine Reservierung vornehmen möchtest oder besondere Wünsche hast – wir sind immer für dich da. Kontaktiere uns gerne telefonisch oder per E-Mail, um uns deine Anliegen mitzuteilen. Unser Team setzt alles daran, dir einen unvergesslichen Aufenthalt in einer einladenden und entspannten Atmosphäre zu bieten. Wir sind gespannt auf deine Nachricht!"
+    parallaxImageSrc="/images/fischbrotchen1.jpg"
+    parallaxImageAlt="Kontakt Parallax Bildbeschreibung"
   >
     <p>
       Wir freuen uns darauf, von Ihnen zu hören! Bitte zögern Sie nicht, uns bei Fragen,
@@ -38,7 +42,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-/* Falls zusätzliche Stile benötigt werden, können sie hier hinzugefügt werden */
-</style>
