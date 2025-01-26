@@ -110,7 +110,6 @@
   font-display: swap;
 }
 
-
 /* Root-Variablen */
 :root {
   --blue: #03305D;
@@ -122,25 +121,30 @@
   --font-tribun: 'Tribun', sans-serif;
   --font-perfect: 'Perfect', sans-serif;
   --title-size: clamp(5em, 7.5vw, 7.5em);
- }
+}
+
+/* CSS-Reset und Box-Sizing */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
 /* Grundlegende Body-Stile */
 body {
   font-family: var(--font-body);
-  margin: 1em;
+  margin: 0; /* Entfernt die Standard-Margin */
   padding: 0;
   color: var(--blue);
-  margin-top: 15vh;
   overflow-x: hidden;
-  box-sizing: border-box;
-  /* background-image: url('/images/noisy.png');
-  background-repeat: repeat; */
   background-color: #F2EDE9;
-
 }
 
 /* Gemeinsame Titel-Basisklasse */
-.title-base, .big-title-3 {
+.title-base,
+.big-title-3 {
   font-weight: bold;
   font-family: var(--font-thunder);
   text-transform: uppercase;
@@ -155,46 +159,8 @@ body {
   font-size: 4em;
 }
 
-/* Weitere Stile */
-.hero {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 2rem;
-}
-
-.main-content {
-  margin-top: 8em;
-}
-
-.hero-text h1 {
-  font-family: var(--font-heading);
-  font-size: 3rem;
-  color: var(--blue);
-  line-height: 1.2;
-}
-
-.hero-image img {
-  max-width: 500px;
-  border-radius: 8px;
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
-}
-
-.description {
-  text-align: center;
-  padding: 2rem 0;
-}
-
-.description h2 {
-  font-family: var(--font-heading);
-  font-size: 2rem;
-  color: var(--blue);
-}
-
 a {
   text-decoration: none;
   color: var(--blue);
   font-size: 1rem;
 }
-
-/* Weitere globale Styles hier... */

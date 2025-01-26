@@ -7,10 +7,10 @@
       <h2 class="title-base page-title">{{ titleMain }}</h2>
     </div>
 
-    <!-- First Section - Vollbreit mit zentriertem Inhalt -->
+    <!-- First Section - Vollbreit mit abgerundeten unteren Ecken -->
     <div class="first-section">
       <div class="content-wrapper">
-        <div class="image-container">
+        <div class="image-container-2">
           <img :src="imageSrc" :alt="imageAlt" class="rounded-image" loading="lazy" />
         </div>
 
@@ -103,29 +103,28 @@ export default {
 <style scoped>
 .base-page {
   width: 100%;
-  overflow-x: hidden; /* Verhindert horizontales Scrollen */
   text-align: center;
   margin-top: 14em;
 }
 
 /* Zentrierter Inhalt mit maximaler Breite */
 .content-wrapper {
-  max-width: 1200px; /* Passe die maximale Breite nach Bedarf an */
   margin: 0 auto;
-  padding: 0 1rem; /* Optional: Innenabstand */
+  padding: 0 2rem; 
   box-sizing: border-box;
 }
 
-/* First Section - Vollbreit */
+/* First Section - Vollbreit mit abgerundeten unteren Ecken */
 .first-section {
-  background-color: red;
+  background-color: #F2EDE9;
+  border-radius: 20px;
   width: 100vw;
   position: relative;
   left: 50%;
   margin-left: -50vw;
-  padding: 2rem 0; /* Optional: Innenabstand */
   box-sizing: border-box;
   z-index: 1;
+  overflow: hidden;
 }
 
 /* Parallax Section - Vollbreit */
@@ -146,6 +145,7 @@ export default {
 .subtitle {
   font-size: 1.3em;
   font-family: var(--font-perfect);
+  margin-bottom: 1em;
 }
 
 /* Title Above Styling */
@@ -166,9 +166,8 @@ export default {
 }
 
 /* Image Container Styling */
-.image-container {
+.image-container-2 {
   position: relative;
-  margin: 1rem auto 1rem;
 }
 
 /* Rounded Image Styling */
@@ -178,7 +177,7 @@ export default {
   height: auto;
   object-fit: cover;
   border-radius: 20px;
-  margin: 0 auto;
+  /* margin: 0 auto; */
 }
 
 /* Text Below Image Styling */
@@ -208,6 +207,10 @@ export default {
 
 /* Responsive Anpassungen */
 @media (min-width: 768px) {
+  .base-page {
+    padding: 1em;
+  }
+
   .title-above {
     font-size: 10vw;
   }
@@ -216,8 +219,8 @@ export default {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    padding: 1rem 1rem;
-    border-radius: 0px 0px 20px 20px;
+    padding: 0rem 2rem;
+    border-radius: 20px;
     white-space: normal;
     text-align: center;
     font-size: 10vw;
@@ -242,7 +245,7 @@ export default {
 
   .page-title::before {
     right: -50px;
-    top: 23%;
+    top: 16.5%;
     transform: translateY(-50%);
   }
 
@@ -250,8 +253,8 @@ export default {
     left: -50px;
     border-top-left-radius: 0;
     border-top-right-radius: 20px;
-    box-shadow: 15px -4px 0 0 #F2EDE9;
-    top: 23%;
+    box-shadow: 25px -4px 0 0 #F2EDE9;
+    top: 17%;
     transform: translateY(-50%);
   }
 
@@ -284,11 +287,15 @@ export default {
   .parallax-section {
     background-attachment: scroll;
     height: 300px;
-    margin-top: -50px; /* Weniger negative Margin */
+    margin-top: -50px;
   }
 
   .first-section {
-    margin-bottom: -50px; /* Weniger negative Margin */
+    margin-bottom: -50px;
+  }
+
+  .first-section {
+    border-radius: 0 0 20px 20px;
   }
 }
 </style>
