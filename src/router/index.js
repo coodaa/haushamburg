@@ -4,7 +4,8 @@ import Kontakt from "../views/Kontakt.vue";
 import Speisekarte from "../views/Speisekarte.vue";
 import Catering from "../views/Catering.vue";
 import Ueber from "../views/Ueber.vue";
-import NotFound from "../views/NotFound.vue"; // Optional: 404-Seite
+import Reservierung from "../views/Reservierung.vue";
+import NotFound from "../views/NotFound.vue";
 
 const routes = [
   {
@@ -31,6 +32,11 @@ const routes = [
     path: "/ueber",
     name: "Ueber",
     component: Ueber,
+  },
+  {
+    path: "/reservierung",
+    name: "Reservierung",
+    component: Reservierung,
   },
   // Optional: 404-Seite
   {

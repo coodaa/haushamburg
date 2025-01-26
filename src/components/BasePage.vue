@@ -14,7 +14,7 @@
           <img :src="imageSrc" :alt="imageAlt" class="rounded-image" loading="lazy" />
         </div>
 
-        <div class="text-below-image">
+        <div class="second-section">
           <h3 class="big-title-3">{{ heading }}</h3>
           <p class="flow-text">{{ flowText }}</p>
         </div>
@@ -30,13 +30,11 @@
     ></div>
 
     <!-- Seiteninhalt im zentrierten Wrapper -->
-    <div class="content-wrapper">
-      <div class="page-content">
+      <div class="thrid-section">
         <slot>
           <p>{{ content }}</p>
         </slot>
       </div>
-    </div>
   </div>
 </template>
 
@@ -110,7 +108,7 @@ export default {
 /* Zentrierter Inhalt mit maximaler Breite */
 .content-wrapper {
   margin: 0 auto;
-  padding: 0 2rem; 
+  padding: 0 2rem;
   box-sizing: border-box;
 }
 
@@ -177,11 +175,10 @@ export default {
   height: auto;
   object-fit: cover;
   border-radius: 20px;
-  /* margin: 0 auto; */
 }
 
 /* Text Below Image Styling */
-.text-below-image {
+.second-section {
   display: flex;
   flex-direction: column;
   text-align: left;
@@ -198,12 +195,22 @@ export default {
 }
 
 /* Page Content Styling */
-.page-content {
+.thrid-section {
   font-size: 1rem;
   line-height: 1.6;
   color: var(--blue);
+  border-radius: 20px;
+  background-color: #F2EDE9;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  margin-left: -50vw;
+  z-index: 1;
+  overflow: hidden;
+  margin-top: -1em;
   padding: 1rem;
 }
+
 
 /* Responsive Anpassungen */
 @media (min-width: 768px) {
@@ -258,7 +265,7 @@ export default {
     transform: translateY(-50%);
   }
 
-  .text-below-image {
+  .second-section {
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-start;

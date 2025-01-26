@@ -32,19 +32,19 @@
 }
 
 .logo {
-  height: 5em; /* Standardhöhe */
+  height: 6em;
   transition: height 0.3s ease, transform 0.3s ease;
   padding-top: 2em;
 }
 
-/* .navbar.scrolled .logo-container {
+.navbar.scrolled .logo-container {
   transform: translate(-50%, -50%) scale(0.97);
-  padding-top: 1em;
-} */
+  padding-top: 2em;
+}
 
-/* .navbar.scrolled .logo {
-  height: 3em;
-} */
+.navbar.scrolled .logo {
+  height: 5em;
+}
 
 .navbar::after {
   content: "";
@@ -133,8 +133,8 @@
   text-align: right;
 }
 
-.nav-right .contact-link {
-  display: none;
+.nav-right .Kontakt-link {
+  display: none; /* "Kontakt"-Link standardmäßig ausblenden */
 }
 
 .mobile-menu {
@@ -150,7 +150,6 @@
   transition: transform 0.3s ease, opacity 0.3s ease;
   opacity: 0;
   z-index: 9;
-
 }
 
 .mobile-menu.open {
@@ -192,7 +191,7 @@
   max-width: 6em;
   border: 2px solid var(--blue);
   transition: background-color 0.3s ease, transform 0.2s ease;
-  color:  var(--blue);
+  color: var(--blue);
   font-family: var(--font-thunder);
   text-transform: uppercase;
   font-size: 1.2rem;
@@ -219,6 +218,10 @@
   .mobile-menu {
     display: block;
   }
+
+  .nav-right .Kontakt-link {
+    display: none;
+  }
 }
 
 @media (min-width: 768px) {
@@ -226,7 +229,6 @@
     justify-content: space-between;
     padding: 4em 6em;
   }
-
 
   .navbar::after {
     left: 2em;
@@ -236,22 +238,21 @@
     flex-direction: row;
   }
 
+  .navbar.scrolled .logo-container {
+    /* transform: translate(-50%, -50%) scale(0.97); */
+    /* padding-top: 1em; */
+  }
 
-  /* .navbar.scrolled .logo-container {
-    transform: translate(-50%, -50%) scale(0.97);
-    padding-top: 1em;
-  } */
-
-  /* .navbar.scrolled .logo {
-    height: 4em;
-  } */
+    .navbar.scrolled .logo {
+    height: 6em;
+  }
 
   .burger-menu {
     display: none !important;
   }
 
-  .nav-right .contact-link {
-    display: flex;
+  .nav-right .Kontakt-link {
+    display: flex; /* "Kontakt"-Link auf Desktop anzeigen */
     flex-direction: column;
     padding-top: 0.7em;
   }
@@ -262,13 +263,6 @@
     justify-content: flex-end;
     text-align: right;
     gap: 1em;
-  }
-
-  .nav-right .contact-link {
-    display: inline;
-    padding: 0;
-    margin: 0;
-    line-height: 1;
   }
 
   .nav-links {
@@ -290,5 +284,17 @@
 
   .nav-links a:hover {
     color: var(--gold);
+  }
+
+  /* Stil für den Reservierungsbutton in der Hauptnavbar */
+  .nav-right .cta-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+  }
+
+  .nav-right .cta-button i {
+    font-size: 1.2em; /* Anpassung der Icon-Größe */
+    margin-right: 0.5em; /* Abstand zwischen Icon und Text */
   }
 }

@@ -3,48 +3,56 @@
     <div class="navbar" :class="{'scrolled': isHidden}">
       <div class="scalloped-svg" :class="{'hidden': isHidden}"></div>
 
+      <!-- Burger-Menü Icon -->
       <div class="burger-menu" :class="{ open: menuOpen }" @click="toggleMenu">
         <div class="burger-icon"></div>
         <div class="burger-icon"></div>
         <div class="burger-icon"></div>
       </div>
 
+      <!-- Navigationslinks links -->
       <div class="nav-left">
         <ul class="nav-links">
           <li><router-link to="/speisekarte">Speisekarte</router-link></li>
-          <li><router-link to="/caterin">Catering</router-link></li>
+          <li><router-link to="/catering">Catering</router-link></li>
           <li><router-link to="/ueber">Über</router-link></li>
         </ul>
       </div>
 
+      <!-- Logo -->
       <div class="logo-container">
         <router-link to="/">
           <img :class="{'scrolled': isHidden}" src="@/assets/haushamburg_logo.svg" alt="Haus Hamburg Logo" class="logo" />
         </router-link>
       </div>
 
+      <!-- Navigationslinks rechts -->
       <div class="nav-right">
         <ul class="nav-links">
-          <li class="Kontakt-link"><router-link to="/Kontakt">Kontakt</router-link></li>
+          <!-- "Kontakt"-Link nur auf Desktop anzeigen -->
+          <li class="Kontakt-link">
+            <router-link to="/Kontakt">Kontakt</router-link>
+          </li>
+          <!-- "Reservieren"-Button -->
           <li>
-            <router-link to="/Kontakt">
+            <router-link to="/reservierung">
               <button class="cta-button">
-                <i class="fas fa-calendar-check"></i>
-              </button>
+                <i class="fas fa-calendar-check"></i></button>
             </router-link>
           </li>
         </ul>
       </div>
     </div>
 
+    <!-- Mobile Menü -->
     <div class="mobile-menu" :class="{ open: menuOpen }">
       <ul class="mobile-links">
         <li><router-link to="/speisekarte" @click="closeMenu">Speisekarte</router-link></li>
-        <li><router-link to="/caterin" @click="closeMenu">Catering</router-link></li>
+        <li><router-link to="/catering" @click="closeMenu">Catering</router-link></li>
         <li><router-link to="/ueber" @click="closeMenu">Über</router-link></li>
         <li><router-link to="/Kontakt" @click="closeMenu">Kontakt</router-link></li>
         <li>
-          <router-link to="/Kontakt" @click="closeMenu">
+          <router-link to="/reservierung" @click="closeMenu">
             <button class="cta-button">Buche einen Tisch</button>
           </router-link>
         </li>
