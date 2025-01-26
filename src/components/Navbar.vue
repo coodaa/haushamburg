@@ -22,7 +22,8 @@
       <!-- Logo -->
       <div class="logo-container">
         <router-link to="/">
-          <img :class="{'scrolled': isHidden}" src="@/assets/haushamburg_logo.svg" alt="Haus Hamburg Logo" class="logo" />
+          <!-- Entferne die dynamische Klassenzuweisung 'scrolled' -->
+          <img src="@/assets/haushamburg_logo.svg" alt="Haus Hamburg Logo" class="logo" />
         </router-link>
       </div>
 

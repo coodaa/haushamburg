@@ -6,7 +6,7 @@
   z-index: 10;
   transition: transform 0.3s ease-out, height 0.3s ease-out, padding 0.3s ease-out;
   display: flex;
-  align-items: center;
+  align-items: center; /* Vertikale Zentrierung */
   justify-content: space-between;
   box-sizing: border-box;
   padding: 4em 1em;
@@ -21,27 +21,17 @@
 }
 
 .logo-container {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  display: flex; /* Flexbox für Zentrierung */
+  align-items: center; /* Vertikale Zentrierung */
+  justify-content: center; /* Horizontale Zentrierung */
   z-index: 2;
   transition: transform 0.3s ease, height 0.3s ease;
 }
 
 .logo {
-  height: 6em;
-  transition: height 0.3s ease, transform 0.3s ease;
-  padding-top: 2em;
-}
-
-.navbar.scrolled .logo-container {
-  transform: translate(-50%, -50%) scale(0.97);
-  padding-top: 2em;
-}
-
-.navbar.scrolled .logo {
-  height: 5em;
+  height: 6em; /* Feste Höhe beibehalten */
+  transition: none; /* Keine Übergänge für die Höhe */
+  padding-top: 0; /* Entferne padding-top */
 }
 
 .navbar::after {
@@ -187,9 +177,9 @@
   cursor: pointer;
   position: relative;
   z-index: 9999;
-  max-width: 6em;
+  max-width: 6em; /* Beibehalten */
   border: 2px solid var(--blue);
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Nur relevante Übergänge */
   color: var(--blue);
   font-family: var(--font-thunder);
   text-transform: uppercase;
@@ -197,6 +187,7 @@
   display: flex;
   align-items: center;
   gap: 0.5em;
+  flex-shrink: 0; /* Verhindere das Schrumpfen */
 }
 
 .cta-button i {
@@ -238,15 +229,27 @@
     display: none;
   }
 
-  /* Optional: Zentriere das Icon im Reservieren-Button auf mobilen Geräten */
+  /* Zentriere das Icon im Reservieren-Button auf mobilen Geräten */
   .cta-button {
     justify-content: center;
-    max-width: 3em; /* Reduziere die maximale Breite */
+    width: 50px; /* Feste Breite in Pixeln */
     padding: 0.5em; /* Erhöhe das Padding für bessere Touch-Ziele */
+    box-sizing: border-box; /* Stelle sicher, dass Padding in der Breite enthalten ist */
+    flex-shrink: 0; /* Verhindere das Schrumpfen */
   }
 
   .cta-button i {
     margin: 0; /* Entferne den rechten Margin, da der Text ausgeblendet ist */
+  }
+
+  /* Anpassung der Navbar beim Scrollen auf mobilen Geräten */
+  .navbar.scrolled {
+    transform: translateY(-24px); /* Reduziere die Verschiebung */
+  }
+
+  /* Beibehalten der festen Logo-Größe */
+  .navbar.scrolled .logo {
+    height: 6em; /* Beibehalten der festen Höhe */
   }
 }
 
@@ -262,14 +265,6 @@
   }
   .nav-links {
     flex-direction: row;
-  }
-
-  .navbar.scrolled .logo-container {
-    /* Optional: Zusätzliche Anpassungen bei Scroll */
-  }
-
-  .navbar.scrolled .logo {
-    height: 6em;
   }
 
   .burger-menu {
@@ -326,5 +321,10 @@
   /* Sichtbar machen des Reservieren-Textes auf Desktop */
   .cta-button .cta-text {
     display: inline;
+  }
+
+  /* Anpassung der Navbar beim Scrollen auf Desktop-Geräten */
+  .navbar.scrolled .logo {
+    height: 6em; /* Beibehalten der festen Höhe */
   }
 }

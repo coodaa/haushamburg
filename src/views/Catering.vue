@@ -5,7 +5,7 @@
     imageAlt="Catering"
     titleAbove="Catering"
     titleMain="Catering"
-    subtitle="Wie ist unser Catering?"
+    subtitle="Hat hier einer Catering gesagt?"
   >
       <p>Wir bieten folgende Catering an:</p>
       <!-- Weitere Inhalte hier -->
