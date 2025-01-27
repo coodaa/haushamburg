@@ -1,8 +1,8 @@
 <template>
   <div>
     <!-- Header-Row mit H1 und Blase -->
-    <div class="header-row">
-      <h1 class="title-base big-title">herz küche</h1>
+    <div class="hero header-row">
+      <h1 class="title-base big-title">herz, küche,</h1>
       <div class="looping-bubble">
         <!-- Altes Wort mit Fade-out -->
         <span

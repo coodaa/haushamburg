@@ -3,35 +3,43 @@
   top: 0;
   left: 0;
   right: 0;
-  z-index: 10;
-  transition: transform 0.3s ease-out, height 0.3s ease-out, padding 0.3s ease-out;
+  z-index: 1000;
   display: flex;
-  align-items: center; /* Vertikale Zentrierung */
+  align-items: center;
   justify-content: space-between;
   box-sizing: border-box;
-  padding: 4em 1em;
+  padding: 2.7em 1em;
   padding-bottom: 1em;
   font-family: var(--font-thunder);
   text-transform: uppercase;
   background-color: #F2EDE9;
+  transition: transform 0.3s ease-out, height 0.3s ease-out, padding 0.3s ease-out;
 }
 
 .navbar.scrolled {
-  transform: translateY(-48px);
+  transform: translateY(-24px);
 }
 
 .logo-container {
-  display: flex; /* Flexbox für Zentrierung */
-  align-items: center; /* Vertikale Zentrierung */
-  justify-content: center; /* Horizontale Zentrierung */
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   z-index: 2;
   transition: transform 0.3s ease, height 0.3s ease;
 }
 
 .logo {
-  height: 6em; /* Feste Höhe beibehalten */
-  transition: none; /* Keine Übergänge für die Höhe */
-  padding-top: 0; /* Entferne padding-top */
+  height: 4.5em;
+  transition: height 0.3s ease, transform 0.3s ease;
+  padding-top: 0;
+}
+
+.navbar.scrolled .logo {
+  height: 4.5em;
+  transform: scale(0.9);
 }
 
 .navbar::after {
@@ -48,11 +56,11 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 5em;
+  height: 6em;
   background-image: url('@/assets/scalloped-navbar.svg');
   background-repeat: repeat-x;
   background-position: top left;
-  background-size: calc(100% / 10); /* Standardgröße mit 10 SVGs */
+  background-size: calc(100% / 10);
   transition: transform 0.5s ease-out;
   transform: translateY(0);
   z-index: 0;
@@ -62,16 +70,16 @@
   transform: translateY(-100%) !important;
 }
 
-
+/* Burger-Menü-Stile (sichtbar auf mobilen Geräten und Tablets) */
 .burger-menu {
   position: relative;
   width: 30px;
   height: 24px;
   cursor: pointer;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   align-items: center;
+  justify-content: center;
+  z-index: 1001;
 }
 
 .burger-icon {
@@ -100,11 +108,16 @@
 }
 
 .burger-menu.open .burger-icon:nth-child(2) {
-  opacity: 0; /* Mittlere Linie ausblenden */
+  opacity: 0;
 }
 
 .burger-menu.open .burger-icon:nth-child(3) {
   transform: translateY(-10px) rotate(-45deg);
+}
+
+/* Navigationslinks */
+.nav-left .nav-links {
+  display: none;
 }
 
 .nav-links {
@@ -117,29 +130,31 @@
 }
 
 .nav-right {
-  display: flex !important;
+  display: flex;
   align-items: center;
   justify-content: flex-end;
   text-align: right;
+  gap: 1em;
 }
 
 .nav-right .Kontakt-link {
-  display: none; /* "Kontakt"-Link standardmäßig ausblenden */
+  display: none;
 }
 
+/* Mobile Menü */
 .mobile-menu {
   position: fixed;
-  top: 0; /* Direkt unter der Navbar starten */
+  top: 0;
   left: 0;
   width: 100%;
-  height: 100%; /* Vollständige Höhe des Viewports */
-  background-color: var(--blue); /* Dunkelblauer Hintergrund */
-  color: #fff; /* Weiße Schrift */
-  padding: 100px 20px; /* Abstand oben, um die Navbar auszugleichen */
+  height: 100%;
+  background-color: var(--blue);
+  color: #fff;
+  padding: 100px 20px;
   transform: translateX(-100%);
   transition: transform 0.3s ease, opacity 0.3s ease;
   opacity: 0;
-  z-index: 9;
+  z-index: 999;
 }
 
 .mobile-menu.open {
@@ -153,25 +168,59 @@
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 1.5em; /* Abstand zwischen den Menüpunkten */
+  gap: 1.5em;
   align-items: center;
 }
 
 .mobile-links a {
   text-decoration: none;
-  font-size: 1.5rem; /* Größere Schrift für mobile Ansicht */
+  font-size: 1.5rem;
   font-weight: bold;
-  color: #fff; /* Weiße Schrift */
+  color: #fff;
   transition: color 0.3s ease;
 }
 
 .mobile-links a:hover {
-  color: var(--gold); /* Goldene Farbe beim Hover */
+  color: var(--gold);
 }
 
 /* Reservieren-Button */
+.nav-right .cta-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5em 1em;
+  box-sizing: border-box;
+  background-color: var(--gold);
+  border: 2px solid var(--blue);
+  border-radius: 20em;
+  cursor: pointer;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 1.3rem;
+  color: var(--blue);
+  font-family: var(--font-thunder);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  gap: 0.5em;
+}
+
+.nav-right .cta-button .cta-text {
+  display: none;
+}
+
+.nav-right .cta-button i {
+  font-size: 1.2em;
+  margin: 0;
+}
+
+.nav-right .cta-button:hover,
+.nav-right .cta-button:focus {
+  transform: translateY(5%) rotate(0.001deg);
+  transition: transform var(--animation-bounce);
+}
+
+/* Allgemeine Reservieren-Button Stile für Tablet und Desktop */
 .cta-button {
-  display: inline-block !important;
   padding: 0.3em 1.1em;
   background-color: var(--gold);
   font-weight: bold;
@@ -179,95 +228,130 @@
   cursor: pointer;
   position: relative;
   z-index: 9999;
-  max-width: 6em; /* Beibehalten */
+  max-width: 10em;
   border: 2px solid var(--blue);
-  transition: background-color 0.3s ease, transform 0.2s ease; /* Nur relevante Übergänge */
+  transition: background-color 0.3s ease, transform 0.2s ease;
   color: var(--blue);
   font-family: var(--font-thunder);
   text-transform: uppercase;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   display: flex;
   align-items: center;
   gap: 0.5em;
-  flex-shrink: 0; /* Verhindere das Schrumpfen */
+  flex-shrink: 0;
 }
 
 .cta-button i {
-  font-size: 1.2em; /* Anpassung der Icon-Größe */
-  margin-right: 0.5em; /* Abstand zwischen Icon und Text */
+  font-size: 1.2em;
+  margin-right: 0.5em;
 }
 
 .cta-button:hover,
 .cta-button:focus {
-  background-color: #e0a824; /* Helleres Gold beim Hover */
-  transform: scale(1.05); /* Leichte Vergrößerung */
+  background-color: #e0a824;
+  transform: scale(1.05);
 }
 
+/* Kein Scrollen, wenn Menü geöffnet */
 .no-scroll {
-  overflow: hidden; /* Verhindert Scrollen */
-  height: 100%; /* Hält die Seite fixiert */
+  overflow: hidden;
+  height: 100%;
 }
 
-/* Verstecke den Text im Reservieren-Button auf mobilen Geräten */
-@media (max-width: 1024px) {
+/* Responsive Anpassungen */
+
+/* Tablets */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .navbar {
+    padding: 4.5em 2em;
+    padding-bottom: 1.5em;
+  }
+
+  .scalloped-svg {
+    height: 5em;
+    background-size: calc(100% / 20);
+  }
+
+  .logo {
+    height: 5em;
+  }
+
+  .nav-left .nav-links {
+    display: none !important;
+  }
+
+  .burger-menu {
+    display: flex !important;
+  }
+
+  .nav-right .cta-button {
+    width: auto;
+    padding: 0.3em 1.1em;
+    gap: 0.5em;
+  }
+
+  .nav-right .cta-button .cta-text {
+    display: none; /* Verstecke den Text auf Tablets */
+  }
+
+  .nav-right .cta-button i {
+    margin-right: 0.5em;
+  }
+
   .nav-left,
   .nav-right {
-    display: none;
+    display: flex;
+    align-items: center;
   }
+
   .burger-menu {
-    display: block;
-  }
-  .mobile-menu {
-    display: block;
-  }
-
-  /* Ausblenden des "Kontakt"-Links in der Hauptnavbar auf mobilen Geräten */
-  .nav-right .Kontakt-link {
-    display: none;
+    height: 24px;
+    margin-right: 1em;
+    position: relative;
+    z-index: 1001;
   }
 
-  /* Verstecke den Reservieren-Text auf mobilen Geräten */
-  .cta-button .cta-text {
-    display: none;
+  .logo-container {
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
   }
 
-  /* Zentriere das Icon im Reservieren-Button auf mobilen Geräten */
-  .cta-button {
-    justify-content: center;
-    width: 50px; /* Feste Breite in Pixeln */
-    padding: 0.5em; /* Erhöhe das Padding für bessere Touch-Ziele */
-    box-sizing: border-box; /* Stelle sicher, dass Padding in der Breite enthalten ist */
-    flex-shrink: 0; /* Verhindere das Schrumpfen */
-  }
-
-  .cta-button i {
-    margin: 0; /* Entferne den rechten Margin, da der Text ausgeblendet ist */
-  }
-
-  /* Anpassung der Navbar beim Scrollen auf mobilen Geräten */
   .navbar.scrolled {
-    transform: translateY(-24px); /* Reduziere die Verschiebung */
-  }
-
-  /* Beibehalten der festen Logo-Größe */
-  .navbar.scrolled .logo {
-    height: 6em; /* Beibehalten der festen Höhe */
+    transform: translateY(-34px);
   }
 }
 
+/* Desktop Geräte */
 @media (min-width: 1024px) {
   .navbar {
     justify-content: space-between;
-    padding: 4em 6em;
-    padding-bottom: 1em;
+    padding: 4.8em 6em;
+    padding-bottom:2em;
+  }
+
+  .logo {
+    height: 6em;
+  }
+
+  .navbar.scrolled {
+    transform: translateY(-40px);
+  }
+
+  .navbar.scrolled .logo {
+    height: 6em;
+    transform: scale(0.9);
   }
 
   .navbar::after {
     left: 2em;
     right: 2em;
   }
-  .nav-links {
+
+  .nav-left .nav-links {
+    display: flex !important;
     flex-direction: row;
+    gap: 2em;
   }
 
   .burger-menu {
@@ -275,9 +359,8 @@
   }
 
   .nav-right .Kontakt-link {
-    display: flex; /* "Kontakt"-Link auf Desktop anzeigen */
-    flex-direction: column;
-    padding-top: 0.7em;
+    display: flex;
+    align-items: center;
   }
 
   .nav-right {
@@ -289,7 +372,6 @@
   }
 
   .nav-links {
-    display: flex;
     flex-direction: row;
     gap: 2em;
     list-style: none;
@@ -309,39 +391,33 @@
     color: var(--gold);
   }
 
-  /* Stil für den Reservierungsbutton in der Hauptnavbar */
   .nav-right .cta-button {
     display: flex;
     align-items: center;
     gap: 0.5em;
+    width: auto;
+    padding: 0.3em 1.1em;
   }
 
   .nav-right .cta-button i {
-    font-size: 1.2em; /* Anpassung der Icon-Größe */
-    margin-right: 0.5em; /* Abstand zwischen Icon und Text */
+    font-size: 1.2em;
+    margin-right: 0.5em;
   }
 
-  /* Sichtbar machen des Reservieren-Textes auf Desktop */
-  .cta-button .cta-text {
+  .nav-right .cta-button .cta-text {
     display: inline;
+    font-size: 2rem;
   }
 
-  /* Anpassung der Navbar beim Scrollen auf Desktop-Geräten */
-  .navbar.scrolled .logo {
-    height: 6em; /* Beibehalten der festen Höhe */
-  }
-}
-
-
-
-@media (min-width: 1024px) {
   .scalloped-svg {
-    background-size: calc(100% / 15); /* Mehr Wiederholungen, kleinere SVGs */
+    height: 3em;
+    background-size: calc(100% / 30);
   }
 }
 
+/* Größere Bildschirme */
 @media (min-width: 1440px) {
   .scalloped-svg {
-    background-size: calc(100% / 20); /* Noch mehr Wiederholungen */
+    background-size: calc(100% / 40);
   }
 }
