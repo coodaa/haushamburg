@@ -242,27 +242,32 @@
     max-width: 30%;
   }
 }
+
 @media (min-width: 1024px) {
-  /* Abstand links und rechts anpassen */
-  .hero {
-    padding: 3em 10em;
-    padding-bottom: 0em;
+    .hero {
+    position: relative;
+    padding: 3em 10em 0;
   }
 
   .title-base {
     font-size: 13vw;
   }
 
-  /* "tisch" rechts mit gleichem Abstand wie "herz, küche," links */
   .big-title-2 {
-    right: 10em !important; /* statt .5em */
+    position: absolute;
+    right: .9em;
     margin-top: -0.2em !important;
+    text-align: right;
   }
 
-  /* Abmessungen der invertierten Rundung */
   .inverted-radius {
     --r: 40px;
     --s: 40px;
+    --x: 30vw;
+    --y: 7vh;
+  }
+
+  .inverted-radius {
     max-height: 55vh;
     object-position: top;
   }
@@ -271,7 +276,6 @@
     padding: 0 2em;
   }
 
-  /* Looping Bubble: 2/3 für Text, 1/3 für das Fisch-Icon rechts */
   .looping-bubble {
     background: #87CEFA;
     border-radius: 20em;
@@ -280,7 +284,7 @@
     display: grid;
     grid-template-columns: 2fr 1fr;
     align-items: center;
-    gap: 0.5em;
+    gap: .5em;
     min-width: 150px;
     max-width: 400px;
   }
@@ -289,10 +293,8 @@
     justify-self: end;
     width: 7em;
     height: auto;
-    transition: transform 0.5s ease-in-out;
   }
 
-  /* Text links, nimmt 2/3 der Bubble ein */
   .bubble-text {
     text-align: left;
     font-size: calc(0.3 * 10vh);
@@ -307,7 +309,10 @@
     align-items: center;
   }
 
-  /* Restaurant-Sektion im Desktop-Modus */
+  .title-base {
+    font-size: 13vw;
+  }
+
   .restaurant-header {
     flex-direction: row;
     justify-content: space-between;
