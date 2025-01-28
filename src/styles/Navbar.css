@@ -261,7 +261,7 @@
 /* Responsive Anpassungen */
 
 /* Tablets */
-@media (min-width: 768px) and (max-width: 1023px) {
+@media (min-width: 768px) and (max-width: 1200px) {
   .navbar {
     padding: 4.5em 2em;
     padding-bottom: 1.5em;
@@ -323,7 +323,7 @@
 }
 
 /* Desktop Geräte */
-@media (min-width: 1024px) {
+@media (min-width: 1200px) {
   .navbar {
     justify-content: space-between;
     padding: 4.8em 6em;

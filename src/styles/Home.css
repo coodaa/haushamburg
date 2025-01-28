@@ -42,8 +42,8 @@
   --x: 30vw;
   --y: 4vh;
   width: 100%;
-  height: auto;
-  max-height: 50vh;
+  height: 55vh;
+  max-height: 80vh;
   border-radius: var(--r);
   --_m:/calc(2*var(--r)) calc(2*var(--r)) radial-gradient(#000 70%, #0000 72%);
   --_g: conic-gradient(at calc(100% - var(--r)) var(--r), #0000 25%, #000 0);
@@ -155,7 +155,7 @@
 }
 
 .fisch-icon.wobble {
-  animation: wobble var(--animation-bounce-smooth) forwards;
+  animation: wobble var(--animation-text-bounce-smooth) forwards;
 }
 
 /* Restaurant-Sektion */
@@ -167,6 +167,7 @@
   margin-top: -4em;
 }
 
+
 .restaurant-header {
   display: flex;
   flex-direction: column;
@@ -174,7 +175,7 @@
 }
 
 .restaurant-heading {
-  font-size: 1.5rem;
+  /* font-size: 1.5rem; */
   align-self: flex-start;
   margin: 0 0 1em 0;
 }
@@ -233,6 +234,45 @@
   object-fit: cover;
 }
 
+
+/* Tablet Styles */
+@media (min-width: 600px) and (max-width: 1023px) {
+  .header-row {
+    margin-top: 15vh !important;
+  }
+
+  .hero {
+    position: relative;
+    padding: 0em 8em;
+  }
+
+  .big-title-2 {
+    padding: 0em 1.5em;
+  }
+
+  .looping-bubble {
+    background: #87CEFA;
+    padding: .5em 2em;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    align-items: center;
+    min-width: 15em;
+  }
+
+  .bubble-text {
+    text-align: left;
+    font-size: calc(0.3 * 10vh);
+    line-height: 1;
+    white-space: nowrap;
+    display: inline-block;
+    padding-left: 0.5em;
+  }
+
+  .image-container {
+    padding-top: .9em ;
+  }
+}
+
 @media (min-width: 768px) {
   .fischbroetchen-gallery {
     justify-content: flex-start;
@@ -242,11 +282,10 @@
     max-width: 30%;
   }
 }
-
 @media (min-width: 1024px) {
-    .hero {
+  .hero {
     position: relative;
-    padding: 3em 10em 0;
+    padding: 2em 10em 0;
   }
 
   .title-base {
@@ -254,39 +293,31 @@
   }
 
   .big-title-2 {
-    position: absolute;
-    right: .9em;
-    margin-top: -0.2em !important;
-    text-align: right;
+    padding: 0em .6em;
   }
 
   .inverted-radius {
     --r: 40px;
     --s: 40px;
-    --x: 30vw;
-    --y: 7vh;
-  }
-
-  .inverted-radius {
+    --x: 25vw;
+    --y: 5vh;
     max-height: 55vh;
     object-position: top;
   }
 
   .image-container {
-    padding: 0 2em;
+    padding: 1em 2em;
   }
 
   .looping-bubble {
     background: #87CEFA;
     border-radius: 20em;
-    padding: 0.5em 1em;
-    margin-left: 1em;
+    padding: .5em 2em;
+    margin-left: .5em;
     display: grid;
     grid-template-columns: 2fr 1fr;
     align-items: center;
-    gap: .5em;
-    min-width: 150px;
-    max-width: 400px;
+    min-width: 19em;
   }
 
   .fisch-icon {
@@ -301,16 +332,12 @@
     line-height: 1;
     white-space: nowrap;
     display: inline-block;
-    padding-left: 2em;
+    padding-left: 0.5em;
   }
 
   .header-row {
     justify-content: space-between;
     align-items: center;
-  }
-
-  .title-base {
-    font-size: 13vw;
   }
 
   .restaurant-header {
@@ -326,5 +353,62 @@
   .restaurant-image {
     width: 50%;
     margin-bottom: 0;
+  }
+}
+
+
+@media (min-width: 1400px) {
+
+  .title-base {
+    font-size: 12vw;
+  }
+
+  .inverted-radius {
+    --r: 50px;
+    --s: 50px;
+    --x: 25vw;
+    --y: 7vh;
+    max-height: 55vh;
+    object-position: top;
+  }
+
+  .looping-bubble {
+    padding: 0em 1em;
+    margin-left: .5em;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    align-items: center;
+    min-width: 19em;
+  }
+
+  .fisch-icon {
+    width: 10em;
+  }
+
+  .bubble-text {
+    font-size: calc(.7 * 10vh);
+  }
+
+  .image-container {
+    padding: 1em 2em;
+  }
+
+}
+
+
+@media (min-width: 1700px) {
+  .inverted-radius {
+    --x: 25vw;
+    --y: 10vh;
+  }
+
+  .looping-bubble {
+    padding: 1em 3em;
+    margin-right: 4em;
+
+  }
+
+  .image-container {
+    padding: 0em 2em;
   }
 }

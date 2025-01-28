@@ -1,4 +1,5 @@
 <template>
+
   <div>
     <!-- Header-Row mit H1 und Blase -->
     <div class="hero header-row">
@@ -34,7 +35,7 @@
       <h2 class="title-base big-title big-title-2">tisch</h2>
       <div class="home-container">
         <img
-          src="/images/haushamburgstart.webp"
+          src="/images/outside/haushamburgstart.webp"
           alt="Haus Hamburg"
           class="inverted-radius"
         />
@@ -42,8 +43,8 @@
     </div>
     <section class="restaurant-section">
       <div class="restaurant-header">
-        <h3 class="restaurant-heading, big-title-3">das restaurant</h3>
-        <img src="/public/images/1.jpg" alt="Restaurant" class="restaurant-image" />
+        <h3 class="restaurant-heading big-title-3">das restaurant</h3>
+
       </div>
       <div class="restaurant-text">
         <p>
@@ -62,6 +63,7 @@
           <strong>Wir freuen uns darauf, Sie in unserem gemütlichen Restaurant begrüßen zu dürfen!</strong>
         </p>
       </div>
+      <img src="/images/outside/haushamburgstart.webp" alt="Restaurant" class="restaurant-image" />
     </section>
     <section class="svg-section">
   <div class="scalloped-svg"></div>

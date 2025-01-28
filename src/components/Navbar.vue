@@ -1,4 +1,6 @@
 <template>
+      <div class="container">
+
   <div>
     <div class="navbar" :class="{ 'scrolled': isScrolled }">
       <div class="scalloped-svg" :class="{ 'hidden': isScrolled }"></div>
@@ -62,6 +64,8 @@
       </ul>
     </div>
   </div>
+</div>
+
 </template>
 
 <script>
