@@ -1,5 +1,4 @@
 <template>
-
   <div>
     <!-- Header-Row mit H1 und Blase -->
     <div class="hero header-row">
@@ -14,12 +13,9 @@
           {{ previousWord }}
         </span>
         <!-- Neues Wort mit Fade-in und Nachwackeln -->
-        <span
-  v-if="currentWordVisible"
-  class="bubble-text animate-in"
->
-  {{ currentWord }}
-</span>
+        <span v-if="currentWordVisible" class="bubble-text animate-in">
+          {{ currentWord }}
+        </span>
         <img
           src="@/assets/fishcircle.svg"
           alt="Fisch Icon"
@@ -41,44 +37,46 @@
         />
       </div>
     </div>
-    <section class="restaurant-section">
-      <div class="restaurant-header">
-        <h3 class="restaurant-heading big-title-3">das restaurant</h3>
 
-      </div>
-      <div class="restaurant-text">
-        <p>
-          Entdecken Sie das <strong>authentische Norddeutschland</strong> im Haus Hamburg, Ihrem Fischrestaurant mitten in der charmanten Altstadt von Leer, Ostfriesland. Bei uns erwarten Sie nicht nur fangfrische Fischspezialitäten, sondern auch eine Vielfalt an norddeutschen Köstlichkeiten, die mit viel Liebe und regionalen Zutaten zubereitet werden.
-        </p>
-        <p>
-          Ein besonderes Highlight ist unser <strong>monatliches Fischbuffet</strong>: Jeden ersten Freitag im Monat laden wir Sie ein, sich durch eine abwechslungsreiche Auswahl an delikaten Fischgerichten zu probieren – ein Genuss, den Sie nicht verpassen sollten!
-        </p>
-        <p>
-          Auch Vegetarier sind bei uns herzlich willkommen. Unser Menü bietet eine Auswahl an kreativen, vegetarischen Gerichten, die Ihren Besuch zu einem rundum gelungenen Erlebnis machen.
-        </p>
-        <p>
-          Besuchen Sie uns im Haus Hamburg und erleben Sie Norddeutschland von seiner köstlichsten Seite.
-        </p>
-        <p>
-          <strong>Wir freuen uns darauf, Sie in unserem gemütlichen Restaurant begrüßen zu dürfen!</strong>
-        </p>
+    <!-- Restaurant-Sektion -->
+    <section class="restaurant-section">
+      <div class="restaurant-content">
+        <h3 class="restaurant-heading big-title-3">das restaurant</h3>
+        <div class="restaurant-text">
+          <p>
+            Entdecken Sie das <strong>authentische Norddeutschland</strong> im Haus Hamburg, Ihrem Fischrestaurant mitten in der charmanten Altstadt von Leer, Ostfriesland. Bei uns erwarten Sie nicht nur fangfrische Fischspezialitäten, sondern auch eine Vielfalt an norddeutschen Köstlichkeiten, die mit viel Liebe und regionalen Zutaten zubereitet werden.
+          </p>
+          <p>
+            Ein besonderes Highlight ist unser <strong>monatliches Fischbuffet</strong>: Jeden ersten Freitag im Monat laden wir Sie ein, sich durch eine abwechslungsreiche Auswahl an delikaten Fischgerichten zu probieren – ein Genuss, den Sie nicht verpassen sollten!
+          </p>
+          <p>
+            Auch Vegetarier sind bei uns herzlich willkommen. Unser Menü bietet eine Auswahl an kreativen, vegetarischen Gerichten, die Ihren Besuch zu einem rundum gelungenen Erlebnis machen.
+          </p>
+          <p>
+            Besuchen Sie uns im Haus Hamburg und erleben Sie Norddeutschland von seiner köstlichsten Seite.
+          </p>
+          <p>
+            <strong>Wir freuen uns darauf, Sie in unserem gemütlichen Restaurant begrüßen zu dürfen!</strong>
+          </p>
+        </div>
       </div>
       <img src="/images/outside/haushamburgstart.webp" alt="Restaurant" class="restaurant-image" />
     </section>
-    <section class="svg-section">
-  <div class="scalloped-svg"></div>
-  <div class="section-content">
-    <h2>Unsere Fischbrötchen</h2>
-    <div class="fischbroetchen-gallery">
-      <img src="/public/images/fischbrotchen1.jpg" alt="Fischbrötchen 1" class="fischbroetchen" />
-      <img src="/public/images/fischbrotchen2.jpg" alt="Fischbrötchen 2" class="fischbroetchen" />
-      <img src="/public/images/fischbrotchen3.jpg" alt="Fischbrötchen 3" class="fischbroetchen" />
-      <!-- Füge weitere Bilder nach Bedarf hinzu -->
-    </div>
-  </div>
-</section>
-  </div>
 
+    <!-- SVG-Sektion -->
+    <section class="svg-section">
+      <div class="scalloped-svg"></div>
+      <div class="section-content">
+        <h2>Unsere Fischbrötchen</h2>
+        <div class="fischbroetchen-gallery">
+          <img src="/public/images/fischbrotchen1.jpg" alt="Fischbrötchen 1" class="fischbroetchen" />
+          <img src="/public/images/fischbrotchen2.jpg" alt="Fischbrötchen 2" class="fischbroetchen" />
+          <img src="/public/images/fischbrotchen3.jpg" alt="Fischbrötchen 3" class="fischbroetchen" />
+          <!-- Füge weitere Bilder nach Bedarf hinzu -->
+        </div>
+      </div>
+    </section>
+  </div>
 </template>
 
 
