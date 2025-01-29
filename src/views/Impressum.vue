@@ -3,8 +3,8 @@
   <BasePage
     imageSrc="/images/mood/DSCF1092.JPG"
     imageAlt="Impressum Bild"
-    titleAbove="Impressum"
-    titleMain="Informationen"
+    titleAbove="Info"
+    titleMain="Impressum"
     subtitle="Verantwortlich für den Inhalt"
     heading="Impressum"
     flowText=""
@@ -26,21 +26,6 @@
           Alle Rechte vorbehalten. ©Helga Wagemann
         </p>
       </section>
-
-      <section>
-        <h3>Webmaster:</h3>
-        <p>
-          Löffler Creativ<br />
-          Inhaber: Martin Löffler<br />
-          Neue Straße 44<br />
-          26789 Leer<br />
-          Telefon: <a href="tel:+49419769483">0491 97 69 483</a><br />
-          <a href="https://www.loefflercreativ.de" target="_blank" rel="noopener noreferrer">www.loefflercreativ.de</a>
-        </p>
-      </section>
-
-      <!-- Weitere Impressumsabschnitte hier -->
-
     </div>
   </BasePage>
 </template>
