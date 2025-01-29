@@ -4,7 +4,6 @@
     <div class="hero header-row">
       <h1 class="title-base big-title">herz, küche,</h1>
       <div class="looping-bubble">
-        <!-- Altes Wort mit Fade-out -->
         <span
           v-if="previousWordVisible"
           class="bubble-text animate-out"
@@ -12,7 +11,6 @@
         >
           {{ previousWord }}
         </span>
-        <!-- Neues Wort mit Fade-in und Nachwackeln -->
         <span v-if="currentWordVisible" class="bubble-text animate-in">
           {{ currentWord }}
         </span>
@@ -40,9 +38,8 @@
 
     <!-- Restaurant-Sektion -->
     <section class="restaurant-section">
-  <div class="restaurant-content">
-    <h3 class="restaurant-heading big-title-3">das restaurant</h3>
-    <div class="restaurant-text">
+      <div class="restaurant-content">
+        <h3 class="restaurant-heading big-title-3">das restaurant</h3>
         <div class="restaurant-text">
           <p>
             Entdecken Sie das <strong>authentische Norddeutschland</strong> im Haus Hamburg, Ihrem Fischrestaurant mitten in der charmanten Altstadt von Leer, Ostfriesland. Bei uns erwarten Sie nicht nur fangfrische Fischspezialitäten, sondern auch eine Vielfalt an norddeutschen Köstlichkeiten, die mit viel Liebe und regionalen Zutaten zubereitet werden.
@@ -58,97 +55,99 @@
           </p>
         </div>
       </div>
-      </div>
-
+      <img src="/images/outside/haushamburgstart.webp" alt="Restaurant" class="restaurant-image" />
     </section>
 
-    <!-- SVG-Sektion -->
+    <!-- Unsere Auswahl (Speisekarte) Sektion mit Carousel -->
     <section class="svg-section">
       <div class="scalloped-svg"></div>
       <div class="section-content">
-        <h2>Unsere Auswahl</h2>
-        <div class="fischbroetchen-gallery">
-          <img src="/public/images/fischbrotchen1.jpg" alt="Fischbrötchen 1" class="fischbroetchen" />
-          <img src="/public/images/fischbrotchen2.jpg" alt="Fischbrötchen 2" class="fischbroetchen" />
-          <img src="/public/images/fischbrotchen3.jpg" alt="Fischbrötchen 3" class="fischbroetchen" />
-          <img src="/public/images/fischbrotchen3.jpg" alt="Fischbrötchen 3" class="fischbroetchen" />
-          <!-- Füge weitere Bilder nach Bedarf hinzu -->
-        </div>
+        <h2>Unsere Speisekarte</h2>
+        <CustomSwiper :items="selection" :slides-per-view="slidesPerView" />
       </div>
     </section>
   </div>
 </template>
 
-
-
 <script>
-import '../styles/Home.css'
+import CustomSwiper from "../components/CustomSwiper.vue";
+import "../styles/Home.css";
 
 export default {
-  name: 'Home',
+  name: "Home",
+  components: {
+    CustomSwiper,
+  },
   data() {
     return {
-      words: ["Moin!", "Ahoi!", "Hallo!"], // Liste der Wörter
+      words: ["Moin!", "Ahoi!", "Hallo!"],
       currentIndex: 0,
       currentWord: "Moin!",
       previousWord: "",
       currentWordVisible: true,
       previousWordVisible: false,
-      rotation: 0, // Startwinkel für das SVG
-      rotationDirection: 1, // Steuerung der Rotationsrichtung: 1 = vorwärts, -1 = rückwärts
-      isWobbling: false, // Steuert, ob das SVG nachwackelt
+      rotation: 0,
+      rotationDirection: 1,
+      isWobbling: false,
+      selection: [
+        { image: "/images/fischbrotchen1.jpg", alt: "Fischbrötchen 1", link: "/speisekarte" },
+        { image: "/images/fischbrotchen2.jpg", alt: "Fischbrötchen 2", link: "/speisekarte" },
+        { image: "/images/fischbrotchen3.jpg", alt: "Fischbrötchen 3", link: "/speisekarte" },
+      ],
+      slidesPerView: 1,
+      wordInterval: null,
     };
   },
   mounted() {
     this.startWordAnimation();
+    this.updateSlidesPerView();
+    window.addEventListener("resize", this.updateSlidesPerView);
   },
   methods: {
     startWordAnimation() {
-      setInterval(() => {
-        // Wechsel zum nächsten Wort
-        this.previousWord = this.currentWord; // Altes Wort setzen
-        this.previousWordVisible = true; // Altes Wort sichtbar machen (für Fade-out)
-        this.currentIndex = (this.currentIndex + 1) % this.words.length; // Nächster Index
-        this.currentWord = this.words[this.currentIndex]; // Neues Wort setzen
-        this.currentWordVisible = false; // Neues Wort unsichtbar machen
+      this.wordInterval = setInterval(() => {
+        this.previousWord = this.currentWord;
+        this.previousWordVisible = true;
+        this.currentIndex = (this.currentIndex + 1) % this.words.length;
+        this.currentWord = this.words[this.currentIndex];
+        this.currentWordVisible = false;
 
-        // Rotationswinkel anpassen
         this.rotation += 15 * this.rotationDirection;
-
-        // Richtung wechseln, wenn die Grenze von ±30 Grad erreicht ist
         if (this.rotation >= 30 || this.rotation <= -30) {
-          this.rotationDirection *= -1; // Richtung umkehren
+          this.rotationDirection *= -1;
         }
 
-        // CSS-Variable für die aktuelle Rotation setzen
         this.updateRotationVariable();
-
-        // Nachwackeln aktivieren, aber erst nach der Drehung
         this.triggerWobble();
 
-        // Fade-out starten, neues Wort sichtbar machen nach Fade-out
         setTimeout(() => {
-          this.previousWordVisible = false; // Altes Wort ausblenden
-          this.currentWordVisible = true; // Neues Wort einblenden
-        }, 500); // Wartezeit für Fade-out
-      }, 3000); // Wechselt alle 3 Sekunden
+          this.previousWordVisible = false;
+          this.currentWordVisible = true;
+        }, 500);
+      }, 3000);
     },
     updateRotationVariable() {
-      // Setzt die aktuelle Rotation als CSS-Variable für das Wackeln
-      document.documentElement.style.setProperty('--rotation-start', `${this.rotation}deg`);
+      document.documentElement.style.setProperty("--rotation-start", `${this.rotation}deg`);
     },
     triggerWobble() {
-      // Aktiviert das Nachwackeln kurz nach der Drehung
       setTimeout(() => {
-        this.isWobbling = true; // Wackeln starten
+        this.isWobbling = true;
         setTimeout(() => {
-          this.isWobbling = false; // Wackeln stoppen
-        }, 500); // Nachwackeln dauert 0.5 Sekunden
-      }, 500); // Nachwackeln startet 0.5 Sekunden nach der Drehung
+          this.isWobbling = false;
+        }, 500);
+      }, 500);
     },
     handleFadeOutEnd() {
-      this.previousWordVisible = false; // Altes Wort komplett ausblenden
+      this.previousWordVisible = false;
     },
+    updateSlidesPerView() {
+      const width = window.innerWidth;
+      this.slidesPerView = width >= 1700 ? 4 : width >= 1400 ? 3 : width >= 1024 ? 2 : 1;
+    },
+  },
+  beforeUnmount() {
+    clearInterval(this.wordInterval);
+    window.removeEventListener("resize", this.updateSlidesPerView);
   },
 };
 </script>

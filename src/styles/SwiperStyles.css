@@ -1,0 +1,111 @@
+/* Swiper Carousel Styles */
+.mySwiper {
+  width: 100%;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+/* Carousel-Bilder */
+.carousel-image {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.carousel-image:hover {
+  transform: scale(1.05);
+}
+
+/* Lazy Loading Preloader */
+.swiper-lazy-preloader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 50px;
+  height: 50px;
+  margin-left: -25px;
+  margin-top: -25px;
+  z-index: 10;
+}
+
+/* Anpassung der Navigationspfeile */
+.swiper-button-next,
+.swiper-button-prev {
+  color: var(--blue); /* Passen Sie die Farbe nach Bedarf an */
+}
+
+/* Anpassung der Pagination-Bullets */
+.swiper-pagination-bullet {
+  background: var(--blue);
+}
+
+.swiper-pagination-bullet-active {
+  background: var(--dark-blue);
+}
+
+/* Responsive Anpassungen für Carousel-Bilder */
+
+/* Tablet (600px - 1023px) */
+@media (min-width: 600px) and (max-width: 1023px) {
+  .carousel-image {
+    height: 250px;
+  }
+}
+
+/* Desktop (1024px - 1399px) */
+@media (min-width: 1024px) and (max-width: 1399px) {
+  .carousel-image {
+    height: 300px;
+  }
+}
+
+/* Große Bildschirme (1400px - 1699px) */
+@media (min-width: 1400px) and (max-width: 1699px) {
+  .carousel-image {
+    height: 350px;
+  }
+}
+
+/* Sehr große Bildschirme (ab 1700px) */
+@media (min-width: 1700px) {
+  .carousel-image {
+    height: 400px;
+  }
+}
+
+/* Optional: Zusätzliche Swiper-Styles */
+
+/* Größe der Navigationspfeile anpassen */
+.swiper-button-next,
+.swiper-button-prev {
+  width: 30px;
+  height: 30px;
+}
+
+/* Größe der Pagination-Bullets anpassen */
+.swiper-pagination-bullet {
+  width: 12px;
+  height: 12px;
+}
+
+/* Animation für aktive Bullet */
+.swiper-pagination-bullet-active {
+  transform: scale(1.2);
+}
+
+.swiper-pagination-bullet {
+  width: 12px;
+  height: 12px;
+  background: #ddd; /* Standardfarbe */
+  opacity: 0.5;
+  transition: all 0.3s ease;
+}
+
+.swiper-pagination-bullet-active {
+  background: #333; /* Aktives Bild */
+  opacity: 1;
+  transform: scale(1.2);
+}
