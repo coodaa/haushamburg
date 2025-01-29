@@ -1,14 +1,14 @@
 <!-- src/views/Impressum.vue -->
 <template>
   <BasePage
-    imageSrc="/images/haus_hamburg_leer_048.webp"
+    imageSrc="/images/mood/DSCF1092.JPG"
     imageAlt="Impressum Bild"
     titleAbove="Impressum"
     titleMain="Informationen"
     subtitle="Verantwortlich für den Inhalt"
     heading="Impressum"
     flowText=""
-    parallaxImageSrc="/images/haus_hamburg_leer_048.webp"
+    parallaxImageSrc="/images/mood/DSCF3615.JPG"
     parallaxImageAlt=""
   >
     <div>

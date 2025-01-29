@@ -1,14 +1,14 @@
 <template>
   <div>
     <BasePage
-      imageSrc="/images/haus_hamburg_leer_048.webp"
+      imageSrc="/images/catering/catering-haus-hamburg2.jpg"
       imageAlt="Catering"
       titleAbove="Catering"
       titleMain="Catering"
       subtitle="He hett een wat vun Catering seggt?"
       heading="Buche uns"
     flowText="Verleihe Deinem Event einen norddeutschen Charme mit dem Catering-Service von Haus Hamburg! Ob private Feier, Firmenevent oder besondere Anlässe – wir bringen unsere frischen Fischspezialitäten und regionale Leckerbissen direkt zu Dir. Unser erfahrenes Team sorgt dafür, dass Deine Gäste kulinarisch verwöhnt werden und Dein Event unvergesslich wird."
-    parallaxImageSrc="/images/1.jpg"
+    parallaxImageSrc="/images/catering/catering-haus-hamburg1.jpg"
     >
       <p>
         Verleihe Deinem Event einen norddeutschen Charme mit dem Catering-Service von Haus Hamburg! Ob private Feier, Firmenevent oder besondere Anlässe – wir bringen unsere frischen Fischspezialitäten und regionale Leckerbissen direkt zu Dir. Unser erfahrenes Team sorgt dafür, dass Deine Gäste kulinarisch verwöhnt werden und Dein Event unvergesslich wird.

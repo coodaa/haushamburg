@@ -1,6 +1,6 @@
 <template>
   <BasePage
-    imageSrc="/images/1.jpg"
+    imageSrc="/images/outside/haus_hamburg_leer_048.webp"
     imageAlt="Haus Hamburg Geschichte"
     titleAbove="Über uns"
     titleMain="Geschichte"
@@ -10,7 +10,7 @@
       Wahrzeichen in Leer, Ostfriesland, entwickelt. Ursprünglich als kleines
       Familienbetriebshaus konzipiert, hat es sich im Laufe der Jahrzehnte zu einem
       beliebten Treffpunkt für Einheimische und Besucher gleichermaßen entwickelt."
-    parallaxImageSrc="/images/1.jpg"
+    parallaxImageSrc="/images/outside/haus_hamburg_leer_048.webp"
   >
     <p>
       Haus Hamburg** wurde im Jahr 1920 gegründet und hat sich seitdem zu einem

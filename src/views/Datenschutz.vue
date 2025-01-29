@@ -1,14 +1,14 @@
 <!-- src/views/Datenschutz.vue -->
 <template>
   <BasePage
-  imageSrc="/images/haus_hamburg_leer_048.webp"
+  imageSrc="/images/mood/christian-paul-stobbe-w8B2IcmvACk-unsplash.jpg"
   imageAlt="Datenschutzerklärung Bild"
     titleAbove="Datenschutz"
     titleMain="Datenschutz"
     subtitle="Schutz Ihrer Daten"
     heading="Datenschutz"
     flowText=""
-    parallaxImageSrc="/images/haus_hamburg_leer_048.webp"
+    parallaxImageSrc="/images/mood/gritte-r6FTSmtgiSA-unsplash.jpg"
     parallaxImageAlt=""
   >
     <div>

@@ -1,10 +1,10 @@
 <!-- Speisekarte.vue -->
 <template>
   <BasePage
-    imageSrc="/images/haus_hamburg_leer_048.webp"
+    imageSrc="/images/food/haus_hamburg_leer_013_a.webp"
     imageAlt="Restaurant Innenbereich"
     titleAbove="Speisekarte"
-    titleMain="Haus "
+    titleMain="Restaurant "
     subtitle="Use kulinarisch Utwahl"
   >
     <p>Entdecke unsere leckeren Spezialitäten...</p>

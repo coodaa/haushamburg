@@ -102,7 +102,7 @@ export default {
 .base-page {
   width: 100%;
   text-align: center;
-  margin-top: 14em;
+  margin-top: 10em;
 }
 
 /* Zentrierter Inhalt mit maximaler Breite */
@@ -216,6 +216,7 @@ export default {
 @media (min-width: 768px) {
   .base-page {
     padding: 1em;
+    margin-top: 14em;
   }
 
   .title-above {

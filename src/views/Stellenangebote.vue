@@ -1,7 +1,7 @@
 <!-- src/views/Stellenangebote.vue -->
 <template>
   <BasePage
-    imageSrc="/images/stellen.jpg"
+    imageSrc="/images/mood/niclas-dehmel-vYH_7guOmbQ-unsplash.jpg"
     imageAlt="Stellenangebote Bild"
     titleAbove="Karriere"
     titleMain="Stellenangebote"
