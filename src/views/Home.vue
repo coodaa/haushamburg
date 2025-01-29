@@ -58,15 +58,27 @@
       <img src="/images/outside/haushamburgstart.webp" alt="Restaurant" class="restaurant-image" />
     </section>
 
-    <!-- Unsere Auswahl (Speisekarte) Sektion mit Carousel -->
-    <section class="svg-section">
-      <div class="scalloped-svg"></div>
-      <div class="section-content">
-        <h2>Unsere Speisekarte</h2>
-        <CustomSwiper :items="selection" :slides-per-view="slidesPerView" />
-      </div>
-    </section>
+
+<!-- Unsere Auswahl (Speisekarte) Sektion mit Carousel -->
+<section class="svg-section">
+  <div class="scalloped-svg"></div>
+  <div class="section-content big-title-4">
+    <h2>die speisekarte</h2>
+
+    <!-- Swiper Carousel -->
+    <CustomSwiper :items="selection" :slides-per-view="slidesPerView" />
+
+    <!-- CTA-Button für die Speisekarte -->
+    <div class="menu-button-container">
+      <a href="/speisekarte" class="cta-button">
+        <i class="fas fa-fish"></i>
+        <span class="cta-text"> mee(h)r</span>
+      </a>
+    </div>
   </div>
+</section>
+
+ </div>
 </template>
 
 <script>

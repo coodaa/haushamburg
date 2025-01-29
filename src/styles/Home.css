@@ -29,6 +29,10 @@
   box-sizing: border-box;
 }
 
+.big-title-4 {
+  margin-top: 0em;
+}
+
 /* Bildcontainer */
 .image-container {
   margin-top: -0.5em;
@@ -180,7 +184,6 @@
   align-self: flex-start;
   margin: 0;
   font-size: calc(var(--title-size)*0.65);
-
 }
 
 .restaurant-image {
@@ -222,7 +225,7 @@
 .svg-section .section-content {
   position: relative;
   z-index: 1;
-  padding-top: 1.67em;
+  padding-top: 1em;
   color: var(--blue);
 }
 
@@ -362,6 +365,11 @@
     white-space: nowrap;
     display: inline-block;
     padding-left: 0.5em;
+  }
+
+
+  .restaurant-text p {
+   margin-top: .5em;
   }
 
 
