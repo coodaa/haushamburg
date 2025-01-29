@@ -40,14 +40,12 @@
 
     <!-- Restaurant-Sektion -->
     <section class="restaurant-section">
-      <div class="restaurant-content">
-        <h3 class="restaurant-heading big-title-3">das restaurant</h3>
+  <div class="restaurant-content">
+    <h3 class="restaurant-heading big-title-3">das restaurant</h3>
+    <div class="restaurant-text">
         <div class="restaurant-text">
           <p>
             Entdecken Sie das <strong>authentische Norddeutschland</strong> im Haus Hamburg, Ihrem Fischrestaurant mitten in der charmanten Altstadt von Leer, Ostfriesland. Bei uns erwarten Sie nicht nur fangfrische Fischspezialitäten, sondern auch eine Vielfalt an norddeutschen Köstlichkeiten, die mit viel Liebe und regionalen Zutaten zubereitet werden.
-          </p>
-          <p>
-            Ein besonderes Highlight ist unser <strong>monatliches Fischbuffet</strong>: Jeden ersten Freitag im Monat laden wir Sie ein, sich durch eine abwechslungsreiche Auswahl an delikaten Fischgerichten zu probieren – ein Genuss, den Sie nicht verpassen sollten!
           </p>
           <p>
             Auch Vegetarier sind bei uns herzlich willkommen. Unser Menü bietet eine Auswahl an kreativen, vegetarischen Gerichten, die Ihren Besuch zu einem rundum gelungenen Erlebnis machen.
@@ -60,17 +58,19 @@
           </p>
         </div>
       </div>
-      <img src="/images/outside/haushamburgstart.webp" alt="Restaurant" class="restaurant-image" />
+      </div>
+
     </section>
 
     <!-- SVG-Sektion -->
     <section class="svg-section">
       <div class="scalloped-svg"></div>
       <div class="section-content">
-        <h2>Unsere Fischbrötchen</h2>
+        <h2>Unsere Auswahl</h2>
         <div class="fischbroetchen-gallery">
           <img src="/public/images/fischbrotchen1.jpg" alt="Fischbrötchen 1" class="fischbroetchen" />
           <img src="/public/images/fischbrotchen2.jpg" alt="Fischbrötchen 2" class="fischbroetchen" />
+          <img src="/public/images/fischbrotchen3.jpg" alt="Fischbrötchen 3" class="fischbroetchen" />
           <img src="/public/images/fischbrotchen3.jpg" alt="Fischbrötchen 3" class="fischbroetchen" />
           <!-- Füge weitere Bilder nach Bedarf hinzu -->
         </div>
