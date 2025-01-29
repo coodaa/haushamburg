@@ -34,16 +34,32 @@
 /* Anpassung der Navigationspfeile */
 .swiper-button-next,
 .swiper-button-prev {
-  color: var(--blue); /* Passen Sie die Farbe nach Bedarf an */
+  color: var(--blue); /* Navigation blau */
 }
 
-/* Anpassung der Pagination-Bullets */
+/* 🎨 Pagination Dots - Jetzt in Blau */
+.swiper-pagination {
+  position: absolute;
+  bottom: 10px;
+  text-align: center;
+  z-index: 10;
+}
+
+/* Standard-Dots */
 .swiper-pagination-bullet {
-  background: var(--blue);
+  width: 12px;
+  height: 12px;
+  background: var(--blue); /* Blaue Farbe */
+  opacity: 0.5;
+  margin: 0 5px;
+  transition: all 0.3s ease;
 }
 
+/* Aktiver Dot */
 .swiper-pagination-bullet-active {
-  background: var(--dark-blue);
+  background: var(--blue); /* Dunkleres Blau für aktiven Punkt */
+  opacity: 1;
+  transform: scale(1.2);
 }
 
 /* Responsive Anpassungen für Carousel-Bilder */
@@ -93,19 +109,5 @@
 
 /* Animation für aktive Bullet */
 .swiper-pagination-bullet-active {
-  transform: scale(1.2);
-}
-
-.swiper-pagination-bullet {
-  width: 12px;
-  height: 12px;
-  background: #ddd; /* Standardfarbe */
-  opacity: 0.5;
-  transition: all 0.3s ease;
-}
-
-.swiper-pagination-bullet-active {
-  background: #333; /* Aktives Bild */
-  opacity: 1;
   transform: scale(1.2);
 }

@@ -90,9 +90,11 @@ export default {
       rotationDirection: 1,
       isWobbling: false,
       selection: [
-        { image: "/images/fischbrotchen1.jpg", alt: "Fischbrötchen 1", link: "/speisekarte" },
-        { image: "/images/fischbrotchen2.jpg", alt: "Fischbrötchen 2", link: "/speisekarte" },
-        { image: "/images/fischbrotchen3.jpg", alt: "Fischbrötchen 3", link: "/speisekarte" },
+        { image: "/images/food/haus_hamburg_leer_018.webp", alt: "Fischbrötchen 1", link: "/speisekarte" },
+        { image: "/images/food/haus_hamburg_leer_030.webp", alt: "Fischbrötchen 2", link: "/speisekarte" },
+        { image: "/images/food/haus_hamburg_leer_037.webp", alt: "Fischbrötchen 3", link: "/speisekarte" },
+        { image: "/images/food/haus_hamburg_leer_028.webp", alt: "Fischbrötchen 3", link: "/speisekarte" },
+
       ],
       slidesPerView: 1,
       wordInterval: null,
