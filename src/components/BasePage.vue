@@ -183,7 +183,6 @@ export default {
   flex-direction: column;
   text-align: left;
   margin: 2rem auto;
-  padding: 1rem;
   gap: 1rem;
 }
 
@@ -216,8 +215,12 @@ export default {
 @media (min-width: 768px) {
   .base-page {
     padding: 1em;
-    margin-top: 14em;
+    margin-top: 13em;
   }
+
+  .content-wrapper {
+  padding: 0 2rem;
+}
 
   .title-above {
     font-size: 10vw;
@@ -271,6 +274,7 @@ export default {
     justify-content: space-between;
     align-items: flex-start;
     gap: 2rem;
+    padding: 2em;
   }
 
   .big-title-3 {
@@ -289,6 +293,10 @@ export default {
   .first-section {
     margin-bottom: -150px; /* Weitere Anpassung */
   }
+
+  .rounded-image {
+  height: 60vh;
+}
 }
 
 @media (max-width: 767px) {
