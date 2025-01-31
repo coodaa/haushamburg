@@ -12,5 +12,12 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  base: "/", 
+  base: "/",
+  build: {
+    outDir: "dist",
+  },
+  // Wichtig für Vue Router (History Mode)
+  esbuild: {
+    legalComments: "none", // Entfernt unnötige Kommentare aus dem Build
+  }
 });
