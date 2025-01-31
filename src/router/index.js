@@ -1,7 +1,6 @@
-// src/router/index.js
 import { createRouter, createWebHistory } from "vue-router";
 
-// Lazy Loading der Komponenten
+// Lazy Loading der Komponenten für bessere Performance
 const Home = () => import("../views/Home.vue");
 const Kontakt = () => import("../views/Kontakt.vue");
 const Speisekarte = () => import("../views/Speisekarte.vue");
@@ -13,6 +12,7 @@ const Datenschutz = () => import("../views/Datenschutz.vue");
 const Stellenangebote = () => import("../views/Stellenangebote.vue");
 const NotFound = () => import("../views/NotFound.vue");
 
+// Definiere die Routen für deine Anwendung
 const routes = [
   {
     path: "/",
@@ -67,10 +67,10 @@ const routes = [
 ];
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHistory(), // WICHTIG: Vue Router läuft im History Mode für Vercel
   routes,
   scrollBehavior() {
-    return { top: 0, behavior: "smooth" }; // Scrollt sanft nach oben
+    return { top: 0, behavior: "smooth" }; // Sanftes Scrollen beim Routenwechsel
   },
 });
 
