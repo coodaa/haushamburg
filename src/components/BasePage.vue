@@ -108,7 +108,7 @@ export default {
 /* Zentrierter Inhalt mit maximaler Breite */
 .content-wrapper {
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 1rem;
   box-sizing: border-box;
 }
 
