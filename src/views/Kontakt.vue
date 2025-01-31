@@ -2,8 +2,8 @@
   <BasePage
     imageSrc="/images/outside/haus_hamburg_leer_046.webp"
     imageAlt="Haus Hamburg Kontakt"
-    titleAbove="Kontakt"
-    titleMain="Reservierung"
+    titleAbove="Post"
+    titleMain="Kontakt"
     subtitle="Wo Sie uns berieken können."
     heading="Erreiche uns"
     flowText="Wir freuen uns, dich bei uns begrüßen zu dürfen! Egal, ob du Fragen hast, eine Reservierung vornehmen möchtest oder besondere Wünsche hast – wir sind immer für dich da. Kontaktiere uns gerne telefonisch oder per E-Mail, um uns deine Anliegen mitzuteilen. Unser Team setzt alles daran, dir einen unvergesslichen Aufenthalt in einer einladenden und entspannten Atmosphäre zu bieten. Wir sind gespannt auf deine Nachricht!"

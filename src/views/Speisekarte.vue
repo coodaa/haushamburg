@@ -1,42 +1,64 @@
-<!-- Speisekarte.vue -->
+<!-- src/views/Speisekarte.vue -->
 <template>
   <BasePage
-    imageSrc="/images/food/haus_hamburg_leer_013_a.webp"
-    imageAlt="Restaurant Innenbereich"
-    titleAbove="Speisekarte"
-    titleMain="Restaurant "
-    subtitle="Use kulinarisch Utwahl"
+    imageSrc="/images/outside/haus_hamburg_leer_046.webp"
+    imageAlt="Haus Hamburg Speisekarte"
+    titleAbove="Unsere"
+    titleMain="Speisekarte"
+    subtitle="Entdeckt ju uns' veeleise Gerechten."
+    heading="Unsere Auswahl"
+    flowText="Bald können Sie auch ganz bequem über unsere Website bestellen!"
+    parallaxImageSrc="/images/outside/haus_hamburg_leer_046.webp"
+    parallaxImageAlt="Speisekarte Parallax Bildbeschreibung"
   >
-    <p>Entdecke unsere leckeren Spezialitäten...</p>
-
-    <!-- Du kannst beliebig viel Content einfügen -->
-    <h3>Vorspeisen</h3>
-    <ul>
-      <li>Krabbensuppe - 8,90€</li>
-      <li>Bruschetta - 6,50€</li>
-      <!-- usw... -->
-    </ul>
-
-    <h3>Hauptgerichte</h3>
-    <ul>
-      <li>Kabeljaufilet mit Salzkartoffeln - 14,90€</li>
-      <li>Grünkohl mit Pinkel - 12,50€</li>
-      <!-- usw... -->
-    </ul>
+    <MenuList />
+    <!-- Button zur Information -->
+    <div class="menu-button-container">
+      <a href="/kontakt" class="cta-button">
+        <i class="fas fa-info-circle"></i>
+        <span class="cta-text">Weitere Infos</span>
+      </a>
+    </div>
   </BasePage>
 </template>
 
 <script>
 import BasePage from "@/components/BasePage.vue";
+import MenuList from "@/components/MenuList.vue";
 
 export default {
   name: "Speisekarte",
   components: {
     BasePage,
+    MenuList,
   },
 };
 </script>
 
 <style scoped>
-/* Falls du hier nur seitenbezogene Stile brauchst */
+.menu-button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 2em;
+  padding-bottom: 1em;
+}
+
+/* Button-Stile anpassen */
+.cta-button {
+  font-size: 1.4rem;
+  padding: 0.7em 1.5em;
+  border-radius: 30px;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  background-color: var(--gold);
+  color: white;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.cta-button:hover {
+  background-color: var(--dark-blue);
+  transform: scale(1.05);
+}
 </style>
