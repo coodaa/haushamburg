@@ -55,14 +55,14 @@
           </p>
         </div>
       </div>
-      <img src="/images/outside/haushamburgstart.webp" alt="Restaurant" class="restaurant-image" />
+      <img src="/images/restaurant/haus_hamburg_leer_003_a.webp" alt="Restaurant" class="restaurant-image" />
     </section>
 
 
 <!-- Unsere Auswahl (Speisekarte) Sektion mit Carousel -->
 <section class="svg-section">
   <div class="scalloped-svg"></div>
-  <div class="section-content big-title-4">
+  <div class="section-food big-title-4">
     <h2>die speisekarte</h2>
 
     <!-- Swiper Carousel -->

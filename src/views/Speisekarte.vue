@@ -1,14 +1,14 @@
 <!-- src/views/Speisekarte.vue -->
 <template>
   <BasePage
-    imageSrc="/images/outside/haus_hamburg_leer_046.webp"
+    imageSrc="/images/food/haus_hamburg_leer_013.webp"
     imageAlt="Haus Hamburg Speisekarte"
     titleAbove="Unsere"
     titleMain="Speisekarte"
     subtitle="Entdeckt ju uns' veeleise Gerechten."
     heading="Unsere Auswahl"
-    flowText="Bald können Sie auch ganz bequem über unsere Website bestellen!"
-    parallaxImageSrc="/images/outside/haus_hamburg_leer_046.webp"
+    flowText="Demnächst wird es noch einfacher, unsere Gerichte zu genießen! Wählen Sie Ihre Favoriten direkt online, geben Sie Ihre Bestellung mit wenigen Klicks auf und entscheiden Sie, ob Sie Ihre Speisen selbst abholen oder entspannt nach Hause liefern lassen möchten. Genuss war noch nie so unkompliziert!"
+    parallaxImageSrc="/images/food/haus_hamburg_leer_021.webp"
     parallaxImageAlt="Speisekarte Parallax Bildbeschreibung"
   >
     <MenuList />

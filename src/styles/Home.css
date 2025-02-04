@@ -169,8 +169,6 @@
   padding: 1em;
   padding-top: 5em;
   margin-top: -4em;
-  font-family: var(--font-perfect);
-  font-size: 18px;
 }
 
 
@@ -222,7 +220,7 @@
   z-index: 0;
 }
 
-.svg-section .section-content {
+.svg-section .section-food {
   position: relative;
   z-index: 1;
   padding-top: 1em;
@@ -305,6 +303,8 @@
   }
 }
 
+
+
 @media (min-width: 768px) {
   .fischbroetchen-gallery {
     justify-content: flex-start;
@@ -314,6 +314,9 @@
     max-width: 30%;
   }
 }
+
+
+
 @media (min-width: 1024px) {
   .hero {
     position: relative;
@@ -367,6 +370,10 @@
     padding-left: 0.5em;
   }
 
+  .restaurant-section {
+    padding: 6em 2em;
+  }
+
 
   .restaurant-text p {
    margin-top: .5em;
@@ -383,7 +390,6 @@
   }
 
   .restaurant-heading {
-    /* font-size: 2rem; Größere Schriftgröße für den Titel */
     margin: 0 1em 0 0;
   }
 
@@ -398,6 +404,11 @@
     height: auto;
     border-radius: 20px;
     margin-top: 2em;
+  }
+
+  .section-food {
+    padding: 1em .25em;
+
   }
 }
 
