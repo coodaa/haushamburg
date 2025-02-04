@@ -49,7 +49,7 @@
     </div>
     <div class="day-time">
       <div class="day">Dienstag:</div>
-      <div class="time">17:00 – 20:00</div>
+      <div class="time">Geschlossen</div>
     </div>
     <div class="day-time closed">
       <div class="day">Mittwoch:</div>

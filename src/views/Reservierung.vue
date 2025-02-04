@@ -28,10 +28,8 @@
         ></iframe>
       </div>
 
-
       <p>
-        Alternativ können Sie uns auch telefonisch oder per E-Mail kontaktieren, um Ihre
-        Reservierung vorzunehmen.
+        Alternativ können Sie uns auch telefonisch oder per E-Mail kontaktieren, um Ihre Reservierung vorzunehmen.
       </p>
       <p>
         <strong>Telefon:</strong> <a href="tel:+494914884">+49 491 4884</a><br />

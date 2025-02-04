@@ -1,4 +1,3 @@
-<!-- src/components/CookieBanner.vue -->
 <template>
   <div v-if="showBanner" class="cookie-banner">
     <p>
@@ -18,6 +17,7 @@ export default {
     };
   },
   mounted() {
+    // Wenn noch keine Entscheidung vorliegt, Banner anzeigen
     if (!localStorage.getItem("cookiesAccepted")) {
       this.showBanner = true;
     }
@@ -26,12 +26,12 @@ export default {
     acceptCookies() {
       localStorage.setItem("cookiesAccepted", "true");
       this.showBanner = false;
-      // Initialisiere hier deine Cookies oder Tracking-Tools
+      // Event an die Eltern-Komponente senden, falls benötigt
+      this.$emit("cookiesAccepted");
     },
     declineCookies() {
       localStorage.setItem("cookiesAccepted", "false");
       this.showBanner = false;
-      // Verhindere hier das Setzen von nicht notwendigen Cookies
     },
   },
 };
@@ -43,29 +43,33 @@ export default {
   bottom: 0;
   left: 0;
   right: 0;
-  background: rgba(0, 0, 0, 0.85);
-  color: white;
+  background: var(--blue); /* oder eine andere Farbe */
+  color: #fff;
   padding: 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  z-index: 1000;
 }
 
 .cookie-banner p {
   margin: 0;
   flex: 1;
+  font-size: 1rem;
 }
 
 .cookie-banner button {
   margin-left: 1rem;
   padding: 0.5rem 1rem;
   border: none;
-  background: var(--blue);
-  color: white;
+  background: var(--gold); /* z.B. deine Gold-Farbe */
+  color: var(--blue); /* z.B. deine Blau-Farbe */
   cursor: pointer;
+  border-radius: 30px;
+  transition: background 0.3s ease;
 }
 
 .cookie-banner button:hover {
-  background: darken(var(--blue), 10%);
+  background: #d1a531;
 }
 </style>
