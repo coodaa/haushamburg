@@ -1,7 +1,23 @@
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
+import { defineConfig } from "vite";
+import vue from "@vitejs/plugin-vue";
+import path from "path";
 
-// https://vite.dev/config/
 export default defineConfig({
   plugins: [vue()],
-})
+  server: {
+    host: true,
+  },
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
+    },
+  },
+  base: "/",
+  build: {
+    outDir: "dist",
+  },
+  // Wichtig für Vue Router (History Mode)
+  esbuild: {
+    legalComments: "none", // Entfernt unnötige Kommentare aus dem Build
+  }
+});

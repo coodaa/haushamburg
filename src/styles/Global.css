@@ -1,0 +1,145 @@
+/* Font-Face Definitionen */
+@font-face {
+  font-family: 'Thunder';
+  font-style: normal;
+  font-weight: 600;
+  src: url('/fonts/Thunder/Thunder-SemiBoldLC.woff2') format('woff2');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Thunder';
+  font-style: normal;
+  font-weight: 700;
+  src: url('/fonts/Thunder/Thunder-BoldLC.woff2') format('woff2');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Thunder';
+  font-style: normal;
+  font-weight: 800;
+  src: url('/fonts/Thunder/Thunder-ExtraBoldLC.woff2') format('woff2');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('/fonts/Poppins/Poppins-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('/fonts/Poppins/Poppins-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Tribun';
+  src: url('/fonts/Tribun/Tribun.otf') format('truetype');
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Perfect';
+  src: url('/fonts/Perfect/perfect.otf') format('truetype');
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Root-Variablen */
+:root {
+  --blue: #03305D;
+  --gold: #F1BD3F;
+  --beige: #D2C19F;
+  --font-body: 'Poppins', sans-serif;
+  --font-thunder: 'Thunder', sans-serif;
+  --font-perfect: 'Perfect', sans-serif;
+  --title-size: clamp(5em, 7.5vw, 7.5em);
+  --animation-bounce: 0.4s cubic-bezier(0.35, 1.5, 0.6, 1);
+  --animation-text-bounce-smooth: 0.6s cubic-bezier(0.35, 1.5, 0.6, 1);
+}
+
+/* Reset und Box-Sizing */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--blue);
+  background-color: #F2EDE9;
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: var(--blue);
+  font-size: 1rem;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+.title-base,
+.big-title-3,
+.big-title-4 {
+  font-family: var(--font-thunder);
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.title-base {
+  font-size: var(--title-size);
+}
+
+.big-title-3 {
+  font-size: calc(var(--title-size)*0.5);
+
+}
+
+.big-title-4 {
+  font-size: calc(var(--title-size)*0.5);
+}
+
+/* Container für den CTA-Button */
+.menu-button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: .5em;
+  padding-bottom: .5em !important;
+
+}
+
+/* Anpassung für bessere Darstellung in der Sektion */
+.menu-button-container .cta-button {
+  font-size: 1.4rem;  /* Etwas kleiner als Navbar-Version */
+  padding: 0.7em 1.5em;
+  border-radius: 30px;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  background-color: var(--gold);
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.menu-button-container .cta-button:hover {
+  background-color: var(--dark-blue);
+  transform: scale(1.05);
+
+}
