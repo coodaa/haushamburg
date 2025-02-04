@@ -5,17 +5,19 @@
     titleAbove="Tisch buchen"
     titleMain="Reservierung"
     subtitle="Sichern Sie sich Ihren Platz bei uns"
-    heading="Reservieren Sie Ihren Tisch"
-    flowText="Planen Sie Ihren Besuch und reservieren Sie Ihren Tisch einfach online."
+    heading="Reservieren Sie online"
+    flowText="Planen Sie Ihren Besuch in unserem Haus und sichern Sie sich Ihren Platz ganz unkompliziert online. Freuen Sie sich auf einen genussvollen Abend in entspannter Atmosphäre – reservieren Sie noch heute Ihren Tisch und erleben Sie kulinarische Höhepunkte, die Sie begeistern werden."
     parallaxImageSrc="/images/restaurant/haus_hamburg_leer_012.webp"
     parallaxImageAlt="Parallax Bild der Reservierung von Haus Hamburg"
   >
     <div class="reservation-container">
-      <p>
-        Willkommen bei <strong>Haus Hamburg</strong>! Reservieren Sie Ihren Tisch ganz einfach über unseren
-        Online-Service. Wählen Sie Datum, Uhrzeit und Anzahl der Gäste, um Ihren Besuch bei
-        uns zu planen.
+      <!-- Einführungstext -->
+      <p class="intro-text">
+        Herzlich willkommen bei <strong>Haus Hamburg</strong>! Über unseren Online-Service können Sie ganz einfach Ihren Tisch buchen. Wählen Sie das gewünschte Datum, die Uhrzeit und die Anzahl der Gäste, um Ihren Besuch bei uns zu planen.
       </p>
+
+      <!-- Überschrift für den Buchungsbereich -->
+      <h2 class="widget-heading">hier tisch reservieren</h2>
 
       <!-- Eingebettetes OpenTable-Widget via Iframe -->
       <div class="opentable-embed">
@@ -28,24 +30,26 @@
         ></iframe>
       </div>
 
-      <p>
-        Alternativ können Sie uns auch telefonisch oder per E-Mail kontaktieren, um Ihre Reservierung vorzunehmen.
+      <!-- Hinweistext zum Alternativkontakt -->
+      <p class="additional-info">
+        Alternativ können Sie uns auch telefonisch oder per E-Mail kontaktieren, um Ihren Besuch zu planen.
       </p>
-      <p>
-        <strong>Telefon:</strong> <a href="tel:+494914884">+49 491 4884</a><br />
-        <strong>Email:</strong> <a href="mailto:info@haus-hamburg-leer.de">info@haus-hamburg-leer.de</a>
-      </p>
+
+      <!-- Kontakt- und Öffnungszeiten-Komponente einbinden -->
+      <ContactInfo />
     </div>
   </BasePage>
 </template>
 
 <script>
 import BasePage from "@/components/BasePage.vue";
+import ContactInfo from "@/components/ContactInfo.vue";
 
 export default {
   name: "Reservierung",
   components: {
     BasePage,
+    ContactInfo,
   },
 };
 </script>
@@ -54,48 +58,66 @@ export default {
 .reservation-container {
   margin-top: 2rem;
   text-align: left;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.reservation-container p {
+.intro-text,
+.additional-info {
   margin-bottom: 1rem;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.widget-heading {
+  font-family: var(--font-thunder);
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 1rem 0;
+  text-transform: uppercase;
+  color: var(--blue);
+  text-align: center;
 }
 
 .opentable-embed {
-  margin: 2rem 0;
+  margin: 2rem auto;
   border: none;
   border-radius: 10px;
   overflow: hidden;
+  width: 100%;
+  max-width: 600px;
 }
 
 .opentable-embed iframe {
+  display: block;
+  margin: 0 auto;
   width: 100%;
   height: 600px;
   border: none;
   border-radius: 10px;
 }
 
-.btn-opentable {
-  display: inline-block;
-  padding: 0.75rem 1.5rem;
-  background-color: #28a745;
-  color: #fff;
-  text-decoration: none;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
-}
-
-.btn-opentable:hover {
-  background-color: #218838;
-}
-
+/* Responsive Anpassungen */
 @media (max-width: 767px) {
+
   .opentable-embed iframe {
     height: 400px;
   }
-
-  .btn-opentable {
-    width: 100%;
-    text-align: center;
+  .intro-text,
+  .additional-info {
+    font-size: 1rem;
+  }
+  .widget-heading {
+    font-size: 1.8rem;
   }
 }
+
+@media (min-width: 1200px) {
+
+.reservation-container {
+  max-width: 80vw;
+  text-align: center;
+  }
+}
+
 </style>
