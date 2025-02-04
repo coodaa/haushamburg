@@ -1,4 +1,3 @@
-<!-- src/views/Impressum.vue -->
 <template>
   <BasePage
     imageSrc="/images/mood/DSCF1092.JPG"
@@ -7,12 +6,12 @@
     titleMain="Impressum"
     subtitle="Verantwortlich für den Inhalt"
     heading="Impressum"
-    flowText=""
+    flowText="In unserem Impressum finden Sie alle gesetzlich vorgeschriebenen Angaben zu unserem Unternehmen. Wir laden Sie ein, sich über unsere rechtlichen Hinweise und Verantwortlichkeiten zu informieren."
     parallaxImageSrc="/images/mood/DSCF3615.JPG"
-    parallaxImageAlt=""
+    parallaxImageAlt="Impressum Haus Hamburg Leer (Ostfriesland)"
   >
-    <div>
-      <section>
+    <div class="impressum-container">
+      <section class="impressum-content">
         <h3>Verantwortlich für den Inhalt:</h3>
         <p>
           <strong>Restaurant „Haus Hamburg“</strong><br />
@@ -23,7 +22,7 @@
         </p>
         <p>
           <strong>Inhaberin:</strong> Helga Wagemann<br />
-          Alle Rechte vorbehalten. ©Helga Wagemann
+          Alle Rechte vorbehalten.
         </p>
       </section>
     </div>
@@ -42,18 +41,35 @@ export default {
 </script>
 
 <style scoped>
-/* Optional: Zusätzliche Styles für die Impressum-Seite */
-section {
-  margin-bottom: 2rem;
+.impressum-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: rgba(255, 255, 255, 0.95); /* Leicht transparenter Weißton */
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   text-align: left;
+  font-family: var(--font-body);
+  color: var(--blue);
 }
 
-h3 {
-  margin-top: 1.5rem;
-  color: var(--blue); /* Stelle sicher, dass die Farbvariable vorhanden ist */
+.impressum-content {
+  font-size: 1.1rem;
+  line-height: 1.6;
 }
 
-a {
+.impressum-content h3 {
+  margin-bottom: 1rem;
+  color: var(--blue);
+  font-family: var(--font-thunder);
+  font-size: 1.5rem;
+}
+
+.impressum-content p {
+  margin-bottom: 1rem;
+}
+
+.impressum-content a {
   color: var(--blue);
   text-decoration: underline;
 }

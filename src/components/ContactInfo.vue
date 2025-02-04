@@ -74,7 +74,7 @@ export default {
 .contact-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 6em;
+  gap: 4em;
   margin: 0 auto;
   box-sizing: border-box;
 }

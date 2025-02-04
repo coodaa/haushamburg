@@ -4,7 +4,7 @@
     imageAlt="Haus Hamburg Reservierung"
     titleAbove="Tisch buchen"
     titleMain="Reservierung"
-    subtitle="Sichern Sie sich Ihren Platz bei uns"
+    subtitle="Kumm röver un sett di bi uns hen!"
     heading="Reservieren Sie online"
     flowText="Planen Sie Ihren Besuch in unserem Haus und sichern Sie sich Ihren Platz ganz unkompliziert online. Freuen Sie sich auf einen genussvollen Abend in entspannter Atmosphäre – reservieren Sie noch heute Ihren Tisch und erleben Sie kulinarische Höhepunkte, die Sie begeistern werden."
     parallaxImageSrc="/images/restaurant/haus_hamburg_leer_012.webp"
@@ -16,27 +16,32 @@
         Herzlich willkommen bei <strong>Haus Hamburg</strong>! Über unseren Online-Service können Sie ganz einfach Ihren Tisch buchen. Wählen Sie das gewünschte Datum, die Uhrzeit und die Anzahl der Gäste, um Ihren Besuch bei uns zu planen.
       </p>
 
-      <!-- Überschrift für den Buchungsbereich -->
-      <h2 class="widget-heading">hier tisch reservieren</h2>
 
-      <!-- Eingebettetes OpenTable-Widget via Iframe -->
-      <div class="opentable-embed">
-        <iframe
-          src="https://www.opentable.de/restref/client/?restref=387363&lang=de-DE&ot_source=Restaurant%2520website&fbclid=PAZXh0bgNhZW0CMTEAAaYogoVV1mACQOyyrhqMiTQtwrekrxDVhfYWmEosS2itqEUM2Uk4hmv_LIY_aem_ifDT7I84jrlAuXU5XCCLlw&corrid=09611799-3f75-412d-a06c-87e37880e5eb"
-          frameborder="0"
-          width="100%"
-          height="600"
-          allowfullscreen
-        ></iframe>
+      <!-- Hintergrundbereich für das Reservierungsformular -->
+      <div class="contact">
+        <div class="opentable-embed">
+          <iframe
+            src="https://www.opentable.de/restref/client/?restref=387363&lang=de-DE&ot_source=Restaurant%2520website&fbclid=PAZXh0bgNhZW0CMTEAAaYogoVV1mACQOyyrhqMiTQtwrekrxDVhfYWmEosS2itqEUM2Uk4hmv_LIY_aem_ifDT7I84jrlAuXU5XCCLlw&corrid=09611799-3f75-412d-a06c-87e37880e5eb"
+            frameborder="0"
+            width="100%"
+            height="600"
+            allowfullscreen
+          ></iframe>
+        </div>
       </div>
 
-      <!-- Hinweistext zum Alternativkontakt -->
+      <section class="svg-section">
+        <div class="scalloped-svg"></div>
+
+
+
       <p class="additional-info">
         Alternativ können Sie uns auch telefonisch oder per E-Mail kontaktieren, um Ihren Besuch zu planen.
       </p>
 
-      <!-- Kontakt- und Öffnungszeiten-Komponente einbinden -->
       <ContactInfo />
+
+      </section>
     </div>
   </BasePage>
 </template>
@@ -55,11 +60,11 @@ export default {
 </script>
 
 <style scoped>
+/* Allgemeine Container-Zentrierung */
 .reservation-container {
-  margin-top: 2rem;
-  text-align: left;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 2rem auto;
+  text-align: center;
+  max-width: 80vw;
 }
 
 .intro-text,
@@ -67,56 +72,68 @@ export default {
   margin-bottom: 1rem;
   font-size: 1.1rem;
   line-height: 1.6;
+  padding-bottom: 2em;
 }
 
-.widget-heading {
-  font-family: var(--font-thunder);
-  font-size: 2rem;
-  font-weight: 700;
-  margin: 1rem 0;
-  text-transform: uppercase;
-  color: var(--blue);
-  text-align: center;
+/* Hintergrundbereich für das Reservierungsformular */
+.contact {
+  background-color: var(--beige);
+  width: 100vw;
+  margin-left: -50vw;
+  left: 50%;
+  position: relative;
+  padding: 3em 0;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  z-index: 2;
 }
 
+/* OpenTable-Widget */
 .opentable-embed {
-  margin: 2rem auto;
-  border: none;
-  border-radius: 10px;
+  margin: 0 auto;
+  border-radius: 20px;
   overflow: hidden;
-  width: 100%;
-  max-width: 600px;
+  background-color: #FFFFFF;
+  max-width: 35em;
 }
 
 .opentable-embed iframe {
   display: block;
-  margin: 0 auto;
   width: 100%;
-  height: 600px;
   border: none;
-  border-radius: 10px;
+  border-radius: 20px;
+}
+/* SVG-Sektion */
+.svg-section {
+  position: relative;
+  padding: 2em 1em 1em 1em;
+  margin-top: -1em;
+  width: 100vw;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+}
+.svg-section .scalloped-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('@/assets/dropround.svg');
+  background-repeat: repeat-x;
+  background-position: top left;
+  z-index: 0;
 }
 
-/* Responsive Anpassungen */
-@media (max-width: 767px) {
+.additional-info {
+  padding-top: 3em;
+  font-weight: bold;
+}
 
-  .opentable-embed iframe {
-    height: 400px;
-  }
-  .intro-text,
+@media (min-width: 768px) {
   .additional-info {
-    font-size: 1rem;
-  }
-  .widget-heading {
-    font-size: 1.8rem;
-  }
-}
-
-@media (min-width: 1200px) {
-
-.reservation-container {
-  max-width: 80vw;
-  text-align: center;
+    padding-top: 6em;
   }
 }
 

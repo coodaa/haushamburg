@@ -1,4 +1,3 @@
-<!-- src/views/Stellenangebote.vue -->
 <template>
   <BasePage
     imageSrc="/images/mood/niclas-dehmel-vYH_7guOmbQ-unsplash.jpg"
@@ -7,48 +6,40 @@
     titleMain="Stellenangebote"
     subtitle="Werd een Deel vun uns Team"
     heading="Karriere bei Haus Hamburg"
-    flowText="Wir sind immer auf der Suche nach engagierten Servicekräften. Schließen Sie sich unserem dynamischen Team an und tragen Sie zu einem herausragenden Kundenerlebnis bei!"
-    parallaxImageSrc=""
+    flowText="Wir sind stets auf der Suche nach motivierten und engagierten Menschen, die in einem dynamischen Team arbeiten möchten. Werden Sie Teil unserer Familie, bringen Sie Ihre Leidenschaft ein und helfen Sie uns dabei, unseren Gästen ein außergewöhnliches Erlebnis zu bieten. Ob im Service oder in der Küche – bei uns finden Sie vielfältige Möglichkeiten zur persönlichen und beruflichen Weiterentwicklung. Überzeugen Sie uns mit Ihrem Einsatz und Ihrer Begeisterung – wir freuen uns darauf, gemeinsam Großartiges zu erreichen!"    parallaxImageSrc="/images/mood/leer.jpg"
     parallaxImageAlt=""
   >
     <div class="stellenangebote-content">
-      <section>
-        <h3>Aktuelle Stellenangebote</h3>
+      <!-- Job Listings Section -->
+      <section class="job-section">
+        <h3 class="section-heading">Aktuelle Stellenangebote</h3>
         <div class="job-listings">
           <div v-for="job in jobs" :key="job.id" class="job">
-            <h4>{{ job.title }}</h4>
-            <p>
+            <h4 class="job-title">{{ job.title }}</h4>
+            <p class="job-info">
               <strong>Ort:</strong> {{ job.location }}<br />
               <strong>Beschäftigungsart:</strong> {{ job.employmentType }}<br />
               <strong>Beschreibung:</strong> {{ job.description }}
             </p>
-            <p>
-              <strong>Ihre Aufgaben:</strong>
-              <ul>
-                <li v-for="(task, index) in job.tasks" :key="index">{{ task }}</li>
-              </ul>
-            </p>
-            <p>
-              <strong>Wir bieten:</strong>
-              <ul>
-                <li v-for="(benefit, index) in job.benefits" :key="index">{{ benefit }}</li>
-              </ul>
-            </p>
-            <p v-html="job.application"></p>
+            <div class="job-details">
+              <div>
+                <strong>Ihre Aufgaben:</strong>
+                <ul>
+                  <li v-for="(task, index) in job.tasks" :key="index">{{ task }}</li>
+                </ul>
+              </div>
+              <div>
+                <strong>Wir bieten:</strong>
+                <ul>
+                  <li v-for="(benefit, index) in job.benefits" :key="index">{{ benefit }}</li>
+                </ul>
+              </div>
+            </div>
+            <p class="job-application" v-html="job.application"></p>
           </div>
         </div>
       </section>
 
-      <section class="bewerbung-info">
-        <h3>Bewerbungsprozess</h3>
-        <p>
-          Wir freuen uns über Ihr Interesse an einer Mitarbeit in unserem Team. Bitte senden Sie Ihre vollständigen Bewerbungsunterlagen (Anschreiben, Lebenslauf, Zeugnisse) an
-          <a href="mailto:info@haus-hamburg-leer.de">info@haus-hamburg-leer.de</a>.
-        </p>
-        <p>
-          Alternativ können Sie Ihre Bewerbung auch persönlich in unserem Restaurant abgeben. Wir melden uns zeitnah bei Ihnen, um weitere Schritte zu besprechen.
-        </p>
-      </section>
     </div>
   </BasePage>
 </template>
@@ -71,57 +62,73 @@ export default {
 </script>
 
 <style scoped>
+/* Mobile-First Basis-Stile */
 .stellenangebote-content {
   text-align: left;
-  padding: 1rem;
+  margin: 0 auto;
+  max-width: 95vw;
 }
 
+/* Abschnittsüberschriften */
+.section-heading {
+  color: var(--blue);
+  font-family: var(--font-thunder);
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+/* Job Listings (vertikal für mobile) */
 .job-listings {
   display: flex;
   flex-direction: column;
   gap: 2rem;
 }
 
+/* Job-Karten */
 .job {
-  background-color: #ffffff;
-  padding: 1rem;
+  background-color: #fff;
+  padding: 1.5rem;
   border-radius: 10px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
-
-.job h4 {
+.job:hover {
+  background-color: #f9f9f9;
+  transform: translateY(-3px);
+}
+.job-title {
   color: var(--blue);
   margin-bottom: 0.5rem;
+  font-family: var(--font-thunder);
+  font-size: 1.5rem;
 }
-
-.job p {
-  margin: 0.5rem 0;
+.job-info {
+  margin-bottom: 1rem;
+  line-height: 1.5;
+  font-size: 1.1rem;
 }
-
-.job ul {
+.job-details {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.job-details ul {
   list-style-type: disc;
   padding-left: 1.5rem;
+  margin: 0.5rem 0;
+}
+.job-application {
+  font-size: 1.1rem;
+  line-height: 1.5;
 }
 
-.bewerbung-info {
-  margin-top: 2rem;
-}
 
-.bewerbung-info h3 {
-  color: var(--blue);
-  margin-bottom: 0.5rem;
-}
 
-.bewerbung-info a {
-  color: var(--blue);
-  text-decoration: underline;
-}
 
-.bewerbung-info a:hover {
-  text-decoration: none;
-}
-
-/* Responsive Anpassungen */
+/* Responsive Anpassungen für Tablets und Desktops */
 @media (min-width: 768px) {
   .job-listings {
     flex-direction: row;
@@ -132,5 +139,9 @@ export default {
   .job {
     flex: 1 1 calc(50% - 2rem);
   }
+
+  .stellenangebote-content {
+  padding: 1.5rem 1rem;
+}
 }
 </style>
