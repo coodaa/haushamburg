@@ -127,7 +127,7 @@ export default {
 @media (max-width: 480px) {
   .contact-details,
   .opening-hours {
-    text-align: center;
+    text-align: left;
   }
 }
 
@@ -180,7 +180,7 @@ export default {
 .hours-grid {
   display: flex;
   flex-direction: column;
-  gap: 0.5em; /* Erhöhter vertikaler Abstand für bessere Lesbarkeit */
+  gap: 0.5em;
   text-align: left;
 }
 
@@ -293,11 +293,6 @@ export default {
     font-size: 1.2em; /* Kleinere Icons auf mobilen Geräten */
   }
 
-  /* Öffnungszeiten auf mobile: Anpassung der Breite und Reduzierung der Abstände */
-  .opening-hours {
-    text-align: center; /* Zentriert die Öffnungszeiten */
-  }
-
 
   .hours-grid .day,
   .hours-grid .time {
@@ -321,6 +316,7 @@ export default {
     height: auto; /* Entfernt die feste Höhe */
     min-height: 30vh; /* Setzt eine minimale Höhe */
   }
+
 
 
 
