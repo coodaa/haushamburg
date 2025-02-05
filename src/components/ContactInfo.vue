@@ -77,12 +77,22 @@ export default {
   gap: 4em;
   margin: 0 auto;
   box-sizing: border-box;
+  /* Für mobile Geräte: Standardpadding */
+  padding: 1.6em;
 }
 
-/* Desktop: Gleiche Ränder links und rechts (25% vom Viewport) */
+/* Desktop: Padding 25% links und rechts */
 @media (min-width: 1024px) {
   .contact-container {
     padding: 3em 25%;
+  }
+}
+
+/* Tablet: Padding 10% links und rechts, Inhalte zentrieren */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .contact-container {
+    padding: 2em 10%;
+    justify-content: center;
   }
 }
 
@@ -171,6 +181,7 @@ export default {
   .contact-container {
     flex-direction: column;
     gap: 1em;
+    padding: 1.6em;
   }
   .contact-details,
   .opening-hours {

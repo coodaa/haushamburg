@@ -2,11 +2,12 @@
   <BasePage
     imageSrc="/images/mood/niclas-dehmel-vYH_7guOmbQ-unsplash.jpg"
     imageAlt="Stellenangebote Bild"
-    titleAbove="Karriere"
-    titleMain="Stellenangebote"
+    titleAbove="Jobs"
+    titleMain="Karriere"
     subtitle="Werd een Deel vun uns Team"
-    heading="Karriere bei Haus Hamburg"
-    flowText="Wir sind stets auf der Suche nach motivierten und engagierten Menschen, die in einem dynamischen Team arbeiten möchten. Werden Sie Teil unserer Familie, bringen Sie Ihre Leidenschaft ein und helfen Sie uns dabei, unseren Gästen ein außergewöhnliches Erlebnis zu bieten. Ob im Service oder in der Küche – bei uns finden Sie vielfältige Möglichkeiten zur persönlichen und beruflichen Weiterentwicklung. Überzeugen Sie uns mit Ihrem Einsatz und Ihrer Begeisterung – wir freuen uns darauf, gemeinsam Großartiges zu erreichen!"    parallaxImageSrc="/images/mood/leer.jpg"
+    heading="Jobs bei Haus Hamburg"
+    flowText="Wir sind stets auf der Suche nach motivierten und engagierten Menschen, die in einem dynamischen Team arbeiten möchten. Werden Sie Teil unserer Familie, bringen Sie Ihre Leidenschaft ein und helfen Sie uns dabei, unseren Gästen ein außergewöhnliches Erlebnis zu bieten. Ob im Service oder in der Küche – bei uns finden Sie vielfältige Möglichkeiten zur persönlichen und beruflichen Weiterentwicklung. Überzeugen Sie uns mit Ihrem Einsatz und Ihrer Begeisterung – wir freuen uns darauf, gemeinsam Großartiges zu erreichen!"
+    parallaxImageSrc="/images/mood/leer.jpg"
     parallaxImageAlt=""
   >
     <div class="stellenangebote-content">
@@ -39,19 +40,30 @@
           </div>
         </div>
       </section>
+      <ContactInfo />
 
     </div>
   </BasePage>
 </template>
 
+
 <script>
 import BasePage from "@/components/BasePage.vue";
 import jobsData from "@/assets/jobs.json";
+import ContactInfo from "@/components/ContactInfo.vue";
+
+
+
+
+
+
+
 
 export default {
   name: "Stellenangebote",
   components: {
     BasePage,
+    ContactInfo,
   },
   data() {
     return {

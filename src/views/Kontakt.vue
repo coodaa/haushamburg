@@ -11,69 +11,11 @@
     parallaxImageSrc="/images/restaurant/haus_hamburg_leer_008.webp"
     parallaxImageAlt="Kontakt Parallax Bildbeschreibung"
   >
-    <!-- Kontaktinformationen und Öffnungszeiten -->
-    <div class="contact-container">
-      <!-- Kontaktinformationen -->
-      <div class="contact-details">
-        <h3 class="contact-header">Kontakt</h3> <!-- Hinzugefügte Überschrift -->
-        <div class="contact-item">
-          <i class="fas fa-phone"></i>
-          <a href="tel:+494914884">+49 491 4884</a>
-        </div>
-        <div class="contact-item">
-          <i class="fas fa-envelope"></i>
-          <a href="mailto:info@haus-hamburg-leer.de">info@haus-hamburg-leer.de</a>
-        </div>
-        <div class="contact-item">
-          <i class="fas fa-map-marker-alt"></i>
-          <a
-            href="https://www.google.com/maps/place/Rathausstr.+3-5,+26789+Leer,+Ostfriesland"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Rathausstr. 3 – 5<br />
-            26789 Leer, Ostfriesland
-          </a>
-        </div>
-      </div>
 
-      <!-- Öffnungszeiten -->
-     <!-- Öffnungszeiten -->
-<div class="opening-hours">
-  <h3 class="contact-header">Öffnungszeiten</h3>
-  <div class="hours-grid">
+        <ContactInfo />
 
-    <div class="day-time">
-      <div class="day">Montag:</div>
-      <div class="time">17:00 – 20:00</div>
-    </div>
-    <div class="day-time">
-      <div class="day">Dienstag:</div>
-      <div class="time">Geschlossen</div>
-    </div>
-    <div class="day-time closed">
-      <div class="day">Mittwoch:</div>
-      <div class="time">Geschlossen</div>
-    </div>
-    <div class="day-time closed">
-      <div class="day">Donnerstag:</div>
-      <div class="time">Geschlossen</div>
-    </div>
-    <div class="day-time">
-      <div class="day">Freitag:</div>
-      <div class="time">17:00 – 21:00</div>
-    </div>
-    <div class="day-time">
-      <div class="day">Samstag:</div>
-      <div class="time">15:00 – 21:00</div>
-    </div>
-    <div class="day-time">
-      <div class="day">Sonntag:</div>
-      <div class="time">16:00 – 19:30</div>
-    </div>
-  </div>
-</div>
-    </div>
+
+
 
     <!-- Google Map -->
     <div class="map-container">
@@ -97,112 +39,20 @@
 
 <script>
 import BasePage from "@/components/BasePage.vue";
+import ContactInfo from "../components/ContactInfo.vue";
+
 
 export default {
   name: "Kontakt",
   components: {
     BasePage,
+    ContactInfo,
   },
 };
 </script>
 
 <style scoped>
-.contact-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2em;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 1.6em;
-}
 
-/* Kontaktinformationen und Öffnungszeiten nebeneinander */
-.contact-details,
-.opening-hours {
-  flex: 1 1 10em;
-  text-align: left;
-}
-
-/* Zentrieren auf mobilen Geräten */
-@media (max-width: 480px) {
-  .contact-details,
-  .opening-hours {
-    text-align: left;
-  }
-}
-
-/* Überschrift "Kontakt" */
-.contact-header {
-  font-size: 1.2em; /* Etwas größere Schrift für die Überschrift */
-  margin-bottom: 0.8em; /* Abstand unter der Überschrift */
-  color: var(--blue);
-  font-family: inherit; /* Vererbt die Schriftfamilie */
-  font-weight: bold; /* Hervorheben der Überschrift */
-}
-
-/* Kontakt-Items */
-.contact-item {
-  display: flex;
-  align-items: center;
-  gap: 0.5em; /* Reduzierter horizontaler Abstand */
-  margin-bottom: 0.5em; /* Reduzierter vertikaler Abstand */
-  text-align: left;
-  font-family: inherit; /* Vererbt die Schriftfamilie */
-  font-size: inherit; /* Vererbt die Schriftgröße */
-  line-height: inherit; /* Vererbt den Zeilenabstand */
-}
-
-.contact-item i {
-  color: var(--gold);
-  font-size: 1.2em; /* Einheitliche Icon-Größe */
-  min-width: 24px; /* Einheitliche Breite */
-  text-align: center;
-}
-
-.contact-item a {
-  color: var(--blue);
-  text-decoration: none;
-  word-break: break-word; /* Verhindert das Überlaufen von langen Texten */
-}
-
-.contact-item a:hover {
-  text-decoration: underline;
-}
-
-/* Öffnungszeiten */
-.opening-hours {
-  text-align: left;
-  font-family: inherit; /* Vererbt die Schriftfamilie */
-  font-size: inherit; /* Vererbt die Schriftgröße */
-  line-height: inherit; /* Vererbt den Zeilenabstand */
-}
-
-.hours-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5em;
-  text-align: left;
-}
-
-.hours-grid .day-time {
-  display: flex;
-  align-items: center;
-  gap: 2em;
-}
-
-.hours-grid .day {
-  font-weight: bold;
-  width: 100px;
-  flex-shrink: 0; /* Verhindert das Schrumpfen der Tagesangabe */
-  font-size: 1em; /* Einheitliche Schriftgröße */
-  line-height: 1.2; /* Verbesserter Zeilenabstand */
-}
-
-.hours-grid .time {
-  color: var(--blue);
-  font-size: 1em; /* Einheitliche Schriftgröße */
-  line-height: 1.2; /* Verbesserter Zeilenabstand */
-}
 
 
 .map-container iframe {
@@ -238,13 +88,7 @@ export default {
 
 /* Responsive Anpassungen */
 @media (min-width: 1024px) {
-  .contact-container {
-    gap: 3em;
-  }
 
-  .hours-grid .day {
-    width: 180px;
-  }
 
   .google-reviews .elfsight-app-993dc481-952b-4721-8494-6d5d6cf46578 {
     height: auto; /* Entfernt die feste Höhe */
@@ -260,9 +104,7 @@ export default {
 }
 
 @media (max-width: 768px) {
-  .contact-container {
-    padding: 1.5em;
-  }
+ 
 
 
   .google-reviews .elfsight-app-993dc481-952b-4721-8494-6d5d6cf46578 {
@@ -276,47 +118,15 @@ export default {
 }
 
 @media (max-width: 480px) {
-  .contact-container {
-    flex-direction: column;
-    gap: 1em;
-  }
-
-  /* Icons immer neben dem Text auf mobilen Geräten */
-  .contact-item {
-    flex-direction: row;
-    align-items: center;
-  }
-
-  .contact-item i {
-    margin-right: 0.5em;
-    margin-bottom: 0; /* Entfernt den unteren Rand */
-    font-size: 1.2em; /* Kleinere Icons auf mobilen Geräten */
-  }
 
 
-  .hours-grid .day,
-  .hours-grid .time {
-    margin: 0; /* Entfernt zusätzliche Abstände */
-    padding: 0;
-    line-height: 1.2; /* Verbesserter Zeilenabstand */
-  }
 
-  .hours-grid .day {
-    font-size: 1em; /* Einheitliche Schriftgröße */
-    width: 100px;
-    flex-shrink: 0;
-  }
-
-  .hours-grid .time {
-    font-size: 1em; /* Einheitliche Schriftgröße */
-  }
 
   /* Google Bewertungen auf mobile */
   .google-reviews .elfsight-app-993dc481-952b-4721-8494-6d5d6cf46578 {
     height: auto; /* Entfernt die feste Höhe */
     min-height: 30vh; /* Setzt eine minimale Höhe */
   }
-
 
 
 
