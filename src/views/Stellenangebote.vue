@@ -56,9 +56,6 @@ import ContactInfo from "@/components/ContactInfo.vue";
 
 
 
-
-
-
 export default {
   name: "Stellenangebote",
   components: {
