@@ -12,7 +12,12 @@
   >
     <div class="menu-container">
       <!-- Menübereiche in einem modernen Grid-Layout -->
-       <h2 class="big-title-3">unsere auswahl</h2>
+       <div class="section-food big-title-4">
+        <h2>unsere auswahl</h2></div>
+
+
+
+
       <div class="menu-sections">
         <!-- Karte 1: Vorspeisen -->
         <section class="menu-card ">
@@ -204,9 +209,7 @@ export default {
 }
 
 .menu-container {
-  margin: 2rem auto;
-  padding: 2rem;
-  font-family: var(--font-body);
+  margin: 2rem 0;
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -239,11 +242,10 @@ export default {
   padding: 1rem;
   font-family: var(--font-thunder);
   text-align: center;
-  font-size: 1.6rem;
 }
 
 .card-content {
-  padding: 1.5rem;
+  padding: 1.1rem;
   text-align: left;
 }
 
@@ -256,13 +258,11 @@ export default {
 }
 
 .dish-description {
-  font-size: 1.1rem;
-  color: var(--blue);
-  font-family: var(--font-thunder);
+  font-size: 1.3rem;
 }
 
 .dish-price {
-  font-size: 1.1rem;
+  /* font-size: 1.rem; */
   color: var(--blue);
   font-weight: bold;
 }
@@ -348,5 +348,11 @@ export default {
   color: #333;
   cursor: pointer;
   z-index: 10;
+}
+
+@media (max-width: 767px) {
+  .pdf-container {
+    display: none;
+  }
 }
 </style>
