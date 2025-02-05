@@ -5,7 +5,7 @@
     titleAbove="Unsere"
     titleMain="Speisekarte"
     subtitle="Frischer Fisch & regionale Spezialitäten"
-    heading="Unsere Speisekarte"
+    heading="Die Speisekarte"
     flowText="Entdecken Sie unsere köstlichen Fischgerichte, ostfriesische Spezialitäten und mehr. Frisch, regional und mit Liebe zubereitet."
     parallaxImageSrc="/images/food/haus_hamburg_leer_021.webp"
     parallaxImageAlt="Haus Hamburg Restaurant"
@@ -118,15 +118,38 @@ sowie einen kleinen gemischten Salat.</p>
               <span class="dish-description">
                 Ofenkartoffel<br />
                 • mit Sour-Cream<br />
-                • mit Räucherlachs und Sour-Cream<br />
-                • mit Sour-Cream und Greetsieler Krabben
+
               </span>
               <span class="dish-price">
                 9,50 €<br />
-                15,50 €<br />
+
+              </span>
+            </div>
+
+            <div class="dish-entry">
+              <span class="dish-description">
+
+                • mit Räucherlachs und Sour-Cream
+              </span>
+              <span class="dish-price">
+                15,50 €
+              </span>
+            </div>
+
+            <div class="dish-entry">
+              <span class="dish-description">
+
+                • mit Sour-Cream und Greetsieler Krabben
+              </span>
+              <span class="dish-price">
+
                 19,50 €
               </span>
             </div>
+
+
+
+
 
             <div class="dish-entry">
               <span class="dish-description">Grünkohl mit Mettenden und Pinkel und Bratkartoffeln </span>
@@ -253,17 +276,12 @@ export default {
 .dish-entry {
   display: grid;
   grid-template-columns: 1fr auto;
-  align-items: center;
-  margin-bottom: 0.5rem;
-}
-
-.dish-description {
-  font-size: 1.3rem;
+  align-items: start;
+  margin-bottom: 1rem;
+  column-gap: 2rem;
 }
 
 .dish-price {
-  /* font-size: 1.rem; */
-  color: var(--blue);
   font-weight: bold;
 }
 
@@ -355,4 +373,16 @@ export default {
     display: none;
   }
 }
+
+
+@media (min-width: 767px) {
+
+  .menu-container {
+    padding: 1em;
+  }
+  .dish-description {
+  font-size: 1.3rem;
+  }
+}
+
 </style>
