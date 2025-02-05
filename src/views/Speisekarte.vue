@@ -4,7 +4,7 @@
     imageAlt="Speisekarte Haus Hamburg"
     titleAbove="Unsere"
     titleMain="Speisekarte"
-    subtitle="Frischer Fisch & regionale Spezialitäten"
+    subtitle="Freschen Fisch un regionale Spezialiteeten"
     heading="Die Speisekarte"
     flowText="Entdecken Sie unsere köstlichen Fischgerichte, ostfriesische Spezialitäten und mehr. Frisch, regional und mit Liebe zubereitet."
     parallaxImageSrc="/images/food/haus_hamburg_leer_021.webp"
@@ -226,10 +226,12 @@ export default {
 <style scoped>
 
 
-/* Falls BasePage die thrid-section definiert, hier per ::v-deep überschreiben */
-::v-deep .thrid-section {
+
+:deep(.thrid-section) {
   background-color: var(--beige) !important;
 }
+
+
 
 .menu-container {
   margin: 2rem 0;
