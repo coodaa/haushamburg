@@ -1,34 +1,34 @@
 [
   {
     "id": 1,
-    "title": "Kellner/in",
+    "title": "Servicekraft",
     "location": "Leer",
     "employmentType": "Teilzeit/Vollzeit",
-    "description": "Wir suchen eine freundliche und motivierte Kellnerin oder einen Kellner zur Unterstützung unseres Serviceteams. Erfahrung in der Gastronomie ist von Vorteil, aber nicht zwingend erforderlich. Wir bieten eine umfassende Einarbeitung und ein angenehmes Arbeitsumfeld.",
+    "description": "Wir suchen eine engagierte Servicekraft, die unser Team tatkräftig unterstützt und für ein erstklassiges Gästeerlebnis sorgt. Erfahrung in der Gastronomie ist willkommen, jedoch nicht zwingend erforderlich – eine gründliche Einarbeitung ist garantiert.",
     "tasks": [
-      "Bedienung der Gäste",
-      "Entgegennahme von Bestellungen",
+      "Gästebetreuung und Beratung",
+      "Aufnahme und Abwicklung von Bestellungen",
       "Servieren von Speisen und Getränken",
-      "Bereitstellung eines hervorragenden Kundenservices"
+      "Sicherstellung eines reibungslosen Serviceablaufs"
     ],
     "benefits": [
       "Flexible Arbeitszeiten",
-      "Leistungsorientierte Vergütung",
-      "Angenehmes Arbeitsklima",
-      "Weiterbildungsmöglichkeiten"
-    ],
-    "application": "Senden Sie Ihre Bewerbung an <a href='mailto:info@haus-hamburg-leer.de'>info@haus-hamburg-leer.de</a> oder besuchen Sie uns persönlich."
+      "Leistungsgerechte Vergütung",
+      "Angenehmes Arbeitsklima"
+     ],
+    "application": "Bitte senden Sie Ihre Bewerbung an <a href='mailto:info@haus-hamburg-leer.de'>info@haus-hamburg-leer.de</a> oder kommen Sie persönlich vorbei."
   },
   {
     "id": 2,
     "title": "Küchenhilfe",
     "location": "Leer",
     "employmentType": "Teilzeit/Vollzeit",
-    "description": "Unterstützung unseres Küchenteams bei der Vorbereitung und Zubereitung von Speisen. Erfahrung in der Küche ist von Vorteil.",
+    "description": "Wir suchen eine zuverlässige Küchenhilfe, die unser Küchenteam bei der Vorbereitung und Zubereitung von Speisen unterstützt. Vorkenntnisse in der Küche sind von Vorteil, jedoch nicht zwingend erforderlich.",
     "tasks": [
-      "Vorbereitung der Zutaten",
-      "Unterstützung bei der Zubereitung von Speisen",
-      "Reinigung und Wartung der Küchenarbeitsplätze"
+      "Vorbereitung und Aufbereitung von Zutaten",
+      "Unterstützung bei der Zubereitung von Gerichten",
+      "Reinigung und Pflege der Küchenarbeitsplätze",
+      "Sicherstellung eines ordentlichen Küchenbetriebs"
     ],
     "benefits": [
       "Stabile Arbeitszeiten",
@@ -36,6 +36,6 @@
       "Teamorientiertes Arbeitsumfeld",
       "Weiterbildungsmöglichkeiten"
     ],
-    "application": "Senden Sie Ihre Bewerbung an <a href='mailto:info@haus-hamburg-leer.de'>info@haus-hamburg-leer.de</a> oder besuchen Sie uns persönlich."
+    "application": "Bitte senden Sie Ihre Bewerbung an <a href='mailto:info@haus-hamburg-leer.de'>info@haus-hamburg-leer.de</a> oder kommen Sie persönlich vorbei."
   }
 ]

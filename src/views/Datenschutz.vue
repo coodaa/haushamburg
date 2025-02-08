@@ -1,19 +1,20 @@
-<!-- src/views/Datenschutz.vue -->
 <template>
   <BasePage
-  imageSrc="/images/mood/christian-paul-stobbe-w8B2IcmvACk-unsplash.jpg"
-  imageAlt="Datenschutzerklärung Bild"
+    imageSrc="/images/mood/christian-paul-stobbe-w8B2IcmvACk-unsplash.jpg"
+    imageAlt="Datenschutzerklärung Bild"
     titleAbove="Datenschutz"
     titleMain="Datenschutz"
     subtitle="Schutz Ihrer Daten"
     heading="Datenschutz"
-    flowText=""
+    flowText="Wir legen großen Wert auf den Schutz Ihrer personenbezogenen Daten. In dieser Datenschutzerklärung erfahren Sie, welche Daten wir erheben, wie wir sie verarbeiten und vor allem, wie wir Ihre Daten schützen. Dabei informieren wir Sie auch über den Einsatz von Analyse-Tools wie Google Analytics – mit aktivierter IP-Anonymisierung – um das Nutzererlebnis unserer Website zu optimieren. Sie haben jederzeit das Recht, Auskunft über Ihre Daten zu erhalten, Berichtigungen zu verlangen oder die Löschung Ihrer Daten zu fordern. Bitte lesen Sie die nachfolgenden Abschnitte, um einen umfassenden Überblick über unsere Datenverarbeitung und Ihre Rechte zu erhalten."
     parallaxImageSrc="/images/mood/gritte-r6FTSmtgiSA-unsplash.jpg"
     parallaxImageAlt=""
   >
     <div>
       <section>
-        <h3>1. Verantwortlicher</h3>
+        <h3>1. Verantwortlicherrrrd</h3>
+        <h3>1. Verantwortlicherrrrd</h3>
+
         <p>
           <strong>Restaurant „Haus Hamburg“</strong><br />
           Rathausstr. 3 – 5<br />
@@ -22,7 +23,8 @@
           E-Mail: <a href="mailto:info@haus-hamburg-leer.de">info@haus-hamburg-leer.de</a>
         </p>
         <p>
-          <strong>Inhaberin:</strong> Helga Wagemann
+          <strong>Inhaberin:</strong> Helga Wagemann<br />
+          Alle Rechte vorbehalten. © Helga Wagemann
         </p>
       </section>
 
@@ -39,7 +41,7 @@
         </p>
         <p>
           <strong>Wie erfassen wir Ihre Daten?</strong><br />
-          Ihre Daten werden zum einen dadurch erhoben, dass Sie uns diese mitteilen. Hierbei kann es sich z.B. um Daten handeln, die Sie in ein Kontaktformular eingeben.
+          Ihre Daten werden zum einen dadurch erhoben, dass Sie uns diese mitteilen. Hierbei kann es sich z. B. um Daten handeln, die Sie in ein Kontaktformular eingeben.
         </p>
         <p>
           <strong>Wofür nutzen wir Ihre Daten?</strong><br />
@@ -61,7 +63,7 @@
           Wenn Sie diese Website benutzen, werden verschiedene personenbezogene Daten erhoben. Personenbezogene Daten sind Daten, mit denen Sie persönlich identifiziert werden können. Die vorliegende Datenschutzerklärung erläutert, welche Daten wir erheben und wofür wir sie nutzen. Sie erläutert auch, wie und zu welchem Zweck das geschieht.
         </p>
         <p>
-          Wir weisen darauf hin, dass die Datenübertragung im Internet (z.B. bei der Kommunikation per E-Mail) Sicherheitslücken aufweisen kann. Ein lückenloser Schutz der Daten vor dem Zugriff durch Dritte ist nicht möglich.
+          Wir weisen darauf hin, dass die Datenübertragung im Internet (z. B. bei der Kommunikation per E-Mail) Sicherheitslücken aufweisen kann. Ein lückenloser Schutz der Daten vor dem Zugriff durch Dritte ist nicht möglich.
         </p>
         <h4>Hinweis zur verantwortlichen Stelle</h4>
         <p>
@@ -147,7 +149,7 @@
           Sie können die Speicherung der Cookies durch eine entsprechende Einstellung Ihrer Browser-Software verhindern; wir weisen Sie jedoch darauf hin, dass Sie in diesem Fall gegebenenfalls nicht sämtliche Funktionen dieser Website vollumfänglich nutzen können.
         </p>
         <p>
-          Sie können darüber hinaus die Erfassung der durch das Cookie erzeugten und auf Ihre Nutzung der Website bezogenen Daten (inkl. Ihrer IP-Adresse) an Google sowie die Verarbeitung dieser Daten durch Google verhindern, indem Sie das unter dem folgenden Link verfügbare Browser-Plugin herunterladen und installieren: <a href="https://tools.google.com/dlpage/gaoptout?hl=de" target="_blank" rel="noopener noreferrer">https://tools.google.com/dlpage/gaoptout?hl=de</a>
+          Sie können darüber hinaus die Erfassung der durch das Cookie erzeugten und auf Ihre Nutzung der Website bezogenen Daten (inkl. Ihrer IP-Adresse) an Google sowie die Verarbeitung dieser Daten durch Google verhindern, indem Sie das unter dem folgenden Link verfügbare Browser-Plugin herunterladen und installieren: <a href="https://tools.google.com/dlpage/gaoptout?hl=de" target="_blank" rel="noopener noreferrer">Google Analytics Opt-Out</a>
         </p>
         <p>
           Alternativ zum Browser-Plugin können Sie die Erfassung durch Google Analytics auch verhindern, indem Sie auf diesen Link klicken. Es wird ein Opt-Out-Cookie gesetzt, das die zukünftige Erfassung Ihrer Daten beim Besuch dieser Website verhindert: <a href="javascript:void(0);" @click="setGoogleAnalyticsOptOut">Google Analytics deaktivieren</a>
@@ -208,6 +210,27 @@
           Durch die Weiterentwicklung unserer Website und Angebote darüber oder aufgrund geänderter gesetzlicher beziehungsweise behördlicher Vorgaben kann es notwendig werden, diese Datenschutzerklärung zu ändern. Die jeweils aktuelle Datenschutzerklärung kann jederzeit auf der Website unter <a href="/datenschutz">Datenschutz</a> von Ihnen abgerufen und ausgedruckt werden.
         </p>
       </section>
+
+      <section>
+  <h3>10. Erfassung und Verarbeitung von Kundendaten im Onlineshop</h3>
+  <p>
+    In unserem Onlineshop erfassen und verarbeiten wir personenbezogene Daten, die für die Abwicklung Ihrer Bestellungen erforderlich sind. Dazu gehören insbesondere:
+  </p>
+  <ul>
+    <li>Name, Anschrift, E-Mail-Adresse und Telefonnummer</li>
+    <li>Zahlungsinformationen (z. B. Kreditkartendaten oder PayPal-Daten), sofern für die Zahlungsabwicklung notwendig</li>
+    <li>Bestell- und Versandinformationen</li>
+  </ul>
+  <p>
+    Die Erhebung und Verarbeitung dieser Daten erfolgt auf Grundlage Ihrer Einwilligung (Art. 6 Abs. 1 lit. a DSGVO) sowie zur Erfüllung eines Vertrages (Art. 6 Abs. 1 lit. b DSGVO). Ihre Daten werden ausschließlich zum Zweck der Bestellabwicklung, zur Kundenbetreuung und zur Erfüllung gesetzlicher Verpflichtungen genutzt.
+  </p>
+  <p>
+    Eine Weitergabe Ihrer Daten an Dritte erfolgt nur, soweit dies zur Abwicklung der Bestellung notwendig ist (z. B. an Versanddienstleister oder Zahlungsanbieter) oder wir gesetzlich dazu verpflichtet sind. Eine darüber hinausgehende Weitergabe erfolgt nicht.
+  </p>
+  <p>
+    Sie haben das Recht, jederzeit Auskunft über Ihre bei uns gespeicherten personenbezogenen Daten zu erhalten sowie deren Berichtigung, Löschung oder Einschränkung der Verarbeitung zu verlangen. Bitte wenden Sie sich hierzu an den oben genannten Verantwortlichen.
+  </p>
+</section>
     </div>
   </BasePage>
 </template>
@@ -231,12 +254,14 @@ export default {
   },
   methods: {
     setGoogleAnalyticsOptOut() {
-      document.cookie = "ga-disable-UA-XXXXX-Y=true; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/";
+      document.cookie =
+        "ga-disable-UA-XXXXX-Y=true; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/";
       alert("Google Analytics wurde deaktiviert.");
     },
   },
 };
 </script>
+
 <style scoped>
 /* Optional: Zusätzliche Styles für die Datenschutz-Seite */
 section {
@@ -246,7 +271,7 @@ section {
 
 h3 {
   margin-top: 1.5rem;
-  color: var(--blue); /* Stelle sicher, dass die Farbvariable vorhanden ist */
+  color: var(--blue);
 }
 
 h4 {
@@ -265,5 +290,11 @@ a {
 
 a:hover {
   text-decoration: none;
+}
+
+@media (min-width: 1024px) {
+  section {
+    padding: 1em 1em;
+  }
 }
 </style>
