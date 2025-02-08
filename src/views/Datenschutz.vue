@@ -12,9 +12,7 @@
   >
     <div>
       <section>
-        <h3>1. Verantwortlicherrrrd</h3>
-        <h3>1. Verantwortlicherrrrd</h3>
-
+        <h3>1. Verantwortlicher</h3>
         <p>
           <strong>Restaurant „Haus Hamburg“</strong><br />
           Rathausstr. 3 – 5<br />
