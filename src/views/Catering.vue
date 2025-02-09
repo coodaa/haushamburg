@@ -10,7 +10,7 @@
     parallaxImageSrc="/images/catering/catering-haus-hamburg1.jpg"
   >
     <form class="catering-form" @submit.prevent="submitForm">
-      <h2 class="form-title">Catering-Anfrage</h2>
+      <h2 class="big-title-3">Catering Anfrage</h2>
       <div class="form-group">
         <label for="name">Mein Name ist</label>
         <input type="text" id="name" v-model="form.name" placeholder="Name*" required />
@@ -36,7 +36,7 @@
             :class="{ active: form.budget === '€1250-3000' }"
             @click="selectBudget('€1250-3000')"
           >
-            €1250–3000
+            €100–300
           </button>
           <button
             type="button"
@@ -44,7 +44,7 @@
             :class="{ active: form.budget === '€3000-7500' }"
             @click="selectBudget('€3000-7500')"
           >
-            €3000–7500
+            €300–500
           </button>
           <button
             type="button"
@@ -52,7 +52,7 @@
             :class="{ active: form.budget === '€7500-15000' }"
             @click="selectBudget('€7500-15000')"
           >
-            €7500–15000
+            €500–1.000
           </button>
           <button
             type="button"
@@ -60,7 +60,7 @@
             :class="{ active: form.budget === '€15000+' }"
             @click="selectBudget('€15000+')"
           >
-            €15000+
+            €1.000+
           </button>
         </div>
       </div>
@@ -189,12 +189,12 @@ export default {
 
 <style scoped>
 .catering-form {
-  max-width: 800px;
+  max-width: 48em;
   margin: 2rem auto;
   padding: 2rem;
   background-color: #fff;
   border: 2px solid var(--blue);
-  border-radius: 12px;
+  border-radius: 20px;
   position: relative;
 }
 .catering-form::before {
@@ -205,13 +205,6 @@ export default {
   border-radius: 10px;
   pointer-events: none;
 }
-.form-title {
-  font-family: var(--font-thunder);
-  font-size: 2rem;
-  text-align: center;
-  color: var(--blue);
-  margin-bottom: 2rem;
-}
 .form-group {
   margin-bottom: 2rem;
 }
@@ -220,7 +213,8 @@ textarea {
   width: 100%;
   padding: 0.75rem;
   border: 1px solid var(--blue);
-  border-radius: 6px;
+  border-radius: 1em;
+  margin-bottom: 1em;
 }
 .budget-button,
 .catering-type-button {
