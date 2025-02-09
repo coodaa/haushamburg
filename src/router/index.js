@@ -11,6 +11,8 @@ const Impressum = () => import("../views/Impressum.vue");
 const Datenschutz = () => import("../views/Datenschutz.vue");
 const Stellenangebote = () => import("../views/Stellenangebote.vue");
 const NotFound = () => import("../views/NotFound.vue");
+import TestOrder from '../components/TestOrder.vue';
+
 
 // Definiere die Routen für deine Anwendung
 const routes = [
@@ -64,6 +66,12 @@ const routes = [
     name: "notfound",
     component: NotFound,
   },
+  {
+    path: '/test-order',
+    name: 'TestOrder',
+    component: TestOrder
+  },
+
 ];
 
 const router = createRouter({

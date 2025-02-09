@@ -1,18 +1,17 @@
-const { db } = require("../firebaseAdmin");
+const express = require("express");
+const router = express.Router();
+const { db } = require("./firebaseAdmin"); // Beispiel: Firebase Admin SDK
 
-module.exports = async (req, res) => {
+// POST-Route zum Erstellen einer Bestellung
+router.post("/", async (req, res) => {
   try {
-    const ordersRef = db.collection("orders");
-    const snapshot = await ordersRef.get();
-
-    const orders = [];
-    snapshot.forEach((doc) => {
-      orders.push({ id: doc.id, ...doc.data() });
-    });
-
-    res.json({ success: true, orders });
+    const orderData = req.body;
+    const newOrderRef = await db.collection("orders").add(orderData);
+    res.json({ success: true, orderId: newOrderRef.id });
   } catch (error) {
-    console.error("Fehler beim Abrufen der Bestellungen:", error);
-    res.status(500).json({ success: false, message: "Interner Fehler" });
+    console.error("Fehler beim Speichern der Bestellung:", error);
+    res.status(500).json({ success: false, message: error.message });
   }
-};
+});
+
+module.exports = router;
