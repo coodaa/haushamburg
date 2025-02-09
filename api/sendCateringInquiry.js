@@ -1,54 +1,38 @@
-const express = require("express");
-const nodemailer = require("nodemailer");
-const app = express();
+import nodemailer from "nodemailer";
 
-// Middleware, um JSON-Daten aus dem Request-Body zu parsen
-app.use(express.json());
+export default async function handler(req, res) {
+  if (req.method !== "POST") {
+    return res.status(405).json({ error: "Method Not Allowed" });
+  }
 
-// API-Endpunkt für Catering-Anfragen
-app.post("/api/sendCateringInquiry", async (req, res) => {
-  // Extrahiere die Felder aus dem Request-Body
-  const { name, email, phone, message, submittedAt } = req.body;
+  const { name, email, phone, message } = req.body;
 
-  // Konfiguriere den Nodemailer-Transporter.
-  // Hinweis: Verwende hier deine tatsächlichen SMTP-Zugangsdaten.
-  let transporter = nodemailer.createTransport({
-    service: "gmail", // Beispiel: Gmail
+  if (!name || !email || !phone || !message) {
+    return res.status(400).json({ error: "Alle Felder sind erforderlich!" });
+  }
+
+  // 📌 Gmail als SMTP-Server
+  const transporter = nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    port: 465, // SSL-Port (Alternativ: 587 für TLS)
+    secure: true, // SSL aktivieren
     auth: {
-      user: "dein.email@gmail.com",      // Ersetze mit deiner E-Mail-Adresse
-      pass: "dein_app_passwort"            // Ersetze mit einem gültigen App-Passwort (bei 2FA erforderlich)
-    }
+      user: process.env.EMAIL_USER, // = okansondere@gmail.com
+      pass: process.env.EMAIL_PASS, // = App-Passwort
+    },
   });
 
-  // Definiere die E-Mail-Optionen
-  let mailOptions = {
-    from: '"Haus Hamburg Catering" <dein.email@gmail.com>', // Absender-Adresse
-    to: "schneider.f@me.com",                               // Empfänger-Adresse
-    subject: "Neue Catering-Anfrage",
-    text: `Neue Catering-Anfrage:
-
-Name: ${name}
-E-Mail: ${email}
-Telefon: ${phone}
-Nachricht: ${message}
-Gesendet am: ${submittedAt}`
-  };
-
   try {
-    // Versende die E-Mail
-    await transporter.sendMail(mailOptions);
-    // Sende eine Erfolgsmeldung zurück
-    res.json({ success: true });
+    await transporter.sendMail({
+      from: `"Catering Anfrage" <${process.env.EMAIL_USER}>`, // Absender Gmail
+      to: "okansondere@gmail.com", // 📌 Ändere das, falls du es woanders empfangen willst
+      subject: "Neue Catering-Anfrage",
+      text: `Name: ${name}\nE-Mail: ${email}\nTelefon: ${phone}\nNachricht: ${message}`,
+    });
+
+    return res.status(200).json({ success: true, message: "E-Mail wurde gesendet!" });
   } catch (error) {
-    console.error("Fehler beim E-Mail Versand:", error);
-    res.status(500).json({ success: false, message: error.message });
+    console.error("E-Mail Versand fehlgeschlagen:", error);
+    return res.status(500).json({ error: "E-Mail konnte nicht gesendet werden" });
   }
-});
-
-// Starte den Server auf Port 3000 (oder einem anderen Port deiner Wahl)
-const port = process.env.PORT || 3000;
-app.listen(port, () => {
-  console.log(`Backend läuft auf http://localhost:${port}`);
-});
-
-// sdfksdfpnsd
+}
