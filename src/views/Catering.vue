@@ -235,6 +235,29 @@ textarea {
   filter: invert(40%);
 }
 
+.budget-options,
+.catering-type-options {
+  margin-top: 1.5em;
+  display: grid;
+  /* Mindestens 120px breite Buttons – passen sich flexibel an */
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 1rem; /* Abstand zwischen den Buttons */
+}
+
+@media (min-width: 768px) {
+  .budget-options,
+  .catering-type-options {
+    /* Beispielsweise Buttons etwas breiter gestalten */
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+}
+
+/* Button "Anfrage absenden" zentrieren */
+.catering-form .cta-button {
+  display: block;
+  margin: 2rem auto;
+}
+
 .modal-overlay {
   position: fixed;
   top: 0;
