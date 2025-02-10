@@ -28,7 +28,15 @@
         <label>Ich möchte Catering für</label>
         <input type="number" id="guests" v-model="form.guests" placeholder="Anzahl der Personen*" min="1" required />
         <input type="text" id="location" v-model="form.location" placeholder="Ort*" required />
-        <input type="datetime-local" id="dateTime" v-model="form.dateTime" required class="styled-calendar" />
+        <!-- Umstellung auf "date" und Setzen des min-Attributs -->
+        <input
+          type="date"
+          id="dateTime"
+          v-model="form.dateTime"
+          :min="minDate"
+          required
+          class="styled-calendar"
+        />
       </div>
 
       <div class="form-group">
@@ -116,7 +124,6 @@
       <button class="cta-button" type="submit">
         <span class="cta-text">Anfrage absenden</span>
       </button>
-
     </form>
 
     <!-- Modal -->
@@ -155,6 +162,12 @@ export default {
       },
       isModalVisible: false,
     };
+  },
+  computed: {
+    // Liefert das heutige Datum im Format "YYYY-MM-DD"
+    minDate() {
+      return new Date().toISOString().split("T")[0];
+    },
   },
   methods: {
     async submitForm() {
@@ -227,7 +240,7 @@ textarea {
   width: 100%;
   padding: 0.75rem 1rem;
   border: 1px solid #ccc;
-  border-radius: 10px;
+  border-radius: 20px;
   margin-bottom: 1rem;
   font-size: 1rem;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
@@ -296,13 +309,19 @@ textarea:focus {
 .modal {
   background: #fff;
   padding: 2rem;
-  border-radius: 10px;
+  border-radius: 20px;
   text-align: center;
 }
 
+/* CTA-Button im Formular zentrieren */
 .catering-form .cta-button {
   display: block;
   margin: 2rem auto;
 }
 
+/* CTA-Button im Modal zentrieren */
+.modal .cta-button {
+  display: block;
+  margin: 2rem auto;
+}
 </style>
