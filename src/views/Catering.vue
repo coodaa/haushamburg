@@ -28,90 +28,26 @@
         <label>Ich möchte Catering für</label>
         <input type="number" id="guests" v-model="form.guests" placeholder="Anzahl der Personen*" min="1" required />
         <input type="text" id="location" v-model="form.location" placeholder="Ort*" required />
-        <!-- Umstellung auf "date" und Setzen des min-Attributs -->
-        <input
-          type="date"
-          id="dateTime"
-          v-model="form.dateTime"
-          :min="minDate"
-          required
-          class="styled-calendar"
-        />
+        <input type="date" id="dateTime" v-model="form.dateTime" :min="minDate" required class="styled-calendar" />
       </div>
 
       <div class="form-group">
         <label>Das Budget für diese Veranstaltung ist:</label>
         <div class="budget-options">
-          <button
-            type="button"
-            class="budget-button"
-            :class="{ active: form.budget === '€1250-3000' }"
-            @click="selectBudget('€1250-3000')"
-          >
-            €100–300
-          </button>
-          <button
-            type="button"
-            class="budget-button"
-            :class="{ active: form.budget === '€3000-7500' }"
-            @click="selectBudget('€3000-7500')"
-          >
-            €300–500
-          </button>
-          <button
-            type="button"
-            class="budget-button"
-            :class="{ active: form.budget === '€7500-15000' }"
-            @click="selectBudget('€7500-15000')"
-          >
-            €500–1.000
-          </button>
-          <button
-            type="button"
-            class="budget-button"
-            :class="{ active: form.budget === '€15000+' }"
-            @click="selectBudget('€15000+')"
-          >
-            €1.000+
-          </button>
+          <button type="button" class="budget-button" :class="{ active: form.budget === '€1250-3000' }" @click="selectBudget('€1250-3000')">€100–300</button>
+          <button type="button" class="budget-button" :class="{ active: form.budget === '€3000-7500' }" @click="selectBudget('€3000-7500')">€300–500</button>
+          <button type="button" class="budget-button" :class="{ active: form.budget === '€7500-15000' }" @click="selectBudget('€7500-15000')">€500–1.000</button>
+          <button type="button" class="budget-button" :class="{ active: form.budget === '€15000+' }" @click="selectBudget('€15000+')">€1.000+</button>
         </div>
       </div>
 
       <div class="form-group">
         <label>Bitte wähle die Catering-Art:</label>
         <div class="catering-type-options">
-          <button
-            type="button"
-            class="catering-type-button"
-            :class="{ active: form.cateringType.includes('Fisch') }"
-            @click="toggleCateringType('Fisch')"
-          >
-            Fisch
-          </button>
-          <button
-            type="button"
-            class="catering-type-button"
-            :class="{ active: form.cateringType.includes('Fleisch') }"
-            @click="toggleCateringType('Fleisch')"
-          >
-            Fleisch
-          </button>
-          <button
-            type="button"
-            class="catering-type-button"
-            :class="{ active: form.cateringType.includes('Vegetarisch') }"
-            @click="toggleCateringType('Vegetarisch')"
-          >
-            Vegetarisch
-          </button>
-          <button
-            type="button"
-            class="catering-type-button"
-            :class="{ active: form.cateringType.includes('Vegan') }"
-            @click="toggleCateringType('Vegan')"
-          >
-            Vegan
-          </button>
+          <button type="button" class="catering-type-button" :class="{ active: form.cateringType.includes('Fisch') }" @click="toggleCateringType('Fisch')">Fisch</button>
+          <button type="button" class="catering-type-button" :class="{ active: form.cateringType.includes('Fleisch') }" @click="toggleCateringType('Fleisch')">Fleisch</button>
+          <button type="button" class="catering-type-button" :class="{ active: form.cateringType.includes('Vegetarisch') }" @click="toggleCateringType('Vegetarisch')">Vegetarisch</button>
+          <button type="button" class="catering-type-button" :class="{ active: form.cateringType.includes('Vegan') }" @click="toggleCateringType('Vegan')">Vegan</button>
         </div>
       </div>
 
@@ -120,13 +56,14 @@
         <textarea id="message" v-model="form.message" placeholder="Weitere Wünsche oder Informationen"></textarea>
       </div>
 
-      <!-- Global definierter CTA-Button -->
-      <button class="cta-button" type="submit">
-        <span class="cta-text">Anfrage absenden</span>
+      <button class="cta-button" type="submit" :disabled="isLoading">
+        <span class="cta-text" v-if="!isLoading">Anfrage absenden</span>
+        <span class="cta-text" v-if="isLoading">Senden...</span>
       </button>
+
+      <div v-if="isLoading" class="loading-spinner"></div>
     </form>
 
-    <!-- Modal -->
     <div v-if="isModalVisible" class="modal-overlay">
       <div class="modal">
         <h2>Vielen Dank!</h2>
@@ -161,6 +98,7 @@ export default {
         message: "",
       },
       isModalVisible: false,
+      isLoading: false,
     };
   },
   computed: {
@@ -171,13 +109,21 @@ export default {
   },
   methods: {
     async submitForm() {
+      this.isLoading = true;
       try {
-        await axios.post("/api/sendCateringInquiry", this.form);
-        this.isModalVisible = true;
-        this.resetForm();
+        const response = await axios.post("/api/sendCateringInquiry", this.form);
+        if (response.status === 200) {
+          this.isModalVisible = true;
+          this.resetForm();
+        } else {
+          console.error("Fehler beim Absenden der Anfrage:", response.data);
+          alert("Ein Fehler ist aufgetreten. Bitte versuchen Sie es später noch einmal.");
+        }
       } catch (error) {
         console.error("Fehler beim Absenden der Anfrage:", error);
-        alert("Fehler beim Absenden der Anfrage. Bitte versuche es erneut.");
+        alert("Ein Fehler ist aufgetreten. Bitte versuchen Sie es später noch einmal.");
+      } finally {
+        this.isLoading = false;
       }
     },
     resetForm() {
@@ -198,8 +144,9 @@ export default {
       this.isModalVisible = false;
     },
     toggleCateringType(type) {
-      if (this.form.cateringType.includes(type)) {
-        this.form.cateringType = this.form.cateringType.filter((t) => t !== type);
+      const index = this.form.cateringType.indexOf(type);
+      if (index > -1) {
+        this.form.cateringType.splice(index, 1);
       } else {
         this.form.cateringType.push(type);
       }

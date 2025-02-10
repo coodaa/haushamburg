@@ -30,7 +30,7 @@
     ></div>
 
     <!-- Seiteninhalt im zentrierten Wrapper -->
-      <div class="thrid-section">
+      <div class="third-section">
         <slot>
           <p>{{ content }}</p>
         </slot>
@@ -194,7 +194,7 @@ export default {
 }
 
 /* Page Content Styling */
-.thrid-section {
+.third-section {
   font-size: 1rem;
   line-height: 1.6;
   color: var(--blue);

@@ -11,42 +11,44 @@
     parallaxImageAlt="Haus Hamburg Restaurant"
   >
     <div class="menu-container">
-      <!-- Menübereiche in einem modernen Grid-Layout -->
-       <div class="section-food big-title-4">
-        <h2>unsere auswahl</h2></div>
-
-
-
+      <!-- Überschrift für die Auswahl -->
+      <div class="section-food big-title-4">
+        <h2>unsere auswahl</h2>
+      </div>
 
       <div class="menu-sections">
         <!-- Karte 1: Vorspeisen -->
-        <section class="menu-card ">
+        <section class="menu-card">
           <h2 class="big-title-3">Vorspeisen</h2>
           <div class="card-content">
             <div class="dish-entry">
-              <span class="dish-description">Tagessuppe</span>
-              <span class="dish-price">5,80 €</span>
+              <div class="dish-description">Tagessuppe</div>
+              <span class="dish-price">5,80 €</span>
             </div>
 
             <div class="dish-entry">
-              <span class="dish-description">
+              <div class="dish-description">
                 Vorspeise Haus-Hamburg
-                <p class="note">(Matjesfilets, Aalrauch-Matjesfilets, Bismarckhering, Brathering, Salatgarnitur)</p>
-
-              </span>
-              <span class="dish-price">9,90 €</span>
+                <div class="note">
+                  (Matjesfilets, Aalrauch-Matjesfilets, Bismarckhering, Brathering, Salatgarnitur)
+                </div>
+              </div>
+              <span class="dish-price">9,90 €</span>
             </div>
 
             <div class="dish-entry">
-              <span class="dish-description">
+              <div class="dish-description">
                 Vorspeise Haus-Hamburg deluxe<br />
-                <p class="note">(Matjesfilets, Aalrauch-Matjesfilets, Bismarckhering, Brathering,<br />
-                Räucherlachs und Greetsieler Kutterkrabben, Salatgarnitur)</p>
-              </span>
-              <span class="dish-price">14,80 €</span>
+                <div class="note">
+                  (Matjesfilets, Aalrauch-Matjesfilets, Bismarckhering, Brathering,<br />
+                  Räucherlachs und Greetsieler Kutterkrabben, Salatgarnitur)
+                </div>
+              </div>
+              <span class="dish-price">14,80 €</span>
             </div>
-            <p class="note">… auch als Hauptgericht mit Bratkartoffeln und Salat (Aufpreis 7,00 €)</p>
-
+            <div class="note">
+              … auch als Hauptgericht mit Bratkartoffeln und Salat (Aufpreis 7,00 €)
+            </div>
           </div>
         </section>
 
@@ -55,41 +57,34 @@
           <h2 class="big-title-3">Fischgerichte</h2>
           <div class="card-content">
             <div class="dish-entry">
-              <span class="dish-description">Nordsee Scholle – filetiert</span>
-              <span class="dish-price">22,50 €</span>
+              <div class="dish-description">Nordsee Scholle – filetiert</div>
+              <span class="dish-price">22,50 €</span>
             </div>
 
             <div class="dish-entry">
-              <span class="dish-description">
-                Finkenwerder Art (Schinkenwürfel)<br />
-              </span>
-              <span class="dish-price">23,50 €</span>
+              <div class="dish-description">
+                Finkenwerder Art (Schinkenwürfel)
+              </div>
+              <span class="dish-price">23,50 €</span>
             </div>
 
             <div class="dish-entry">
-              <span class="dish-description">
-                und mit Krabben
-              </span>
-              <span class="dish-price">26,50 €</span>
+              <div class="dish-description">und mit Krabben</div>
+              <span class="dish-price">26,50 €</span>
             </div>
-
-
 
             <div class="dish-entry">
-              <span class="dish-description">
-                Fischplatte für 1 Person<br />
-                <p class="note">(Auswahl unserer beliebtesten Fischfilets, Greetsieler Krabben, Bratkartoffeln, Salat)
-                </p>
-
-              </span>
-              <span class="dish-price">25,50 €</span>
-              <p class="note">Zu allen unseren Fischgerichten reichen wir unsere
-hausgemachten Bratkartoffeln mit Speck und Zwiebeln
-sowie einen kleinen gemischten Salat.</p>
-
+              <div class="dish-description">
+                Fischplatte für 1 Person
+                <div class="note">
+                  (Auswahl unserer beliebtesten Fischfilets, Greetsieler Krabben, Bratkartoffeln, Salat)
+                </div>
+              </div>
+              <span class="dish-price">25,50 €</span>
+              <div class="note">
+                Zu allen unseren Fischgerichten reichen wir unsere hausgemachten Bratkartoffeln mit Speck und Zwiebeln sowie einen kleinen gemischten Salat.
+              </div>
             </div>
-
-
           </div>
         </section>
 
@@ -98,79 +93,60 @@ sowie einen kleinen gemischten Salat.</p>
           <h2 class="big-title-3">Von Weide und Feld</h2>
           <div class="card-content">
             <div class="dish-entry">
-              <span class="dish-description">Rahmschnitzel mit RAS Frites und Salat</span>
-              <span class="dish-price">17,50 €</span>
+              <div class="dish-description">Rahmschnitzel mit RAS Frites und Salat</div>
+              <span class="dish-price">17,50 €</span>
             </div>
 
             <div class="dish-entry">
-              <span class="dish-description">Tomahawk vom Ammerländer Edelschwein </span>
-              <span class="dish-price">24,50 €</span>
-              <p class="note">(mit RAS Frites und Salat)</p>
-
+              <div class="dish-description">Tomahawk vom Ammerländer Edelschwein</div>
+              <span class="dish-price">24,50 €</span>
+              <div class="note">(mit RAS Frites und Salat)</div>
             </div>
 
             <div class="dish-entry">
-              <span class="dish-description">Vegan/Vegetarisches Tagesgericht</span>
-              <span class="dish-price">17,50 €</span>
+              <div class="dish-description">Vegan/Vegetarisches Tagesgericht</div>
+              <span class="dish-price">17,50 €</span>
             </div>
 
             <div class="dish-entry">
-              <span class="dish-description">
+              <div class="dish-description">
                 Ofenkartoffel<br />
-                • mit Sour-Cream<br />
-
-              </span>
-              <span class="dish-price">
-                9,50 €<br />
-
-              </span>
+                • mit Sour-Cream
+              </div>
+              <span class="dish-price">9,50 €</span>
             </div>
 
             <div class="dish-entry">
-              <span class="dish-description">
-
+              <div class="dish-description">
                 • mit Räucherlachs und Sour-Cream
-              </span>
-              <span class="dish-price">
-                15,50 €
-              </span>
+              </div>
+              <span class="dish-price">15,50 €</span>
             </div>
 
             <div class="dish-entry">
-              <span class="dish-description">
-
+              <div class="dish-description">
                 • mit Sour-Cream und Greetsieler Krabben
-              </span>
-              <span class="dish-price">
-
-                19,50 €
-              </span>
+              </div>
+              <span class="dish-price">19,50 €</span>
             </div>
 
-
-
-
-
             <div class="dish-entry">
-              <span class="dish-description">Grünkohl mit Mettenden und Pinkel und Bratkartoffeln </span>
+              <div class="dish-description">
+                Grünkohl mit Mettenden und Pinkel und Bratkartoffeln
+              </div>
               <span class="dish-price">19,90 €</span>
-
             </div>
 
             <div class="dish-entry">
-              <span class="dish-description">Snirtjebraten mit Sauce und
-                Bratkartoffeln </span>
+              <div class="dish-description">
+                Snirtjebraten mit Sauce und Bratkartoffeln
+              </div>
               <span class="dish-price">21,30 €</span>
-
             </div>
-
-
-
           </div>
         </section>
       </div>
 
-      <!-- Button zum Öffnen des PDF-Modals -->
       <div class="pdf-container">
         <button class="view-btn" @click="openModal">
           Speisekarte als PDF ansehen
@@ -178,7 +154,6 @@ sowie einen kleinen gemischten Salat.</p>
       </div>
     </div>
 
-    <!-- Modal für die PDF-Vorschau -->
     <div v-if="showModal" class="modal-overlay" @click.self="closeModal">
       <div class="modal-content">
         <button class="close-btn" @click="closeModal">&times;</button>
@@ -187,14 +162,12 @@ sowie einen kleinen gemischten Salat.</p>
     </div>
   </BasePage>
   <ContactInfo />
-
 </template>
 
 <script>
-import BasePage from "@/components/BasePage.vue";
 import pdfFile from "@/assets/Speisekarte_HausHamburg.pdf";
 import ContactInfo from "@/components/ContactInfo.vue";
-
+import BasePage from "@/components/BasePage.vue";
 
 export default {
   name: "Speisekarte",
@@ -216,23 +189,7 @@ export default {
 };
 </script>
 
-
-
-
-
-
-
-
 <style scoped>
-
-
-
-:deep(.thrid-section) {
-  background-color: var(--beige) !important;
-}
-
-
-
 .menu-container {
   margin: 2rem 0;
   display: flex;
@@ -376,15 +333,12 @@ export default {
   }
 }
 
-
 @media (min-width: 767px) {
-
   .menu-container {
     padding: 1em;
   }
   .dish-description {
-  font-size: 1.3rem;
+    font-size: 1.3rem;
   }
 }
-
 </style>

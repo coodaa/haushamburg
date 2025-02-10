@@ -28,8 +28,7 @@
       <!-- Öffnungszeiten -->
       <div class="opening-hours">
         <h3 class="contact-header">Öffnungszeiten</h3>
-        <h3 class="contact-header">Öffnungszeiten</h3>
-        <h3 class="contact-header">Öffnungszeiten</h3>
+      
         <div class="hours-grid">
           <div class="day-time">
             <div class="day">Montag:</div>
