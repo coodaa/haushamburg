@@ -58,27 +58,25 @@
       <img src="/images/restaurant/haus_hamburg_leer_003_a.webp" alt="Restaurant" class="restaurant-image" />
     </section>
 
+    <!-- Unsere Auswahl (Speisekarte) Sektion mit Carousel -->
+    <section class="svg-section">
+      <div class="scalloped-svg"></div>
+      <div class="section-food big-title-4">
+        <h2>die speisekarte</h2>
 
-<!-- Unsere Auswahl (Speisekarte) Sektion mit Carousel -->
-<section class="svg-section">
-  <div class="scalloped-svg"></div>
-  <div class="section-food big-title-4">
-    <h2>die speisekarte</h2>
+        <!-- Swiper Carousel -->
+        <CustomSwiper :items="selection" :slides-per-view="slidesPerView" />
 
-    <!-- Swiper Carousel -->
-    <CustomSwiper :items="selection" :slides-per-view="slidesPerView" />
-
-    <!-- CTA-Button für die Speisekarte -->
-    <div class="menu-button-container">
-      <a href="/speisekarte" class="cta-button">
-        <i class="fas fa-fish"></i>
-        <span class="cta-text"> mee(h)r</span>
-      </a>
-    </div>
+        <!-- CTA-Button für die Speisekarte als <button> -->
+        <div class="menu-button-container">
+          <button class="cta-button" @click="goToSpeisekarte">
+            <i class="fas fa-fish"></i>
+            <span class="cta-text"> mee(h)r</span>
+          </button>
+        </div>
+      </div>
+    </section>
   </div>
-</section>
-
- </div>
 </template>
 
 <script>
@@ -105,8 +103,7 @@ export default {
         { image: "/images/food/haus_hamburg_leer_018.webp", alt: "Fischbrötchen 1", link: "/speisekarte" },
         { image: "/images/food/haus_hamburg_leer_030.webp", alt: "Fischbrötchen 2", link: "/speisekarte" },
         { image: "/images/food/haus_hamburg_leer_037.webp", alt: "Fischbrötchen 3", link: "/speisekarte" },
-        { image: "/images/food/haus_hamburg_leer_028.webp", alt: "Fischbrötchen 3", link: "/speisekarte" },
-
+        { image: "/images/food/haus_hamburg_leer_028.webp", alt: "Fischbrötchen 4", link: "/speisekarte" },
       ],
       slidesPerView: 1,
       wordInterval: null,
@@ -157,6 +154,11 @@ export default {
     updateSlidesPerView() {
       const width = window.innerWidth;
       this.slidesPerView = width >= 1700 ? 4 : width >= 1400 ? 3 : width >= 1024 ? 2 : 1;
+    },
+    goToSpeisekarte() {
+      // Navigation zur Speisekarte (Vue Router verwenden)
+      this.$router.push('/speisekarte');
+      // Alternativ: window.location.href = '/speisekarte';
     },
   },
   beforeUnmount() {

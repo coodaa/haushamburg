@@ -186,7 +186,7 @@
 }
 
 /* Reservieren-Button */
-.nav-right .cta-button {
+/* .nav-right .cta-button {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -203,14 +203,14 @@
   font-family: var(--font-thunder);
   transition: background-color 0.3s ease, transform 0.2s ease;
   gap: 0.5em;
-}
+} */
 
 .nav-right .cta-button .cta-text {
   display: none;
 }
 
 .nav-right .cta-button i {
-  font-size: 1.2em;
+  /* font-size: 1.2em; */
   margin: 0;
 }
 
@@ -220,46 +220,12 @@
   transition: transform var(--animation-bounce);
 }
 
-/* Allgemeine Reservieren-Button Stile für Tablet und Desktop */
-.cta-button {
-  padding: 0.3em 1.1em;
-  background-color: var(--gold);
-  font-weight: bold;
-  border-radius: 4px;
-  cursor: pointer;
-  position: relative;
-  z-index: 9999;
-  max-width: 10em;
-  border: 2px solid var(--blue);
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  color: var(--blue);
-  font-family: var(--font-thunder);
-  text-transform: uppercase;
-  font-size: 1.5rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5em;
-  flex-shrink: 0;
-}
-
-.cta-button i {
-  font-size: 1.2em;
-  margin-right: 0.5em;
-}
-
-.cta-button:hover,
-.cta-button:focus {
-  background-color: #e0a824;
-  transform: scale(1.05);
-}
-
 /* Kein Scrollen, wenn Menü geöffnet */
 .no-scroll {
   overflow: hidden;
   height: 100%;
 }
 
-/* Responsive Anpassungen */
 
 /* Tablets */
 @media (min-width: 768px) and (max-width: 1200px) {

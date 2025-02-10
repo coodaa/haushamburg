@@ -11,22 +11,26 @@
   >
     <form class="catering-form" @submit.prevent="submitForm">
       <h2 class="big-title-3">Catering Anfrage</h2>
+
       <div class="form-group">
         <label for="name">Mein Name ist</label>
         <input type="text" id="name" v-model="form.name" placeholder="Name*" required />
         <input type="text" id="company" v-model="form.company" placeholder="Unternehmen (optional)" />
       </div>
+
       <div class="form-group">
         <label>Ich bin erreichbar via</label>
         <input type="email" id="email" v-model="form.email" placeholder="E-Mail*" required />
         <input type="tel" id="phone" v-model="form.phone" placeholder="Telefon*" required />
       </div>
+
       <div class="form-group">
         <label>Ich möchte Catering für</label>
         <input type="number" id="guests" v-model="form.guests" placeholder="Anzahl der Personen*" min="1" required />
         <input type="text" id="location" v-model="form.location" placeholder="Ort*" required />
         <input type="datetime-local" id="dateTime" v-model="form.dateTime" required class="styled-calendar" />
       </div>
+
       <div class="form-group">
         <label>Das Budget für diese Veranstaltung ist:</label>
         <div class="budget-options">
@@ -64,6 +68,7 @@
           </button>
         </div>
       </div>
+
       <div class="form-group">
         <label>Bitte wähle die Catering-Art:</label>
         <div class="catering-type-options">
@@ -101,11 +106,17 @@
           </button>
         </div>
       </div>
+
       <div class="form-group">
         <label for="message">Zusätzliche Informationen</label>
         <textarea id="message" v-model="form.message" placeholder="Weitere Wünsche oder Informationen"></textarea>
       </div>
-      <button type="submit" class="cta-button">Anfrage absenden</button>
+
+      <!-- Global definierter CTA-Button -->
+      <button class="cta-button" type="submit">
+        <span class="cta-text">Anfrage absenden</span>
+      </button>
+
     </form>
 
     <!-- Modal -->
@@ -113,7 +124,7 @@
       <div class="modal">
         <h2>Vielen Dank!</h2>
         <p>Deine Anfrage wurde erfolgreich gesendet.</p>
-        <button @click="closeModal" class="cta-button">Schließen</button>
+        <button type="button" class="cta-button" @click="closeModal">Schließen</button>
       </div>
     </div>
   </BasePage>
@@ -193,29 +204,43 @@ export default {
   margin: 2rem auto;
   padding: 2rem;
   background-color: #fff;
-  border: 2px solid var(--blue);
   border-radius: 20px;
   position: relative;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
-.catering-form::before {
-  content: "";
-  position: absolute;
-  inset: 10px;
-  border: 2px dashed var(--gold);
-  border-radius: 10px;
-  pointer-events: none;
-}
+
 .form-group {
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
+
+/* Label-Styles */
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  color: var(--blue);
+}
+
+/* Input- und Textarea-Felder */
 input,
 textarea {
   width: 100%;
-  padding: 0.75rem;
-  border: 1px solid var(--blue);
-  border-radius: 1em;
-  margin-bottom: 1em;
+  padding: 0.75rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--blue);
+  box-shadow: 0 0 5px rgba(3, 48, 93, 0.3);
+}
+
+/* Budget- und Catering-Type-Buttons */
 .budget-button,
 .catering-type-button {
   padding: 0.75rem 1.5rem;
@@ -225,39 +250,38 @@ textarea {
   border-radius: 20px;
   cursor: pointer;
   transition: all 0.3s ease;
+  font-size: 1rem;
 }
+
 .budget-button.active,
 .catering-type-button.active {
   background: var(--blue);
   color: white;
 }
-.styled-calendar::-webkit-calendar-picker-indicator {
-  filter: invert(40%);
+
+.budget-button:hover,
+.catering-type-button:hover {
+  background: var(--gold);
+  color: var(--blue);
 }
 
+/* Container für Options-Buttons als Grid */
 .budget-options,
 .catering-type-options {
-  margin-top: 1.5em;
+  margin-top: 1rem;
   display: grid;
-  /* Mindestens 120px breite Buttons – passen sich flexibel an */
   grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: 1rem; /* Abstand zwischen den Buttons */
+  gap: 1rem;
 }
 
 @media (min-width: 768px) {
   .budget-options,
   .catering-type-options {
-    /* Beispielsweise Buttons etwas breiter gestalten */
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   }
 }
 
-/* Button "Anfrage absenden" zentrieren */
-.catering-form .cta-button {
-  display: block;
-  margin: 2rem auto;
-}
-
+/* Modal-Styles */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -275,4 +299,10 @@ textarea {
   border-radius: 10px;
   text-align: center;
 }
+
+.catering-form .cta-button {
+  display: block;
+  margin: 2rem auto;
+}
+
 </style>
