@@ -11,8 +11,8 @@
     parallaxImageSrc="/images/food/haus_hamburg_leer_021.webp"
     parallaxImageAlt="Haus Hamburg Restaurant"
   >
-   <!-- Restlicher Inhalt -->
-   <div class="menu-container">
+    <!-- Restlicher Inhalt -->
+      <div class="menu-container">
         <!-- Überschrift für die Auswahl -->
         <div class="section-food big-title-4">
           <h2>unsere auswahl</h2>
@@ -163,188 +163,185 @@
           <iframe :src="pdfSrc" frameborder="0" title="Speisekarte Haus Hamburg"></iframe>
         </div>
       </div>
-
-      <ContactInfo />
     </BasePage>
+    <ContactInfo />
+  </template>
 
-</template>
-<script>
-import BasePage from "@/components/BasePage.vue";
-import pdfFile from "@/assets/Speisekarte_HausHamburg.pdf";
-import ContactInfo from "@/components/ContactInfo.vue";
+  <script>
+  import BasePage from "@/components/BasePage.vue";
+  import pdfFile from "@/assets/Speisekarte_HausHamburg.pdf";
+  import ContactInfo from "@/components/ContactInfo.vue";
 
-export default {
-  name: "Speisekarte",
-  components: { BasePage, ContactInfo },
-  data() {
-    return {
-      pdfSrc: pdfFile,
-      showModal: false,
-    };
-  },
-  methods: {
-    openModal() {
-      this.showModal = true;
+  export default {
+    name: "Speisekarte",
+    components: { BasePage, ContactInfo },
+    data() {
+      return {
+        pdfSrc: pdfFile,
+        showModal: false,
+      };
     },
-    closeModal() {
-      this.showModal = false;
+    methods: {
+      openModal() {
+        this.showModal = true;
+      },
+      closeModal() {
+        this.showModal = false;
+      },
     },
-  },
-};
-</script>
+  };
+  </script>
 
-
-
-<style scoped>
-.menu-container {
-  margin: 2rem 0;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-
-/* Grid-Layout für die Karten */
-.menu-sections {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
-}
-
-.menu-card {
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.menu-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
-}
-
-.menu-card h2 {
-  background: var(--blue);
-  color: #fff;
-  margin: 0;
-  padding: 1rem;
-  font-family: var(--font-thunder);
-  text-align: center;
-}
-
-.card-content {
-  padding: 1.1rem;
-  text-align: left;
-}
-
-/* Einheitliches Grid für jedes Gericht */
-.dish-entry {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: start;
-  margin-bottom: 1rem;
-  column-gap: 2rem;
-}
-
-.dish-price {
-  font-weight: bold;
-}
-
-/* Notizen und Kontaktinfo */
-.note {
-  font-style: italic;
-  font-size: 0.9rem;
-  color: #555;
-  margin-bottom: 1rem;
-}
-
-.contact-info {
-  font-size: 0.9rem;
-  text-align: center;
-  color: #555;
-  margin-top: 1.5rem;
-}
-
-/* Button zum Öffnen des PDF-Modals */
-.pdf-container {
-  display: flex;
-  justify-content: center;
-}
-
-.view-btn {
-  font-size: 1.1rem;
-  font-weight: bold;
-  padding: 0.8rem 1.5rem;
-  border-radius: 5px;
-  border: none;
-  background: var(--gold);
-  color: var(--blue);
-  cursor: pointer;
-  transition: background 0.3s ease, transform 0.3s ease;
-}
-
-.view-btn:hover {
-  background: var(--blue);
-  color: #fff;
-  transform: scale(1.02);
-}
-
-/* Modal-Stile */
-.modal-overlay {
-  position: fixed;
-  top: 7em;
-  left: 0;
-  width: 100%;
-  height: 91%;
-  background: rgba(0, 0, 0, 0.7);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-}
-
-.modal-content {
-  position: relative;
-  width: 90%;
-  max-width: 900px;
-  height: 90%;
-  background: #fff;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
-}
-
-.modal-content iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
-}
-
-.close-btn {
-  position: absolute;
-  top: 0.5rem;
-  right: 0.8rem;
-  background: transparent;
-  border: none;
-  font-size: 2rem;
-  line-height: 1;
-  color: #333;
-  cursor: pointer;
-  z-index: 10;
-}
-
-@media (max-width: 767px) {
-  .pdf-container {
-    display: none;
-  }
-}
-
-@media (min-width: 767px) {
+  <style scoped>
   .menu-container {
-    padding: 1em;
+    margin: 2rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
   }
-  .dish-description {
-    font-size: 1.3rem;
+
+  /* Grid-Layout für die Karten */
+  .menu-sections {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
   }
-}
-</style>
+
+  .menu-card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .menu-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+  }
+
+  .menu-card h2 {
+    background: var(--blue);
+    color: #fff;
+    margin: 0;
+    padding: 1rem;
+    font-family: var(--font-thunder);
+    text-align: center;
+  }
+
+  .card-content {
+    padding: 1.1rem;
+    text-align: left;
+  }
+
+  /* Einheitliches Grid für jedes Gericht */
+  .dish-entry {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: start;
+    margin-bottom: 1rem;
+    column-gap: 2rem;
+  }
+
+  .dish-price {
+    font-weight: bold;
+  }
+
+  /* Notizen und Kontaktinfo */
+  .note {
+    font-style: italic;
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 1rem;
+  }
+
+  .contact-info {
+    font-size: 0.9rem;
+    text-align: center;
+    color: #555;
+    margin-top: 1.5rem;
+  }
+
+  /* Button zum Öffnen des PDF-Modals */
+  .pdf-container {
+    display: flex;
+    justify-content: center;
+  }
+
+  .view-btn {
+    font-size: 1.1rem;
+    font-weight: bold;
+    padding: 0.8rem 1.5rem;
+    border-radius: 5px;
+    border: none;
+    background: var(--gold);
+    color: var(--blue);
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+  }
+
+  .view-btn:hover {
+    background: var(--blue);
+    color: #fff;
+    transform: scale(1.02);
+  }
+
+  /* Modal-Stile */
+  .modal-overlay {
+    position: fixed;
+    top: 7em;
+    left: 0;
+    width: 100%;
+    height: 91%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+
+  .modal-content {
+    position: relative;
+    width: 90%;
+    max-width: 900px;
+    height: 90%;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  }
+
+  .modal-content iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  .close-btn {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.8rem;
+    background: transparent;
+    border: none;
+    font-size: 2rem;
+    line-height: 1;
+    color: #333;
+    cursor: pointer;
+    z-index: 10;
+  }
+
+  @media (max-width: 767px) {
+    .pdf-container {
+      display: none;
+    }
+  }
+
+  @media (min-width: 767px) {
+    .menu-container {
+      padding: 1em;
+    }
+    .dish-description {
+      font-size: 1.3rem;
+    }
+  }
+  </style>
