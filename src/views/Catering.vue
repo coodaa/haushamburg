@@ -102,7 +102,6 @@ export default {
     };
   },
   computed: {
-    // Liefert das heutige Datum im Format "YYYY-MM-DD"
     minDate() {
       return new Date().toISOString().split("T")[0];
     },

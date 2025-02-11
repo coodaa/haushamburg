@@ -4,7 +4,6 @@ import { createRouter, createWebHistory } from "vue-router";
 const Home = () => import("../views/Home.vue");
 const Kontakt = () => import("../views/Kontakt.vue");
 const Speisekarte = () => import("../views/Speisekarte.vue");
-const Speisekarten = () => import("../views/Speisekarte.vue");
 const Catering = () => import("../views/Catering.vue");
 const Ueber = () => import("../views/Ueber.vue");
 const Reservierung = () => import("../views/Reservierung.vue");
@@ -12,6 +11,10 @@ const Impressum = () => import("../views/Impressum.vue");
 const Datenschutz = () => import("../views/Datenschutz.vue");
 const Stellenangebote = () => import("../views/Stellenangebote.vue");
 const NotFound = () => import("../views/NotFound.vue");
+
+// Neue Routen für Bestellung und Checkout
+const OrderPage = () => import("../views/OrderPage.vue");
+const CheckoutPage = () => import("../views/CheckoutPage.vue");
 
 const routes = [
   {
@@ -38,15 +41,6 @@ const routes = [
     component: Speisekarte,
     meta: {
       title: "Speisekarte - Haus Hamburg",
-      description: "Unsere leckere Speisekarte",
-    },
-  },
-  {
-    path: "/speisekarten",
-    name: "speisekarten",
-    component: Speisekarten,
-    meta: {
-      title: "Speisekarten - Haus Hamburg",
       description: "Unsere leckere Speisekarte",
     },
   },
@@ -102,6 +96,25 @@ const routes = [
     meta: {
       title: "Stellenangebote - Haus Hamburg",
       description: "Offene Stellen",
+    },
+  },
+  // Neue Routen:
+  {
+    path: "/order",
+    name: "order",
+    component: OrderPage,
+    meta: {
+      title: "Online Bestellung - Haus Hamburg",
+      description: "Wählen Sie Ihre Gerichte aus und bestellen Sie online.",
+    },
+  },
+  {
+    path: "/checkout",
+    name: "checkout",
+    component: CheckoutPage,
+    meta: {
+      title: "Checkout - Haus Hamburg",
+      description: "Überprüfen Sie Ihren Warenkorb und bezahlen Sie online.",
     },
   },
   {
