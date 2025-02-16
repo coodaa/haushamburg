@@ -69,9 +69,9 @@ export default async function handler(req, res) {
     // E-Mail senden
     await transporter.sendMail({
       from: `"Catering Anfrage" <${process.env.EMAIL_USER}>`,
-      to: "info@haus-hamburg-leer.de", // Deine Empfangsadresse
-      subject: "Neue Catering-Anfrage",
-      text: emailContent, // E-Mail im Text-Format
+      to: "info@haus-hamburg-leer.de", // Zieladresse für die Catering-Anfrage
+      subject: `Catering-Anfrage für den ${new Date(dateTime).toLocaleDateString("de-DE")}`,
+      html: emailContent, // Schöner formatierte HTML-E-Mail
     });
 
     return res
