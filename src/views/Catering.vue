@@ -5,55 +5,55 @@
     titleAbove="Catering"
     titleMain="Catering"
     subtitle="He hett een wat vun Catering seggt?"
-    heading="Buche uns"
-    flowText="Verleihe Deinem Event einen norddeutschen Charme mit dem Catering-Service von Haus Hamburg! Ob private Feier, Firmenevent oder besondere Anlässe – wir bringen unsere frischen Fischspezialitäten und regionale Leckerbissen direkt zu Dir. Unser erfahrenes Team sorgt dafür, dass Deine Gäste kulinarisch verwöhnt werden und Dein Event unvergesslich wird."
+    heading="Catering-Service buchen"
+    flowText="Verleihen Sie Ihrem Event einen norddeutschen Charme mit dem Catering-Service von Haus Hamburg! Ob private Feier, Firmenevent oder besondere Anlässe – wir bringen unsere frischen Fischspezialitäten und regionalen Leckerbissen direkt zu Ihnen. Unser erfahrenes Team sorgt dafür, dass Ihre Gäste kulinarisch verwöhnt werden und Ihr Event unvergesslich wird."
     parallaxImageSrc="/images/catering/catering-haus-hamburg1.jpg"
   >
     <form class="catering-form" @submit.prevent="submitForm">
-      <h2 class="big-title-3">Catering Anfrage</h2>
+      <h2 class="big-title-3">Catering-Anfrage</h2>
 
       <div class="form-group">
-        <label for="name">Mein Name ist</label>
-        <input type="text" id="name" v-model="form.name" placeholder="Name*" required />
+        <label for="name">Ihr Name</label>
+        <input type="text" id="name" v-model="form.name" placeholder="Ihr Name*" required />
         <input type="text" id="company" v-model="form.company" placeholder="Unternehmen (optional)" />
       </div>
 
       <div class="form-group">
-        <label>Ich bin erreichbar via</label>
-        <input type="email" id="email" v-model="form.email" placeholder="E-Mail*" required />
-        <input type="tel" id="phone" v-model="form.phone" placeholder="Telefon*" required />
+        <label>Wie können wir Sie erreichen?</label>
+        <input type="email" id="email" v-model="form.email" placeholder="E-Mail-Adresse*" required />
+        <input type="tel" id="phone" v-model="form.phone" placeholder="Telefonnummer*" required />
       </div>
 
       <div class="form-group">
-        <label>Ich möchte Catering für</label>
+        <label>Für wie viele Personen wünschen Sie Catering?</label>
         <input type="number" id="guests" v-model="form.guests" placeholder="Anzahl der Personen*" min="1" required />
-        <input type="text" id="location" v-model="form.location" placeholder="Ort*" required />
+        <input type="text" id="location" v-model="form.location" placeholder="Veranstaltungsort*" required />
         <input type="date" id="dateTime" v-model="form.dateTime" :min="minDate" required class="styled-calendar" />
       </div>
 
       <div class="form-group">
-        <label>Das Budget für diese Veranstaltung ist:</label>
+        <label>Welches Budget pro Person haben Sie eingeplant?</label>
         <div class="budget-options">
-          <button type="button" class="budget-button" :class="{ active: form.budget === '€1250-3000' }" @click="selectBudget('€1250-3000')">€100–300</button>
-          <button type="button" class="budget-button" :class="{ active: form.budget === '€3000-7500' }" @click="selectBudget('€3000-7500')">€300–500</button>
-          <button type="button" class="budget-button" :class="{ active: form.budget === '€7500-15000' }" @click="selectBudget('€7500-15000')">€500–1.000</button>
-          <button type="button" class="budget-button" :class="{ active: form.budget === '€15000+' }" @click="selectBudget('€15000+')">€1.000+</button>
+          <button type="button" class="budget-button" :class="{ active: form.budget === '€9-15' }" @click="selectBudget('€9-15')">8 – 15 €</button>
+          <button type="button" class="budget-button" :class="{ active: form.budget === '€15-35' }" @click="selectBudget('€15-35')">15 – 35 €</button>
+          <button type="button" class="budget-button" :class="{ active: form.budget === '€35-65' }" @click="selectBudget('€35-65')">35 – 65 €</button>
+          <button type="button" class="budget-button" :class="{ active: form.budget === '€65+' }" @click="selectBudget('€65+')">65+ €</button>
         </div>
       </div>
 
       <div class="form-group">
-        <label>Bitte wähle die Catering-Art:</label>
+        <label>Welche Catering-Art bevorzugen Sie?</label>
         <div class="catering-type-options">
-          <button type="button" class="catering-type-button" :class="{ active: form.cateringType.includes('Fisch') }" @click="toggleCateringType('Fisch')">Fisch</button>
-          <button type="button" class="catering-type-button" :class="{ active: form.cateringType.includes('Fleisch') }" @click="toggleCateringType('Fleisch')">Fleisch</button>
-          <button type="button" class="catering-type-button" :class="{ active: form.cateringType.includes('Vegetarisch') }" @click="toggleCateringType('Vegetarisch')">Vegetarisch</button>
-          <button type="button" class="catering-type-button" :class="{ active: form.cateringType.includes('Vegan') }" @click="toggleCateringType('Vegan')">Vegan</button>
+          <button type="button" class="catering-type-button" :class="{ active: form.cateringType.includes('Fisch') }" @click="toggleCateringType('Fisch')">Fisch/Fisch</button>
+          <button type="button" class="catering-type-button" :class="{ active: form.cateringType.includes('Fischbrötchen') }" @click="toggleCateringType('Fischbrötchen')">Fischbrötchen</button>
+          <button type="button" class="catering-type-button" :class="{ active: form.cateringType.includes('kalte Fischplatte') }" @click="toggleCateringType('kalte Fischplatte')">Kalte Fischplatte</button>
+          <button type="button" class="catering-type-button" :class="{ active: form.cateringType.includes('Fingerfood') }" @click="toggleCateringType('Fingerfood')">Fingerfood</button>
         </div>
       </div>
 
       <div class="form-group">
-        <label for="message">Zusätzliche Informationen</label>
-        <textarea id="message" v-model="form.message" placeholder="Weitere Wünsche oder Informationen"></textarea>
+        <label for="message">Haben Sie weitere Wünsche oder Informationen?</label>
+        <textarea id="message" v-model="form.message" placeholder="Zusätzliche Angaben zur Veranstaltung"></textarea>
       </div>
 
       <button class="cta-button" type="submit" :disabled="isLoading">
@@ -67,7 +67,7 @@
     <div v-if="isModalVisible" class="modal-overlay">
       <div class="modal">
         <h2>Vielen Dank!</h2>
-        <p>Deine Anfrage wurde erfolgreich gesendet.</p>
+        <p>Ihre Anfrage wurde erfolgreich gesendet. Wir werden uns umgehend per E-Mail bei Ihnen melden.</p>
         <button type="button" class="cta-button" @click="closeModal">Schließen</button>
       </div>
     </div>

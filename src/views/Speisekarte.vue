@@ -56,22 +56,29 @@
 
           <!-- Karte 2: Fischgerichte -->
           <section class="menu-card">
+
             <h2 class="big-title-3">Fischgerichte</h2>
             <div class="card-content">
-              <div class="dish-entry">
-                <div class="dish-description">Nordsee Scholle – filetiert</div>
+
+            <div class="dish-entry">
+                <div class="dish-description">
+                  Nordsee Scholle<br />
+                  • filetiert
+                </div>
                 <span class="dish-price">22,50 €</span>
               </div>
 
               <div class="dish-entry">
                 <div class="dish-description">
-                  Finkenwerder Art (Schinkenwürfel)
+                  • Finkenwerder Art
                 </div>
                 <span class="dish-price">23,50 €</span>
               </div>
 
               <div class="dish-entry">
-                <div class="dish-description">und mit Krabben</div>
+                <div class="dish-description">
+                  • mit Krabben
+                </div>
                 <span class="dish-price">26,50 €</span>
               </div>
 
