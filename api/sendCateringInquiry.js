@@ -6,21 +6,41 @@ export default async function handler(req, res) {
   }
 
   // Daten aus dem Request-Body extrahieren
-  const { name, email, phone, message, budget, cateringType, guests, location, dateTime } = req.body;
+  const {
+    name,
+    email,
+    phone,
+    message,
+    budget,
+    cateringType,
+    guests,
+    location,
+    dateTime,
+  } = req.body;
 
   // Überprüfen, ob alle erforderlichen Felder vorhanden sind
-  if (!name || !email || !phone || !message || !budget || !cateringType || !guests || !location || !dateTime) {
+  if (
+    !name ||
+    !email ||
+    !phone ||
+    !message ||
+    !budget ||
+    !cateringType ||
+    !guests ||
+    !location ||
+    !dateTime
+  ) {
     return res.status(400).json({ error: "Alle Felder sind erforderlich!" });
   }
 
-  // 📌 Gmail als SMTP-Server
+  // 📌 **Strato SMTP-Server Konfiguration**
   const transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
+    host: "smtp.strato.de", // Strato SMTP-Host
     port: 465, // SSL-Port (Alternativ: 587 für TLS)
     secure: true, // SSL aktivieren
     auth: {
-      user: process.env.EMAIL_USER, // Deine Gmail-Adresse
-      pass: process.env.EMAIL_PASS, // App-Passwort
+      user: process.env.EMAIL_USER, // Deine Strato E-Mail-Adresse (z. B. info@haus-hamburg-leer.de)
+      pass: process.env.EMAIL_PASS, // Dein Strato-Passwort
     },
   });
 
@@ -30,25 +50,30 @@ export default async function handler(req, res) {
       Name: ${name}
       E-Mail: ${email}
       Telefon: ${phone}
-      Nachricht: ${message}
-      Budget: ${budget}
       Personenanzahl: ${guests}
       Ort: ${location}
       Datum und Zeit: ${dateTime}
+      Budget: ${budget}
       Catering-Art: ${cateringType.join(", ")}
+
+      Nachricht: ${message}
     `;
 
     // E-Mail senden
     await transporter.sendMail({
       from: `"Catering Anfrage" <${process.env.EMAIL_USER}>`,
-      to: "okansondere@gmail.com", // Zieladresse
-      subject: "Catering-Anfrage",
-      text: emailContent, // Nur Text-Inhalt
+      to: "info@haus-hamburg-leer.de", // Deine Empfangsadresse
+      subject: "Neue Catering-Anfrage",
+      text: emailContent, // E-Mail im Text-Format
     });
 
-    return res.status(200).json({ success: true, message: "E-Mail wurde gesendet!" });
+    return res
+      .status(200)
+      .json({ success: true, message: "E-Mail wurde gesendet!" });
   } catch (error) {
     console.error("E-Mail Versand fehlgeschlagen:", error);
-    return res.status(500).json({ error: "E-Mail konnte nicht gesendet werden" });
+    return res
+      .status(500)
+      .json({ error: "E-Mail konnte nicht gesendet werden" });
   }
 }
