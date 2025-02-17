@@ -6,7 +6,7 @@ export default async function handler(req, res) {
   }
 
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
-    apiVersion: "2023-10-16",
+    apiVersion: "2025-01-27.acacia",
   });
 
   const sig = req.headers["stripe-signature"];
@@ -18,12 +18,11 @@ export default async function handler(req, res) {
       process.env.STRIPE_WEBHOOK_SECRET
     );
 
-    // ✅ Verarbeitung von "checkout.session.completed"
     if (event.type === "checkout.session.completed") {
       const session = event.data.object;
       console.log("✅ Zahlung erfolgreich:", session);
 
-      // Hier könntest du die Bestellung in eine Datenbank speichern
+      // HIER Bestelldaten speichern (z.B. Firestore, MySQL, etc.)
     }
 
     res.status(200).json({ received: true });
