@@ -14,85 +14,115 @@
 
       <!-- Abschnitt: Haus Hamburg heute -->
       <section class="history-section">
-  <div class="section-content">
-    <div class="text">
-      <h2>Heute</h2>
-      <p>
-        Das <strong>Haus Hamburg</strong> ist weit mehr als nur ein Restaurant – es ist ein <strong>Ort der Begegnung, der Kulinarik und der sozialen Verantwortung</strong>.
-      </p>
-      <p>
-        Neben einer großen Auswahl an traditionellen <strong>norddeutschen Spezialitäten</strong> wie <strong>Fischbrötchen, frischen Meeresfrüchten und herzhaften Fleischgerichten</strong>, bietet das Restaurant auch eine besondere Auswahl an <strong>Geschenkartikeln</strong> und originalen <strong>RAS-Fritten aus Holland</strong>.
-      </p>
-      <p>
-        Die <strong>RAS-Fritten</strong> aus Holland gelten als eine der besten Pommes-Varianten überhaupt. Ihre Einzigartigkeit liegt in der speziellen Zubereitung:
-        Sie werden in einem zweistufigen Verfahren frittiert, wodurch sie außen besonders <strong>knusprig</strong> und innen <strong>fluffig-weich</strong> bleiben.
-        Hergestellt aus sorgfältig ausgewählten Kartoffeln, zeichnen sie sich durch ihren <strong>intensiven Geschmack</strong> und ihre <strong>goldgelbe Farbe</strong> aus.
-        Perfekt serviert mit einer Vielzahl an Saucen – von klassischer Mayo bis hin zu typisch holländischer Joppie-Sauce.
-      </p>
-      <p>
-        Besonders hervorzuheben ist das <strong>Engagement für soziale Projekte</strong>. Seit mehreren Jahren organisiert Haus Hamburg eine regelmäßige <strong>Essensausgabe für Obdachlose</strong>, die jeden Sonntag etwa <strong>30 Bedürftige</strong> mit einer warmen Mahlzeit versorgt.
-        Diese Initiative wurde von <strong>Sunna Wagemann</strong> ins Leben gerufen.
-      </p>
-    </div>
-    <div class="image">
-      <img src="/images/outside/haushamburgstart.webp" alt="Haus Hamburg heute" />
-    </div>
-  </div>
-</section>
+        <div class="section-content">
+          <div class="text">
+            <h2>Heute</h2>
+            <p>
+              Das <strong>Haus Hamburg</strong> ist weit mehr als nur ein Restaurant – es ist ein <strong>Ort der Begegnung, der Kulinarik und der sozialen Verantwortung</strong>.
+            </p>
+            <p>
+              Neben einer großen Auswahl an traditionellen <strong>norddeutschen Spezialitäten</strong> wie <strong>Fischbrötchen, frischen Meeresfrüchten und herzhaften Fleischgerichten</strong>, bietet das Restaurant auch eine besondere Auswahl an <strong>Geschenkartikeln</strong> und originalen <strong>RAS-Fritten aus Holland</strong>.
+            </p>
+            <p>
+              Die <strong>RAS-Fritten</strong> aus Holland gelten als eine der besten Pommes-Varianten überhaupt. Ihre Einzigartigkeit liegt in der speziellen Zubereitung:
+              Sie werden in einem zweistufigen Verfahren frittiert, wodurch sie außen besonders <strong>knusprig</strong> und innen <strong>fluffig-weich</strong> bleiben.
+            </p>
+            <p>
+              Besonders ist das <strong>Engagement für soziale Projekte</strong>. Seit mehreren Jahren organisieren wir eine <strong>Essensausgabe für Obdachlose</strong>, die jeden Sonntag Bedürftige mit einer warmen Mahlzeit versorgt.
+              Diese Initiative wurde von <strong>Sunna Wagemann</strong> ins Leben gerufen.
+            </p>
+          </div>
+          <div class="image">
+            <img src="/images/outside/haushamburgstart.webp" alt="Haus Hamburg heute" />
+            <p class="image-credit">Bild: Haus Hamburg heute © 2024</p>
+          </div>
+        </div>
+      </section>
 
-      <!-- Abschnitt: Wandel und neue Namen -->
+      <!-- Abschnitt: Vom Handelsladen zum Haus Hamburg -->
       <section class="history-section">
         <div class="section-content">
           <div class="image">
-            <img src="/images/outside/haus_hamburg_leer_048.webp" alt="Seute Deern in Leer" />
+            <img src="/images/history/seute-deern.webp" alt="Seute Deern in Leer" />
+            <p class="image-credit">Bild: Historische Aufnahme aus dem Gastraum der „Seute Deern“ in Leer</p>
           </div>
           <div class="text">
-            <h2>Wandel und neue Namen (1950 - 1980)</h2>
+            <h2>Vom Handelsladen zum Haus Hamburg</h2>
             <p>
-              In den 1950er Jahren wurde das Restaurant unter dem Namen <strong>"Seute Deern"</strong> bekannt und entwickelte sich zu einer beliebten Anlaufstelle für maritime Spezialitäten.
-              Besonders für seine <strong>frischen Fischgerichte</strong> und das norddeutsche Ambiente wurde es geschätzt.
+              Nach dem Ende des <strong>Colonialwarenhandels</strong> begann eine neue Ära für das Gebäude in der <strong>Rathausstraße 3-5</strong>.
+              Die ursprünglichen Geschäftsräume wichen einem Gastronomiebetrieb, der zunächst als <strong>"Alte Wache"</strong> bekannt war.
+              Mit seiner gemütlichen Atmosphäre und herzlicher Gastfreundschaft etablierte sich das Restaurant als beliebter Treffpunkt.
             </p>
             <p>
-              Nach mehreren Modernisierungen erhielt es schließlich seinen heutigen Namen: <strong>Haus Hamburg</strong> – ein Restaurant, das bis heute für Qualität, Gastfreundschaft und regionale Spezialitäten steht.
+              Später wurde das Lokal unter dem Namen <strong>"Seute Deern"</strong> bekannt und machte sich mit <strong>frischen Fischgerichten</strong> und traditioneller norddeutscher Küche einen Namen.
+              Gäste aus Leer und darüber hinaus schätzten das maritime Ambiente und die gehobene Speisekarte.
+            </p>
+            <p>
+              Schließlich wurde das Restaurant in <strong>Haus Hamburg</strong> umbenannt. Die Neuausrichtung des Restaurants wurde von <strong>Sunna Wagemann</strong> initiiert,
+              die mit viel Leidenschaft das Konzept überarbeitete.
             </p>
           </div>
         </div>
       </section>
 
-      <!-- Abschnitt: Die Anfänge -->
+      <!-- Abschnitt: Die Anfänge – Ad. C. Onkes -->
       <section class="history-section">
         <div class="section-content">
           <div class="text">
-            <h2>Die Anfänge (1920 - 1950)</h2>
+            <h2>Die Anfänge – Der Colonialwarenladen Ad. C. Onkes</h2>
             <p>
-              <strong>Haus Hamburg</strong> wurde im Jahr 1920 gegründet und war ursprünglich unter dem Namen <strong>"Alte Wache"</strong> bekannt.
-              Das Gebäude in der <strong>Rathausstraße 3-5</strong> diente als wichtiger Treffpunkt für die Bürger von Leer.
-              Mit seiner gemütlichen Atmosphäre zog es Einheimische sowie Reisende an.
+              Vor seiner Nutzung als Restaurant war das Gebäude Sitz des bekannten <strong>Colonialwarenhauses Ad. C. Onkes</strong>.
+              In einer Zeit, als es noch keine großen Supermärkte gab, versorgte dieses Geschäft die Stadtbewohner mit <strong>Kaffee, Tee, Zucker und exotischen Importwaren</strong>.
+            </p>
+            <p>
+              Die <strong>Rathausstraße</strong> war damals ein pulsierendes Handelszentrum mit kleinen Geschäften und Handwerksbetrieben.
+              Der Laden von <strong>Ad. C. Onkes</strong> war eine Institution in der Stadt und gehörte zu den wichtigsten Anlaufstellen für Waren des täglichen Bedarfs.
             </p>
           </div>
           <div class="image">
-            <img src="/images/outside/haus_hamburg_leer_048.webp" alt="Haus Hamburg als Alte Wache" />
+            <img src="/images/history/onkes2.webp" alt="Colonialwarenladen Ad. C. Onkes" />
+            <p class="image-credit">Bild: Ehemaliges Colonialwarenhaus Ad. C. Onkes</p>
           </div>
         </div>
       </section>
 
       <!-- Abschnitt: Die Nachbarschaft -->
+      <!-- Abschnitt: Die Nachbarschaft -->
       <section class="history-section">
         <div class="section-content">
           <div class="image">
-            <img src="/images/outside/haus_hamburg_leer_048.webp" alt="Rathausstraße in Leer" />
+            <img src="/images/history/neighbour.webp" alt="Rathausstraße in Leer" />
+            <p class="image-credit">Bild: Historische Ansicht der Rathausstraße in Leer</p>
           </div>
           <div class="text">
-            <h2>Die Nachbarschaft</h2>
+            <h2>Die Nachbarschaft – Das Herz von Leer</h2>
             <p>
-              <strong>Haus Hamburg</strong> liegt in der historischen <strong>Rathausstraße 3-5</strong>, mitten im Herzen von Leer.
-              Die Umgebung ist geprägt von <strong>historischen Gebäuden, kleinen Cafés, traditionellen Läden und kulturellen Sehenswürdigkeiten</strong>.
+              <strong>Haus Hamburg</strong> liegt in der historischen <strong>Rathausstraße 3-5</strong>, einer der bedeutendsten Straßen in Leer.
+              Diese Straße verbindet die Altstadt mit dem zentralen Marktplatz und ist von jahrhundertealten Gebäuden, charmanten kleinen Läden und gemütlichen Cafés gesäumt.
             </p>
             <p>
-              In unmittelbarer Nähe befindet sich das <strong>alte Rathaus</strong>, das <strong>Heimatmuseum</strong> sowie die idyllische <strong>Altstadt</strong>, die Leer zu einem beliebten Ziel für Einheimische und Touristen macht.
+              Die Rathausstraße hat eine lange Geschichte als Handelsstraße. Bereits im 18. Jahrhundert florierte hier das Geschäftsleben,
+              und viele der alten Kaufmannshäuser sind bis heute erhalten geblieben.
             </p>
             <p>
-              Die Kombination aus Geschichte, Gastfreundschaft und sozialem Engagement macht Haus Hamburg zu einem <strong>unverzichtbaren Bestandteil des Stadtlebens</strong> in Leer.
+              In unmittelbarer Nähe von Haus Hamburg befindet sich das <strong>alte Rathaus</strong>, ein Wahrzeichen der Stadt mit beeindruckender Architektur.
+              Direkt daneben liegt das <strong>Heimatmuseum Leer</strong>, das spannende Einblicke in die Geschichte Ostfrieslands gibt.
+            </p>
+            <p>
+              Besonders reizvoll ist ein Spaziergang entlang des <strong>Leeraner Hafens</strong>, der nur wenige Gehminuten entfernt liegt.
+              Hier kann man traditionelle Segelschiffe bestaunen, eine Hafenrundfahrt machen oder einfach die besondere Atmosphäre der historischen Hafenstadt genießen.
+            </p>
+            <p>
+              Zudem befindet sich unweit des Restaurants das <strong>Börsenplatz-Viertel</strong>, ein lebendiges Viertel mit modernen Geschäften, Kulturveranstaltungen und saisonalen Märkten.
+              Die Mischung aus historischem Flair und lebendiger Stadtkultur macht Leer zu einem besonderen Ort.
+            </p>
+            <p>
+              Wer sich für Architektur interessiert, wird auch die prächtigen <strong>Ostfriesischen Backsteinbauten</strong> bewundern, die die Straßen säumen.
+              Viele von ihnen stehen unter Denkmalschutz und erzählen die lange Geschichte der Region.
+            </p>
+            <p>
+              Für Naturfreunde bietet sich ein Spaziergang entlang der <strong>Leda</strong> an, dem Fluss, der die Stadt durchzieht.
+              Hier kann man das ruhige Wasser genießen, den Hafenbetrieb beobachten und den Tag entspannt ausklingen lassen.
             </p>
           </div>
         </div>
@@ -118,15 +148,14 @@ export default {
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  max-width: 1200px;
+  max-width: 95vw;
   margin: 0 auto;
-  padding: 1.6em;
 }
 
 /* Einheitliches Styling für Abschnitte */
 .history-section {
   background-color: #f9f9f9;
-  padding: 2rem;
+  padding: 1.5rem;
   border-radius: 10px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   text-align: left;
@@ -155,22 +184,35 @@ export default {
 /* Schriftarten & Lesbarkeit */
 .history-section h2 {
   font-size: 1.8rem;
-  color: #004a7f;
   margin-bottom: 0.8rem;
 }
 
 .history-section p {
   font-size: 1rem;
   line-height: 1.6;
-  color: #333;
   text-align: left;
+}
+
+.image-credit {
+  font-size: 0.85rem;
+  color: #666;
+  margin-top: 0.5rem;
+  text-align: center;
 }
 
 /* Responsive Design */
 @media (min-width: 768px) {
+  .history-container {
+    max-width: 90vw;
+  }
+
   .history-section .section-content {
     flex-direction: row;
     align-items: center;
+  }
+
+  .history-section {
+    padding: 4rem;
   }
 
   .history-section:nth-child(even) .section-content {
