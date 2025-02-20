@@ -44,7 +44,7 @@
       <div class="form-group">
         <label>Welche Catering-Art bevorzugen Sie?</label>
         <div class="catering-type-options">
-          <button type="button" class="catering-type-button" :class="{ active: form.cateringType.includes('Fisch') }" @click="toggleCateringType('Fisch')">Fisch/Fisch</button>
+          <button type="button" class="catering-type-button" :class="{ active: form.cateringType.includes('Fisch') }" @click="toggleCateringType('Fisch')">Fisch / Fleisch</button>
           <button type="button" class="catering-type-button" :class="{ active: form.cateringType.includes('Fischbrötchen') }" @click="toggleCateringType('Fischbrötchen')">Fischbrötchen</button>
           <button type="button" class="catering-type-button" :class="{ active: form.cateringType.includes('kalte Fischplatte') }" @click="toggleCateringType('kalte Fischplatte')">Kalte Fischplatte</button>
           <button type="button" class="catering-type-button" :class="{ active: form.cateringType.includes('Fingerfood') }" @click="toggleCateringType('Fingerfood')">Fingerfood</button>
