@@ -1,14 +1,14 @@
 <template>
   <BasePage
     :key="$route.fullPath"
-    imageSrc="/images/food/haus_hamburg_leer_013.webp"
+    imageSrc="/images/food/haus-hamburg-leer-13.webp"
     imageAlt="Speisekarte Haus Hamburg"
     titleAbove="Unsere"
     titleMain="Speisekarte"
     subtitle="Freschen Fisch un regionale Spezialiteeten"
     heading="Online Bestellung"
     flowText="Wählen Sie Ihre Gerichte aus und legen Sie sie in den Warenkorb."
-    parallaxImageSrc="/images/food/haus_hamburg_leer_021.webp"
+    parallaxImageSrc="/images/food/haus-hamburg-leer-21.webp"
     parallaxImageAlt="Haus Hamburg Restaurant"
   >
     <div class="order-container">

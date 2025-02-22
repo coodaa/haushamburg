@@ -1,13 +1,13 @@
 <template>
   <BasePage
-    imageSrc="/images/restaurant/haus_hamburg_leer_008.webp"
+    imageSrc="/images/restaurant/haus-hamburg-leer-08.webp"
     imageAlt="Haus Hamburg Reservierung"
     titleAbove="Tisch buchen"
     titleMain="Reservierung"
     subtitle="Kumm röver un sett di bi uns hen!"
     heading="Reservieren Sie online"
     flowText="Planen Sie Ihren Besuch in unserem Haus und sichern Sie sich Ihren Platz ganz unkompliziert online. Freuen Sie sich auf einen genussvollen Abend in entspannter Atmosphäre – reservieren Sie noch heute Ihren Tisch und erleben Sie kulinarische Höhepunkte, die Sie begeistern werden."
-    parallaxImageSrc="/images/restaurant/haus_hamburg_leer_012.webp"
+    parallaxImageSrc="/images/restaurant/haus-hamburg-leer-12.webp"
     parallaxImageAlt="Parallax Bild der Reservierung von Haus Hamburg"
   >
     <div class="reservation-container">

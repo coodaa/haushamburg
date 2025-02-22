@@ -1,13 +1,13 @@
 <template>
   <BasePage
-    imageSrc="/images/mood/niclas-dehmel-vYH_7guOmbQ-unsplash.jpg"
+    imageSrc="/images/mood/ship.webp"
     imageAlt="Stellenangebote Bild"
     titleAbove="Jobs"
     titleMain="Karriere"
     subtitle="Werd een Deel vun uns Team"
     heading="Jobs bei Haus Hamburg"
     flowText="Wir sind stets auf der Suche nach motivierten und engagierten Menschen, die in einem dynamischen Team arbeiten möchten. Werden Sie Teil unserer Familie, bringen Sie Ihre Leidenschaft ein und helfen Sie uns dabei, unseren Gästen ein außergewöhnliches Erlebnis zu bieten. Ob im Service oder in der Küche – bei uns finden Sie vielfältige Möglichkeiten zur persönlichen und beruflichen Weiterentwicklung. Überzeugen Sie uns mit Ihrem Einsatz und Ihrer Begeisterung – wir freuen uns darauf, gemeinsam Großartiges zu erreichen!"
-    parallaxImageSrc="/images/mood/leer.jpg"
+    parallaxImageSrc="/images/mood/leer.webp"
     parallaxImageAlt=""
   >
     <div class="stellenangebote-content">

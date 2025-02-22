@@ -1,21 +1,18 @@
 <!-- src/views/Kontakt.vue -->
 <template>
   <BasePage
-    imageSrc="/images/outside/haus_hamburg_leer_046.webp"
+    imageSrc="/images/outside/haus-hamburg-leer-46.webp"
     imageAlt="Haus Hamburg Kontakt"
     titleAbove="Post"
     titleMain="Kontakt"
     subtitle="Wo ji uns erreichen köönt."
     heading="Erreichen Sie uns"
     flowText="Wir freuen uns, Sie bei uns begrüßen zu dürfen! Egal, ob Sie Fragen haben, eine Reservierung vornehmen möchten oder besondere Wünsche haben – wir sind immer für Sie da. Kontaktieren Sie uns gerne telefonisch oder per E-Mail, um uns Ihre Anliegen mitzuteilen. Unser Team setzt alles daran, Ihnen einen unvergesslichen Aufenthalt in einer einladenden und entspannten Atmosphäre zu bieten. Wir sind gespannt auf Ihre Nachricht!"
-    parallaxImageSrc="/images/restaurant/haus_hamburg_leer_008.webp"
+    parallaxImageSrc="/images/restaurant/haus-hamburg-leer-08.webp"
     parallaxImageAlt="Kontakt Parallax Bildbeschreibung"
   >
 
         <ContactInfo />
-
-
-
 
     <!-- Google Map -->
     <div class="map-container">
@@ -104,7 +101,7 @@ export default {
 }
 
 @media (max-width: 768px) {
- 
+
 
 
   .google-reviews .elfsight-app-993dc481-952b-4721-8494-6d5d6cf46578 {
