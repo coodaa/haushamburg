@@ -1,13 +1,13 @@
 <template>
   <BasePage
-    imageSrc="/images/mood/christian-paul-stobbe-w8B2IcmvACk-unsplash.jpg"
+    imageSrc="/images/mood/haus-hamburg-leer-schaafe.webp"
     imageAlt="Datenschutzerklärung Bild"
     titleAbove="Datenschutz"
     titleMain="Datenschutz"
     subtitle="Schutz Ihrer Daten"
     heading="Datenschutz"
     flowText="Wir legen großen Wert auf den Schutz Ihrer personenbezogenen Daten. In dieser Datenschutzerklärung erfahren Sie, welche Daten wir erheben, wie wir sie verarbeiten und vor allem, wie wir Ihre Daten schützen. Dabei informieren wir Sie auch über den Einsatz von Analyse-Tools wie Google Analytics – mit aktivierter IP-Anonymisierung – um das Nutzererlebnis unserer Website zu optimieren. Sie haben jederzeit das Recht, Auskunft über Ihre Daten zu erhalten, Berichtigungen zu verlangen oder die Löschung Ihrer Daten zu fordern. Bitte lesen Sie die nachfolgenden Abschnitte, um einen umfassenden Überblick über unsere Datenverarbeitung und Ihre Rechte zu erhalten."
-    parallaxImageSrc="/images/mood/gritte-r6FTSmtgiSA-unsplash.jpg"
+    parallaxImageSrc="/images/mood/haus-hamburg-leer-schaaf.webp"
     parallaxImageAlt=""
   >
     <div>

@@ -1,13 +1,13 @@
 <template>
   <BasePage
-    imageSrc="/images/mood/DSCF1092.JPG"
+    imageSrc="/images/mood/haus-hamburg-leer-pferd.webp"
     imageAlt="Impressum Bild"
     titleAbove="Info"
     titleMain="Impressum"
     subtitle="Verantwortlich für den Inhalt"
     heading="Impressum"
     flowText="In unserem Impressum finden Sie alle gesetzlich vorgeschriebenen Angaben zu unserem Unternehmen. Wir laden Sie ein, sich über unsere rechtlichen Hinweise und Verantwortlichkeiten zu informieren."
-    parallaxImageSrc="/images/mood/DSCF3615.JPG"
+    parallaxImageSrc="/images/mood/haus-hamburg-leer-tuer.webp"
     parallaxImageAlt="Impressum Haus Hamburg Leer (Ostfriesland)"
   >
     <div class="impressum-container">

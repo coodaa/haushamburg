@@ -29,7 +29,7 @@
       <h2 class="title-base big-title big-title-2">tisch</h2>
       <div class="home-container">
         <img
-          src="/images/outside/haushamburgstart.webp"
+          src="/images/outside/haus-hamburg-leer-start.webp"
           alt="Haus Hamburg"
           class="inverted-radius"
         />
@@ -55,7 +55,7 @@
           </p>
         </div>
       </div>
-      <img src="/images/restaurant/haus_hamburg_leer_003_a.webp" alt="Restaurant" class="restaurant-image" />
+      <img src="/images/restaurant/haus-hamburg-leer-innen.webp" alt="Restaurant" class="restaurant-image" />
     </section>
 
     <!-- Unsere Auswahl (Speisekarte) Sektion mit Carousel -->
@@ -100,10 +100,10 @@ export default {
       rotationDirection: 1,
       isWobbling: false,
       selection: [
-        { image: "/images/food/haus_hamburg_leer_018.webp", alt: "Fischbrötchen 1", link: "/speisekarte" },
-        { image: "/images/food/haus_hamburg_leer_030.webp", alt: "Fischbrötchen 2", link: "/speisekarte" },
-        { image: "/images/food/haus_hamburg_leer_037.webp", alt: "Fischbrötchen 3", link: "/speisekarte" },
-        { image: "/images/food/haus_hamburg_leer_028.webp", alt: "Fischbrötchen 4", link: "/speisekarte" },
+        { image: "/images/food/haus-hamburg-leer-18.webp", alt: "Fischbrötchen 1", link: "/speisekarte" },
+        { image: "/images/food/haus-hamburg-leer-30.webp", alt: "Fischbrötchen 2", link: "/speisekarte" },
+        { image: "/images/food/haus-hamburg-leer-37.webp", alt: "Fischbrötchen 3", link: "/speisekarte" },
+        { image: "/images/food/haus-hamburg-leer-28.webp", alt: "Fischbrötchen 4", link: "/speisekarte" },
       ],
       slidesPerView: 1,
       wordInterval: null,

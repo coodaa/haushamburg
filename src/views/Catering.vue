@@ -1,13 +1,13 @@
 <template>
   <BasePage
-    imageSrc="/images/catering/catering-haus-hamburg2.jpg"
+    imageSrc="/images/catering/haus-hamburg-leer-catering-1.webp"
     imageAlt="Catering"
     titleAbove="Catering"
     titleMain="Catering"
     subtitle="He hett een wat vun Catering seggt?"
     heading="Catering-Service buchen"
     flowText="Verleihen Sie Ihrem Event einen norddeutschen Charme mit dem Catering-Service von Haus Hamburg! Ob private Feier, Firmenevent oder besondere Anlässe – wir bringen unsere frischen Fischspezialitäten und regionalen Leckerbissen direkt zu Ihnen. Unser erfahrenes Team sorgt dafür, dass Ihre Gäste kulinarisch verwöhnt werden und Ihr Event unvergesslich wird."
-    parallaxImageSrc="/images/catering/catering-haus-hamburg1.jpg"
+    parallaxImageSrc="/images/catering/haus-hamburg-leer-catering-2.webp"
   >
     <form class="catering-form" @submit.prevent="submitForm">
       <h2 class="big-title-3">Catering-Anfrage</h2>

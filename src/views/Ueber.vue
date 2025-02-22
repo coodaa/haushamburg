@@ -1,13 +1,13 @@
 <template>
   <BasePage
-    imageSrc="/images/history/onkes1.webp"
+    imageSrc="/images/history/haus-hamburg-leer-onkes1.webp"
     imageAlt="Haus Hamburg Geschichte"
     titleAbove="Über uns"
     titleMain="Geschichte"
     subtitle="Föhl mehr över’t Haus Hamburg"
     heading="Unsere Geschichte"
     flowText="Haus Hamburg ist heute weit mehr als nur ein Restaurant – es ist ein Ort der Begegnung, an dem Tradition, Gastfreundschaft und sozialer Zusammenhalt im Mittelpunkt stehen. Mit seiner einzigartigen Mischung aus maritimer Küche, herzlicher Atmosphäre und sozialem Engagement hat es sich als fester Bestandteil des Stadtlebens in Leer etabliert."
-    parallaxImageSrc="/images/history/onkes.webp"
+    parallaxImageSrc="/images/history/haus-hamburg-leer-onkes.webp"
     parallaxImageAlt="Parallax Bild der Reservierung von Haus Hamburg"
   >
     <div class="history-container">
@@ -33,7 +33,7 @@
             </p>
           </div>
           <div class="image">
-            <img src="/images/outside/haushamburgstart.webp" alt="Haus Hamburg heute" />
+            <img src="/images/outside/haus-hamburg-leer-start.webp" alt="Haus Hamburg heute" />
             <p class="image-credit">Bild: Haus Hamburg heute © 2024</p>
           </div>
         </div>
@@ -43,7 +43,7 @@
       <section class="history-section">
         <div class="section-content">
           <div class="image">
-            <img src="/images/history/seute-deern.webp" alt="Seute Deern in Leer" />
+            <img src="/images/history/haus-hamburg-leer-seute-deern.webp" alt="Seute Deern in Leer" />
             <p class="image-credit">Bild: Historische Aufnahme aus dem Gastraum der „Seute Deern“ in Leer</p>
           </div>
           <div class="text">
@@ -80,18 +80,17 @@
             </p>
           </div>
           <div class="image">
-            <img src="/images/history/onkes2.webp" alt="Colonialwarenladen Ad. C. Onkes" />
+            <img src="/images/history/haus-hamburg-leer-onkes2.webp" alt="Colonialwarenladen Ad. C. Onkes" />
             <p class="image-credit">Bild: Ehemaliges Colonialwarenhaus Ad. C. Onkes</p>
           </div>
         </div>
       </section>
 
       <!-- Abschnitt: Die Nachbarschaft -->
-      <!-- Abschnitt: Die Nachbarschaft -->
       <section class="history-section">
         <div class="section-content">
           <div class="image">
-            <img src="/images/history/neighbour.webp" alt="Rathausstraße in Leer" />
+            <img src="/images/history/haus-hamburg-leer-nachbarschaft.webp" alt="Rathausstraße in Leer" />
             <p class="image-credit">Bild: Historische Ansicht der Rathausstraße in Leer</p>
           </div>
           <div class="text">
