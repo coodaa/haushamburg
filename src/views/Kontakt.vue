@@ -51,7 +51,6 @@ export default {
 <style scoped>
 
 
-
 .map-container iframe {
   width: 100%;
   height: 45vh;
@@ -62,7 +61,6 @@ export default {
 .google-reviews {
   margin: 2em auto;
   padding: 1em;
-  font-family: 'Arial', sans-serif; /* Einheitliche Schriftfamilie */
   font-size: 1em; /* Einheitliche Schriftgröße */
   line-height: 1.5; /* Einheitlicher Zeilenabstand */
 }
@@ -70,7 +68,6 @@ export default {
 .google-reviews h3 {
   margin-bottom: 1em;
   color: var(--blue);
-  font-family: inherit; /* Vererbt die Schriftfamilie */
   font-size: 1.2em; /* Einheitliche Schriftgröße */
   line-height: 1.2; /* Einheitlicher Zeilenabstand */
 }

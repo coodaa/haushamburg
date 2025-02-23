@@ -121,7 +121,7 @@ p {
   display: flex;
   justify-content: center;
   margin-top: .5em;
-  padding-bottom: .5em !important;
+  /* padding-bottom: .5em !important; */
 
 }
 

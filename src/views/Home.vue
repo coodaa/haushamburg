@@ -42,17 +42,13 @@
         <h3 class="restaurant-heading big-title-3">das restaurant</h3>
         <div class="restaurant-text">
           <p>
-            Entdecken Sie das <strong>authentische Norddeutschland</strong> im Haus Hamburg, Ihrem Fischrestaurant mitten in der charmanten Altstadt von Leer, Ostfriesland. Bei uns erwarten Sie nicht nur fangfrische Fischspezialitäten, sondern auch eine Vielfalt an norddeutschen Köstlichkeiten, die mit viel Liebe und regionalen Zutaten zubereitet werden.
+            Entdecken Sie das <strong>authentische Norddeutschland</strong> im Haus Hamburg, Ihrem Fischrestaurant mitten in der charmanten Altstadt von Leer, Ostfriesland.
+            Bei uns erwarten Sie nicht nur fangfrische Fischspezialitäten, sondern auch eine Vielfalt an norddeutschen Köstlichkeiten.
           </p>
           <p>
-            Auch Vegetarier sind bei uns herzlich willkommen. Unser Menü bietet eine Auswahl an kreativen, vegetarischen Gerichten, die Ihren Besuch zu einem rundum gelungenen Erlebnis machen.
+            Auch Vegetarier sind bei uns herzlich willkommen. Unser Menü bietet eine Auswahl an kreativen, vegetarischen Gerichten.
           </p>
-          <p>
-            Besuchen Sie uns im Haus Hamburg und erleben Sie Norddeutschland von seiner köstlichsten Seite.
-          </p>
-          <p>
-            <strong>Wir freuen uns darauf, Sie in unserem gemütlichen Restaurant begrüßen zu dürfen!</strong>
-          </p>
+          <p><strong>Wir freuen uns darauf, Sie in unserem gemütlichen Restaurant begrüßen zu dürfen!</strong></p>
         </div>
       </div>
       <img src="/images/restaurant/haus-hamburg-leer-innen.webp" alt="Restaurant" class="restaurant-image" />
@@ -62,12 +58,12 @@
     <section class="svg-section">
       <div class="scalloped-svg"></div>
       <div class="section-food big-title-4">
-        <h2>die speisekarte</h2>
+        <h2>aus der speisekarte</h2>
 
         <!-- Swiper Carousel -->
         <CustomSwiper :items="selection" :slides-per-view="slidesPerView" />
 
-        <!-- CTA-Button für die Speisekarte als <button> -->
+        <!-- CTA-Button für die Speisekarte -->
         <div class="menu-button-container">
           <button class="cta-button" @click="goToSpeisekarte">
             <i class="fas fa-fish"></i>
@@ -76,17 +72,21 @@
         </div>
       </div>
     </section>
+
+    <Review />
   </div>
 </template>
 
 <script>
 import CustomSwiper from "../components/CustomSwiper.vue";
 import "../styles/Home.css";
+import Review from "../components/Review.vue";
 
 export default {
   name: "Home",
   components: {
     CustomSwiper,
+    Review,
   },
   data() {
     return {
@@ -156,13 +156,13 @@ export default {
       this.slidesPerView = width >= 1700 ? 4 : width >= 1400 ? 3 : width >= 1024 ? 2 : 1;
     },
     goToSpeisekarte() {
-      // Navigation zur Speisekarte (Vue Router verwenden)
-      this.$router.push('/speisekarte');
-      // Alternativ: window.location.href = '/speisekarte';
+      this.$router.push("/speisekarte");
     },
   },
   beforeUnmount() {
-    clearInterval(this.wordInterval);
+    if (this.wordInterval) {
+      clearInterval(this.wordInterval);
+    }
     window.removeEventListener("resize", this.updateSlidesPerView);
   },
 };

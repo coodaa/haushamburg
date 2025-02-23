@@ -57,14 +57,14 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 6em;
+  height: 5em;
   background-image: url('@/assets/scalloped-navbar.svg');
   background-repeat: repeat-x;
   background-position: top left;
   background-size: calc(100% / 10);
   transition: transform 0.5s ease-out;
   transform: translateY(0);
-  z-index: -1;
+  z-index: 1;
   pointer-events: none;
 
 }
@@ -187,26 +187,6 @@
 .mobile-links a:hover {
   color: var(--gold);
 }
-
-/* Reservieren-Button */
-/* .nav-right .cta-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.5em 1em;
-  box-sizing: border-box;
-  background-color: var(--gold);
-  border: 2px solid var(--blue);
-  border-radius: 20em;
-  cursor: pointer;
-  font-weight: bold;
-  text-transform: uppercase;
-  font-size: 1.3rem;
-  color: var(--blue);
-  font-family: var(--font-thunder);
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  gap: 0.5em;
-} */
 
 .nav-right .cta-button .cta-text {
   display: none;

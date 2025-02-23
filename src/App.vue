@@ -2,8 +2,11 @@
 <template>
   <div id="app">
     <Navbar />
-    <!-- Transition um den Router-View -->
-    <transition name="fade-bounce" mode="out-in">
+    <transition
+      name="fade-bounce"
+      mode="out-in"
+      @before-enter="beforeEnterTransition"
+    >
       <router-view :key="$route.fullPath" />
     </transition>
     <Footer />
@@ -22,18 +25,53 @@ export default {
     Navbar,
     Footer,
     CookieBanner
+  },
+  methods: {
+    beforeEnterTransition(el, done) {
+  setTimeout(() => {
+    const images = el.querySelectorAll('img');
+    const total = images.length;
+    if (total === 0) {
+      if (typeof done === 'function') {
+        done();
+      }
+      return;
+    }
+    let loaded = 0;
+    const checkDone = () => {
+      loaded++;
+      if (loaded >= total && typeof done === 'function') {
+        done();
+      }
+    };
+
+    images.forEach(img => {
+      if (img.complete) {
+        checkDone();
+      } else {
+        img.addEventListener('load', checkDone);
+        img.addEventListener('error', checkDone);
+      }
+    });
+    // Fallback, falls ein Bild zu lange lädt
+    setTimeout(() => {
+      if (typeof done === 'function') {
+        done();
+      }
+    }, 3000);
+  }, 50);
+}
   }
 };
 </script>
 
 <style>
-/* Container relativ positionieren, um absolute Kinder zu ermöglichen */
 #app {
   position: relative;
-  min-height: 100vh; /* Optional: Sicherstellen, dass der Container die volle Höhe hat */
+  min-height: 100vh;
 }
 
-/* 🔵 Transition-Klassen für Fade und Bounce */
+/* Transition-Klassen für Fade und Bounce */
 .fade-bounce-enter-from {
   opacity: 0;
   transform: translateY(20px);
@@ -41,13 +79,17 @@ export default {
 
 .fade-bounce-enter-active {
   animation: fadeInBounce 0.6s cubic-bezier(0.35, 1.5, 0.6, 1) forwards;
+  /* Hardware-Beschleunigung für mobile Browser */
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
 }
 
 .fade-bounce-leave-active {
   animation: fadeOut 0.3s ease-in-out forwards;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
 }
 
-/* Positionierung der enter-active und leave-active Klassen */
 .fade-bounce-enter-active,
 .fade-bounce-leave-active {
   width: 100%;
@@ -55,7 +97,7 @@ export default {
   left: 0;
 }
 
-/* 🌟 Einblend-Animation (mit Bounce) */
+/* Einblend-Animation (mit Bounce) */
 @keyframes fadeInBounce {
   0% {
     opacity: 0;
@@ -73,7 +115,7 @@ export default {
   }
 }
 
-/* 🔥 Ausblend-Animation */
+/* Ausblend-Animation */
 @keyframes fadeOut {
   0% {
     opacity: 1;
