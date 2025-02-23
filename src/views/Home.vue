@@ -1,7 +1,7 @@
 <template>
   <div>
-    <!-- Header-Row mit H1 und Blase -->
-    <div class="hero header-row">
+    <!-- Header-Bereich -->
+    <header class="hero header-row">
       <h1 class="title-base big-title">herz, küche,</h1>
       <div class="looping-bubble">
         <span
@@ -22,58 +22,65 @@
           :style="{ transform: `rotate(${rotation}deg)` }"
         />
       </div>
-    </div>
+    </header>
 
-    <!-- Bildcontainer mit H2 -->
-    <div class="image-container">
-      <h2 class="title-base big-title big-title-2">tisch</h2>
-      <div class="home-container">
+    <!-- Hauptinhalt -->
+    <main>
+      <!-- Bildcontainer mit H2 -->
+      <section class="image-container">
+        <h2 class="title-base big-title big-title-2">tisch</h2>
+        <div class="home-container">
+          <img
+            src="/images/outside/haus-hamburg-leer-start.webp"
+            alt="Haus Hamburg"
+            class="inverted-radius"
+          />
+        </div>
+      </section>
+
+      <!-- Restaurant-Sektion -->
+      <section class="restaurant-section">
+        <div class="restaurant-content">
+          <!-- Verwende hier idealerweise ein H2 statt H3, um die Hierarchie konsistent zu halten -->
+          <h2 class="restaurant-heading big-title-3">das restaurant</h2>
+          <div class="restaurant-text">
+            <p>
+              Entdecken Sie das <strong>authentische Norddeutschland</strong> im Haus Hamburg, Ihrem Fischrestaurant mitten in der charmanten Altstadt von Leer, Ostfriesland.
+              Bei uns erwarten Sie nicht nur fangfrische Fischspezialitäten, sondern auch eine Vielfalt an norddeutschen Köstlichkeiten.
+            </p>
+            <p>
+              Auch Vegetarier sind bei uns herzlich willkommen. Unser Menü bietet eine Auswahl an kreativen, vegetarischen Gerichten.
+            </p>
+            <p><strong>Wir freuen uns darauf, Sie in unserem gemütlichen Restaurant begrüßen zu dürfen!</strong></p>
+          </div>
+        </div>
         <img
-          src="/images/outside/haus-hamburg-leer-start.webp"
-          alt="Haus Hamburg"
-          class="inverted-radius"
+          src="/images/restaurant/haus-hamburg-leer-innen.webp"
+          alt="Restaurant Innenansicht"
+          class="restaurant-image"
         />
-      </div>
-    </div>
+      </section>
 
-    <!-- Restaurant-Sektion -->
-    <section class="restaurant-section">
-      <div class="restaurant-content">
-        <h3 class="restaurant-heading big-title-3">das restaurant</h3>
-        <div class="restaurant-text">
-          <p>
-            Entdecken Sie das <strong>authentische Norddeutschland</strong> im Haus Hamburg, Ihrem Fischrestaurant mitten in der charmanten Altstadt von Leer, Ostfriesland.
-            Bei uns erwarten Sie nicht nur fangfrische Fischspezialitäten, sondern auch eine Vielfalt an norddeutschen Köstlichkeiten.
-          </p>
-          <p>
-            Auch Vegetarier sind bei uns herzlich willkommen. Unser Menü bietet eine Auswahl an kreativen, vegetarischen Gerichten.
-          </p>
-          <p><strong>Wir freuen uns darauf, Sie in unserem gemütlichen Restaurant begrüßen zu dürfen!</strong></p>
+      <!-- Speisekarte-Sektion -->
+      <section class="svg-section">
+        <div class="scalloped-svg"></div>
+        <div class="section-food big-title-4">
+          <h2>aus der speisekarte</h2>
+          <!-- Swiper Carousel -->
+          <CustomSwiper :items="selection" :slides-per-view="slidesPerView" />
+          <!-- CTA-Button für die Speisekarte -->
+          <div class="menu-button-container">
+            <button class="cta-button" @click="goToSpeisekarte">
+              <i class="fas fa-fish"></i>
+              <span class="cta-text"> mee(h)r</span>
+            </button>
+          </div>
         </div>
-      </div>
-      <img src="/images/restaurant/haus-hamburg-leer-innen.webp" alt="Restaurant" class="restaurant-image" />
-    </section>
+      </section>
 
-    <!-- Unsere Auswahl (Speisekarte) Sektion mit Carousel -->
-    <section class="svg-section">
-      <div class="scalloped-svg"></div>
-      <div class="section-food big-title-4">
-        <h2>aus der speisekarte</h2>
-
-        <!-- Swiper Carousel -->
-        <CustomSwiper :items="selection" :slides-per-view="slidesPerView" />
-
-        <!-- CTA-Button für die Speisekarte -->
-        <div class="menu-button-container">
-          <button class="cta-button" @click="goToSpeisekarte">
-            <i class="fas fa-fish"></i>
-            <span class="cta-text"> mee(h)r</span>
-          </button>
-        </div>
-      </div>
-    </section>
-
-    <Review />
+      <!-- Kundenbewertungen -->
+      <Review />
+    </main>
   </div>
 </template>
 
