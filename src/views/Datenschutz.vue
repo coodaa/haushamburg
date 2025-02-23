@@ -121,7 +121,7 @@
           Die Verarbeitung dieser Daten erfolgt auf Grundlage von Art. 6 Abs. 1 S. 1 lit. b DSGVO, sofern Ihre Anfrage mit der Erfüllung eines Vertrags zusammenhängt oder zur Durchführung vorvertraglicher Maßnahmen erforderlich ist. In allen übrigen Fällen beruht die Verarbeitung auf unserem berechtigten Interesse gemäß Art. 6 Abs. 1 S. 1 lit. f DSGVO.
         </p>
         <p>
-          Die von Ihnen im Kontaktformular eingegebenen Daten verbleiben bei uns, bis Sie uns zur Löschung auffordern, Ihre Einwilligung zur Speicherung widerrufen oder der Zweck für die Datenspeicherung entfällt (z.B. nach abgeschlossener Bearbeitung Ihrer Anfrage). Zwingende gesetzliche Bestimmungen – insbesondere Aufbewahrungsfristen – bleiben unberührt.
+          Die von Ihnen im Kontaktformular eingegebenen Daten verbleiben bei uns, bis Sie uns zur Löschung auffordern, Ihre Einwilligung zur Speicherung widerrufen oder der Zweck für die Datenspeicherung entfällt (z. B. nach abgeschlossener Bearbeitung Ihrer Anfrage). Zwingende gesetzliche Bestimmungen – insbesondere Aufbewahrungsfristen – bleiben unberührt.
         </p>
       </section>
 
@@ -210,25 +210,25 @@
       </section>
 
       <section>
-  <h3>10. Erfassung und Verarbeitung von Kundendaten im Onlineshop</h3>
-  <p>
-    In unserem Onlineshop erfassen und verarbeiten wir personenbezogene Daten, die für die Abwicklung Ihrer Bestellungen erforderlich sind. Dazu gehören insbesondere:
-  </p>
-  <ul>
-    <li>Name, Anschrift, E-Mail-Adresse und Telefonnummer</li>
-    <li>Zahlungsinformationen (z. B. Kreditkartendaten oder PayPal-Daten), sofern für die Zahlungsabwicklung notwendig</li>
-    <li>Bestell- und Versandinformationen</li>
-  </ul>
-  <p>
-    Die Erhebung und Verarbeitung dieser Daten erfolgt auf Grundlage Ihrer Einwilligung (Art. 6 Abs. 1 lit. a DSGVO) sowie zur Erfüllung eines Vertrages (Art. 6 Abs. 1 lit. b DSGVO). Ihre Daten werden ausschließlich zum Zweck der Bestellabwicklung, zur Kundenbetreuung und zur Erfüllung gesetzlicher Verpflichtungen genutzt.
-  </p>
-  <p>
-    Eine Weitergabe Ihrer Daten an Dritte erfolgt nur, soweit dies zur Abwicklung der Bestellung notwendig ist (z. B. an Versanddienstleister oder Zahlungsanbieter) oder wir gesetzlich dazu verpflichtet sind. Eine darüber hinausgehende Weitergabe erfolgt nicht.
-  </p>
-  <p>
-    Sie haben das Recht, jederzeit Auskunft über Ihre bei uns gespeicherten personenbezogenen Daten zu erhalten sowie deren Berichtigung, Löschung oder Einschränkung der Verarbeitung zu verlangen. Bitte wenden Sie sich hierzu an den oben genannten Verantwortlichen.
-  </p>
-</section>
+        <h3>10. Erfassung und Verarbeitung von Kundendaten im Onlineshop</h3>
+        <p>
+          In unserem Onlineshop erfassen und verarbeiten wir personenbezogene Daten, die für die Abwicklung Ihrer Bestellungen erforderlich sind. Dazu gehören insbesondere:
+        </p>
+        <ul>
+          <li>Name, Anschrift, E-Mail-Adresse und Telefonnummer</li>
+          <li>Zahlungsinformationen (z. B. Kreditkartendaten oder PayPal-Daten), sofern für die Zahlungsabwicklung notwendig</li>
+          <li>Bestell- und Versandinformationen</li>
+        </ul>
+        <p>
+          Die Erhebung und Verarbeitung dieser Daten erfolgt auf Grundlage Ihrer Einwilligung (Art. 6 Abs. 1 lit. a DSGVO) sowie zur Erfüllung eines Vertrages (Art. 6 Abs. 1 lit. b DSGVO). Ihre Daten werden ausschließlich zum Zweck der Bestellabwicklung, zur Kundenbetreuung und zur Erfüllung gesetzlicher Verpflichtungen genutzt.
+        </p>
+        <p>
+          Eine Weitergabe Ihrer Daten an Dritte erfolgt nur, soweit dies zur Abwicklung der Bestellung notwendig ist (z. B. an Versanddienstleister oder Zahlungsanbieter) oder wir gesetzlich dazu verpflichtet sind. Eine darüber hinausgehende Weitergabe erfolgt nicht.
+        </p>
+        <p>
+          Sie haben das Recht, jederzeit Auskunft über Ihre bei uns gespeicherten personenbezogenen Daten zu erhalten sowie deren Berichtigung, Löschung oder Einschränkung der Verarbeitung zu verlangen. Bitte wenden Sie sich hierzu an den oben genannten Verantwortlichen.
+        </p>
+      </section>
     </div>
   </BasePage>
 </template>
@@ -240,6 +240,49 @@ export default {
   name: "Datenschutz",
   components: {
     BasePage,
+  },
+  metaInfo: {
+    title: "Datenschutz – Haus Hamburg",
+    meta: [
+      {
+        name: "description",
+        content:
+          "Erfahren Sie, wie Haus Hamburg Ihre personenbezogenen Daten schützt und verarbeitet. Unsere Datenschutzerklärung informiert über die Erhebung, Verarbeitung und Ihre Rechte im Umgang mit Ihren Daten.",
+      },
+      {
+        property: "og:title",
+        content: "Datenschutz – Haus Hamburg",
+      },
+      {
+        property: "og:description",
+        content:
+          "Lesen Sie unsere Datenschutzerklärung und erfahren Sie, wie wir Ihre Daten schützen und verarbeiten.",
+      },
+      {
+        property: "og:url",
+        content: "https://haus-hamburg-leer.de/datenschutz",
+      },
+      {
+        property: "og:type",
+        content: "website",
+      },
+      {
+        name: "twitter:card",
+        content: "summary_large_image",
+      },
+    ],
+    script: [
+      {
+        type: "application/ld+json",
+        json: {
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "name": "Datenschutz – Haus Hamburg",
+          "description": "Datenschutzerklärung von Haus Hamburg: Erfahren Sie, wie Ihre Daten erhoben, verarbeitet und geschützt werden.",
+          "url": "https://haus-hamburg-leer.de/datenschutz",
+        },
+      },
+    ],
   },
   data() {
     return {
@@ -261,7 +304,6 @@ export default {
 </script>
 
 <style scoped>
-/* Optional: Zusätzliche Styles für die Datenschutz-Seite */
 section {
   margin-bottom: 2rem;
   text-align: left;

@@ -126,4 +126,16 @@ export default {
     transform: translateY(-20px);
   }
 }
+
+
+@media (max-width: 767px) {
+  .fade-bounce-enter-from {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .fade-bounce-enter-active,
+  .fade-bounce-leave-active {
+    animation: none !important;
+  }
+}
 </style>
