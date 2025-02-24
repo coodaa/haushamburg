@@ -10,13 +10,13 @@ import {
 
 // 🔥 Deine Firebase-Konfiguration
 const firebaseConfig = {
-  apiKey: "AIzaSyBZuiQOIa5f087sC1MHmHXNoulvp5ISoso",
-  authDomain: "haus-hamburg-firestore.firebaseapp.com",
-  projectId: "haus-hamburg-firestore",
-  storageBucket: "haus-hamburg-firestore.firebasestorage.app",
-  messagingSenderId: "589945222197",
-  appId: "1:589945222197:web:4ac54ef885d53b8d13ed7c",
-  measurementId: "G-VRNDD3MS5M",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID,
 };
 
 // 🔥 Firebase initialisieren
