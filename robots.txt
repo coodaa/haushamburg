@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://www.haus-hamburg-leer.de/sitemap.xml
