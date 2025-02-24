@@ -11,170 +11,168 @@
     parallaxImageSrc="/images/food/haus-hamburg-leer-21.webp"
     parallaxImageAlt="Haus Hamburg Restaurant"
   >
-   <!-- Restlicher Inhalt -->
-   <div class="menu-container">
-        <!-- Überschrift für die Auswahl -->
-        <div class="section-food big-title-4">
-          <h2>unsere auswahl</h2>
-        </div>
+    <!-- Restlicher Inhalt -->
+    <div class="menu-container">
+      <!-- Überschrift für die Auswahl -->
+      <div class="section-food big-title-4">
+        <h2>unsere auswahl</h2>
+      </div>
 
-        <div class="menu-sections">
-          <!-- Karte 1: Vorspeisen -->
-          <section class="menu-card">
-            <h2 class="big-title-3">Vorspeisen</h2>
-            <div class="card-content">
-              <div class="dish-entry">
-                <div class="dish-description">Tagessuppe</div>
-                <span class="dish-price">5,80 €</span>
-              </div>
-
-              <div class="dish-entry">
-                <div class="dish-description">
-                  Vorspeise Haus-Hamburg
-                  <div class="note">
-                    (Matjesfilets, Aalrauch-Matjesfilets, Bismarckhering, Brathering, Salatgarnitur)
-                  </div>
-                </div>
-                <span class="dish-price">9,90 €</span>
-              </div>
-
-              <div class="dish-entry">
-                <div class="dish-description">
-                  Vorspeise Haus-Hamburg deluxe<br />
-                  <div class="note">
-                    (Matjesfilets, Aalrauch-Matjesfilets, Bismarckhering, Brathering,<br />
-                    Räucherlachs und Greetsieler Kutterkrabben, Salatgarnitur)
-                  </div>
-                </div>
-                <span class="dish-price">14,80 €</span>
-              </div>
-              <div class="note">
-                … auch als Hauptgericht mit Bratkartoffeln und Salat (Aufpreis 7,00 €)
-              </div>
+      <div class="menu-sections">
+        <!-- Karte 1: Vorspeisen -->
+        <section class="menu-card">
+          <h2 class="big-title-3">Vorspeisen</h2>
+          <div class="card-content">
+            <div class="dish-entry">
+              <div class="dish-description">Tagessuppe</div>
+              <span class="dish-price">5,80 €</span>
             </div>
-          </section>
-
-          <!-- Karte 2: Fischgerichte -->
-          <section class="menu-card">
-
-            <h2 class="big-title-3">Fischgerichte</h2>
-            <div class="card-content">
 
             <div class="dish-entry">
-                <div class="dish-description">
-                  Nordsee Scholle<br />
-                  • filetiert
-                </div>
-                <span class="dish-price">22,50 €</span>
-              </div>
-
-              <div class="dish-entry">
-                <div class="dish-description">
-                  • Finkenwerder Art
-                </div>
-                <span class="dish-price">23,50 €</span>
-              </div>
-
-              <div class="dish-entry">
-                <div class="dish-description">
-                  • mit Krabben
-                </div>
-                <span class="dish-price">26,50 €</span>
-              </div>
-
-              <div class="dish-entry">
-                <div class="dish-description">
-                  Fischplatte für 1 Person
-                  <div class="note">
-                    (Auswahl unserer beliebtesten Fischfilets, Greetsieler Krabben, Bratkartoffeln, Salat)
-                  </div>
-                </div>
-                <span class="dish-price">25,50 €</span>
+              <div class="dish-description">
+                Vorspeise Haus-Hamburg
                 <div class="note">
-                  Zu allen unseren Fischgerichten reichen wir unsere hausgemachten Bratkartoffeln mit Speck und Zwiebeln sowie einen kleinen gemischten Salat.
+                  (Matjesfilets, Aalrauch-Matjesfilets, Bismarckhering, Brathering, Salatgarnitur)
                 </div>
+              </div>
+              <span class="dish-price">9,90 €</span>
+            </div>
+
+            <div class="dish-entry">
+              <div class="dish-description">
+                Vorspeise Haus-Hamburg deluxe<br />
+                <div class="note">
+                  (Matjesfilets, Aalrauch-Matjesfilets, Bismarckhering, Brathering,<br />
+                  Räucherlachs und Greetsieler Kutterkrabben, Salatgarnitur)
+                </div>
+              </div>
+              <span class="dish-price">14,80 €</span>
+            </div>
+            <div class="note">
+              … auch als Hauptgericht mit Bratkartoffeln und Salat (Aufpreis 7,00 €)
+            </div>
+          </div>
+        </section>
+
+        <!-- Karte 2: Fischgerichte -->
+        <section class="menu-card">
+          <h2 class="big-title-3">Fischgerichte</h2>
+          <div class="card-content">
+            <div class="dish-entry">
+              <div class="dish-description">
+                Nordsee Scholle<br />
+                • filetiert
+              </div>
+              <span class="dish-price">22,50 €</span>
+            </div>
+
+            <div class="dish-entry">
+              <div class="dish-description">
+                • Finkenwerder Art
+              </div>
+              <span class="dish-price">23,50 €</span>
+            </div>
+
+            <div class="dish-entry">
+              <div class="dish-description">
+                • mit Krabben
+              </div>
+              <span class="dish-price">26,50 €</span>
+            </div>
+
+            <div class="dish-entry">
+              <div class="dish-description">
+                Fischplatte für 1 Person
+                <div class="note">
+                  (Auswahl unserer beliebtesten Fischfilets, Greetsieler Krabben, Bratkartoffeln, Salat)
+                </div>
+              </div>
+              <span class="dish-price">25,50 €</span>
+              <div class="note">
+                Zu allen unseren Fischgerichten reichen wir unsere hausgemachten Bratkartoffeln mit Speck und Zwiebeln sowie einen kleinen gemischten Salat.
               </div>
             </div>
-          </section>
+          </div>
+        </section>
 
-          <!-- Karte 3: Von Weide und Feld -->
-          <section class="menu-card third-section">
-            <h2 class="big-title-3">Von Weide und Feld</h2>
-            <div class="card-content">
-              <div class="dish-entry">
-                <div class="dish-description">Rahmschnitzel mit RAS Frites und Salat</div>
-                <span class="dish-price">17,50 €</span>
-              </div>
-
-              <div class="dish-entry">
-                <div class="dish-description">Tomahawk vom Ammerländer Edelschwein</div>
-                <span class="dish-price">24,50 €</span>
-                <div class="note">(mit RAS Frites und Salat)</div>
-              </div>
-
-              <div class="dish-entry">
-                <div class="dish-description">Vegan/Vegetarisches Tagesgericht</div>
-                <span class="dish-price">17,50 €</span>
-              </div>
-
-              <div class="dish-entry">
-                <div class="dish-description">
-                  Ofenkartoffel<br />
-                  • mit Sour-Cream
-                </div>
-                <span class="dish-price">9,50 €</span>
-              </div>
-
-              <div class="dish-entry">
-                <div class="dish-description">
-                  • mit Räucherlachs und Sour-Cream
-                </div>
-                <span class="dish-price">15,50 €</span>
-              </div>
-
-              <div class="dish-entry">
-                <div class="dish-description">
-                  • mit Sour-Cream und Greetsieler Krabben
-                </div>
-                <span class="dish-price">19,50 €</span>
-              </div>
-
-              <div class="dish-entry">
-                <div class="dish-description">
-                  Grünkohl mit Mettenden und Pinkel und Bratkartoffeln
-                </div>
-                <span class="dish-price">19,90 €</span>
-              </div>
-
-              <div class="dish-entry">
-                <div class="dish-description">
-                  Snirtjebraten mit Sauce und Bratkartoffeln
-                </div>
-                <span class="dish-price">21,30 €</span>
-              </div>
+        <!-- Karte 3: Von Weide und Feld -->
+        <section class="menu-card third-section">
+          <h2 class="big-title-3">Von Weide und Feld</h2>
+          <div class="card-content">
+            <div class="dish-entry">
+              <div class="dish-description">Rahmschnitzel mit RAS Frites und Salat</div>
+              <span class="dish-price">17,50 €</span>
             </div>
-          </section>
-        </div>
 
-        <div class="pdf-container">
-          <button class="view-btn" @click="openModal">
-            Speisekarte als PDF ansehen
-          </button>
-        </div>
+            <div class="dish-entry">
+              <div class="dish-description">Tomahawk vom Ammerländer Edelschwein</div>
+              <span class="dish-price">24,50 €</span>
+              <div class="note">(mit RAS Frites und Salat)</div>
+            </div>
+
+            <div class="dish-entry">
+              <div class="dish-description">Vegan/Vegetarisches Tagesgericht</div>
+              <span class="dish-price">17,50 €</span>
+            </div>
+
+            <div class="dish-entry">
+              <div class="dish-description">
+                Ofenkartoffel<br />
+                • mit Sour-Cream
+              </div>
+              <span class="dish-price">9,50 €</span>
+            </div>
+
+            <div class="dish-entry">
+              <div class="dish-description">
+                • mit Räucherlachs und Sour-Cream
+              </div>
+              <span class="dish-price">15,50 €</span>
+            </div>
+
+            <div class="dish-entry">
+              <div class="dish-description">
+                • mit Sour-Cream und Greetsieler Krabben
+              </div>
+              <span class="dish-price">19,50 €</span>
+            </div>
+
+            <div class="dish-entry">
+              <div class="dish-description">
+                Grünkohl mit Mettenden und Pinkel und Bratkartoffeln
+              </div>
+              <span class="dish-price">19,90 €</span>
+            </div>
+
+            <div class="dish-entry">
+              <div class="dish-description">
+                Snirtjebraten mit Sauce und Bratkartoffeln
+              </div>
+              <span class="dish-price">21,30 €</span>
+            </div>
+          </div>
+        </section>
       </div>
 
-      <!-- Modal für die PDF-Vorschau -->
-      <div v-if="showModal" class="modal-overlay" @click.self="closeModal">
-        <div class="modal-content">
-          <button class="close-btn" @click="closeModal">&times;</button>
-          <iframe :src="pdfSrc" frameborder="0" title="Speisekarte Haus Hamburg"></iframe>
-        </div>
+      <div class="pdf-container">
+        <button class="view-btn" @click="openModal">
+          Speisekarte als PDF ansehen
+        </button>
       </div>
+    </div>
 
-      <ContactInfo />
-    </BasePage>
+    <!-- Modal für die PDF-Vorschau -->
+    <div v-if="showModal" class="modal-overlay" @click.self="closeModal">
+      <div class="modal-content">
+        <button class="close-btn" @click="closeModal">&times;</button>
+        <iframe :src="pdfSrc" frameborder="0" title="Speisekarte Haus Hamburg"></iframe>
+      </div>
+    </div>
 
+    <ContactInfo />
+  </BasePage>
 </template>
+
 <script>
 import BasePage from "@/components/BasePage.vue";
 import pdfFile from "@/assets/Speisekarte_HausHamburg.pdf";
@@ -197,10 +195,52 @@ export default {
       this.showModal = false;
     },
   },
+  metaInfo: {
+    title: "Speisekarte – Haus Hamburg",
+    meta: [
+      {
+        name: "description",
+        content:
+          "Entdecken Sie die Speisekarte von Haus Hamburg: Frische Fischgerichte, ostfriesische Spezialitäten und mehr. Genießen Sie regionale Küche in entspannter Atmosphäre.",
+      },
+      {
+        property: "og:title",
+        content: "Speisekarte – Haus Hamburg",
+      },
+      {
+        property: "og:description",
+        content:
+          "Entdecken Sie unsere köstlichen Fischgerichte und ostfriesischen Spezialitäten – frisch, regional und mit Liebe zubereitet.",
+      },
+      {
+        property: "og:url",
+        content: "https://haus-hamburg-leer.de/speisekarte",
+      },
+      {
+        property: "og:type",
+        content: "website",
+      },
+      {
+        name: "twitter:card",
+        content: "summary_large_image",
+      },
+    ],
+    script: [
+      {
+        type: "application/ld+json",
+        json: {
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "name": "Speisekarte – Haus Hamburg",
+          "description":
+            "Entdecken Sie die Speisekarte von Haus Hamburg mit frischen Fischgerichten, ostfriesischen Spezialitäten und regionaler Küche.",
+          "url": "https://haus-hamburg-leer.de/speisekarte",
+        },
+      },
+    ],
+  },
 };
 </script>
-
-
 
 <style scoped>
 .menu-container {

@@ -16,7 +16,6 @@
         Herzlich willkommen bei <strong>Haus Hamburg</strong>! Über unseren Online-Service können Sie ganz einfach Ihren Tisch buchen. Wählen Sie das gewünschte Datum, die Uhrzeit und die Anzahl der Gäste, um Ihren Besuch bei uns zu planen.
       </p>
 
-
       <!-- Hintergrundbereich für das Reservierungsformular -->
       <div class="contact">
         <div class="opentable-embed">
@@ -32,15 +31,10 @@
 
       <section class="svg-section">
         <div class="scalloped-svg"></div>
-
-
-
-      <p class="additional-info">
-        Alternativ können Sie uns auch telefonisch oder per E-Mail kontaktieren, um Ihren Besuch zu planen.
-      </p>
-
-      <ContactInfo />
-
+        <p class="additional-info">
+          Alternativ können Sie uns auch telefonisch oder per E-Mail kontaktieren, um Ihren Besuch zu planen.
+        </p>
+        <ContactInfo />
       </section>
     </div>
   </BasePage>
@@ -55,6 +49,50 @@ export default {
   components: {
     BasePage,
     ContactInfo,
+  },
+  metaInfo: {
+    title: "Reservierung – Haus Hamburg",
+    meta: [
+      {
+        name: "description",
+        content:
+          "Planen Sie Ihren Besuch im Haus Hamburg und reservieren Sie online Ihren Tisch. Erleben Sie kulinarische Höhepunkte in entspannter Atmosphäre in Leer, Ostfriesland.",
+      },
+      {
+        property: "og:title",
+        content: "Reservierung – Haus Hamburg",
+      },
+      {
+        property: "og:description",
+        content:
+          "Reservieren Sie online Ihren Tisch im Haus Hamburg und genießen Sie einen unvergesslichen Abend in entspannter Atmosphäre.",
+      },
+      {
+        property: "og:url",
+        content: "https://haus-hamburg-leer.de/reservierung",
+      },
+      {
+        property: "og:type",
+        content: "website",
+      },
+      {
+        name: "twitter:card",
+        content: "summary_large_image",
+      },
+    ],
+    script: [
+      {
+        type: "application/ld+json",
+        json: {
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "name": "Reservierung – Haus Hamburg",
+          "description":
+            "Reservieren Sie online Ihren Tisch im Haus Hamburg, Leer, Ostfriesland. Erleben Sie kulinarische Höhepunkte in entspannter Atmosphäre.",
+          "url": "https://haus-hamburg-leer.de/reservierung",
+        },
+      },
+    ],
   },
 };
 </script>
@@ -103,6 +141,7 @@ export default {
   border: none;
   border-radius: 20px;
 }
+
 /* SVG-Sektion */
 .svg-section {
   position: relative;
@@ -136,5 +175,4 @@ export default {
     padding-top: 6em;
   }
 }
-
 </style>

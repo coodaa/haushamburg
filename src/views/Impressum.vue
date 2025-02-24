@@ -47,6 +47,49 @@ export default {
   components: {
     BasePage,
   },
+  metaInfo: {
+    title: "Impressum – Haus Hamburg",
+    meta: [
+      {
+        name: "description",
+        content:
+          "Impressum und rechtliche Hinweise von Haus Hamburg, Restaurant in Leer, Ostfriesland. Erfahren Sie, wer für den Inhalt verantwortlich ist.",
+      },
+      {
+        property: "og:title",
+        content: "Impressum – Haus Hamburg",
+      },
+      {
+        property: "og:description",
+        content:
+          "Erfahren Sie mehr über das Impressum und die rechtlichen Angaben von Haus Hamburg, Restaurant in Leer, Ostfriesland.",
+      },
+      {
+        property: "og:url",
+        content: "https://haus-hamburg-leer.de/impressum",
+      },
+      {
+        property: "og:type",
+        content: "website",
+      },
+      {
+        name: "twitter:card",
+        content: "summary_large_image",
+      },
+    ],
+    script: [
+      {
+        type: "application/ld+json",
+        json: {
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "name": "Impressum – Haus Hamburg",
+          "description": "Impressum und rechtliche Hinweise von Haus Hamburg, Restaurant in Leer, Ostfriesland.",
+          "url": "https://haus-hamburg-leer.de/impressum",
+        },
+      },
+    ],
+  },
 };
 </script>
 
@@ -111,7 +154,7 @@ export default {
 
   .text-and-logo {
     flex-direction: row;
-    align-items: center; /* Logo mittig zur Höhe des Textes */
+    align-items: center;
     justify-content: space-between;
     text-align: left;
   }

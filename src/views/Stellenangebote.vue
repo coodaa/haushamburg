@@ -1,5 +1,6 @@
 <template>
   <BasePage
+    :key="$route.fullPath"
     imageSrc="/images/mood/haus-hamburg-leer-schiff.webp"
     imageAlt="Stellenangebote Bild"
     titleAbove="Jobs"
@@ -41,20 +42,14 @@
         </div>
       </section>
       <ContactInfo />
-
     </div>
   </BasePage>
 </template>
-
 
 <script>
 import BasePage from "@/components/BasePage.vue";
 import jobsData from "@/assets/jobs.json";
 import ContactInfo from "@/components/ContactInfo.vue";
-
-
-
-
 
 export default {
   name: "Stellenangebote",
@@ -67,18 +62,82 @@ export default {
       jobs: jobsData,
     };
   },
+  metaInfo: {
+    title: "Jobs – Haus Hamburg",
+    meta: [
+      {
+        name: "description",
+        content:
+          "Entdecken Sie aktuelle Stellenangebote bei Haus Hamburg. Werden Sie Teil unseres Teams und starten Sie Ihre Karriere in einem dynamischen Umfeld in Leer, Ostfriesland.",
+      },
+      {
+        property: "og:title",
+        content: "Jobs – Haus Hamburg",
+      },
+      {
+        property: "og:description",
+        content:
+          "Aktuelle Stellenangebote und Karrierechancen bei Haus Hamburg – Restaurant in Leer, Ostfriesland. Bewerben Sie sich jetzt und werden Sie Teil unseres Teams!",
+      },
+      {
+        property: "og:url",
+        content: "https://haus-hamburg-leer.de/jobs",
+      },
+      {
+        property: "og:type",
+        content: "website",
+      },
+      {
+        name: "twitter:card",
+        content: "summary_large_image",
+      },
+    ],
+    script: [
+      {
+        type: "application/ld+json",
+        json: {
+          "@context": "https://schema.org",
+          // Hinweis: Für eine Listing-Seite können Sie auch "WebPage" verwenden.
+          // Hier wird JobPosting als Beispiel für strukturierte Daten genutzt.
+          "@type": "JobPosting",
+          "title": "Jobs bei Haus Hamburg",
+          "description":
+            "Aktuelle Stellenangebote und Jobmöglichkeiten bei Haus Hamburg, Restaurant in Leer, Ostfriesland. Werden Sie Teil unseres Teams!",
+          "identifier": {
+            "@type": "PropertyValue",
+            "name": "Haus Hamburg",
+            "value": "jobs"
+          },
+          "hiringOrganization": {
+            "@type": "Organization",
+            "name": "Haus Hamburg",
+            "sameAs": "https://haus-hamburg-leer.de",
+            "logo": "https://haus-hamburg-leer.de/path/to/logo.png"
+          },
+          "jobLocation": {
+            "@type": "Place",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "Rathausstr. 3 - 5",
+              "addressLocality": "Leer",
+              "postalCode": "26789",
+              "addressCountry": "DE"
+            }
+          }
+        },
+      },
+    ],
+  },
 };
 </script>
 
 <style scoped>
-/* Mobile-First Basis-Stile */
 .stellenangebote-content {
   text-align: left;
   margin: 0 auto;
   max-width: 95vw;
 }
 
-/* Abschnittsüberschriften */
 .section-heading {
   color: var(--blue);
   font-family: var(--font-thunder);
@@ -88,14 +147,12 @@ export default {
   text-align: center;
 }
 
-/* Job Listings (vertikal für mobile) */
 .job-listings {
   display: flex;
   flex-direction: column;
   gap: 2rem;
 }
 
-/* Job-Karten */
 .job {
   background-color: #fff;
   padding: 1.5rem;
@@ -103,54 +160,55 @@ export default {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
+
 .job:hover {
   background-color: #f9f9f9;
   transform: translateY(-3px);
 }
+
 .job-title {
   color: var(--blue);
   margin-bottom: 0.5rem;
   font-family: var(--font-thunder);
   font-size: 1.5rem;
 }
+
 .job-info {
   margin-bottom: 1rem;
   line-height: 1.5;
   font-size: 1.1rem;
 }
+
 .job-details {
   display: flex;
   flex-direction: column;
   gap: 1rem;
   margin-bottom: 1rem;
 }
+
 .job-details ul {
   list-style-type: disc;
   padding-left: 1.5rem;
   margin: 0.5rem 0;
 }
+
 .job-application {
   font-size: 1.1rem;
   line-height: 1.5;
 }
 
-
-
-
-/* Responsive Anpassungen für Tablets und Desktops */
+/* Responsive Anpassungen */
 @media (min-width: 768px) {
   .job-listings {
     flex-direction: row;
     flex-wrap: wrap;
     gap: 2rem;
   }
-
   .job {
     flex: 1 1 calc(50% - 2rem);
   }
-
   .stellenangebote-content {
-  padding: 1.5rem 1rem;
-}
+    padding: 1.5rem 1rem;
+  }
 }
 </style>

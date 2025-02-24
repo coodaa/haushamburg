@@ -8,7 +8,7 @@
     heading="Unsere Geschichte"
     flowText="Haus Hamburg ist heute weit mehr als nur ein Restaurant – es ist ein Ort der Begegnung, an dem Tradition, Gastfreundschaft und sozialer Zusammenhalt im Mittelpunkt stehen. Mit seiner einzigartigen Mischung aus maritimer Küche, herzlicher Atmosphäre und sozialem Engagement hat es sich als fester Bestandteil des Stadtlebens in Leer etabliert."
     parallaxImageSrc="/images/history/haus-hamburg-leer-onkes.webp"
-    parallaxImageAlt="Parallax Bild der Reservierung von Haus Hamburg"
+    parallaxImageAlt="Parallax Bild der Geschichte von Haus Hamburg"
   >
     <div class="history-container">
 
@@ -24,12 +24,10 @@
               Neben einer großen Auswahl an traditionellen <strong>norddeutschen Spezialitäten</strong> wie <strong>Fischbrötchen, frischen Meeresfrüchten und herzhaften Fleischgerichten</strong>, bietet das Restaurant auch eine besondere Auswahl an <strong>Geschenkartikeln</strong> und originalen <strong>RAS-Fritten aus Holland</strong>.
             </p>
             <p>
-              Die <strong>RAS-Fritten</strong> aus Holland gelten als eine der besten Pommes-Varianten überhaupt. Ihre Einzigartigkeit liegt in der speziellen Zubereitung:
-              Sie werden in einem zweistufigen Verfahren frittiert, wodurch sie außen besonders <strong>knusprig</strong> und innen <strong>fluffig-weich</strong> bleiben.
+              Die <strong>RAS-Fritten</strong> aus Holland gelten als eine der besten Pommes-Varianten überhaupt. Ihre Einzigartigkeit liegt in der speziellen Zubereitung: Sie werden in einem zweistufigen Verfahren frittiert, wodurch sie außen besonders <strong>knusprig</strong> und innen <strong>fluffig-weich</strong> bleiben.
             </p>
             <p>
-              Besonders ist das <strong>Engagement für soziale Projekte</strong>. Seit mehreren Jahren organisieren wir eine <strong>Essensausgabe für Obdachlose</strong>, die jeden Sonntag Bedürftige mit einer warmen Mahlzeit versorgt.
-              Diese Initiative wurde von <strong>Sunna Wagemann</strong> ins Leben gerufen.
+              Besonders ist das <strong>Engagement für soziale Projekte</strong>. Seit mehreren Jahren organisieren wir eine <strong>Essensausgabe für Obdachlose</strong>, die jeden Sonntag Bedürftige mit einer warmen Mahlzeit versorgt. Diese Initiative wurde von <strong>Sunna Wagemann</strong> ins Leben gerufen.
             </p>
           </div>
           <div class="image">
@@ -49,17 +47,13 @@
           <div class="text">
             <h2>Vom Handelsladen zum Haus Hamburg</h2>
             <p>
-              Nach dem Ende des <strong>Colonialwarenhandels</strong> begann eine neue Ära für das Gebäude in der <strong>Rathausstraße 3-5</strong>.
-              Die ursprünglichen Geschäftsräume wichen einem Gastronomiebetrieb, der zunächst als <strong>"Alte Wache"</strong> bekannt war.
-              Mit seiner gemütlichen Atmosphäre und herzlicher Gastfreundschaft etablierte sich das Restaurant als beliebter Treffpunkt.
+              Nach dem Ende des <strong>Colonialwarenhandels</strong> begann eine neue Ära für das Gebäude in der <strong>Rathausstraße 3-5</strong>. Die ursprünglichen Geschäftsräume wichen einem Gastronomiebetrieb, der zunächst als <strong>"Alte Wache"</strong> bekannt war. Mit seiner gemütlichen Atmosphäre und herzlicher Gastfreundschaft etablierte sich das Restaurant als beliebter Treffpunkt.
             </p>
             <p>
-              Später wurde das Lokal unter dem Namen <strong>"Seute Deern"</strong> bekannt und machte sich mit <strong>frischen Fischgerichten</strong> und traditioneller norddeutscher Küche einen Namen.
-              Gäste aus Leer und darüber hinaus schätzten das maritime Ambiente und die gehobene Speisekarte.
+              Später wurde das Lokal unter dem Namen <strong>"Seute Deern"</strong> bekannt und machte sich mit <strong>frischen Fischgerichten</strong> und traditioneller norddeutscher Küche einen Namen. Gäste aus Leer und darüber hinaus schätzten das maritime Ambiente und die gehobene Speisekarte.
             </p>
             <p>
-              Schließlich wurde das Restaurant in <strong>Haus Hamburg</strong> umbenannt. Die Neuausrichtung des Restaurants wurde von <strong>Sunna Wagemann</strong> initiiert,
-              die mit viel Leidenschaft das Konzept überarbeitete.
+              Schließlich wurde das Restaurant in <strong>Haus Hamburg</strong> umbenannt. Die Neuausrichtung des Restaurants wurde von <strong>Sunna Wagemann</strong> initiiert, die mit viel Leidenschaft das Konzept überarbeitete.
             </p>
           </div>
         </div>
@@ -71,12 +65,10 @@
           <div class="text">
             <h2>Die Anfänge – Der Colonialwarenladen Ad. C. Onkes</h2>
             <p>
-              Vor seiner Nutzung als Restaurant war das Gebäude Sitz des bekannten <strong>Colonialwarenhauses Ad. C. Onkes</strong>.
-              In einer Zeit, als es noch keine großen Supermärkte gab, versorgte dieses Geschäft die Stadtbewohner mit <strong>Kaffee, Tee, Zucker und exotischen Importwaren</strong>.
+              Vor seiner Nutzung als Restaurant war das Gebäude Sitz des bekannten <strong>Colonialwarenhauses Ad. C. Onkes</strong>. In einer Zeit, als es noch keine großen Supermärkte gab, versorgte dieses Geschäft die Stadtbewohner mit <strong>Kaffee, Tee, Zucker und exotischen Importwaren</strong>.
             </p>
             <p>
-              Die <strong>Rathausstraße</strong> war damals ein pulsierendes Handelszentrum mit kleinen Geschäften und Handwerksbetrieben.
-              Der Laden von <strong>Ad. C. Onkes</strong> war eine Institution in der Stadt und gehörte zu den wichtigsten Anlaufstellen für Waren des täglichen Bedarfs.
+              Die <strong>Rathausstraße</strong> war damals ein pulsierendes Handelszentrum mit kleinen Geschäften und Handwerksbetrieben. Der Laden von <strong>Ad. C. Onkes</strong> war eine Institution in der Stadt und gehörte zu den wichtigsten Anlaufstellen für Waren des täglichen Bedarfs.
             </p>
           </div>
           <div class="image">
@@ -96,36 +88,45 @@
           <div class="text">
             <h2>Die Nachbarschaft – Das Herz von Leer</h2>
             <p>
-              <strong>Haus Hamburg</strong> liegt in der historischen <strong>Rathausstraße 3-5</strong>, einer der bedeutendsten Straßen in Leer.
-              Diese Straße verbindet die Altstadt mit dem zentralen Marktplatz und ist von jahrhundertealten Gebäuden, charmanten kleinen Läden und gemütlichen Cafés gesäumt.
+              <strong>Haus Hamburg</strong> liegt in der historischen <strong>Rathausstraße 3-5</strong>, einer der bedeutendsten Straßen in Leer. Diese Straße verbindet die Altstadt mit dem zentralen Marktplatz und ist von jahrhundertealten Gebäuden, charmanten kleinen Läden und gemütlichen Cafés gesäumt.
             </p>
             <p>
-              Die Rathausstraße hat eine lange Geschichte als Handelsstraße. Bereits im 18. Jahrhundert florierte hier das Geschäftsleben,
-              und viele der alten Kaufmannshäuser sind bis heute erhalten geblieben.
+              Die Rathausstraße hat eine lange Geschichte als Handelsstraße. Bereits im 18. Jahrhundert florierte hier das Geschäftsleben, und viele der alten Kaufmannshäuser sind bis heute erhalten geblieben.
             </p>
             <p>
-              In unmittelbarer Nähe von Haus Hamburg befindet sich das <strong>alte Rathaus</strong>, ein Wahrzeichen der Stadt mit beeindruckender Architektur.
-              Direkt daneben liegt das <strong>Heimatmuseum Leer</strong>, das spannende Einblicke in die Geschichte Ostfrieslands gibt.
+              In unmittelbarer Nähe von Haus Hamburg befindet sich das <strong>alte Rathaus</strong>, ein Wahrzeichen der Stadt mit beeindruckender Architektur. Direkt daneben liegt das <strong>Heimatmuseum Leer</strong>, das spannende Einblicke in die Geschichte Ostfrieslands gibt.
             </p>
             <p>
-              Besonders reizvoll ist ein Spaziergang entlang des <strong>Leeraner Hafens</strong>, der nur wenige Gehminuten entfernt liegt.
-              Hier kann man traditionelle Segelschiffe bestaunen, eine Hafenrundfahrt machen oder einfach die besondere Atmosphäre der historischen Hafenstadt genießen.
+              Besonders reizvoll ist ein Spaziergang entlang des <strong>Leeraner Hafens</strong>, der nur wenige Gehminuten entfernt liegt. Hier kann man traditionelle Segelschiffe bestaunen, eine Hafenrundfahrt machen oder einfach die besondere Atmosphäre der historischen Hafenstadt genießen.
             </p>
             <p>
-              Zudem befindet sich unweit des Restaurants das <strong>Börsenplatz-Viertel</strong>, ein lebendiges Viertel mit modernen Geschäften, Kulturveranstaltungen und saisonalen Märkten.
-              Die Mischung aus historischem Flair und lebendiger Stadtkultur macht Leer zu einem besonderen Ort.
+              Zudem befindet sich unweit des Restaurants das <strong>Börsenplatz-Viertel</strong>, ein lebendiges Viertel mit modernen Geschäften, Kulturveranstaltungen und saisonalen Märkten. Die Mischung aus historischem Flair und lebendiger Stadtkultur macht Leer zu einem besonderen Ort.
             </p>
             <p>
-              Wer sich für Architektur interessiert, wird auch die prächtigen <strong>Ostfriesischen Backsteinbauten</strong> bewundern, die die Straßen säumen.
-              Viele von ihnen stehen unter Denkmalschutz und erzählen die lange Geschichte der Region.
+              Wer sich für Architektur interessiert, wird auch die prächtigen <strong>Ostfriesischen Backsteinbauten</strong> bewundern, die die Straßen säumen. Viele von ihnen stehen unter Denkmalschutz und erzählen die lange Geschichte der Region.
             </p>
             <p>
-              Für Naturfreunde bietet sich ein Spaziergang entlang der <strong>Leda</strong> an, dem Fluss, der die Stadt durchzieht.
-              Hier kann man das ruhige Wasser genießen, den Hafenbetrieb beobachten und den Tag entspannt ausklingen lassen.
+              Für Naturfreunde bietet sich ein Spaziergang entlang der <strong>Leda</strong> an, dem Fluss, der die Stadt durchzieht. Hier kann man das ruhige Wasser genießen, den Hafenbetrieb beobachten und den Tag entspannt ausklingen lassen.
             </p>
           </div>
         </div>
       </section>
+
+      <section class="history-section">
+  <div class="section-content">
+    <div class="text">
+      <h2>Unsere Partnerschaft</h2>
+<p>
+  Haus Hamburg ist eng verbunden mit dem
+  <a class="partner-link" href="https://www.wagemann-schweiss-service.de/" target="_blank" rel="noopener noreferrer">
+    Wagemann Schweiß‑Service
+  </a>. Mit über 25 Jahren Erfahrung bietet der Wagemann Schweiß‑Service nicht nur hochwertige Schweißarbeiten, sondern auch ein umfassendes Sortiment an Schweißgasen, weiteren technischen Gasen sowie passendem Schweißzubehör. Diese Partnerschaft vereint Qualität, Tradition und Innovation und stärkt unser gemeinsames Engagement in der Region. Erfahren Sie mehr auf der Website.  <a class="partner-link" href="https://www.wagemann-schweiss-service.de/" target="_blank" rel="noopener noreferrer">
+    www.wagemann-schweiss-service.de
+  </a>.
+</p>
+    </div>
+  </div>
+</section>
 
     </div>
   </BasePage>
@@ -138,6 +139,50 @@ export default {
   name: "Ueber",
   components: {
     BasePage,
+  },
+  metaInfo: {
+    title: "Über uns – Haus Hamburg",
+    meta: [
+      {
+        name: "description",
+        content:
+          "Erfahren Sie die Geschichte von Haus Hamburg – ein Ort der Begegnung, Tradition und sozialem Engagement in Leer, Ostfriesland. Entdecken Sie auch unsere Partnerschaft mit Wagemann Schweiß-Service.",
+      },
+      {
+        property: "og:title",
+        content: "Über uns – Haus Hamburg",
+      },
+      {
+        property: "og:description",
+        content:
+          "Lesen Sie die Geschichte von Haus Hamburg und erfahren Sie, wie wir Tradition, Gastfreundschaft und soziales Engagement leben – in enger Partnerschaft mit Wagemann Schweiß-Service.",
+      },
+      {
+        property: "og:url",
+        content: "https://haus-hamburg-leer.de/ueber",
+      },
+      {
+        property: "og:type",
+        content: "website",
+      },
+      {
+        name: "twitter:card",
+        content: "summary_large_image",
+      },
+    ],
+    script: [
+      {
+        type: "application/ld+json",
+        json: {
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "name": "Über uns – Haus Hamburg",
+          "description":
+            "Erfahren Sie die Geschichte von Haus Hamburg – einem Ort der Begegnung, Tradition und sozialem Engagement in Leer, Ostfriesland. Entdecken Sie auch unsere Partnerschaft mit Wagemann Schweiß-Service.",
+          "url": "https://haus-hamburg-leer.de/ueber",
+        },
+      },
+    ],
   },
 };
 </script>
@@ -199,21 +244,27 @@ export default {
   text-align: center;
 }
 
+.partner-link {
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.partner-link:hover {
+  color: #0056b3;
+}
+
 /* Responsive Design */
 @media (min-width: 768px) {
   .history-container {
     max-width: 90vw;
   }
-
   .history-section .section-content {
     flex-direction: row;
     align-items: center;
   }
-
   .history-section {
     padding: 4rem;
   }
-
   .history-section:nth-child(even) .section-content {
     flex-direction: row-reverse;
   }

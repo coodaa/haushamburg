@@ -1,4 +1,3 @@
-<!-- src/views/Kontakt.vue -->
 <template>
   <BasePage
     imageSrc="/images/outside/haus-hamburg-leer-46.webp"
@@ -11,8 +10,7 @@
     parallaxImageSrc="/images/restaurant/haus-hamburg-leer-08.webp"
     parallaxImageAlt="Kontakt Parallax Bildbeschreibung"
   >
-
-        <ContactInfo />
+    <ContactInfo />
 
     <!-- Google Map -->
     <div class="map-container">
@@ -38,19 +36,60 @@
 import BasePage from "@/components/BasePage.vue";
 import ContactInfo from "../components/ContactInfo.vue";
 
-
 export default {
   name: "Kontakt",
   components: {
     BasePage,
     ContactInfo,
   },
+  metaInfo: {
+    title: "Kontakt – Haus Hamburg",
+    meta: [
+      {
+        name: "description",
+        content:
+          "Kontaktieren Sie Haus Hamburg in Leer, Ostfriesland – ob Fragen, Reservierungen oder besondere Wünsche. Wir freuen uns auf Ihre Nachricht!",
+      },
+      {
+        property: "og:title",
+        content: "Kontakt – Haus Hamburg",
+      },
+      {
+        property: "og:description",
+        content:
+          "Erreichen Sie uns für Reservierungen, Fragen oder besondere Wünsche. Haus Hamburg heißt Sie herzlich willkommen!",
+      },
+      {
+        property: "og:url",
+        content: "https://haus-hamburg-leer.de/kontakt",
+      },
+      {
+        property: "og:type",
+        content: "website",
+      },
+      {
+        name: "twitter:card",
+        content: "summary_large_image",
+      },
+    ],
+    script: [
+      {
+        type: "application/ld+json",
+        json: {
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "name": "Kontakt – Haus Hamburg",
+          "description":
+            "Kontaktieren Sie Haus Hamburg in Leer, Ostfriesland – ob Fragen, Reservierungen oder besondere Wünsche. Wir freuen uns auf Ihre Nachricht!",
+          "url": "https://haus-hamburg-leer.de/kontakt",
+        },
+      },
+    ],
+  },
 };
 </script>
 
 <style scoped>
-
-
 .map-container iframe {
   width: 100%;
   height: 45vh;
@@ -61,36 +100,31 @@ export default {
 .google-reviews {
   margin: 2em auto;
   padding: 1em;
-  font-size: 1em; /* Einheitliche Schriftgröße */
-  line-height: 1.5; /* Einheitlicher Zeilenabstand */
+  font-size: 1em;
+  line-height: 1.5;
 }
 
 .google-reviews h3 {
   margin-bottom: 1em;
   color: var(--blue);
-  font-size: 1.2em; /* Einheitliche Schriftgröße */
-  line-height: 1.2; /* Einheitlicher Zeilenabstand */
+  font-size: 1.2em;
+  line-height: 1.2;
 }
 
 .elfsight-app-993dc481-952b-4721-8494-6d5d6cf46578 {
   width: 100%;
-  height: auto; /* Dynamische Höhe */
-  min-height: 400px; /* Setzt eine minimale Höhe */
+  height: auto;
+  min-height: 400px;
   border: none;
-  transition: height 0.3s ease; /* Sanfter Übergang beim Anpassen der Höhe */
+  transition: height 0.3s ease;
 }
 
 /* Responsive Anpassungen */
 @media (min-width: 1024px) {
-
-
   .google-reviews .elfsight-app-993dc481-952b-4721-8494-6d5d6cf46578 {
-    height: auto; /* Entfernt die feste Höhe */
-    min-height: 600px; /* Größere minimale Höhe auf Desktop */
+    height: auto;
+    min-height: 600px;
   }
-
-
-
   .map-container {
     padding: 1em;
     box-shadow: 0;
@@ -98,31 +132,19 @@ export default {
 }
 
 @media (max-width: 768px) {
-
-
-
   .google-reviews .elfsight-app-993dc481-952b-4721-8494-6d5d6cf46578 {
-    height: auto; /* Entfernt die feste Höhe */
-    min-height: 500px; /* Anpassung auf Tablets */
+    height: auto;
+    min-height: 500px;
   }
-
   .map-container iframe {
     height: 300px;
   }
 }
 
 @media (max-width: 480px) {
-
-
-
-
-  /* Google Bewertungen auf mobile */
   .google-reviews .elfsight-app-993dc481-952b-4721-8494-6d5d6cf46578 {
-    height: auto; /* Entfernt die feste Höhe */
-    min-height: 30vh; /* Setzt eine minimale Höhe */
+    height: auto;
+    min-height: 30vh;
   }
-
-
-
 }
 </style>
