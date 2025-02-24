@@ -9,7 +9,7 @@
       <router-view :key="$route.fullPath" />
     </transition>
     <Footer />
-    <!-- Event-Binding: Wenn Cookies akzeptiert werden, wird loadGoogleAnalytics aufgerufen -->
+    <!-- CookieBanner sendet das "cookiesAccepted"-Event -->
     <CookieBanner @cookiesAccepted="loadGoogleAnalytics" />
   </div>
 </template>
@@ -32,17 +32,13 @@ export default {
         const images = el.querySelectorAll('img');
         const total = images.length;
         if (total === 0) {
-          if (typeof done === 'function') {
-            done();
-          }
+          if (typeof done === 'function') done();
           return;
         }
         let loaded = 0;
         const checkDone = () => {
           loaded++;
-          if (loaded >= total && typeof done === 'function') {
-            done();
-          }
+          if (loaded >= total && typeof done === 'function') done();
         };
 
         images.forEach(img => {
@@ -55,14 +51,12 @@ export default {
         });
         // Fallback, falls ein Bild zu lange lädt
         setTimeout(() => {
-          if (typeof done === 'function') {
-            done();
-          }
+          if (typeof done === 'function') done();
         }, 3000);
       }, 50);
     },
     loadGoogleAnalytics() {
-      // Prüfen, ob das GA-Script schon geladen wurde
+      // Prüfen, ob der GA-Code bereits geladen ist
       if (document.querySelector('script[src*="googletagmanager.com/gtag/js"]')) return;
 
       const script = document.createElement('script');
@@ -75,14 +69,14 @@ export default {
       window.gtag = gtag;
       gtag('js', new Date());
       gtag('config', 'G-2FVK4ZXYNM');
-    }
+    },
   },
   mounted() {
-    // Falls der Nutzer bereits zugestimmt hat, direkt GA laden
+    // Wenn der Nutzer bereits zugestimmt hat, GA sofort laden
     if (localStorage.getItem("cookiesAccepted") === "true") {
       this.loadGoogleAnalytics();
     }
-  }
+  },
 };
 </script>
 
@@ -100,6 +94,7 @@ export default {
 
 .fade-bounce-enter-active {
   animation: fadeInBounce 0.6s cubic-bezier(0.35, 1.5, 0.6, 1) forwards;
+  /* Hardware-Beschleunigung für mobile Browser */
   will-change: transform;
   transform: translate3d(0, 0, 0);
 }
@@ -117,6 +112,7 @@ export default {
   left: 0;
 }
 
+/* Einblend-Animation (mit Bounce) */
 @keyframes fadeInBounce {
   0% {
     opacity: 0;
@@ -134,6 +130,7 @@ export default {
   }
 }
 
+/* Ausblend-Animation */
 @keyframes fadeOut {
   0% {
     opacity: 1;

@@ -12,9 +12,20 @@
   >
     <ContactInfo />
 
-    <!-- Google Map -->
+    <!-- Google Map: Anzeige erst nach Zustimmung -->
     <div class="map-container">
+      <div v-if="!mapsConsent" class="map-placeholder">
+        <p>
+          Um Google Maps anzuzeigen, stimmen Sie bitte der Nutzung von externen Diensten zu.
+        </p>
+        <button @click="acceptMaps">Google Maps anzeigen</button>
+        <p class="privacy-note">
+          Weitere Informationen finden Sie in unserer
+          <a href="/datenschutz" target="_blank" rel="noopener noreferrer">Datenschutzerklärung</a>.
+        </p>
+      </div>
       <iframe
+        v-else
         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2388.492664061767!2d7.448253012889244!3d53.22694437213925!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47b64dc14ad3eaab%3A0x1184033be441089!2sHaus%20Hamburg!5e0!3m2!1sde!2sde!4v1738320525391!5m2!1sde!2sde"
         frameborder="0"
         allowfullscreen=""
@@ -41,6 +52,21 @@ export default {
   components: {
     BasePage,
     ContactInfo,
+  },
+  data() {
+    return {
+      mapsConsent: false,
+    };
+  },
+  mounted() {
+    if (localStorage.getItem("cookiesAccepted") === "true") {
+      this.mapsConsent = true;
+    }
+  },
+  methods: {
+    acceptMaps() {
+      this.mapsConsent = true;
+    },
   },
   metaInfo: {
     title: "Kontakt – Haus Hamburg",
@@ -90,10 +116,50 @@ export default {
 </script>
 
 <style scoped>
+.map-container {
+  position: relative;
+}
+
+/* Styling für das Google Maps Iframe */
 .map-container iframe {
   width: 100%;
   height: 45vh;
   border-radius: 20px;
+}
+
+/* Platzhalter-Stile */
+.map-placeholder {
+  width: 100%;
+  height: 45vh;
+  background-color: #eee;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1em;
+  text-align: center;
+}
+
+.map-placeholder button {
+  margin-top: 1em;
+  padding: 0.5em 1em;
+  border: none;
+  background-color: var(--gold);
+  color: var(--blue);
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.map-placeholder button:hover {
+  background-color: #d1a531;
+}
+
+.privacy-note {
+  margin-top: 1em;
+  font-size: 0.9rem;
+  color: var(--blue);
 }
 
 /* Google Bewertungen Styling */
@@ -122,7 +188,6 @@ export default {
 /* Responsive Anpassungen */
 @media (min-width: 1024px) {
   .google-reviews .elfsight-app-993dc481-952b-4721-8494-6d5d6cf46578 {
-    height: auto;
     min-height: 600px;
   }
   .map-container {
@@ -133,7 +198,6 @@ export default {
 
 @media (max-width: 768px) {
   .google-reviews .elfsight-app-993dc481-952b-4721-8494-6d5d6cf46578 {
-    height: auto;
     min-height: 500px;
   }
   .map-container iframe {
@@ -143,7 +207,6 @@ export default {
 
 @media (max-width: 480px) {
   .google-reviews .elfsight-app-993dc481-952b-4721-8494-6d5d6cf46578 {
-    height: auto;
     min-height: 30vh;
   }
 }
