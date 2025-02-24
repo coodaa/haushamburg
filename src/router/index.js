@@ -12,9 +12,12 @@ const Datenschutz = () => import("../views/Datenschutz.vue");
 const Stellenangebote = () => import("../views/Stellenangebote.vue");
 const NotFound = () => import("../views/NotFound.vue");
 
-// Neue Routen für Bestellung und Checkout
-const OrderPage = () => import("../views/OrderPage.vue");
-const CheckoutPage = () => import("../views/CheckoutPage.vue");
+// 🛒 Shop-Seiten
+const Checkout = () => import("../views/Checkout.vue");
+const ProductList = () => import("../views/ProductList.vue");
+const Shop = () => import("../views/Shop.vue");
+const ProductAdmin = () => import("../views/ProductAdmin.vue");
+
 
 const routes = [
   {
@@ -23,7 +26,8 @@ const routes = [
     component: Home,
     meta: {
       title: "Haus Hamburg - Startseite",
-      description: "Willkommen im Haus Hamburg!",
+      description:
+        "Willkommen im Haus Hamburg! Entdecken Sie unsere frischen Fischspezialitäten.",
     },
   },
   {
@@ -32,7 +36,7 @@ const routes = [
     component: Kontakt,
     meta: {
       title: "Kontakt - Haus Hamburg",
-      description: "Kontaktieren Sie uns!",
+      description: "Kontaktieren Sie uns für Reservierungen oder Fragen.",
     },
   },
   {
@@ -41,7 +45,8 @@ const routes = [
     component: Speisekarte,
     meta: {
       title: "Speisekarte - Haus Hamburg",
-      description: "Unsere leckere Speisekarte",
+      description:
+        "Entdecken Sie unsere leckere Speisekarte mit frischen Fischgerichten und regionalen Spezialitäten.",
     },
   },
   {
@@ -50,7 +55,8 @@ const routes = [
     component: Catering,
     meta: {
       title: "Catering - Haus Hamburg",
-      description: "Unser Catering-Service",
+      description:
+        "Unser Catering-Service für Ihr Event – Qualität und Genuss für Ihre Gäste.",
     },
   },
   {
@@ -59,7 +65,8 @@ const routes = [
     component: Ueber,
     meta: {
       title: "Über uns - Haus Hamburg",
-      description: "Über unser Restaurant",
+      description:
+        "Erfahren Sie mehr über unser Restaurant und unsere Philosophie.",
     },
   },
   {
@@ -68,7 +75,8 @@ const routes = [
     component: Reservierung,
     meta: {
       title: "Reservierung - Haus Hamburg",
-      description: "Reservieren Sie jetzt!",
+      description:
+        "Reservieren Sie einfach online einen Tisch in unserem Restaurant.",
     },
   },
   {
@@ -77,7 +85,8 @@ const routes = [
     component: Impressum,
     meta: {
       title: "Impressum - Haus Hamburg",
-      description: "Impressum unserer Website",
+      description:
+        "Rechtliche Hinweise zu unserer Website und unserem Restaurant.",
     },
   },
   {
@@ -86,7 +95,7 @@ const routes = [
     component: Datenschutz,
     meta: {
       title: "Datenschutz - Haus Hamburg",
-      description: "Datenschutzbestimmungen",
+      description: "Unsere Datenschutzbestimmungen zum Schutz Ihrer Daten.",
     },
   },
   {
@@ -95,39 +104,64 @@ const routes = [
     component: Stellenangebote,
     meta: {
       title: "Stellenangebote - Haus Hamburg",
-      description: "Offene Stellen",
+      description: "Offene Stellen – Werden Sie Teil unseres Teams!",
     },
   },
-  // Neue Routen:
+
+  // 🛒 Shop-Seiten
   {
-    path: "/order",
-    name: "order",
-    component: OrderPage,
+    path: "/shop",
+    name: "shop",
+    component: Shop,
     meta: {
-      title: "Online Bestellung - Haus Hamburg",
-      description: "Wählen Sie Ihre Gerichte aus und bestellen Sie online.",
+      title: "Online-Shop - Haus Hamburg",
+      description: "Bestellen Sie frische Fischgerichte bequem online.",
+    },
+  },
+
+  {
+    path: "/productlist",
+    name: "productlist",
+    component: ProductList,
+    meta: {
+      title: "Produkte - Haus Hamburg",
+      description: "Unsere Speisen und Getränke.",
     },
   },
   {
     path: "/checkout",
     name: "checkout",
-    component: CheckoutPage,
+    component: Checkout,
     meta: {
       title: "Checkout - Haus Hamburg",
-      description: "Überprüfen Sie Ihren Warenkorb und bezahlen Sie online.",
+      description:
+        "Überprüfen Sie Ihren Warenkorb und bezahlen Sie sicher online.",
     },
   },
+
+  {
+    path: "/admin",
+    name: "admin",
+    component: ProductAdmin,
+    meta: {
+      title: "Produktverwaltung - Haus Hamburg",
+      description: "Füge neue Produkte zum Online-Shop hinzu.",
+    },
+  },
+
+  // 404 Fehlerseite
   {
     path: "/:pathMatch(.*)*",
     name: "notfound",
     component: NotFound,
     meta: {
       title: "Seite nicht gefunden - Haus Hamburg",
-      description: "404 - Seite nicht gefunden",
+      description: "404 - Diese Seite existiert nicht.",
     },
   },
 ];
 
+// Router erstellen
 const router = createRouter({
   history: createWebHistory(),
   routes,
@@ -136,7 +170,7 @@ const router = createRouter({
   },
 });
 
-// Dynamischen Titel setzen (global)
+// Dynamischen Titel setzen (SEO)
 router.beforeEach((to, from, next) => {
   document.title = to.meta.title || "Haus Hamburg";
   next();

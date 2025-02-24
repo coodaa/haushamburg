@@ -12,20 +12,19 @@ if (!process.env.FIREBASE_SERVICE_ACCOUNT_KEY) {
 let serviceAccount;
 try {
   serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT_KEY);
-  // Ersetze alle Vorkommen von "\\n" durch echte Zeilenumbrüche
   serviceAccount.private_key = serviceAccount.private_key.replace(/\\n/g, '\n');
 } catch (error) {
   console.error("❌ Fehler beim Parsen von FIREBASE_SERVICE_ACCOUNT_KEY", error);
   process.exit(1);
 }
 
-// Initialisiere die Firebase-App (für Cloud Firestore ist kein databaseURL notwendig)
+// Initialisiere Firebase Admin
 admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount)
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: "https://haus-hamburg.europe-west1.firebasedatabase.app" // Deine Firebase DB-URL
 });
 
-// Erhalte den Firestore-Client
+// Firestore-Client erhalten
 const db = admin.firestore();
-const auth = admin.auth();
 
-module.exports = { admin, db, auth };
+module.exports = { admin, db };
