@@ -10,7 +10,7 @@
     parallaxImageSrc="/images/restaurant/haus-hamburg-leer-08.webp"
   >
     <!-- 🔥 Titel für Beliebte Produkte -->
-    <h2 class="swiper-title">Unsere beliebtesten Produkte</h2>
+    <h2 class="big-title-3">Unsere beliebtesten Produkte</h2>
 
     <!-- 🔥 Swiper (Beliebte Produkte) -->
     <div class="swiper-section">
@@ -38,11 +38,14 @@
               <p class="description">{{ product.description }}</p>
               <p class="price"><strong>{{ formatPrice(product.price) }}</strong></p>
 
-              <p v-if="product.zusatzstoffe && product.zusatzstoffe.length" class="zusatzstoffe">
-                Zusatzstoffe: {{ product.zusatzstoffe.join(', ') }}
+              <p v-if="product.zusatzstoffe?.length" class="zusatzstoffe">
+                Zusatzstoffe: {{ product.zusatzstoffe.join(", ") }}
               </p>
 
-              <button class="cta-button" @click="addToCart(product)">🛒</button>
+              <button class="cta-button" @click="addToCart(product)">
+  <i class="fas fa-shopping-cart"></i>
+  In den Warenkorb
+</button>
             </div>
           </div>
         </swiper-slide>
@@ -86,13 +89,18 @@
           <div class="product-info">
             <h3>{{ product.name }}</h3>
             <p class="description">{{ product.description }}</p>
-            <p class="price"><strong>{{ formatPrice(product.price) }}</strong></p>
-
-            <p v-if="product.zusatzstoffe && product.zusatzstoffe.length" class="zusatzstoffe">
-              Zusatzstoffe: {{ product.zusatzstoffe.join(', ') }}
+            <p class="price">
+              <strong>{{ formatPrice(product.price) }}</strong>
             </p>
 
-            <button class="cta-button" @click="addToCart(product)">🛒</button>
+            <p v-if="product.zusatzstoffe?.length" class="zusatzstoffe">
+              Zusatzstoffe: {{ product.zusatzstoffe.join(", ") }}
+            </p>
+
+            <button class="cta-button" @click="addToCart(product)">
+  <i class="fas fa-shopping-cart"></i>
+  In den Warenkorb
+</button>
           </div>
         </div>
       </div>
@@ -100,7 +108,11 @@
 
     <!-- 🔼 Zurück nach oben Button -->
     <transition name="fade">
-      <button v-if="showScrollTop" class="scroll-top-btn" @click="scrollToTop">
+      <button
+        v-if="showScrollTop"
+        class="scroll-top-btn"
+        @click="scrollToTop"
+      >
         ⬆
       </button>
     </transition>
@@ -142,22 +154,23 @@ export default {
       showScrollTop.value = y > 200;
     }
 
-    // Keine "Beliebt" Kategorie mehr
+    // Kategorien (ohne "Beliebt")
     const categories = ["Fisch", "Fleisch", "Vegetarisch", "Desserts", "Getränke"];
 
+    // Beliebte Produkte
     const popularProducts = computed(() =>
-  products.value.filter((p) =>
-    [
-      "Kibbelinge",
-      "Ras Fritten",
-      "Rahmschnitzel",
-      "Fischbrötchen",
-      "warmer Schokoladenkuchen",
-      "Fanta 0.5l",
-      "Haus Hamburg Hauswein 0.75l"
-    ].includes(p.name)
-  )
-);
+      products.value.filter((p) =>
+        [
+          "Kibbelinge",
+          "Ras Fritten",
+          "Rahmschnitzel",
+          "Fischbrötchen",
+          "warmer Schokoladenkuchen",
+          "Fanta 0.5l",
+          "Haus Hamburg Hauswein 0.75l",
+        ].includes(p.name)
+      )
+    );
 
     // Produkte je Kategorie
     const productsByCategory = (cat) => {
@@ -167,9 +180,10 @@ export default {
     // In den Warenkorb
     const addToCart = (product) => {
       console.log("🛒 Produkt hinzugefügt:", product);
+      // Hier könntest du z. B. vuex oder pinia-Warenkorb-Logik aufrufen
     };
 
-    // Preis formatieren (z. B. 19,50 €)
+    // Preis formatieren
     const formatPrice = (val) => {
       return val.toFixed(2).replace(".", ",") + " €";
     };
@@ -192,9 +206,7 @@ export default {
     };
 
     // Swiper-Einstellungen
-    const slidesPerView = computed(() => {
-      return window.innerWidth < 768 ? 1.3 : 3;
-    });
+    const slidesPerView = computed(() => (window.innerWidth < 768 ? 1.3 : 3));
 
     return {
       products,
@@ -218,17 +230,16 @@ export default {
 </script>
 
 <style scoped>
-/* Optionaler Titel über dem Swiper */
-.swiper-title {
+/* Überschrift über dem Swiper */
+.big-title-3 {
   text-align: center;
-  font-size: 1.6rem;
-  color: var(--blue);
-  margin: 1.5rem auto 0.5rem;
-  font-family: var(--font-thunder);
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
   text-transform: uppercase;
+  color: var(--blue);
 }
 
-/* Fade Transition */
+/* Fade Transition (pinned + scroll-top) */
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.3s;
@@ -238,14 +249,13 @@ export default {
   opacity: 0;
 }
 
-/* scroll-margin-top: gegen zu weites Scrollen */
+/* Offset beim Scrollen */
 .category-section {
-  scroll-margin-top: 16rem;
+  scroll-margin-top: 16rem; /* Damit man nicht zu hoch scrollt */
   margin-bottom: 40px;
-  padding: 0 10px;
 }
 
-/* Pinned Category Heading */
+/* Gehefteter Kategorie-Titel */
 .pinned-category-heading {
   text-align: center;
   font-size: 1.2rem;
@@ -255,7 +265,7 @@ export default {
   text-transform: uppercase;
 }
 
-/* pinnedCategoryTabs */
+/* Das "angepinnte" Category Panel */
 .pinned-category-tabs {
   position: fixed;
   top: 5em;
@@ -270,10 +280,9 @@ export default {
   min-width: 93vw;
 }
 
-/* Größere Bildschirme => top + margins anpassen */
 @media (min-width: 1200px) {
   .pinned-category-tabs {
-    top: 7em;
+    top: 7em; /* Größerer Versatz bei Desktop */
     min-width: 60vw;
   }
   .category-section {
@@ -281,7 +290,7 @@ export default {
   }
 }
 
-/* category-tabs container */
+/* Container für die Kategorietabs */
 .category-tabs {
   display: flex;
   flex-wrap: wrap;
@@ -312,7 +321,7 @@ export default {
   color: white;
 }
 
-/* category-title */
+/* Titel pro Kategorie */
 .category-title {
   text-align: center;
   font-size: 1.6rem;
@@ -320,7 +329,7 @@ export default {
   color: var(--blue);
 }
 
-/* SWIPER */
+/* Swiper-Wrapper */
 .swiper-section {
   max-width: 1200px;
   margin: 0 auto 30px;
@@ -331,7 +340,7 @@ export default {
   margin: 0 auto;
 }
 
-/* GRID */
+/* Gitter der Produktkacheln */
 .product-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -340,23 +349,23 @@ export default {
   margin: 0 auto;
 }
 
-/* PRODUCT-CARD */
+/* Produktkachel */
 .product-card {
   width: 100%;
   background: white;
-  border-radius: 8px;
-  padding: 8px;
+  border-radius: 20px;
+  padding: 1em;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  min-height: 220px;
+  min-height: 20em;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 .image-container {
   width: 100%;
-  height: 110px;
+  height: 10em;
   overflow: hidden;
-  border-radius: 5px;
+  border-radius: 20px;
   background: #f2f2f2;
   display: flex;
   align-items: center;
@@ -393,24 +402,17 @@ export default {
   margin-bottom: 6px;
 }
 
-/* CTA-Button */
+/* CTA-Button => zentrieren + Text statt Icon */
 .cta-button {
-  padding: 6px 8px;
-  background: var(--gold);
-  border: 1px solid var(--blue);
-  border-radius: 5px;
-  color: var(--blue);
-  font-size: 0.8rem;
-  cursor: pointer;
-  transition: 0.2s;
-  width: auto;
+  margin: 0 auto;
+  font-size: 1rem;
 }
 .cta-button:hover {
   background: var(--blue);
   color: white;
 }
 
-/* SCROLL-TOP */
+/* Scroll-to-top Button */
 .scroll-top-btn {
   position: fixed;
   right: 15px;
