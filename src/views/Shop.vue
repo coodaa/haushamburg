@@ -240,7 +240,7 @@ export default {
 
 /* scroll-margin-top: gegen zu weites Scrollen */
 .category-section {
-  scroll-margin-top: 8rem;
+  scroll-margin-top: 16rem;
   margin-bottom: 40px;
   padding: 0 10px;
 }
