@@ -9,6 +9,9 @@
     flowText="Hier finden Sie eine Auswahl unserer köstlichen Gerichte, die Sie ganz einfach bestellen können."
     parallaxImageSrc="/images/restaurant/haus-hamburg-leer-08.webp"
   >
+    <!-- 🔥 Titel für Beliebte Produkte -->
+    <h2 class="swiper-title">Unsere beliebtesten Produkte</h2>
+
     <!-- 🔥 Swiper (Beliebte Produkte) -->
     <div class="swiper-section">
       <swiper
@@ -20,6 +23,7 @@
         pagination
         class="my-swiper"
       >
+        <!-- Swiper-Slides -->
         <swiper-slide
           v-for="product in popularProducts"
           :key="product.id"
@@ -33,12 +37,11 @@
               <h3>{{ product.name }}</h3>
               <p class="description">{{ product.description }}</p>
               <p class="price"><strong>{{ formatPrice(product.price) }}</strong></p>
-              <p
-                v-if="product.zusatzstoffe && product.zusatzstoffe.length"
-                class="zusatzstoffe"
-              >
+
+              <p v-if="product.zusatzstoffe && product.zusatzstoffe.length" class="zusatzstoffe">
                 Zusatzstoffe: {{ product.zusatzstoffe.join(', ') }}
               </p>
+
               <button class="cta-button" @click="addToCart(product)">🛒</button>
             </div>
           </div>
@@ -49,9 +52,7 @@
     <!-- 📌 Kategorie-Leiste (pinned), nur sichtbar bei pinnedVisible -->
     <transition name="fade">
       <div v-if="pinnedVisible" class="pinned-category-tabs">
-        <!-- Kleiner Titel oberhalb der Tabs -->
         <h3 class="pinned-category-heading">Kategorien</h3>
-
         <div class="category-tabs">
           <button
             v-for="cat in categories"
@@ -86,12 +87,11 @@
             <h3>{{ product.name }}</h3>
             <p class="description">{{ product.description }}</p>
             <p class="price"><strong>{{ formatPrice(product.price) }}</strong></p>
-            <p
-              v-if="product.zusatzstoffe && product.zusatzstoffe.length"
-              class="zusatzstoffe"
-            >
+
+            <p v-if="product.zusatzstoffe && product.zusatzstoffe.length" class="zusatzstoffe">
               Zusatzstoffe: {{ product.zusatzstoffe.join(', ') }}
             </p>
+
             <button class="cta-button" @click="addToCart(product)">🛒</button>
           </div>
         </div>
@@ -100,11 +100,7 @@
 
     <!-- 🔼 Zurück nach oben Button -->
     <transition name="fade">
-      <button
-        v-if="showScrollTop"
-        class="scroll-top-btn"
-        @click="scrollToTop"
-      >
+      <button v-if="showScrollTop" class="scroll-top-btn" @click="scrollToTop">
         ⬆
       </button>
     </transition>
@@ -126,43 +122,45 @@ export default {
   components: { BasePage, Swiper, SwiperSlide },
   setup() {
     const products = ref([]);
-    const selectedCategory = ref("Beliebt");
+    const selectedCategory = ref("");
     const categoryRefs = {};
 
-    // controlling pinned & scrollTop
+    // Steuerung für angepinnte Tabs + ScrollToTop
     const pinnedVisible = ref(false);
     const showScrollTop = ref(false);
 
     onMounted(async () => {
       products.value = await fetchProducts();
-
       window.addEventListener("scroll", handleScroll);
     });
 
     function handleScroll() {
       const y = window.scrollY;
-      // beliebige thresholds
+      // Abhängig von der Bildschirmbreite
       const threshold = window.innerWidth < 768 ? 800 : 1500;
-
       pinnedVisible.value = y > threshold;
       showScrollTop.value = y > 200;
     }
 
-    // Deine Kategorien
-    const categories = ["Beliebt", "Fisch", "Fleisch", "Vegetarisch", "Desserts", "Getränke"];
+    // Keine "Beliebt" Kategorie mehr
+    const categories = ["Fisch", "Fleisch", "Vegetarisch", "Desserts", "Getränke"];
 
-    // Beliebte Produkte
     const popularProducts = computed(() =>
-      products.value.filter((p) =>
-        ["Kibbelinge", "Ras Fritten", "Rahmschnitzel", "Fischbrötchen"].includes(p.name)
-      )
-    );
+  products.value.filter((p) =>
+    [
+      "Kibbelinge",
+      "Ras Fritten",
+      "Rahmschnitzel",
+      "Fischbrötchen",
+      "warmer Schokoladenkuchen",
+      "Fanta 0.5l",
+      "Haus Hamburg Hauswein 0.75l"
+    ].includes(p.name)
+  )
+);
 
-    // Filter pro Kategorie
+    // Produkte je Kategorie
     const productsByCategory = (cat) => {
-      if (cat === "Beliebt") {
-        return popularProducts.value;
-      }
       return products.value.filter((prod) => prod.category === cat);
     };
 
@@ -171,12 +169,12 @@ export default {
       console.log("🛒 Produkt hinzugefügt:", product);
     };
 
-    // Preis formatieren
+    // Preis formatieren (z. B. 19,50 €)
     const formatPrice = (val) => {
       return val.toFixed(2).replace(".", ",") + " €";
     };
 
-    // Refs + Scroll
+    // Scroll + Refs
     const setCategoryRef = (cat) => (el) => {
       categoryRefs[cat] = el;
     };
@@ -188,12 +186,12 @@ export default {
       }
     };
 
-    // scrollToTop
+    // Scroll to Top
     const scrollToTop = () => {
       window.scrollTo({ top: 0, behavior: "smooth" });
     };
 
-    // Swiper
+    // Swiper-Einstellungen
     const slidesPerView = computed(() => {
       return window.innerWidth < 768 ? 1.3 : 3;
     });
@@ -220,6 +218,16 @@ export default {
 </script>
 
 <style scoped>
+/* Optionaler Titel über dem Swiper */
+.swiper-title {
+  text-align: center;
+  font-size: 1.6rem;
+  color: var(--blue);
+  margin: 1.5rem auto 0.5rem;
+  font-family: var(--font-thunder);
+  text-transform: uppercase;
+}
+
 /* Fade Transition */
 .fade-enter-active,
 .fade-leave-active {
@@ -230,15 +238,14 @@ export default {
   opacity: 0;
 }
 
-/* Scroll-Offset gegen zu weites Scrollen
-   => Machen wir per scroll-margin-top */
+/* scroll-margin-top: gegen zu weites Scrollen */
 .category-section {
-  scroll-margin-top: 8rem; /* offset für pinnedCategory + Navbar */
+  scroll-margin-top: 8rem;
   margin-bottom: 40px;
   padding: 0 10px;
 }
 
-/* Kleiner „Kategorien“-Titel in pinned */
+/* Pinned Category Heading */
 .pinned-category-heading {
   text-align: center;
   font-size: 1.2rem;
@@ -248,10 +255,10 @@ export default {
   text-transform: uppercase;
 }
 
-/* pinnedCategory selbst */
+/* pinnedCategoryTabs */
 .pinned-category-tabs {
   position: fixed;
-  top: 5em; /* anpassen */
+  top: 5em;
   left: 50%;
   transform: translateX(-50%);
   z-index: 2000;
@@ -266,9 +273,8 @@ export default {
 /* Größere Bildschirme => top + margins anpassen */
 @media (min-width: 1200px) {
   .pinned-category-tabs {
-    top: 7em; /* oder 8em, je nach Navbar */
+    top: 7em;
     min-width: 60vw;
-
   }
   .category-section {
     scroll-margin-top: 16rem;
@@ -283,7 +289,7 @@ export default {
   justify-content: center;
 }
 
-/* pillenartige Buttons */
+/* Pillen-Buttons */
 .category-tabs button {
   background: rgba(255, 255, 255, 0.65);
   backdrop-filter: blur(4px);
@@ -306,7 +312,7 @@ export default {
   color: white;
 }
 
-/* Normaler stuff */
+/* category-title */
 .category-title {
   text-align: center;
   font-size: 1.6rem;
