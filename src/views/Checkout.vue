@@ -6,7 +6,7 @@
     titleMain="Bezahlen"
     subtitle="Überprüfen Sie Ihre Bestellung und wählen Sie Ihre Zahlungsmethode"
     heading="Checkout"
-    flowText="Bitte überprüfen Sie Ihre Bestellung, füllen Sie Ihre Adressdaten aus und wählen Sie zwischen Stripe-Zahlung (Karte, Apple Pay, Google Pay, etc.) oder PayPal."
+    flowText="Bitte überprüfen Sie Ihre Bestellung, füllen Sie Ihre Adressdaten aus und wählen Sie zwischen Stripe-Zahlung (inkl. Kreditkarte, Apple Pay, Google Pay, etc.) oder PayPal."
     parallaxImageSrc="/images/checkout/checkout-parallax.webp"
   >
     <div class="checkout-container">
@@ -62,11 +62,14 @@
 
       <!-- Stripe Payment Element -->
       <div class="payment-section">
-        <h2 class="section-title">Zahlungsinformationen</h2>
+        <h2 class="section-title">Zahlungsinformationen (Stripe)</h2>
         <div id="payment-element" class="payment-element"></div>
         <button class="checkout-btn" @click="handleStripePayment">
-          Hier bezahlen
+          Mit Stripe bezahlen
         </button>
+        <p class="info-note">
+          Hinweis: Apple Pay, Google Pay und andere Zahlungsmethoden werden nur angezeigt, wenn Ihre Domain verifiziert ist und über HTTPS aufgerufen wird.
+        </p>
       </div>
 
       <!-- Oder Option: PayPal -->
@@ -143,68 +146,55 @@ export default {
       paymentElement = elements.create("payment");
       paymentElement.mount("#payment-element");
 
+      // PayPal Button initialisieren (Stripe und PayPal können parallel angeboten werden)
       if (window.paypal) {
-  window.paypal.Buttons({
-    fundingSource: window.paypal.FUNDING.PAYPAL, // Erzwingt, dass nur PayPal verwendet wird
-    createOrder: async (data, actions) => {
-      const orderRes = await fetch("/api/create-paypal-order", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          items: cartStore.items,
-          total: totalPrice.value,
-          address: address.value,
-        }),
-      });
-      const orderData = await orderRes.json();
-      if (orderData.error) {
-        message.value = orderData.error;
-        throw new Error(orderData.error);
+        window.paypal.Buttons({
+          fundingSource: window.paypal.FUNDING.PAYPAL,
+          createOrder: async (data, actions) => {
+            const orderRes = await fetch("/api/create-paypal-order", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                items: cartStore.items,
+                total: totalPrice.value,
+                address: address.value,
+              }),
+            });
+            const orderData = await orderRes.json();
+            if (orderData.error) {
+              message.value = orderData.error;
+              throw new Error(orderData.error);
+            }
+            return orderData.id;
+          },
+          onApprove: async (data, actions) => {
+            const capture = await actions.order.capture();
+            console.log("PayPal Capture:", capture);
+            cartStore.clearCart();
+            window.location.href = "/checkout-success";
+          },
+          onError: (err) => {
+            message.value = "PayPal Fehler: " + err;
+            console.error("PayPal Fehler:", err);
+          },
+        }).render("#paypal-button-container");
+      } else {
+        console.error("PayPal SDK wurde nicht geladen.");
       }
-      return orderData.id;
-    },
-    onApprove: async (data, actions) => {
-      const capture = await actions.order.capture();
-      console.log("PayPal Capture:", capture);
-      cartStore.clearCart();
-      window.location.href = "/checkout-success";
-    },
-    onError: (err) => {
-      message.value = "PayPal Fehler: " + err;
-      console.error("PayPal Fehler:", err);
-    },
-  }).render("#paypal-button-container");
-} else {
-  console.error("PayPal SDK wurde nicht geladen.");
-}
-
-
-
-
     });
 
     const handleStripePayment = async () => {
       message.value = "";
+      // Hier nutzen wir ausschließlich das Payment Element – Stripe holt automatisch die eingegebenen Zahlungsdaten
       const { error } = await stripe.confirmPayment({
         clientSecret: clientSecret.value,
         confirmParams: {
           return_url: window.location.origin + "/checkout-success",
-          payment_method_data: {
-            billing_details: {
-              name: address.value.name,
-              phone: address.value.phone,
-              address: {
-                line1: address.value.street,
-                postal_code: address.value.postalCode,
-                city: address.value.city,
-                country: address.value.country,
-              },
-            },
-          },
         },
       });
       if (error) {
         message.value = error.message;
+        console.error("Stripe Confirm Payment Error:", error);
       }
     };
 
@@ -227,7 +217,7 @@ export default {
   padding: 1rem;
   background: #fff;
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .section-title {
@@ -354,5 +344,12 @@ export default {
   color: red;
   text-align: center;
   margin-top: 1rem;
+}
+
+.info-note {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 0.5rem;
 }
 </style>
