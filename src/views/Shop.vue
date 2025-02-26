@@ -34,7 +34,7 @@
             </div>
             <div class="product-info common-info">
               <h3>{{ product.name }}</h3>
-              <p class="description">{{ product.description }}</p>
+              <p class="description-swiper">{{ product.description }}</p>
               <p v-if="product.zusatzstoffe && product.zusatzstoffe.length" class="zusatzstoffe">
                 Zusatzstoffe: {{ product.zusatzstoffe.join(", ") }}
               </p>
@@ -115,12 +115,14 @@
         </div>
       </div>
     </div>
-
-    <!-- Zurück nach oben Button -->
-    <transition name="fade">
-      <button v-if="showScrollTop" class="scroll-top-btn" @click="scrollToTop">⬆</button>
-    </transition>
   </BasePage>
+
+  <!-- Warenkorb-Overlay -->
+  <button class="open-cart-btn" @click="cartVisible = true">
+    <i class="fas fa-shopping-cart"></i>
+    <span v-if="itemsCount > 0" class="cart-badge">{{ itemsCount }}</span>
+  </button>
+  <CartOverlay :visible="cartVisible" @close="cartVisible = false" />
 </template>
 
 <script>
@@ -132,10 +134,13 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import BasePage from "@/components/BasePage.vue";
 import staticProducts from "@/data/products.json";
+import CartOverlay from "@/components/CartOverlay.vue";
+import { useCartStore } from "@/stores/cart";
 
 export default {
-  components: { BasePage, Swiper, SwiperSlide },
+  components: { BasePage, Swiper, SwiperSlide, CartOverlay },
   setup() {
+    const cartStore = useCartStore();
     const products = ref(staticProducts);
     const selectedCategory = ref("");
     const categoryRefs = {};
@@ -146,7 +151,7 @@ export default {
     const showLeftArrow = ref(false);
     const showRightArrow = ref(false);
 
-    // Mengensteuerung pro Produkt (Standard: 1)
+    // Mengensteuerung (für Anzeige in den Karten)
     const quantities = ref({});
     products.value.forEach(product => {
       if (!quantities.value[product.name]) {
@@ -162,6 +167,18 @@ export default {
       }
     };
     const getQuantity = (product) => quantities.value[product.name] || 1;
+
+    const addToCart = (product) => {
+      // Füge Produkt mitsamt der aktuellen Menge dem Warenkorb-Store hinzu
+      cartStore.addItemWithQuantity(product, getQuantity(product));
+      // Overlay kurz einblenden (z. B. 3 Sekunden)
+      cartVisible.value = true;
+      setTimeout(() => {
+        cartVisible.value = false;
+      }, 3000);
+    };
+
+    const formatPrice = (val) => val.toFixed(2).replace(".", ",") + " €";
 
     const handleScroll = () => {
       const y = window.scrollY;
@@ -240,7 +257,6 @@ export default {
     };
 
     const slidesPerView = computed(() => (window.innerWidth < 768 ? 1.3 : 3));
-
     const categories = ["Fisch", "Fleisch", "Vegetarisch", "Desserts", "Getränke"];
 
     const popularProducts = computed(() =>
@@ -260,11 +276,11 @@ export default {
     const productsByCategory = (cat) =>
       products.value.filter((prod) => prod.category === cat);
 
-    const addToCart = (product) => {
-      console.log("Produkt hinzugefügt:", product, "Menge:", getQuantity(product));
-    };
-
-    const formatPrice = (val) => val.toFixed(2).replace(".", ",") + " €";
+    // Steuerung für das Warenkorb-Overlay
+    const cartVisible = ref(false);
+    const itemsCount = computed(() =>
+      cartStore.items.reduce((acc, item) => acc + item.quantity, 0)
+    );
 
     onMounted(() => {
       window.addEventListener("scroll", handleScroll);
@@ -296,16 +312,17 @@ export default {
       updateArrowVisibility,
       increaseQty,
       decreaseQty,
-      getQuantity
+      getQuantity,
+      cartVisible,
+      itemsCount,
     };
   },
 };
 </script>
 
 <style scoped>
-/* Mobile-first */
+/* Basis-Stile für den Shop */
 
-/* Überschrift */
 .big-title-3 {
   text-align: center;
   margin-top: 1.5rem;
@@ -314,7 +331,6 @@ export default {
   color: var(--blue);
 }
 
-/* Fade Transition */
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.3s;
@@ -324,13 +340,11 @@ export default {
   opacity: 0;
 }
 
-/* Kategorie-Sektion */
 .category-section {
   scroll-margin-top: 16rem;
   margin-bottom: 40px;
 }
 
-/* Kategorie-Titel */
 .category-title {
   text-align: center;
   font-size: 1.6rem;
@@ -338,7 +352,6 @@ export default {
   color: var(--blue);
 }
 
-/* Pinned Kategorie Panel */
 .pinned-category-tabs {
   position: fixed;
   top: 5em;
@@ -354,13 +367,11 @@ export default {
   max-width: 92.5vw;
 }
 
-/* Wrapper für Kategorie-Tabs inkl. Pfeile */
 .category-tabs-wrapper {
   display: flex;
   align-items: center;
 }
 
-/* Kategorie-Tabs: horizontal scrollbar mit Snap */
 .category-tabs {
   white-space: nowrap;
   overflow-x: auto;
@@ -393,7 +404,6 @@ export default {
   color: white;
 }
 
-/* Pfeilbuttons */
 .scroll-arrow {
   background: var(--blue);
   color: white;
@@ -408,7 +418,6 @@ export default {
   margin: 0 0.5rem;
 }
 
-/* Swiper-Wrapper */
 .swiper-section {
   max-width: 1200px;
   margin: 0 auto 30px;
@@ -418,7 +427,6 @@ export default {
   margin: 0 auto;
 }
 
-/* Produkt-Gitter */
 .product-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -427,7 +435,6 @@ export default {
   margin: 0 auto;
 }
 
-/* Produktkachel – einheitliche Höhe durch Flexbox */
 .product-card {
   display: flex;
   flex-direction: column;
@@ -439,7 +446,6 @@ export default {
   min-height: 20em;
 }
 
-/* Bildbereich fix */
 .image-container {
   flex: 0 0 auto;
   height: 7em;
@@ -456,7 +462,6 @@ export default {
   object-fit: cover;
 }
 
-/* Einheitliche Textbereiche in .product-info */
 .product-info {
   flex: 1;
   display: flex;
@@ -495,7 +500,7 @@ export default {
   margin-bottom: 1em;
 }
 
-/* Neuer unterer Bereich in .common-info (für beide Varianten) */
+/* Gemeinsamer unterer Bereich in .common-info */
 .common-info .info-bottom {
   display: flex;
   justify-content: space-between;
@@ -533,11 +538,39 @@ export default {
 .cta-button {
   margin: 0 auto;
   font-size: 1rem;
-  margin-bottom: 1em;
+  margin-bottom: 1.5em;
 }
 .cta-button:hover {
   background: var(--blue);
   color: white;
+}
+
+/* Warenkorb-Overlay-Button (fix am unteren rechten Bildschirmrand) */
+.open-cart-btn {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  background-color: var(--blue);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1500;
+}
+.open-cart-btn .cart-badge {
+  position: absolute;
+  top: -0.3rem;
+  right: -0.3rem;
+  background-color: red;
+  color: #fff;
+  font-size: 0.7rem;
+  border-radius: 50%;
+  padding: 0.1rem 0.3rem;
 }
 
 /* Scroll-to-top Button */
