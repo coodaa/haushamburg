@@ -35,9 +35,8 @@
 
 <script>
 import { computed } from "vue";
-// Hier gehst du davon aus, dass du einen Warenkorb-Store nutzt, z.B. mit Pinia.
-// Beispielhaft importieren wir hier einen fiktiven Store:
 import { useCartStore } from "@/stores/cart";
+import { useRouter } from "vue-router";
 
 export default {
   name: "CartOverlay",
@@ -49,6 +48,7 @@ export default {
   },
   setup() {
     const cartStore = useCartStore();
+    const router = useRouter();
 
     const cartItems = computed(() => cartStore.items);
     const totalPrice = computed(() =>
@@ -71,17 +71,9 @@ export default {
 
     const formatPrice = (val) => val.toFixed(2).replace(".", ",") + " €";
 
-    const checkout = async () => {
-      // Beispiel: Sende die Warenkorbdaten an deinen Backend-Endpunkt für Stripe-Checkout
-      const response = await fetch("/api/create-checkout-session", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ items: cartStore.items }),
-      });
-      const session = await response.json();
-      // Stripe.js verwenden, um zum Checkout weiterzuleiten:
-      const stripe = Stripe("DEINE_STRIPE_PUBLIC_KEY");
-      stripe.redirectToCheckout({ sessionId: session.id });
+    const checkout = () => {
+      // Statt Stripe-Redirect: Navigiere zur eigenen Checkout-Seite
+      router.push("/checkout");
     };
 
     return {
@@ -106,33 +98,39 @@ export default {
   width: 100%;
   max-width: 400px;
   background-color: #fff;
-  box-shadow: -2px 0 5px rgba(0,0,0,0.3);
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.3);
   z-index: 1500;
   overflow-y: auto;
   transition: transform 0.3s ease;
 }
+
 .cart-overlay-content {
   padding: 1.5rem;
 }
+
 .cart-overlay header {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
+
 .close-btn {
   background: none;
   border: none;
   font-size: 2rem;
   cursor: pointer;
 }
+
 .cart-items {
   margin: 1rem 0;
 }
+
 .cart-item {
   display: flex;
   align-items: center;
   margin-bottom: 1rem;
 }
+
 .cart-item img {
   width: 60px;
   height: 60px;
@@ -140,16 +138,19 @@ export default {
   border-radius: 4px;
   margin-right: 1rem;
 }
+
 .item-info h3 {
   margin: 0;
   font-size: 1rem;
 }
+
 .quantity-control {
   display: flex;
   align-items: center;
   gap: 0.3rem;
   margin-top: 0.5rem;
 }
+
 .quantity-control button {
   width: 1.8rem;
   height: 1.8rem;
@@ -159,6 +160,7 @@ export default {
   color: #fff;
   cursor: pointer;
 }
+
 .remove-btn {
   background: none;
   border: none;
@@ -167,6 +169,7 @@ export default {
   cursor: pointer;
   color: #900;
 }
+
 footer {
   border-top: 1px solid #ddd;
   padding-top: 1rem;
@@ -174,11 +177,13 @@ footer {
   flex-direction: column;
   gap: 1rem;
 }
+
 .total {
   font-size: 1.2rem;
   font-weight: bold;
   text-align: right;
 }
+
 .checkout-btn {
   background-color: var(--blue);
   color: #fff;
@@ -187,7 +192,9 @@ footer {
   font-size: 1.2rem;
   border-radius: 4px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
+
 .checkout-btn:hover {
   background-color: var(--gold);
 }

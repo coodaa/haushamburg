@@ -1,4 +1,3 @@
-// src/stores/cart.js
 import { defineStore } from 'pinia';
 
 export const useCartStore = defineStore('cart', {
@@ -32,5 +31,6 @@ export const useCartStore = defineStore('cart', {
       state.items.reduce((total, item) => total + item.product.price * item.quantity, 0),
     totalItems: (state) =>
       state.items.reduce((sum, item) => sum + item.quantity, 0)
-  }
+  },
+  persist: true  // Hier wird festgelegt, dass der Store im Local Storage gespeichert wird
 });
