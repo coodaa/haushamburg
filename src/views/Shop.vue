@@ -9,10 +9,10 @@
     flowText="Hier finden Sie eine Auswahl unserer köstlichen Gerichte, die Sie ganz einfach bestellen können."
     parallaxImageSrc="/images/restaurant/haus-hamburg-leer-08.webp"
   >
-    <!-- 🔥 Titel für Beliebte Produkte -->
-    <h2 class="big-title-3">Unsere beliebtesten Produkte</h2>
+    <!-- Titel für Favoriten -->
+    <h2 class="big-title-3">Unsere Favoriten</h2>
 
-    <!-- 🔥 Swiper (Beliebte Produkte) -->
+    <!-- Swiper (Beliebte Produkte) -->
     <div class="swiper-section">
       <swiper
         :slides-per-view="slidesPerView"
@@ -23,141 +23,226 @@
         pagination
         class="my-swiper"
       >
-        <!-- Swiper-Slides -->
         <swiper-slide
-          v-for="product in popularProducts"
-          :key="product.id"
+          v-for="(product, index) in popularProducts"
+          :key="index"
           class="swiper-slide"
         >
           <div class="product-card">
             <div class="image-container">
               <img :src="product.image" :alt="product.name" />
             </div>
-            <div class="product-info">
+            <div class="product-info common-info">
               <h3>{{ product.name }}</h3>
               <p class="description">{{ product.description }}</p>
-              <p class="price"><strong>{{ formatPrice(product.price) }}</strong></p>
-
-              <p v-if="product.zusatzstoffe?.length" class="zusatzstoffe">
+              <p v-if="product.zusatzstoffe && product.zusatzstoffe.length" class="zusatzstoffe">
                 Zusatzstoffe: {{ product.zusatzstoffe.join(", ") }}
               </p>
-
+              <p v-else style="visibility: hidden;">Zusatzstoffe:</p>
+              <div class="info-bottom">
+                <p class="price"><strong>{{ formatPrice(product.price) }}</strong></p>
+                <div class="quantity-control">
+                  <button @click="decreaseQty(product)">-</button>
+                  <span>{{ getQuantity(product) }}</span>
+                  <button @click="increaseQty(product)">+</button>
+                </div>
+              </div>
               <button class="cta-button" @click="addToCart(product)">
-  <i class="fas fa-shopping-cart"></i>
-  In den Warenkorb
-</button>
+                <i class="fas fa-shopping-cart"></i> In den Warenkorb
+              </button>
             </div>
           </div>
         </swiper-slide>
       </swiper>
     </div>
 
-    <!-- 📌 Kategorie-Leiste (pinned), nur sichtbar bei pinnedVisible -->
+    <!-- Kategorie-Leiste -->
     <transition name="fade">
       <div v-if="pinnedVisible" class="pinned-category-tabs">
-        <h3 class="pinned-category-heading">Kategorien</h3>
-        <div class="category-tabs">
-          <button
-            v-for="cat in categories"
-            :key="cat"
-            :class="{ active: cat === selectedCategory }"
-            @click="scrollToCategory(cat)"
-          >
-            {{ cat }}
-          </button>
+        <div class="category-tabs-wrapper">
+          <button v-if="showLeftArrow" class="scroll-arrow" @click="scrollLeft">←</button>
+          <div ref="categoryTabsContainer" class="category-tabs" @scroll="updateArrowVisibility">
+            <button
+              v-for="cat in categories"
+              :key="cat"
+              :class="{ active: cat === selectedCategory }"
+              @click="selectCategory(cat)"
+            >
+              {{ cat }}
+            </button>
+          </div>
+          <button v-if="showRightArrow" class="scroll-arrow" @click="scrollRight">→</button>
         </div>
       </div>
     </transition>
 
-    <!-- 🛒 Produkte nach Kategorien -->
+    <!-- Produkte nach Kategorien (Grid) -->
     <div
       v-for="cat in categories"
       :key="cat"
-      :ref="setCategoryRef(cat)"
+      :ref="el => setCategoryRef(cat, el)"
       class="category-section"
     >
       <h2 class="category-title">{{ cat }}</h2>
       <div class="product-grid">
         <div
-          v-for="product in productsByCategory(cat)"
-          :key="product.id"
+          v-for="(product, index) in productsByCategory(cat)"
+          :key="index"
           class="product-card"
         >
           <div class="image-container">
             <img :src="product.image" :alt="product.name" />
           </div>
-          <div class="product-info">
+          <div class="product-info common-info grid-info">
             <h3>{{ product.name }}</h3>
             <p class="description">{{ product.description }}</p>
-            <p class="price">
-              <strong>{{ formatPrice(product.price) }}</strong>
-            </p>
-
-            <p v-if="product.zusatzstoffe?.length" class="zusatzstoffe">
+            <p v-if="product.zusatzstoffe && product.zusatzstoffe.length" class="zusatzstoffe">
               Zusatzstoffe: {{ product.zusatzstoffe.join(", ") }}
             </p>
-
+            <p v-else style="visibility: hidden;">Zusatzstoffe:</p>
+            <div class="info-bottom">
+              <p class="price"><strong>{{ formatPrice(product.price) }}</strong></p>
+              <div class="quantity-control">
+                <button @click="decreaseQty(product)">-</button>
+                <span>{{ getQuantity(product) }}</span>
+                <button @click="increaseQty(product)">+</button>
+              </div>
+            </div>
             <button class="cta-button" @click="addToCart(product)">
-  <i class="fas fa-shopping-cart"></i>
-  In den Warenkorb
-</button>
+              <i class="fas fa-shopping-cart"></i> In den Warenkorb
+            </button>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- 🔼 Zurück nach oben Button -->
+    <!-- Zurück nach oben Button -->
     <transition name="fade">
-      <button
-        v-if="showScrollTop"
-        class="scroll-top-btn"
-        @click="scrollToTop"
-      >
-        ⬆
-      </button>
+      <button v-if="showScrollTop" class="scroll-top-btn" @click="scrollToTop">⬆</button>
     </transition>
   </BasePage>
 </template>
 
 <script>
-import { ref, computed, onMounted } from "vue";
+import { ref, computed, onMounted, nextTick } from "vue";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import { Pagination, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-
-import { fetchProducts } from "../../firebase/products";
 import BasePage from "@/components/BasePage.vue";
+import staticProducts from "@/data/products.json";
 
 export default {
   components: { BasePage, Swiper, SwiperSlide },
   setup() {
-    const products = ref([]);
+    const products = ref(staticProducts);
     const selectedCategory = ref("");
     const categoryRefs = {};
+    const categoryTabsContainer = ref(null);
 
-    // Steuerung für angepinnte Tabs + ScrollToTop
     const pinnedVisible = ref(false);
     const showScrollTop = ref(false);
+    const showLeftArrow = ref(false);
+    const showRightArrow = ref(false);
 
-    onMounted(async () => {
-      products.value = await fetchProducts();
-      window.addEventListener("scroll", handleScroll);
+    // Mengensteuerung pro Produkt (Standard: 1)
+    const quantities = ref({});
+    products.value.forEach(product => {
+      if (!quantities.value[product.name]) {
+        quantities.value[product.name] = 1;
+      }
     });
+    const increaseQty = (product) => {
+      quantities.value[product.name] = (quantities.value[product.name] || 1) + 1;
+    };
+    const decreaseQty = (product) => {
+      if ((quantities.value[product.name] || 1) > 1) {
+        quantities.value[product.name]--;
+      }
+    };
+    const getQuantity = (product) => quantities.value[product.name] || 1;
 
-    function handleScroll() {
+    const handleScroll = () => {
       const y = window.scrollY;
-      // Abhängig von der Bildschirmbreite
       const threshold = window.innerWidth < 768 ? 800 : 1500;
       pinnedVisible.value = y > threshold;
       showScrollTop.value = y > 200;
-    }
+      updateActiveCategory();
+    };
 
-    // Kategorien (ohne "Beliebt")
+    const updateArrowVisibility = () => {
+      if (categoryTabsContainer.value) {
+        const { scrollLeft: sl, scrollWidth, clientWidth } = categoryTabsContainer.value;
+        showLeftArrow.value = sl > 1;
+        showRightArrow.value = sl < scrollWidth - clientWidth - 2;
+      }
+    };
+
+    const updateActiveCategory = () => {
+      let closestCat = "";
+      let minDistance = Infinity;
+      const offset = 200;
+      Object.keys(categoryRefs).forEach((cat) => {
+        const el = categoryRefs[cat];
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          const distance = Math.abs(rect.top - offset);
+          if (distance < minDistance) {
+            minDistance = distance;
+            closestCat = cat;
+          }
+        }
+      });
+      if (closestCat) {
+        selectedCategory.value = closestCat;
+        nextTick(() => {
+          if (categoryTabsContainer.value) {
+            const activeBtn = categoryTabsContainer.value.querySelector("button.active");
+            if (activeBtn) {
+              setTimeout(() => {
+                activeBtn.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+              }, 200);
+            }
+          }
+        });
+      }
+    };
+
+    const setCategoryRef = (cat, el) => {
+      if (el) {
+        categoryRefs[cat] = el;
+      }
+    };
+
+    const selectCategory = (cat) => {
+      selectedCategory.value = cat;
+      const el = categoryRefs[cat];
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth" });
+      }
+    };
+
+    const scrollLeft = () => {
+      if (categoryTabsContainer.value) {
+        categoryTabsContainer.value.scrollBy({ left: -150, behavior: "smooth" });
+      }
+    };
+
+    const scrollRight = () => {
+      if (categoryTabsContainer.value) {
+        categoryTabsContainer.value.scrollBy({ left: 150, behavior: "smooth" });
+      }
+    };
+
+    const scrollToTop = () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    };
+
+    const slidesPerView = computed(() => (window.innerWidth < 768 ? 1.3 : 3));
+
     const categories = ["Fisch", "Fleisch", "Vegetarisch", "Desserts", "Getränke"];
 
-    // Beliebte Produkte
     const popularProducts = computed(() =>
       products.value.filter((p) =>
         [
@@ -167,46 +252,25 @@ export default {
           "Fischbrötchen",
           "warmer Schokoladenkuchen",
           "Fanta 0.5l",
-          "Haus Hamburg Hauswein 0.75l",
+          "Haus Hamburg Hauswein 0.75l"
         ].includes(p.name)
       )
     );
 
-    // Produkte je Kategorie
-    const productsByCategory = (cat) => {
-      return products.value.filter((prod) => prod.category === cat);
-    };
+    const productsByCategory = (cat) =>
+      products.value.filter((prod) => prod.category === cat);
 
-    // In den Warenkorb
     const addToCart = (product) => {
-      console.log("🛒 Produkt hinzugefügt:", product);
-      // Hier könntest du z. B. vuex oder pinia-Warenkorb-Logik aufrufen
+      console.log("Produkt hinzugefügt:", product, "Menge:", getQuantity(product));
     };
 
-    // Preis formatieren
-    const formatPrice = (val) => {
-      return val.toFixed(2).replace(".", ",") + " €";
-    };
+    const formatPrice = (val) => val.toFixed(2).replace(".", ",") + " €";
 
-    // Scroll + Refs
-    const setCategoryRef = (cat) => (el) => {
-      categoryRefs[cat] = el;
-    };
-    const scrollToCategory = (cat) => {
-      selectedCategory.value = cat;
-      const el = categoryRefs[cat];
-      if (el) {
-        el.scrollIntoView({ behavior: "smooth" });
-      }
-    };
-
-    // Scroll to Top
-    const scrollToTop = () => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    };
-
-    // Swiper-Einstellungen
-    const slidesPerView = computed(() => (window.innerWidth < 768 ? 1.3 : 3));
+    onMounted(() => {
+      window.addEventListener("scroll", handleScroll);
+      updateArrowVisibility();
+      handleScroll();
+    });
 
     return {
       products,
@@ -217,20 +281,31 @@ export default {
       addToCart,
       formatPrice,
       setCategoryRef,
-      scrollToCategory,
+      selectCategory,
       pinnedVisible,
       showScrollTop,
       scrollToTop,
       slidesPerView,
       Pagination,
       Navigation,
+      categoryTabsContainer,
+      scrollLeft,
+      scrollRight,
+      showLeftArrow,
+      showRightArrow,
+      updateArrowVisibility,
+      increaseQty,
+      decreaseQty,
+      getQuantity
     };
   },
 };
 </script>
 
 <style scoped>
-/* Überschrift über dem Swiper */
+/* Mobile-first */
+
+/* Überschrift */
 .big-title-3 {
   text-align: center;
   margin-top: 1.5rem;
@@ -239,7 +314,7 @@ export default {
   color: var(--blue);
 }
 
-/* Fade Transition (pinned + scroll-top) */
+/* Fade Transition */
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.3s;
@@ -249,23 +324,21 @@ export default {
   opacity: 0;
 }
 
-/* Offset beim Scrollen */
+/* Kategorie-Sektion */
 .category-section {
-  scroll-margin-top: 16rem; /* Damit man nicht zu hoch scrollt */
+  scroll-margin-top: 16rem;
   margin-bottom: 40px;
 }
 
-/* Gehefteter Kategorie-Titel */
-.pinned-category-heading {
+/* Kategorie-Titel */
+.category-title {
   text-align: center;
-  font-size: 1.2rem;
-  margin: 0 0 0.5rem 0;
+  font-size: 1.6rem;
+  margin: 10px 0;
   color: var(--blue);
-  font-weight: bold;
-  text-transform: uppercase;
 }
 
-/* Das "angepinnte" Category Panel */
+/* Pinned Kategorie Panel */
 .pinned-category-tabs {
   position: fixed;
   top: 5em;
@@ -275,41 +348,40 @@ export default {
   background: linear-gradient(135deg, var(--gold) 0%, var(--beige) 100%);
   border-bottom-right-radius: 20px;
   border-bottom-left-radius: 20px;
-  padding: 1rem 2rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  min-width: 93vw;
+  padding: 0.5rem 1rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  width: 100%;
+  max-width: 92.5vw;
 }
 
-@media (min-width: 1200px) {
-  .pinned-category-tabs {
-    top: 7em; /* Größerer Versatz bei Desktop */
-    min-width: 60vw;
-  }
-  .category-section {
-    scroll-margin-top: 16rem;
-  }
-}
-
-/* Container für die Kategorietabs */
-.category-tabs {
+/* Wrapper für Kategorie-Tabs inkl. Pfeile */
+.category-tabs-wrapper {
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-  justify-content: center;
+  align-items: center;
 }
 
-/* Pillen-Buttons */
+/* Kategorie-Tabs: horizontal scrollbar mit Snap */
+.category-tabs {
+  white-space: nowrap;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory;
+  padding: 0.5rem;
+  flex: 1;
+}
 .category-tabs button {
-  background: rgba(255, 255, 255, 0.65);
+  display: inline-block;
+  scroll-snap-align: start;
+  background: rgba(255,255,255,0.65);
   backdrop-filter: blur(4px);
   border: 2px solid var(--blue);
   border-radius: 20px;
   padding: 0.5rem 1rem;
-  font-size: 1rem;
   color: var(--blue);
   cursor: pointer;
   transition: all 0.3s ease;
   font-weight: bold;
+  margin-right: 0.75rem;
   min-width: 90px;
 }
 .category-tabs button:hover {
@@ -321,49 +393,56 @@ export default {
   color: white;
 }
 
-/* Titel pro Kategorie */
-.category-title {
+/* Pfeilbuttons */
+.scroll-arrow {
+  background: var(--blue);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 1.5rem;
+  height: 1.5rem;
+  cursor: pointer;
+  font-size: 1rem;
   text-align: center;
-  font-size: 1.6rem;
-  margin: 10px 0;
-  color: var(--blue);
+  line-height: 1.5rem;
+  margin: 0 0.5rem;
 }
 
 /* Swiper-Wrapper */
 .swiper-section {
   max-width: 1200px;
   margin: 0 auto 30px;
-  padding: 0 10px;
 }
 .my-swiper {
   width: 100%;
   margin: 0 auto;
 }
 
-/* Gitter der Produktkacheln */
+/* Produkt-Gitter */
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 15px;
   max-width: 1200px;
   margin: 0 auto;
 }
 
-/* Produktkachel */
+/* Produktkachel – einheitliche Höhe durch Flexbox */
 .product-card {
-  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   background: white;
   border-radius: 20px;
   padding: 1em;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   min-height: 20em;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
 }
+
+/* Bildbereich fix */
 .image-container {
-  width: 100%;
-  height: 10em;
+  flex: 0 0 auto;
+  height: 7em;
   overflow: hidden;
   border-radius: 20px;
   background: #f2f2f2;
@@ -376,36 +455,85 @@ export default {
   height: 100%;
   object-fit: cover;
 }
+
+/* Einheitliche Textbereiche in .product-info */
 .product-info {
-  margin-top: 8px;
-  text-align: center;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-top: 0.5em;
 }
 .product-info h3 {
   font-size: 1rem;
-  margin-bottom: 3px;
+  margin-bottom: 0.5em;
+  min-height: 1.5em;
+  max-height: 2em;
+  overflow: hidden;
 }
-.product-info .description {
-  font-size: 0.85rem;
+.description-swiper,
+.description {
+  font-size: 0.8rem;
   color: #666;
-  margin-bottom: 4px;
-  min-height: 28px;
+  flex-grow: 1;
+  min-height: 3em;
+  max-height: 3em;
+  overflow: hidden;
 }
 .product-info .price {
-  font-size: 1rem;
+  font-size: 1.1rem;
   color: var(--blue);
   font-weight: bold;
-  margin-bottom: 6px;
+  min-height: 1.5em;
+  max-height: 1.5em;
+  overflow: hidden;
+  margin-bottom: 0.5em;
 }
 .zusatzstoffe {
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   color: #999;
-  margin-bottom: 6px;
+  min-height: 1.5em;
+  margin-bottom: 1em;
 }
 
-/* CTA-Button => zentrieren + Text statt Icon */
+/* Neuer unterer Bereich in .common-info (für beide Varianten) */
+.common-info .info-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-top: 0.5em;
+}
+.common-info .info-bottom .price {
+  margin: 0;
+}
+.quantity-control {
+  display: flex;
+  align-items: center;
+}
+.quantity-control button {
+  background: var(--blue);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 1.8em;
+  height: 1.8em;
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 1.8em;
+  text-align: center;
+  margin: 0 0.3em;
+}
+.quantity-control span {
+  font-size: 1rem;
+  min-width: 1.5em;
+  text-align: center;
+}
+
+/* CTA-Button */
 .cta-button {
   margin: 0 auto;
   font-size: 1rem;
+  margin-bottom: 1em;
 }
 .cta-button:hover {
   background: var(--blue);
@@ -430,5 +558,17 @@ export default {
 .scroll-top-btn:hover {
   background: var(--blue);
   color: #fff;
+}
+
+::v-deep .swiper-button-prev,
+::v-deep .swiper-button-next {
+  display: none !important;
+}
+
+@media (min-width: 768px) {
+  ::v-deep .swiper-button-prev,
+  ::v-deep .swiper-button-next {
+    display: block !important;
+  }
 }
 </style>

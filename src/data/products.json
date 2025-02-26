@@ -1,0 +1,315 @@
+[
+  {
+    "name": "Rahmschnitzel",
+    "description": "Knusprig gebratenes Schnitzel in cremiger Rahmsoße, serviert mit Beilagen.",
+    "price": 17.5,
+    "category": "Fleisch",
+    "image": "https://www.haus-hamburg-leer.de/images/food/haus-hamburg-leer-30.webp",
+    "zusatzstoffe": ["1", "7"]
+  },
+  {
+    "name": "Grünkohl mit 2 Kohlwürsten und Bratkartoffeln",
+    "description": "Herzhaft gedünsteter Grünkohl mit zwei würzigen Kohlwürsten und knusprigen Bratkartoffeln.",
+    "price": 19.8,
+    "category": "Fleisch",
+    "image": "https://www.haus-hamburg-leer.de/images/food/haus-hamburg-leer-30.webp",
+    "zusatzstoffe": ["2"]
+  },
+  {
+    "name": "Tomahawk vom Ammerländer Edelschwein",
+    "description": "Saftiges Tomahawk-Steak vom Ammerländer Edelschwein, serviert mit rustikalen Pommes und frischem Salat.",
+    "price": 24.5,
+    "category": "Fleisch",
+    "image": "https://www.haus-hamburg-leer.de/images/food/haus-hamburg-leer-30.webp",
+    "zusatzstoffe": []
+  },
+  {
+    "name": "Schweineschnitzel - Wiener Art -",
+    "description": "Traditionell paniertes Schweineschnitzel, serviert mit knusprigen Ras Fritten und frischem Salat.",
+    "price": 17.5,
+    "category": "Fleisch",
+    "image": "https://www.haus-hamburg-leer.de/images/food/haus-hamburg-leer-30.webp",
+    "zusatzstoffe": ["3"]
+  },
+  {
+    "name": "Snirtjebraten",
+    "description": "Zart geschmorter Snirtjebraten nach ostfriesischer Art, begleitet von knusprigen Bratkartoffeln.",
+    "price": 21.3,
+    "category": "Fleisch",
+    "image": "https://www.haus-hamburg-leer.de/images/food/haus-hamburg-leer-30.webp",
+    "zusatzstoffe": []
+  },
+  {
+    "name": "Schaschlikpfanne",
+    "description": "Herzhafte Schaschlikpfanne, serviert mit einem frischen Brötchen.",
+    "price": 15.0,
+    "category": "Fleisch",
+    "image": "https://www.haus-hamburg-leer.de/images/food/haus-hamburg-leer-30.webp",
+    "zusatzstoffe": ["1"]
+  },
+  {
+    "name": "kleiner gemischter Salat mit Hähnchenbruststreifen",
+    "description": "Frischer gemischter Salat mit zarten Hähnchenbruststreifen und einem leichten Honig-Senf-Dressing.",
+    "price": 6.5,
+    "category": "Fleisch",
+    "image": "https://www.haus-hamburg-leer.de/images/food/haus-hamburg-leer-30.webp",
+    "zusatzstoffe": []
+  },
+  {
+    "name": "Fischplatte",
+    "description": "Vielfältige Fischplatte mit einer Auswahl feiner Fischfilets und Greetsieler Krabben, serviert mit knusprigen Bratkartoffeln und frischem Salat.",
+    "price": 25.5,
+    "category": "Fisch",
+    "image": "https://www.haus-hamburg-leer.de/images/food/haus-hamburg-leer-30.webp",
+    "zusatzstoffe": ["2", "4"]
+  },
+  {
+    "name": "Nordsee Scholle (filetiert)",
+    "description": "Filetierte Nordsee-Scholle, serviert mit knusprigen Bratkartoffeln und einem frischen Salat.",
+    "price": 22.5,
+    "category": "Fisch",
+    "image": "https://www.haus-hamburg-leer.de/images/food/haus-hamburg-leer-30.webp",
+    "zusatzstoffe": []
+  },
+  {
+    "name": "Nordsee Scholle (filetiert) / Ras Fritten",
+    "description": "Filetierte Nordsee-Scholle, kombiniert mit knusprigen Ras Fritten und einem frischen Salat.",
+    "price": 23.5,
+    "category": "Fisch",
+    "image": "https://www.haus-hamburg-leer.de/images/food/haus-hamburg-leer-30.webp",
+    "zusatzstoffe": ["1"]
+  },
+  {
+    "name": "Nordsee Scholle mit Krabben (filetiert)",
+    "description": "Filetierte Nordsee-Scholle mit Krabben, serviert mit knusprigen Bratkartoffeln und Salat.",
+    "price": 26.5,
+    "category": "Fisch",
+    "image": "https://www.haus-hamburg-leer.de/images/food/haus-hamburg-leer-30.webp",
+    "zusatzstoffe": ["1"]
+  },
+  {
+    "name": "Matjesfilets (3 Stück)",
+    "description": "Drei zarte Matjesfilets, verfeinert mit Zwiebeln, knusprigen Bratkartoffeln und einem frischen Salat.",
+    "price": 16.8,
+    "category": "Fisch",
+    "image": "https://www.haus-hamburg-leer.de/images/food/haus-hamburg-leer-30.webp",
+    "zusatzstoffe": ["1", "2"]
+  },
+  {
+    "name": "Kibbelinge",
+    "description": "Sechs knusprig ausgebackene Kibbelinge im hauseigenen Bierteig.",
+    "price": 6.0,
+    "category": "Fisch",
+    "image": "https://www.haus-hamburg-leer.de/images/food/haus-hamburg-leer-30.webp",
+    "zusatzstoffe": ["1", "3"]
+  },
+  {
+    "name": "Fischbrötchen mit Backfisch",
+    "description": "Frisch zubereitetes Fischbrötchen mit knusprig gebackenem Backfisch.",
+    "price": 5.0,
+    "category": "Fisch",
+    "image": "https://www.haus-hamburg-leer.de/images/food/haus-hamburg-leer-30.webp",
+    "zusatzstoffe": ["1", "5"]
+  },
+  {
+    "name": "Scholle mit Ofenkartoffel",
+    "description": "Fein filetiertes Nordseeschollenfilet, serviert mit einer Ofenkartoffel und einem frischen Salat.",
+    "price": 23.5,
+    "category": "Fisch",
+    "image": "https://www.haus-hamburg-leer.de/images/food/haus-hamburg-leer-30.webp",
+    "zusatzstoffe": []
+  },
+  {
+    "name": "Ofenkartoffel mit Greetsieler Krabben",
+    "description": "Warme Ofenkartoffel, verfeinert mit cremiger Kartoffelcreme und frischen Greetsieler Krabben.",
+    "price": 19.5,
+    "category": "Fisch",
+    "image": "https://www.haus-hamburg-leer.de/images/food/haus-hamburg-leer-30.webp",
+    "zusatzstoffe": ["2"]
+  },
+  {
+    "name": "Vorspeise Haus Hamburg deluxe",
+    "description": "Deluxe-Vorspeise mit einer erlesenen Auswahl an Matjesfilet, Aalrauchmatjes, Bismarckhering, Brathering, Kutterkrabben und Räucherlachs.",
+    "price": 14.8,
+    "category": "Fisch",
+    "image": "https://www.haus-hamburg-leer.de/images/food/haus-hamburg-leer-30.webp",
+    "zusatzstoffe": ["1", "2"]
+  },
+  {
+    "name": "Ras Fritten",
+    "description": "Knusprige Fritten, zubereitet aus feinem Kartoffelbrei.",
+    "price": 3.0,
+    "category": "Vegetarisch",
+    "image": "https://www.haus-hamburg-leer.de/images/food/haus-hamburg-leer-30.webp",
+    "zusatzstoffe": ["1", "2", "3"]
+  },
+  {
+    "name": "Ofenkartoffel mit Kartoffelcreme",
+    "description": "Naturbelassene Ofenkartoffel, serviert mit cremiger Kartoffelcreme und einem frischen Salat.",
+    "price": 9.5,
+    "category": "Vegetarisch",
+    "image": "https://www.haus-hamburg-leer.de/images/food/haus-hamburg-leer-30.webp",
+    "zusatzstoffe": []
+  },
+  {
+    "name": "Ofenkartoffel mit Räucherlachs",
+    "description": "Ofenkartoffel, serviert mit cremiger Kartoffelcreme, zartem Räucherlachs und frischem Salat.",
+    "price": 15.5,
+    "category": "Fisch",
+    "image": "https://www.haus-hamburg-leer.de/images/food/haus-hamburg-leer-30.webp",
+    "zusatzstoffe": ["2"]
+  },
+  {
+    "name": "Portion Mayonnaise",
+    "description": "Eine kleine Portion hausgemachter Mayonnaise.",
+    "price": 0.5,
+    "category": "Vegetarisch",
+    "image": "https://www.haus-hamburg-leer.de/images/food/haus-hamburg-leer-30.webp",
+    "zusatzstoffe": ["2"]
+  },
+  {
+    "name": "Portion Remoulade",
+    "description": "Eine kleine Portion Remoulade, perfekt zum Dippen.",
+    "price": 0.5,
+    "category": "Vegetarisch",
+    "image": "https://www.haus-hamburg-leer.de/images/food/haus-hamburg-leer-30.webp",
+    "zusatzstoffe": []
+  },
+  {
+    "name": "Portion Ketchup",
+    "description": "Eine kleine Portion Ketchup, ideal als Dip.",
+    "price": 0.5,
+    "category": "Vegetarisch",
+    "image": "https://www.haus-hamburg-leer.de/images/food/haus-hamburg-leer-30.webp",
+    "zusatzstoffe": ["3"]
+  },
+  {
+    "name": "Portion Knoblauchsauce",
+    "description": "Eine kleine Portion würziger Knoblauchsauce.",
+    "price": 0.5,
+    "category": "Vegetarisch",
+    "image": "https://www.haus-hamburg-leer.de/images/food/haus-hamburg-leer-30.webp",
+    "zusatzstoffe": ["1"]
+  },
+  {
+    "name": "kleiner gemischter Beilagensalat",
+    "description": "Frischer Beilagensalat aus grünen Blattsalaten, Radieschen, roter Bete und einem leichten Honig-Senf-Dressing.",
+    "price": 3.5,
+    "category": "Vegetarisch",
+    "image": "https://www.haus-hamburg-leer.de/images/food/haus-hamburg-leer-30.webp",
+    "zusatzstoffe": []
+  },
+  {
+    "name": "Pfannkuchen mit Apfelmus",
+    "description": "Große, hausgemachte Pfannkuchen mit Apfelmus – 28 cm Durchmesser.",
+    "price": 4.5,
+    "category": "Desserts",
+    "image": "https://www.haus-hamburg-leer.de/images/food/haus-hamburg-leer-30.webp",
+    "zusatzstoffe": ["1"]
+  },
+  {
+    "name": "Pfannkuchen mit Nutella",
+    "description": "Große, hausgemachte Pfannkuchen mit cremigem Nutella – 28 cm Durchmesser.",
+    "price": 4.5,
+    "category": "Desserts",
+    "image": "https://www.haus-hamburg-leer.de/images/food/haus-hamburg-leer-30.webp",
+    "zusatzstoffe": ["1"]
+  },
+  {
+    "name": "warmer Schokoladenkuchen",
+    "description": "Warmer, saftiger Schokoladenkuchen mit reichhaltigem Geschmack.",
+    "price": 4.5,
+    "category": "Desserts",
+    "image": "https://www.haus-hamburg-leer.de/images/food/haus-hamburg-leer-30.webp",
+    "zusatzstoffe": ["3"]
+  },
+  {
+    "name": "Portion Vanillesosse",
+    "description": "Kleine Portion hausgemachter Vanillesauce, perfekt zu Apfelstrudel oder Schokokuchen.",
+    "price": 1.5,
+    "category": "Desserts",
+    "image": "https://www.haus-hamburg-leer.de/images/food/haus-hamburg-leer-30.webp",
+    "zusatzstoffe": []
+  },
+  {
+    "name": "rote Grütze",
+    "description": "Traditionell zubereitete, hausgemachte rote Grütze.",
+    "price": 4.5,
+    "category": "Desserts",
+    "image": "https://www.haus-hamburg-leer.de/images/food/haus-hamburg-leer-30.webp",
+    "zusatzstoffe": []
+  },
+  {
+    "name": "warmer Apfelstrudel mit Vanillesosse",
+    "description": "Warmer Apfelstrudel, gefüllt mit Apfelstücken und Rosinen, serviert mit Vanillesauce.",
+    "price": 6.0,
+    "category": "Desserts",
+    "image": "https://www.haus-hamburg-leer.de/images/food/haus-hamburg-leer-30.webp",
+    "zusatzstoffe": []
+  },
+  {
+    "name": "Coca‑Cola",
+    "description": "Erfrischende Coca‑Cola (0,5l).",
+    "price": 2.75,
+    "category": "Getränke",
+    "image": "https://www.haus-hamburg-leer.de/images/food/haus-hamburg-leer-30.webp",
+    "zusatzstoffe": ["2"]
+  },
+  {
+    "name": "Coca‑Cola Zero Sugar",
+    "description": "Erfrischende Coca‑Cola Zero Sugar (0,5l).",
+    "price": 2.75,
+    "category": "Getränke",
+    "image": "https://www.haus-hamburg-leer.de/images/food/haus-hamburg-leer-30.webp",
+    "zusatzstoffe": ["2"]
+  },
+  {
+    "name": "Fanta",
+    "description": "Erfrischende Fanta Orangenlimonade (0,5l).",
+    "price": 3.0,
+    "category": "Getränke",
+    "image": "https://www.haus-hamburg-leer.de/images/food/haus-hamburg-leer-30.webp",
+    "zusatzstoffe": ["1"]
+  },
+  {
+    "name": "Apfelschorle Vilsa",
+    "description": "Kühle Apfelschorle (0,5l).",
+    "price": 2.85,
+    "category": "Getränke",
+    "image": "https://www.haus-hamburg-leer.de/images/food/haus-hamburg-leer-30.webp",
+    "zusatzstoffe": []
+  },
+  {
+    "name": "Traubenschorle",
+    "description": "Erfrischende Traubenschorle (0,33l).",
+    "price": 3.2,
+    "category": "Getränke",
+    "image": "https://www.haus-hamburg-leer.de/images/food/haus-hamburg-leer-30.webp",
+    "zusatzstoffe": []
+  },
+  {
+    "name": "Mezzo Mix",
+    "description": "Erfrischender Mezzo Mix (0,5l)",
+    "price": 3.0,
+    "category": "Getränke",
+    "image": "https://www.haus-hamburg-leer.de/images/food/haus-hamburg-leer-30.webp",
+    "zusatzstoffe": ["1"]
+  },
+  {
+    "name": "Jever Pils",
+    "description": "Erfrischendes Jever Pils (0,33l, 4,9% Vol.).",
+    "price": 2.82,
+    "category": "Getränke",
+    "image": "https://www.haus-hamburg-leer.de/images/food/haus-hamburg-leer-30.webp",
+    "zusatzstoffe": ["2"]
+  },
+  {
+    "name": "Haus Hamburg Hauswein",
+    "description": "Trocken, unser Hauswein (0,75l, 12,5% Vol.).",
+    "price": 14.99,
+    "category": "Getränke",
+    "image": "https://www.haus-hamburg-leer.de/images/food/haus-hamburg-leer-30.webp",
+    "zusatzstoffe": ["1", "6"]
+  }
+
+]
