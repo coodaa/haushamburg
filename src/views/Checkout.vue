@@ -4,9 +4,9 @@
     imageAlt="Checkout"
     titleAbove="Checkout"
     titleMain="Bezahlen"
-    subtitle="Überprüfen Sie Ihre Bestellung und geben Sie Ihre Zahlungs- und Adressdaten ein"
+    subtitle="Überprüfen Sie Ihre Bestellung und wählen Sie Ihre Zahlungsmethode"
     heading="Checkout"
-    flowText="Bitte überprüfen Sie Ihre Bestellung, füllen Sie Ihre Adressdaten aus und wählen Sie Ihre bevorzugte Zahlungsmethode."
+    flowText="Bitte überprüfen Sie Ihre Bestellung, füllen Sie Ihre Adressdaten aus und wählen Sie zwischen Stripe-Zahlung (Karte, Apple Pay, Google Pay, etc.) oder PayPal."
     parallaxImageSrc="/images/checkout/checkout-parallax.webp"
   >
     <div class="checkout-container">
@@ -15,7 +15,11 @@
         Ihr Warenkorb ist leer.
       </div>
       <div v-else class="cart-summary">
-        <div v-for="(item, index) in cartItems" :key="index" class="cart-item">
+        <div
+          v-for="(item, index) in cartItems"
+          :key="index"
+          class="cart-item"
+        >
           <img :src="item.product.image" :alt="item.product.name" class="item-image" />
           <div class="item-details">
             <h3 class="item-name">{{ item.product.name }}</h3>
@@ -28,7 +32,7 @@
       <!-- Adressformular -->
       <div class="address-form">
         <h2 class="section-title">Rechnungs- & Lieferadresse</h2>
-        <form id="address-form">
+        <form id="address-form" @submit.prevent>
           <div class="form-row">
             <label for="name">Name</label>
             <input id="name" v-model="address.name" type="text" required />
@@ -58,14 +62,17 @@
 
       <!-- Stripe Payment Element -->
       <div class="payment-section">
-        <h2 class="section-title">Zahlungsinformationen (Karte, Apple Pay, Google Pay)</h2>
+        <h2 class="section-title">Zahlungsinformationen (Stripe)</h2>
         <div id="payment-element" class="payment-element"></div>
+        <button class="checkout-btn" @click="handleStripePayment">
+          Mit Stripe bezahlen
+        </button>
       </div>
 
-      <!-- PayPal Button -->
+      <!-- Oder Option: PayPal -->
       <div class="paypal-section">
-        <h2 class="section-title">Oder mit PayPal bezahlen</h2>
-        <div id="paypal-button-container"></div>
+        <h2 class="section-title">Oder mit PayPal</h2>
+        <div id="paypal-button-container" class="paypal-button-container"></div>
       </div>
 
       <div v-if="message" class="payment-message">{{ message }}</div>
@@ -74,9 +81,6 @@
         <p class="total-label">Gesamtsumme:</p>
         <p class="total-amount"><strong>{{ formatPrice(totalPrice) }}</strong></p>
       </div>
-
-      <!-- Buttons für Stripe und PayPal -->
-      <button class="checkout-btn" @click="handleStripePayment">Zahlung mit Karte durchführen</button>
     </div>
   </BasePage>
 </template>
@@ -96,8 +100,8 @@ export default {
     const totalPrice = computed(() =>
       cartStore.items.reduce((sum, item) => sum + item.product.price * item.quantity, 0)
     );
-    const formatPrice = (val) => val.toFixed(2).replace(".", ",") + " €";
-    const message = ref("");
+    const formatPrice = (val) =>
+      val.toFixed(2).replace(".", ",") + " €";
 
     // Adresse
     const address = ref({
@@ -109,7 +113,9 @@ export default {
       phone: "",
     });
 
-    // Stripe Elements Setup
+    const message = ref("");
+
+    // Stripe Payment Element Setup
     const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
     let stripe, elements, paymentElement;
     const clientSecret = ref("");
@@ -137,11 +143,11 @@ export default {
       paymentElement = elements.create("payment");
       paymentElement.mount("#payment-element");
 
-      // PayPal Integration
+      // PayPal Button initialisieren, sofern PayPal SDK geladen ist
       if (window.paypal) {
         window.paypal.Buttons({
           createOrder: async (data, actions) => {
-            // Rufe deinen Backend-Endpoint für PayPal Order auf
+            // Rufe Backend-Endpoint für PayPal Order auf
             const orderRes = await fetch("/api/create-paypal-order", {
               method: "POST",
               headers: { "Content-Type": "application/json" },
@@ -152,7 +158,11 @@ export default {
               }),
             });
             const orderData = await orderRes.json();
-            return orderData.id; // Order ID von PayPal
+            if (orderData.error) {
+              message.value = orderData.error;
+              throw new Error(orderData.error);
+            }
+            return orderData.id;
           },
           onApprove: async (data, actions) => {
             const capture = await actions.order.capture();
@@ -162,12 +172,14 @@ export default {
           },
           onError: (err) => {
             message.value = "PayPal Fehler: " + err;
+            console.error("PayPal Fehler:", err);
           },
         }).render("#paypal-button-container");
+      } else {
+        console.error("PayPal SDK wurde nicht geladen.");
       }
     });
 
-    // Stripe Payment Handler
     const handleStripePayment = async () => {
       message.value = "";
       const { error } = await stripe.confirmPayment({
@@ -297,6 +309,11 @@ export default {
   margin-bottom: 1rem;
 }
 
+.paypal-button-container,
+.paypal-section {
+  margin-top: 1rem;
+}
+
 .checkout-summary {
   display: flex;
   justify-content: space-between;
@@ -333,10 +350,6 @@ export default {
 .payment-message {
   color: red;
   text-align: center;
-  margin-bottom: 1rem;
-}
-
-.paypal-section {
-  margin: 2rem 0;
+  margin-top: 1rem;
 }
 </style>

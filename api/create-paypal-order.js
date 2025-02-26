@@ -1,7 +1,7 @@
 // create-paypal-order.js
 const checkoutNodeJssdk = require("@paypal/checkout-server-sdk");
 
-// Erstelle die Umgebung (Sandbox-Umgebung für Tests)
+// Erstelle die Umgebung (Sandbox für Tests)
 function environment() {
   const clientId = process.env.PAYPAL_CLIENT_ID;
   const clientSecret = process.env.PAYPAL_CLIENT_SECRET;
@@ -15,9 +15,9 @@ function client() {
 
 module.exports = async (req, res) => {
   try {
-    // Hier kannst du den Betrag dynamisch aus den Warenkorbdaten berechnen.
-    // Im Beispiel setzen wir einen festen Betrag von 10,00 EUR.
-    const amount = "10.00"; // Betrag als String im Format "xx.xx"
+    // Berechne den Betrag aus den übermittelten Warenkorbdaten (hier als Beispiel: req.body.total)
+    // Stelle sicher, dass du den Gesamtbetrag korrekt berechnest und als String im Format "xx.xx" übergibst.
+    const amount = req.body.total ? req.body.total.toFixed(2) : "10.00";
 
     // Erstelle einen neuen OrdersCreateRequest
     const request = new checkoutNodeJssdk.orders.OrdersCreateRequest();
@@ -30,12 +30,13 @@ module.exports = async (req, res) => {
             currency_code: "EUR",
             value: amount,
           },
+          // Versandadresse (optional)
           shipping: {
             address: {
-              address_line_1: req.body.address.street || "Unbekannt",
-              admin_area_2: req.body.address.city || "Unbekannt",
-              postal_code: req.body.address.postalCode || "00000",
-              country_code: req.body.address.country || "DE",
+              address_line_1: req.body.address?.street || "Unbekannt",
+              admin_area_2: req.body.address?.city || "Unbekannt",
+              postal_code: req.body.address?.postalCode || "00000",
+              country_code: req.body.address?.country || "DE",
             },
           },
         },

@@ -42,7 +42,7 @@
             <li class="Kontakt-link">
               <router-link to="/Kontakt">Kontakt</router-link>
             </li>
-            <!-- Reservieren-Link (neu, als Textlink neben Kontakt; wird auf Mobile ausgeblendet) -->
+            <!-- Reservieren-Link (wird auf Tablets und Mobile ausgeblendet) -->
             <li class="reservierung-link">
               <router-link to="/reservierung">Reservieren</router-link>
             </li>
@@ -112,15 +112,11 @@ export default {
       window.removeEventListener("scroll", handleScroll);
     });
 
-    // Beispielweise: Wenn du noch keinen Warenkorb-Store hast, setze testweise eine Anzahl
-    const itemsCount = ref(2);
-
     return {
       isScrolled,
       menuOpen,
       toggleMenu,
       closeMenu,
-      itemsCount,
     };
   },
 };
@@ -271,7 +267,22 @@ export default {
   z-index: 1001;
 }
 
-/* Reservierung & Shop: Auf Desktop wird im Shop-Button der Text angezeigt, auf Mobile nur das Icon */
+/* Reservierung-Link: nur auf Desktop anzeigen (ab 1200px) */
+.reservierung-link {
+  display: none;
+}
+
+@media (min-width: 1200px) {
+  .reservierung-link {
+    display: inline;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    color: var(--blue);
+    font-weight: bold;
+  }
+}
+
+/* Shop-Button: Auf Desktop zeigt er "Shop" + Icon, auf Mobile nur das Icon */
 .cta-button .cta-text {
   display: none;
 }
@@ -282,23 +293,7 @@ export default {
   }
 }
 
-/* Neuer Reservierung-Link: soll auf Desktop angezeigt, aber auf Mobile ausgeblendet */
-.reservierung-link {
-  /* Standardmäßig angezeigt (Desktop) */
-  font-size: 1.2rem;
-  text-transform: uppercase;
-  color: var(--blue);
-  font-weight: bold;
-}
-
-/* Mobile: Reservierung-Link ausblenden */
-@media (max-width: 768px) {
-  .reservierung-link {
-    display: none;
-  }
-}
-
-/* Mobile Menü */
+/* Mobiles Menü */
 .mobile-menu {
   position: fixed;
   top: 3em;
@@ -347,7 +342,7 @@ export default {
   height: 100%;
 }
 
-/* Tablets */
+/* Tablets: Für Geräte zwischen 768px und 1200px */
 @media (min-width: 768px) and (max-width: 1200px) {
   .navbar {
     padding: 4.5em 2em;
