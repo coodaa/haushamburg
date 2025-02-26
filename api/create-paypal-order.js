@@ -1,7 +1,7 @@
 // create-paypal-order.js
 const checkoutNodeJssdk = require("@paypal/checkout-server-sdk");
 
-// Erstelle die Umgebung (Sandbox für Tests)
+// Erstelle die Umgebung (Sandbox für Tests) ybd
 function environment() {
   const clientId = process.env.PAYPAL_CLIENT_ID;
   const clientSecret = process.env.PAYPAL_CLIENT_SECRET;
