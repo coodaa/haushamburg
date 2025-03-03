@@ -183,7 +183,7 @@ export default {
       }
     });
 
-const handleStripePayment = async () => {
+    const handleStripePayment = async () => {
   message.value = "";
   const { error } = await stripe.confirmPayment({
     clientSecret: clientSecret.value,
