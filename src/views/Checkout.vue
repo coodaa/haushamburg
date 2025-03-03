@@ -1,13 +1,13 @@
 <template>
   <BasePage
-    imageSrc="/images/checkout/checkout-banner.webp"
+    imageSrc="/images/mood/haus-hamburg-leer-pferd.webp"
     imageAlt="Checkout"
     titleAbove="Checkout"
     titleMain="Bezahlen"
     subtitle="Überprüfen Sie Ihre Bestellung und wählen Sie Ihre Zahlungsmethode"
     heading="Checkout"
-    flowText="Bitte überprüfen Sie Ihre Bestellung, füllen Sie Ihre Adressdaten aus und wählen Sie zwischen Stripe-Zahlung (inkl. Kreditkarte, Apple Pay, Google Pay, etc.) oder PayPal."
-    parallaxImageSrc="/images/checkout/checkout-parallax.webp"
+    flowText="Bitte überprüfen Sie Ihre Bestellung, füllen Sie Ihre Adressdaten aus und wählen Sie zwischen Stripe-Zahlung oder PayPal."
+    parallaxImageSrc="/images/mood/haus-hamburg-leer-pferd.webp"
   >
     <div class="checkout-container">
       <h2 class="section-title">Ihre Bestellung</h2>
@@ -68,7 +68,7 @@
           Mit Stripe bezahlen
         </button>
         <p class="info-note">
-          Hinweis: Apple Pay, Google Pay und andere Zahlungsmethoden werden nur angezeigt, wenn Ihre Domain verifiziert ist und über HTTPS aufgerufen wird.
+          Hinweis: Wallet-Optionen (Apple Pay, Google Pay etc.) erscheinen nur in einer Live‑Umgebung über HTTPS auf verifizierten Domains.
         </p>
       </div>
 
@@ -146,10 +146,10 @@ export default {
       paymentElement = elements.create("payment");
       paymentElement.mount("#payment-element");
 
-      // PayPal Button initialisieren (Stripe und PayPal können parallel angeboten werden)
+      // PayPal Button initialisieren
       if (window.paypal) {
         window.paypal.Buttons({
-          fundingSource: window.paypal.FUNDING.PAYPAL,
+          fundingSource: window.paypal.FUNDING.PAYPAL, // Erzwingt reine PayPal-Zahlung
           createOrder: async (data, actions) => {
             const orderRes = await fetch("/api/create-paypal-order", {
               method: "POST",
@@ -183,9 +183,9 @@ export default {
       }
     });
 
+    // Stripe Payment Handler: Hier wird das Payment Element verwendet, um automatisch die Zahlungsquelle zu übernehmen.
     const handleStripePayment = async () => {
       message.value = "";
-      // Hier nutzen wir ausschließlich das Payment Element – Stripe holt automatisch die eingegebenen Zahlungsdaten
       const { error } = await stripe.confirmPayment({
         clientSecret: clientSecret.value,
         confirmParams: {
@@ -340,16 +340,16 @@ export default {
   background-color: var(--gold);
 }
 
-.payment-message {
-  color: red;
-  text-align: center;
-  margin-top: 1rem;
-}
-
 .info-note {
   text-align: center;
   font-size: 0.9rem;
   color: #666;
   margin-top: 0.5rem;
+}
+
+.payment-message {
+  color: red;
+  text-align: center;
+  margin-top: 1rem;
 }
 </style>
