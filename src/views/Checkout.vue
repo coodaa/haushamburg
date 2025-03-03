@@ -183,20 +183,19 @@ export default {
       }
     });
 
-    // Stripe Payment Handler: Hier wird das Payment Element verwendet, um automatisch die Zahlungsquelle zu übernehmen.
     const handleStripePayment = async () => {
-      message.value = "";
-      const { error } = await stripe.confirmPayment({
-        clientSecret: clientSecret.value,
-        confirmParams: {
-          return_url: window.location.origin + "/checkout-success",
-        },
-      });
-      if (error) {
-        message.value = error.message;
-        console.error("Stripe Confirm Payment Error:", error);
-      }
-    };
+  message.value = "";
+  const { error } = await stripe.confirmPayment({
+    clientSecret: clientSecret.value,
+    confirmParams: {
+      return_url: window.location.origin + "/checkout-success",
+    },
+  });
+  if (error) {
+    message.value = error.message;
+    console.error("Stripe Confirm Payment Error:", error);
+  }
+};
 
     return {
       cartItems,
