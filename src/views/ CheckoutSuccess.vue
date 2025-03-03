@@ -1,13 +1,13 @@
 <template>
   <BasePage
-    imageSrc="/images/checkout/success-banner.webp"
-    imageAlt="Zahlung erfolgreich"
+  imageSrc="/images/mood/haus-hamburg-leer-pferd.webp"
+  imageAlt="Zahlung erfolgreich"
     titleAbove="Vielen Dank"
     titleMain="Zahlung erfolgreich"
     subtitle="Ihre Bestellung wurde erfolgreich verarbeitet."
     heading="Erfolg!"
     flowText="Ihre Zahlung wurde bestätigt. Eine Bestätigungs-E-Mail wurde an Sie gesendet. Vielen Dank für Ihren Einkauf!"
-    parallaxImageSrc="/images/checkout/success-parallax.webp"
+    parallaxImageSrc="/images/mood/haus-hamburg-leer-pferd.webp"
   >
     <div class="success-container">
       <p>Vielen Dank für Ihre Bestellung!</p>
