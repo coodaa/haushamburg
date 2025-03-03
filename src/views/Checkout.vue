@@ -182,8 +182,8 @@ export default {
         console.error("PayPal SDK wurde nicht geladen.");
       }
     });
-    
-    const handleStripePayment = async () => {
+
+const handleStripePayment = async () => {
   message.value = "";
   const { error } = await stripe.confirmPayment({
     clientSecret: clientSecret.value,
