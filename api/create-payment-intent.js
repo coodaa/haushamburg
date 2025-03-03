@@ -3,15 +3,12 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 module.exports = async (req, res) => {
   try {
-    // Hier evtl. den Betrag dynamisch berechnen
-    const amount = 1000; // Beispielbetrag in Cent
+    // Beispiel: Betrag in Cent (dynamisch berechenbar)
+    const amount = 1000;
     const paymentIntent = await stripe.paymentIntents.create({
       amount,
       currency: 'eur',
-      automatic_payment_methods: {
-        enabled: true,
-      },
-      // Optional: Metadata mit dem Warenkorb (falls benötigt)
+      automatic_payment_methods: { enabled: true },
       metadata: {
         cart: JSON.stringify(req.body.items || []),
       },
