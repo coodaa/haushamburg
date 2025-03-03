@@ -17,6 +17,7 @@ const Checkout = () => import("../views/Checkout.vue");
 const ProductList = () => import("../views/ProductList.vue");
 const Shop = () => import("../views/Shop.vue");
 const ProductAdmin = () => import("../views/ProductAdmin.vue");
+const CheckoutSuccess = () => import("../views/CheckoutSuccess.vue");
 
 
 const routes = [
@@ -118,7 +119,6 @@ const routes = [
       description: "Bestellen Sie frische Fischgerichte bequem online.",
     },
   },
-
   {
     path: "/productlist",
     name: "productlist",
@@ -140,6 +140,15 @@ const routes = [
   },
 
   {
+    path: "/checkout-success",
+    name: "checkout-success",
+    component: CheckoutSuccess,
+    meta: {
+      title: "Checkout Success - Haus Hamburg",
+      description: "Ihre Zahlung war erfolgreich. Vielen Dank für Ihren Einkauf!",
+    },
+  },
+  {
     path: "/admin",
     name: "admin",
     component: ProductAdmin,
@@ -148,7 +157,6 @@ const routes = [
       description: "Füge neue Produkte zum Online-Shop hinzu.",
     },
   },
-
   // 404 Fehlerseite
   {
     path: "/:pathMatch(.*)*",
