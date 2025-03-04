@@ -1,13 +1,17 @@
-// api/create-payment-intent.js
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 module.exports = async (req, res) => {
   try {
     // Beispiel: Betrag in Cent (dynamisch berechenbar)
-    const amount = 1000; // Hier kannst du den Betrag basierend auf dem Warenkorb berechnen
+    // Hier kannst du den Betrag basierend auf dem Warenkorb berechnen, z. B.:
+    const items = req.body.items || [];
+    const amount = items.reduce(
+      (sum, item) => sum + Math.round(item.product.price * 100) * item.quantity,
+      0
+    );
 
     // Erstelle eine kurze Zusammenfassung des Warenkorbs (nur Produktnamen und Menge)
-    const cartSummary = (req.body.items || [])
+    const cartSummary = items
       .map((item) => `${item.product.name} x ${item.quantity}`)
       .join(", ");
 
