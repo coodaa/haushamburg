@@ -28,7 +28,7 @@ async function sendEmails(orderData) {
   // E-Mail an Dich als Shop-Inhaber
   await transporter.sendMail({
     from: `"Bestell-Benachrichtigung" <${process.env.EMAIL_USER}>`,
-    to: "deine-email@domain.de", // Ersetze durch Deine E-Mail-Adresse
+    to: "info@haus-hamburg-leer.de", // Ersetze durch Deine E-Mail-Adresse
     subject: "Neue Bestellung erhalten",
     html: `<p>Es wurde eine neue Bestellung erhalten:</p>
            <pre>${JSON.stringify(orderData, null, 2)}</pre>`,
