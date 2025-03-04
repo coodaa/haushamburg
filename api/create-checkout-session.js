@@ -1,31 +1,59 @@
-// api/create-checkout-session.js
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+// api/stripe-webhook.js
+const express = require("express");
+const app = express();
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+const { db } = require("./firebaseadmin"); // Stelle sicher, dass firebaseadmin.js korrekt konfiguriert ist
 
-module.exports = async (req, res) => {
-  try {
-    const { items } = req.body; // Erwartet ein Array von { product, quantity }
-    const lineItems = items.map(item => ({
-      price_data: {
-        currency: 'eur',
-        product_data: {
-          name: item.product.name,
-          images: [item.product.image],
-        },
-        unit_amount: Math.round(item.product.price * 100), // Betrag in Cent
-      },
-      quantity: item.quantity,
-    }));
+// Da Stripe den Body als Raw-Buffer benötigt:
+app.post(
+  "/api/stripe-webhook",
+  express.raw({ type: "application/json" }),
+  async (req, res) => {
+    const sig = req.headers["stripe-signature"];
+    let event;
 
-    const session = await stripe.checkout.sessions.create({
-      payment_method_types: ['card'],
-      line_items: lineItems,
-      mode: 'payment',
-      success_url: `${req.headers.origin}/checkout-success`,
-      cancel_url: `${req.headers.origin}/checkout-cancel`,
-    });
+    try {
+      event = stripe.webhooks.constructEvent(
+        req.body,
+        sig,
+        process.env.STRIPE_WEBHOOK_SECRET
+      );
+    } catch (err) {
+      console.error("❌ Webhook-Fehler:", err.message);
+      return res.status(400).send(`Webhook Error: ${err.message}`);
+    }
 
-    res.status(200).json({ id: session.id });
-  } catch (error) {
-    res.status(500).json({ error: error.message });
+    // Wenn die Zahlung erfolgreich abgeschlossen wurde:
+    if (event.type === "checkout.session.completed") {
+      const session = event.data.object;
+      console.log("✅ Zahlung abgeschlossen:", session);
+
+      // Bereite die Bestelldaten für deine Datenbank vor.
+      // Hier wird z. B. die Zusammenfassung aus den Metadaten genutzt.
+      let orderData = {
+        userEmail: session.customer_email,
+        totalAmount: session.amount_total / 100, // Betrag in Euro
+        currency: session.currency,
+        paymentStatus: session.payment_status,
+        createdAt: new Date(),
+        // Falls du den Warenkorb als JSON-String in den Metadaten gespeichert hast:
+        items: session.metadata && session.metadata.cart
+          ? JSON.parse(session.metadata.cart)
+          : []
+      };
+
+      try {
+        // Speichere die Bestellung in Firestore:
+        await db.collection("orders").add(orderData);
+        console.log("✅ Bestellung gespeichert:", orderData);
+      } catch (error) {
+        console.error("❌ Fehler beim Speichern der Bestellung:", error);
+      }
+    }
+
+    // Stripe erwartet eine JSON-Antwort
+    res.json({ received: true });
   }
-};
+);
+
+module.exports = app;
