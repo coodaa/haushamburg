@@ -6,7 +6,7 @@
     titleMain="Bezahlen"
     subtitle="Überprüfen Sie Ihre Bestellung und wählen Sie Ihre Zahlungsmethode"
     heading="Checkout"
-    flowText="Bitte überprüfen Sie Ihre Bestellung, füllen Sie Ihre Adressdaten aus und wählen Sie zwischen Stripe-Zahlung oder PayPal."
+    flowText="Bitte überprüfen Sie Ihre Bestellung, füllen Sie Ihre Adressdaten aus und wählen Sie zwischen Stripe‑Zahlung oder PayPal."
     parallaxImageSrc="/images/mood/haus-hamburg-leer-pferd.webp"
   >
     <div class="checkout-container">
@@ -15,11 +15,7 @@
         Ihr Warenkorb ist leer.
       </div>
       <div v-else class="cart-summary">
-        <div
-          v-for="(item, index) in cartItems"
-          :key="index"
-          class="cart-item"
-        >
+        <div v-for="(item, index) in cartItems" :key="index" class="cart-item">
           <img :src="item.product.image" :alt="item.product.name" class="item-image" />
           <div class="item-details">
             <h3 class="item-name">{{ item.product.name }}</h3>
@@ -183,19 +179,20 @@ export default {
       }
     });
 
+    // Wichtig: Übergib hier auch die Elemente-Instanz an confirmPayment!
     const handleStripePayment = async () => {
-  message.value = "";
-  const { error } = await stripe.confirmPayment({
-    clientSecret: clientSecret.value,
-    confirmParams: {
-      return_url: window.location.origin + "/checkout-success",
-    },
-  });
-  if (error) {
-    message.value = error.message;
-    console.error("Stripe Confirm Payment Error:", error);
-  }
-};
+      message.value = "";
+      const { error } = await stripe.confirmPayment({
+        elements, // Hier wird das PaymentElement übergeben!
+        confirmParams: {
+          return_url: window.location.origin + "/checkout-success",
+        },
+      });
+      if (error) {
+        message.value = error.message;
+        console.error("Stripe Confirm Payment Error:", error);
+      }
+    };
 
     return {
       cartItems,
