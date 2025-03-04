@@ -16,7 +16,6 @@ const NotFound = () => import("../views/NotFound.vue");
 const Checkout = () => import("../views/Checkout.vue");
 const ProductList = () => import("../views/ProductList.vue");
 const Shop = () => import("../views/Shop.vue");
-const ProductAdmin = () => import("../views/ProductAdmin.vue");
 const CheckoutSuccess = () => import("../views/CheckoutSuccess.vue");
 
 
@@ -148,15 +147,7 @@ const routes = [
       description: "Ihre Zahlung war erfolgreich. Vielen Dank für Ihren Einkauf!",
     },
   },
-  {
-    path: "/admin",
-    name: "admin",
-    component: ProductAdmin,
-    meta: {
-      title: "Produktverwaltung - Haus Hamburg",
-      description: "Füge neue Produkte zum Online-Shop hinzu.",
-    },
-  },
+ 
   // 404 Fehlerseite
   {
     path: "/:pathMatch(.*)*",

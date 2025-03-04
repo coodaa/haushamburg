@@ -24,13 +24,15 @@
 
 <script>
 import { ref, onMounted } from "vue";
-import { fetchProducts } from "../../firebase/products";
+// Anstatt Firebase zu verwenden, importieren wir die statischen Produkte
+import staticProducts from "@/data/products.json";
+
 export default {
   setup() {
     const products = ref([]);
 
-    onMounted(async () => {
-      products.value = await fetchProducts();
+    onMounted(() => {
+      products.value = staticProducts;
       console.log("📋 Produktliste geladen:", products.value);
     });
 

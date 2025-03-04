@@ -133,6 +133,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import BasePage from "@/components/BasePage.vue";
+// Importiere statische Produkte aus der JSON-Datei
 import staticProducts from "@/data/products.json";
 import CartOverlay from "@/components/CartOverlay.vue";
 import { useCartStore } from "@/stores/cart";
@@ -151,7 +152,7 @@ export default {
     const showLeftArrow = ref(false);
     const showRightArrow = ref(false);
 
-    // Mengensteuerung (für Anzeige in den Karten)
+    // Mengensteuerung: Initialisiere für jedes Produkt die Menge (Standard: 1)
     const quantities = ref({});
     products.value.forEach(product => {
       if (!quantities.value[product.name]) {
@@ -169,9 +170,8 @@ export default {
     const getQuantity = (product) => quantities.value[product.name] || 1;
 
     const addToCart = (product) => {
-      // Füge Produkt mitsamt der aktuellen Menge dem Warenkorb-Store hinzu
       cartStore.addItemWithQuantity(product, getQuantity(product));
-      // Overlay kurz einblenden (z. B. 3 Sekunden)
+      // Zeige das Warenkorb-Overlay für 3 Sekunden an
       cartVisible.value = true;
       setTimeout(() => {
         cartVisible.value = false;
@@ -200,7 +200,7 @@ export default {
       let closestCat = "";
       let minDistance = Infinity;
       const offset = 200;
-      Object.keys(categoryRefs).forEach((cat) => {
+      Object.keys(categoryRefs).forEach(cat => {
         const el = categoryRefs[cat];
         if (el) {
           const rect = el.getBoundingClientRect();
@@ -260,7 +260,7 @@ export default {
     const categories = ["Fisch", "Fleisch", "Vegetarisch", "Desserts", "Getränke"];
 
     const popularProducts = computed(() =>
-      products.value.filter((p) =>
+      products.value.filter(p =>
         [
           "Kibbelinge",
           "Ras Fritten",
@@ -274,7 +274,7 @@ export default {
     );
 
     const productsByCategory = (cat) =>
-      products.value.filter((prod) => prod.category === cat);
+      products.value.filter(prod => prod.category === cat);
 
     // Steuerung für das Warenkorb-Overlay
     const cartVisible = ref(false);
@@ -545,7 +545,7 @@ export default {
   color: white;
 }
 
-/* Warenkorb-Overlay-Button (fix am unteren rechten Bildschirmrand) */
+/* Warenkorb-Overlay-Button */
 .open-cart-btn {
   position: fixed;
   bottom: 1rem;
