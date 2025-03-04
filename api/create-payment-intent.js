@@ -4,9 +4,8 @@ const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 module.exports = async (req, res) => {
   try {
     // Beispiel: Betrag in Cent (dynamisch berechenbar)
-    const amount = (req.body.items || []).reduce((sum, item) => {
-      return sum + item.product.price * item.quantity;
-    }, 0);
+    const amount = 1000; // Hier kannst du den Betrag basierend auf dem Warenkorb berechnen
+
     // Erstelle eine kurze Zusammenfassung des Warenkorbs (nur Produktnamen und Menge)
     const cartSummary = (req.body.items || [])
       .map((item) => `${item.product.name} x ${item.quantity}`)
