@@ -52,7 +52,7 @@ module.exports = async function handler(req, res) {
       <h2 style="color: #004a7f;">Neue Bestellung</h2>
       <p><strong>👤 Kunde:</strong> ${address.firstName} ${address.lastName}</p>
       <p><strong>📧 E-Mail:</strong> <a href="mailto:${address.email}" style="color: #004a7f;">${address.email}</a></p>
-      <p><strong>📞 Telefon:</strong> <a href="tel:${address.phone}" style="color: #004a7f;">${address.phone}</a></p>
+   <p><strong>📞 Telefon:</strong> <a href="tel:${address.phone}" style="color: #004a7f;">${address.phone}</a></p>
       <hr style="border: 1px solid #ddd;" />
       <h3 style="color: #004a7f;">📍 Lieferadresse:</h3>
       <p>${address.street}</p>
