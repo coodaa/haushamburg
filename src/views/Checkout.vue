@@ -201,18 +201,29 @@ export default {
     });
 
     const handleStripePayment = async () => {
-      message.value = "";
-      const { error } = await stripe.confirmPayment({
-        elements,
-        confirmParams: {
-          return_url: window.location.origin + "/checkout-success",
-        },
-      });
-      if (error) {
-        message.value = error.message;
-        console.error("Stripe Confirm Payment Error:", error);
-      }
-    };
+  message.value = "";
+  const { error } = await stripe.confirmPayment({
+    elements,
+    confirmParams: {
+      return_url: window.location.origin + "/checkout-success",
+    },
+  });
+  if (error) {
+    message.value = error.message;
+    console.error("Stripe Confirm Payment Error:", error);
+  } else {
+    // API-Aufruf zum Versenden der Checkout-Emails
+    await fetch("/api/sendCheckoutEmail", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        address: address.value,
+        items: cartItems.value,
+        total: parseFloat(totalPrice.value), // stelle sicher, dass der total als Zahl übergeben wird
+      }),
+    });
+  }
+};
 
     return {
       cartItems,
