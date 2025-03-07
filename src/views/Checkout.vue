@@ -93,6 +93,11 @@
         <div id="paypal-button-container" class="paypal-button-container"></div>
       </div>
 
+      <!-- Test-Button für den E-Mail Versand -->
+      <div class="test-email">
+        <button @click="testEmail" class="text-button">E-Mail Test versenden</button>
+      </div>
+
       <div v-if="message" class="payment-message">{{ message }}</div>
 
       <div class="checkout-summary">
@@ -121,7 +126,7 @@ export default {
     const formatPrice = (val) =>
       val.toFixed(2).replace(".", ",") + " €";
 
-    // Adressdaten, analog zur Catering-Seite
+    // Adressdaten – diese werden über das Formular befüllt
     const address = ref({
       firstName: "",
       lastName: "",
@@ -141,7 +146,7 @@ export default {
     const clientSecret = ref("");
 
     onMounted(async () => {
-      // Erstelle Payment Intent via Backend – übergib das address-Objekt mit allen Feldern
+      // Erstelle Payment Intent via Backend – übergib das address-Objekt
       const res = await fetch("/api/create-payment-intent", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -200,30 +205,72 @@ export default {
       }
     });
 
+    // Funktion zum Handling der Stripe-Zahlung
     const handleStripePayment = async () => {
-  message.value = "";
-  const { error } = await stripe.confirmPayment({
-    elements,
-    confirmParams: {
-      return_url: window.location.origin + "/checkout-success",
-    },
-  });
-  if (error) {
-    message.value = error.message;
-    console.error("Stripe Confirm Payment Error:", error);
-  } else {
-    // API-Aufruf zum Versenden der Checkout-Emails
-    await fetch("/api/sendCheckoutEmail", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
+      message.value = "";
+      const { error } = await stripe.confirmPayment({
+        elements,
+        confirmParams: {
+          return_url: window.location.origin + "/checkout-success",
+        },
+      });
+      if (error) {
+        message.value = error.message;
+        console.error("Stripe Confirm Payment Error:", error);
+      } else {
+        // API-Aufruf zum Versenden der Checkout-Emails nach erfolgreicher Zahlung
+        await fetch("/api/sendCheckoutEmail", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            address: address.value,
+            items: cartItems.value,
+            total: parseFloat(totalPrice.value),
+          }),
+        });
+      }
+    };
+
+    // Testfunktion für den manuellen E-Mail Versand
+    const testEmail = async () => {
+      const testData = {
         address: address.value,
-        items: cartItems.value,
-        total: parseFloat(totalPrice.value), // stelle sicher, dass der total als Zahl übergeben wird
-      }),
-    });
-  }
-};
+        items: cartItems.value.length > 0
+          ? cartItems.value
+          : [
+              {
+                product: {
+                  name: "Testprodukt",
+                  price: 10.0,
+                },
+                quantity: 2,
+              },
+            ],
+        total:
+          cartItems.value.length > 0
+            ? parseFloat(totalPrice.value)
+            : 20.0,
+      };
+
+      try {
+        const res = await fetch("/api/sendCheckoutEmail", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(testData),
+        });
+        const data = await res.json();
+        if (data.error) {
+          message.value = data.error;
+          console.error("E-Mail Versand Fehler:", data.error);
+        } else {
+          message.value = "E-Mail wurde erfolgreich versendet!";
+          console.log("Test E-Mail Versand erfolgreich:", data);
+        }
+      } catch (error) {
+        message.value = "Ein Fehler ist aufgetreten.";
+        console.error("Fehler beim Testen des E-Mail Versands:", error);
+      }
+    };
 
     return {
       cartItems,
@@ -232,6 +279,7 @@ export default {
       address,
       message,
       handleStripePayment,
+      testEmail,
     };
   },
 };
@@ -414,5 +462,24 @@ export default {
   color: red;
   text-align: center;
   margin-top: 1rem;
+}
+
+/* Styling für den Test-Button */
+.test-email {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.text-button {
+  background: none;
+  border: none;
+  color: var(--blue);
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.text-button:hover {
+  color: var(--gold);
 }
 </style>

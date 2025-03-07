@@ -88,10 +88,9 @@ module.exports = async function handler(req, res) {
   `;
 
   try {
-    // Sende E-Mail an Dich (Shop-Inhaber)
     await transporter.sendMail({
       from: `"Neue Bestellung" <${process.env.EMAIL_USER}>`,
-      to: "info@deinrestaurant.de", // Deine E-Mail-Adresse
+      to: "info@haus-hamburg-leer.de", // ändere hier zu Deiner gewünschten Adresse
       subject: `Neue Bestellung – ${new Date().toLocaleDateString("de-DE")}`,
       html: ownerEmailContent,
     });
