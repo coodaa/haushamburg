@@ -6,12 +6,10 @@ module.exports = async function handler(req, res) {
     return res.status(405).json({ error: "Method Not Allowed" });
   }
 
-  // Log zum Debuggen
   console.log("Received checkout order:", req.body);
 
   const { address, items, total } = req.body;
 
-  // Überprüfe, ob alle Pflichtfelder vorhanden sind
   if (
     !address ||
     !address.firstName ||
@@ -29,10 +27,9 @@ module.exports = async function handler(req, res) {
     return res.status(400).json({ error: "Bitte füllen Sie alle Pflichtfelder aus!" });
   }
 
-  // Erstelle den Nodemailer-Transporter
   const transporter = nodemailer.createTransport({
-    host: "smtp.strato.de", // oder deinen SMTP-Server
-    port: 465,              // SSL-Port (alternativ 587 für TLS)
+    host: "smtp.strato.de",
+    port: 465,
     secure: true,
     auth: {
       user: process.env.EMAIL_USER,
@@ -40,19 +37,17 @@ module.exports = async function handler(req, res) {
     },
   });
 
-  // Erstelle einen string mit den Bestelldetails
   let orderDetails = "";
   items.forEach(item => {
     orderDetails += `<p>${item.quantity} x ${item.product.name} – ${parseFloat(item.product.price).toFixed(2).replace(".", ",")} €</p>`;
   });
 
-  // Inhalt der E-Mail an Dich als Shop-Inhaber
   const ownerEmailContent = `
     <div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6; color: #333;">
       <h2 style="color: #004a7f;">Neue Bestellung</h2>
       <p><strong>👤 Kunde:</strong> ${address.firstName} ${address.lastName}</p>
       <p><strong>📧 E-Mail:</strong> <a href="mailto:${address.email}" style="color: #004a7f;">${address.email}</a></p>
-   <p><strong>📞 Telefon:</strong> <a href="tel:${address.phone}" style="color: #004a7f;">${address.phone}</a></p>
+      <p><strong>📞 Telefon:</strong> <a href="tel:${address.phone}" style="color: #004a7f;">${address.phone}</a></p>
       <hr style="border: 1px solid #ddd;" />
       <h3 style="color: #004a7f;">📍 Lieferadresse:</h3>
       <p>${address.street}</p>
@@ -67,7 +62,6 @@ module.exports = async function handler(req, res) {
     </div>
   `;
 
-  // Inhalt der Bestätigungs-E-Mail an den Kunden
   const customerEmailContent = `
     <div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6; color: #333;">
       <h2 style="color: #004a7f;">Bestellbestätigung – Ihr Restaurant</h2>
@@ -82,7 +76,7 @@ module.exports = async function handler(req, res) {
       <p>${address.street}</p>
       <p>${address.postalCode} ${address.city}</p>
       <p>${address.country}</p>
-      <p>Bei Fragen erreichen Sie uns unter <a href="mailto:info@deinrestaurant.de" style="color: #004a7f;">info@deinrestaurant.de</a>.</p>
+      <p>Bei Fragen erreichen Sie uns unter <a href="mailto:info@haus-hamburg-leer.de" style="color: #004a7f;">info@haus-hamburg-leer.de</a>.</p>
       <p>Mit freundlichen Grüßen,<br/>Ihr Restaurant Team</p>
     </div>
   `;
@@ -90,12 +84,11 @@ module.exports = async function handler(req, res) {
   try {
     await transporter.sendMail({
       from: `"Neue Bestellung" <${process.env.EMAIL_USER}>`,
-      to: "info@haus-hamburg-leer.de", // ändere hier zu Deiner gewünschten Adresse
+      to: "info@haus-hamburg-leer.de",
       subject: `Neue Bestellung – ${new Date().toLocaleDateString("de-DE")}`,
       html: ownerEmailContent,
     });
 
-    // Sende Bestätigungs-E-Mail an den Kunden
     await transporter.sendMail({
       from: `"Ihr Restaurant" <${process.env.EMAIL_USER}>`,
       to: address.email,

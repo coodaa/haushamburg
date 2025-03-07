@@ -1,3 +1,4 @@
+// stripe-webhook.js
 const express = require("express");
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
@@ -21,13 +22,26 @@ app.post("/api/stripe-webhook", async (req, res) => {
     return res.status(400).send(`Webhook Error: ${err.message}`);
   }
 
-  // Bei erfolgreichem Checkout-Session
   if (event.type === "checkout.session.completed") {
     const session = event.data.object;
-    console.log("✅ Zahlung abgeschlossen:", session);
+    console.log("✅ Stripe Checkout-Session abgeschlossen:", session);
 
-    // Optional: Weitere Logik einbauen, z. B. Daten in einer Datenbank speichern,
-    // aber hier wird bewusst keine E-Mail versendet, da diese bereits im Checkout erfolgt.
+    // Hier erwarten wir, dass Du in der Session Metadata zwei Felder übergibst:
+    // "cart" und "address" als JSON-String
+    try {
+      await fetch("https://deinedomain.de/api/sendCheckoutEmail", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          address: JSON.parse(session.metadata.address),
+          items: JSON.parse(session.metadata.cart),
+          total: session.amount_total / 100,
+        }),
+      });
+      console.log("✅ E-Mail aus dem Webhook versendet");
+    } catch (error) {
+      console.error("❌ Fehler beim Aufruf des sendCheckoutEmail-Endpoints:", error);
+    }
   }
 
   res.json({ received: true });

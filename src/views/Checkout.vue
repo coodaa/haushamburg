@@ -25,7 +25,7 @@
         </div>
       </div>
 
-      <!-- Adressformular im Catering-Stil -->
+      <!-- Adressformular -->
       <div class="address-form catering-form">
         <h2 class="section-title">Rechnungs- & Lieferadresse</h2>
         <form id="address-form" @submit.prevent>
@@ -78,12 +78,13 @@
       <!-- Stripe Payment Element -->
       <div class="payment-section">
         <h2 class="section-title">Zahlungsinformationen (Stripe)</h2>
+        <!-- Hier wird das Stripe Payment Element eingebunden -->
         <div id="payment-element" class="payment-element"></div>
         <button class="checkout-btn" @click="handleStripePayment">
           Mit Stripe bezahlen
         </button>
         <p class="info-note">
-          Hinweis: Wallet-Optionen (Apple Pay, Google Pay etc.) erscheinen nur in einer Live‑Umgebung über HTTPS auf verifizierten Domains.
+          Hinweis: Wallet-Optionen (Apple Pay, Google Pay etc.) erscheinen nur in einer Live‑Umgebung über HTTPS.
         </p>
       </div>
 
@@ -93,7 +94,7 @@
         <div id="paypal-button-container" class="paypal-button-container"></div>
       </div>
 
-      <!-- Test-Button für den E-Mail Versand -->
+      <!-- Test-Button für den manuellen E-Mail Versand (optional) -->
       <div class="test-email">
         <button @click="testEmail" class="text-button">E-Mail Test versenden</button>
       </div>
@@ -126,7 +127,7 @@ export default {
     const formatPrice = (val) =>
       val.toFixed(2).replace(".", ",") + " €";
 
-    // Adressdaten – diese werden über das Formular befüllt
+    // Adressdaten – werden über das Formular befüllt
     const address = ref({
       firstName: "",
       lastName: "",
@@ -205,9 +206,27 @@ export default {
       }
     });
 
-    // Funktion zum Handling der Stripe-Zahlung
+    // Validierung der Adresse
+    const isAddressValid = () => {
+      return (
+        address.value.firstName &&
+        address.value.lastName &&
+        address.value.email &&
+        address.value.street &&
+        address.value.postalCode &&
+        address.value.city &&
+        address.value.country &&
+        address.value.phone
+      );
+    };
+
+    // Stripe Payment-Flow
     const handleStripePayment = async () => {
       message.value = "";
+      if (!isAddressValid()) {
+        message.value = "Bitte füllen Sie alle Pflichtfelder aus.";
+        return;
+      }
       const { error } = await stripe.confirmPayment({
         elements,
         confirmParams: {
@@ -218,7 +237,8 @@ export default {
         message.value = error.message;
         console.error("Stripe Confirm Payment Error:", error);
       } else {
-        // API-Aufruf zum Versenden der Checkout-Emails nach erfolgreicher Zahlung
+        // Optional: Falls Du zusätzlich direkt im Checkout den E-Mail-Versand auslösen möchtest,
+        // kannst Du hier den API-Aufruf an sendCheckoutEmail einbauen.
         await fetch("/api/sendCheckoutEmail", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -343,7 +363,6 @@ export default {
   color: var(--blue);
 }
 
-/* Adressformular im Catering-Stil */
 .address-form.catering-form {
   max-width: 48em;
   margin: 2rem auto;
@@ -357,12 +376,10 @@ export default {
   margin-bottom: 1.5rem;
 }
 
-/* Standard: Felder einspaltig */
 .form-row:not(.double) {
   display: block;
 }
 
-/* Nebeneinander angeordnete Felder */
 .form-row.double {
   display: grid;
   grid-template-columns: 1fr;
@@ -397,7 +414,6 @@ export default {
   box-shadow: 0 0 5px rgba(3, 48, 93, 0.3);
 }
 
-/* Auf Desktop: .double in zwei Spalten */
 @media (min-width: 768px) {
   .form-row.double {
     grid-template-columns: repeat(2, 1fr);
@@ -464,7 +480,6 @@ export default {
   margin-top: 1rem;
 }
 
-/* Styling für den Test-Button */
 .test-email {
   text-align: center;
   margin-top: 2rem;
