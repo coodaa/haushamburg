@@ -12,7 +12,7 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 3000;
 
-// Middleware für JSON und CORS (Frontend <-> Backend)
+// Middleware für JSON und CORS
 app.use(express.json());
 app.use(cors());
 
@@ -46,7 +46,6 @@ app.post("/api/sendCateringInquiry", async (req, res) => {
     message,
   } = req.body;
 
-  // Pflichtfelder überprüfen
   if (!name || !email || !phone || !guests || !location || !dateTime) {
     return res.status(400).json({ error: "Bitte füllen Sie alle Pflichtfelder aus!" });
   }
@@ -98,14 +97,14 @@ app.post("/api/sendCateringInquiry", async (req, res) => {
 });
 
 // ----------------------
-// API: Stripe Payment Intent (für z. B. Stripe Elements)
+// API: Stripe Payment Intent (für Stripe Elements, falls benötigt)
 // ----------------------
 app.post("/api/create-payment-intent", async (req, res) => {
   try {
-    // Hier berechnest Du den Betrag basierend auf dem Warenkorb
-    const amount = 1000; // Beispiel: 10,00 EUR in Cent
+    // Hier den Betrag basierend auf dem Warenkorb berechnen – Beispielwert:
+    const amount = 1000; // 10,00 EUR in Cent
 
-    // Erstelle eine kurze Zusammenfassung des Warenkorbs
+    // Erstelle eine Zusammenfassung des Warenkorbs
     const cartSummary = (req.body.items || [])
       .map((item) => `${item.product.name} x ${item.quantity}`)
       .join(", ");
@@ -127,7 +126,19 @@ app.post("/api/create-payment-intent", async (req, res) => {
 });
 
 // ----------------------
-// Stripe-Router einbinden
+// API: Create Checkout Session (aus dem Ordner api)
+// ----------------------
+const createCheckoutSession = require("../api/create-checkout-session");
+app.post("/api/create-checkout-session", createCheckoutSession);
+
+// ----------------------
+// API: Send Checkout Email (aus dem Ordner api)
+// ----------------------
+const sendCheckoutEmail = require("../api/sendCheckoutEmail");
+app.post("/api/sendCheckoutEmail", sendCheckoutEmail);
+
+// ----------------------
+// Stripe-Router einbinden (enthält den Webhook)
 // ----------------------
 const stripeRouter = require("./server/stripe");
 app.use("/api", stripeRouter);

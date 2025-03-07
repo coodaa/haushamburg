@@ -3,44 +3,13 @@ const express = require("express");
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const router = express.Router();
 
-// 🔥 Stripe Checkout-Session erstellen
-router.post("/create-checkout-session", async (req, res) => {
-  try {
-    const { cart, address } = req.body; // Hier werden der Warenkorb und die Adresse erwartet
+// 🔥 Endpoint: Stripe Checkout-Session erstellen (falls Du diesen nicht in api/ create-checkout-session.js nutzt)
+// Falls Du den Checkout-Session-Endpoint bereits in api/ erstellst, brauchst Du diesen Block nicht.
+// router.post("/create-checkout-session", async (req, res) => {
+//   // ... Alternativ: den Code aus api/create-checkout-session.js verwenden ...
+// });
 
-    const line_items = cart.map((item) => ({
-      price_data: {
-        currency: "eur",
-        product_data: {
-          name: item.name,
-          images: item.image ? [item.image] : [],
-        },
-        unit_amount: Math.round(item.price * 100),
-      },
-      quantity: item.quantity,
-    }));
-
-    // Übergib die Adresse und den Warenkorb als Metadaten (als JSON-String)
-    const session = await stripe.checkout.sessions.create({
-      payment_method_types: ["card"],
-      line_items,
-      mode: "payment",
-      success_url: `${process.env.FRONTEND_URL}/checkout-success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${process.env.FRONTEND_URL}/checkout-cancel`,
-      metadata: {
-        address: JSON.stringify(address),
-        cart: JSON.stringify(cart),
-      },
-    });
-
-    res.json({ sessionId: session.id });
-  } catch (error) {
-    console.error("❌ Stripe Checkout-Fehler:", error);
-    res.status(500).json({ error: error.message });
-  }
-});
-
-// 📌 Webhook für Stripe-Zahlungen
+// 📌 Endpoint: Stripe Webhook
 router.post(
   "/stripe-webhook",
   express.raw({ type: "application/json" }),
@@ -58,7 +27,7 @@ router.post(
         const session = event.data.object;
         console.log("✅ Stripe Checkout-Session abgeschlossen:", session);
 
-        // Lese die Metadaten aus, um die Adresse und den Warenkorb zu erhalten
+        // Lese Metadaten aus und erstelle ein orderData-Objekt
         const orderData = {
           userEmail: session.customer_email,
           totalAmount: session.amount_total / 100,
@@ -69,7 +38,7 @@ router.post(
           address: session.metadata && session.metadata.address ? JSON.parse(session.metadata.address) : {},
         };
 
-        // Versende E-Mails über den sendCheckoutEmail-Endpoint
+        // Rufe den sendCheckoutEmail-Endpoint auf, um E-Mails zu versenden
         try {
           await fetch(`${process.env.FRONTEND_URL}/api/sendCheckoutEmail`, {
             method: "POST",

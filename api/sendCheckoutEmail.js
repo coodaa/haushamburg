@@ -1,7 +1,7 @@
-// /api/sendCheckoutEmail.js
+// api/sendCheckoutEmail.js
 const nodemailer = require("nodemailer");
 
-module.exports = async function handler(req, res) {
+module.exports = async (req, res) => {
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method Not Allowed" });
   }
@@ -39,7 +39,9 @@ module.exports = async function handler(req, res) {
 
   let orderDetails = "";
   items.forEach(item => {
-    orderDetails += `<p>${item.quantity} x ${item.product.name} – ${parseFloat(item.product.price).toFixed(2).replace(".", ",")} €</p>`;
+    orderDetails += `<p>${item.quantity} x ${item.product.name} – ${parseFloat(item.product.price)
+      .toFixed(2)
+      .replace(".", ",")} €</p>`;
   });
 
   const ownerEmailContent = `
