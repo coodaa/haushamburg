@@ -25,41 +25,52 @@
         </div>
       </div>
 
-      <!-- Adressformular -->
-      <div class="address-form">
+      <!-- Adressformular (ähnlich wie in der Catering-Seite) -->
+      <div class="address-form catering-form">
         <h2 class="section-title">Rechnungs- & Lieferadresse</h2>
         <form id="address-form" @submit.prevent>
-          <div class="form-row">
-            <label for="firstName">Vorname</label>
-            <input id="firstName" v-model="address.firstName" type="text" required />
+          <!-- Vorname & Nachname nebeneinander -->
+          <div class="form-row double">
+            <div class="input-group">
+              <label for="firstName">Vorname</label>
+              <input id="firstName" v-model="address.firstName" type="text" required />
+            </div>
+            <div class="input-group">
+              <label for="lastName">Nachname</label>
+              <input id="lastName" v-model="address.lastName" type="text" required />
+            </div>
           </div>
-          <div class="form-row">
-            <label for="lastName">Nachname</label>
-            <input id="lastName" v-model="address.lastName" type="text" required />
-          </div>
+          <!-- E-Mail in voller Breite -->
           <div class="form-row">
             <label for="email">E-Mail</label>
             <input id="email" v-model="address.email" type="email" required />
           </div>
+          <!-- Straße in voller Breite -->
           <div class="form-row">
             <label for="street">Straße & Nr.</label>
             <input id="street" v-model="address.street" type="text" required />
           </div>
-          <div class="form-row">
-            <label for="postalCode">PLZ</label>
-            <input id="postalCode" v-model="address.postalCode" type="text" required />
+          <!-- PLZ & Stadt nebeneinander -->
+          <div class="form-row double">
+            <div class="input-group">
+              <label for="postalCode">PLZ</label>
+              <input id="postalCode" v-model="address.postalCode" type="text" required />
+            </div>
+            <div class="input-group">
+              <label for="city">Stadt</label>
+              <input id="city" v-model="address.city" type="text" required />
+            </div>
           </div>
-          <div class="form-row">
-            <label for="city">Stadt</label>
-            <input id="city" v-model="address.city" type="text" required />
-          </div>
-          <div class="form-row">
-            <label for="country">Land</label>
-            <input id="country" v-model="address.country" type="text" required />
-          </div>
-          <div class="form-row">
-            <label for="phone">Telefonnummer</label>
-            <input id="phone" v-model="address.phone" type="tel" required />
+          <!-- Land & Telefonnummer nebeneinander -->
+          <div class="form-row double">
+            <div class="input-group">
+              <label for="country">Land</label>
+              <input id="country" v-model="address.country" type="text" required />
+            </div>
+            <div class="input-group">
+              <label for="phone">Telefonnummer</label>
+              <input id="phone" v-model="address.phone" type="tel" required />
+            </div>
           </div>
         </form>
       </div>
@@ -110,7 +121,7 @@ export default {
     const formatPrice = (val) =>
       val.toFixed(2).replace(".", ",") + " €";
 
-    // Adressdaten inkl. separater Felder für Vor- und Nachname
+    // Adressdaten, wie in der Catering-Seite
     const address = ref({
       firstName: "",
       lastName: "",
@@ -273,29 +284,65 @@ export default {
   color: var(--blue);
 }
 
-.address-form {
-  margin-top: 2rem;
-  padding-top: 1.5rem;
-  border-top: 2px solid #ddd;
+/* Adressformular im Catering-Stil */
+.address-form.catering-form {
+  max-width: 48em;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .form-row {
+  margin-bottom: 1.5rem;
+}
+
+/* Standard: Einspaltig */
+.form-row:not(.double) {
+  display: block;
+}
+
+/* Für Felder, die nebeneinander erscheinen sollen */
+.form-row.double {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.input-group {
   display: flex;
   flex-direction: column;
-  margin-bottom: 1rem;
 }
 
 .form-row label {
-  font-size: 1rem;
-  margin-bottom: 0.3rem;
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
   color: var(--blue);
 }
 
 .form-row input {
-  padding: 0.5rem;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  margin-bottom: 1rem;
   font-size: 1rem;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-row input:focus {
+  outline: none;
+  border-color: var(--blue);
+  box-shadow: 0 0 5px rgba(3, 48, 93, 0.3);
+}
+
+/* Auf Desktop: .double in zwei Spalten */
+@media (min-width: 768px) {
+  .form-row.double {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 .payment-element,
