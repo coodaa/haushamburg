@@ -30,8 +30,16 @@
         <h2 class="section-title">Rechnungs- & Lieferadresse</h2>
         <form id="address-form" @submit.prevent>
           <div class="form-row">
-            <label for="name">Name</label>
-            <input id="name" v-model="address.name" type="text" required />
+            <label for="firstName">Vorname</label>
+            <input id="firstName" v-model="address.firstName" type="text" required />
+          </div>
+          <div class="form-row">
+            <label for="lastName">Nachname</label>
+            <input id="lastName" v-model="address.lastName" type="text" required />
+          </div>
+          <div class="form-row">
+            <label for="email">E-Mail</label>
+            <input id="email" v-model="address.email" type="email" required />
           </div>
           <div class="form-row">
             <label for="street">Straße & Nr.</label>
@@ -102,9 +110,11 @@ export default {
     const formatPrice = (val) =>
       val.toFixed(2).replace(".", ",") + " €";
 
-    // Adresse
+    // Adressdaten inkl. separater Felder für Vor- und Nachname
     const address = ref({
-      name: "",
+      firstName: "",
+      lastName: "",
+      email: "",
       street: "",
       postalCode: "",
       city: "",
@@ -120,7 +130,7 @@ export default {
     const clientSecret = ref("");
 
     onMounted(async () => {
-      // Erstelle Payment Intent via Backend
+      // Erstelle Payment Intent via Backend – übergib dabei auch das address-Objekt
       const res = await fetch("/api/create-payment-intent", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -145,7 +155,7 @@ export default {
       // PayPal Button initialisieren
       if (window.paypal) {
         window.paypal.Buttons({
-          fundingSource: window.paypal.FUNDING.PAYPAL, // Erzwingt reine PayPal-Zahlung
+          fundingSource: window.paypal.FUNDING.PAYPAL,
           createOrder: async (data, actions) => {
             const orderRes = await fetch("/api/create-paypal-order", {
               method: "POST",
@@ -179,11 +189,10 @@ export default {
       }
     });
 
-    // Wichtig: Übergib hier auch die Elemente-Instanz an confirmPayment!
     const handleStripePayment = async () => {
       message.value = "";
       const { error } = await stripe.confirmPayment({
-        elements, // Hier wird das PaymentElement übergeben!
+        elements,
         confirmParams: {
           return_url: window.location.origin + "/checkout-success",
         },

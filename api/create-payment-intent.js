@@ -7,8 +7,7 @@ module.exports = async (req, res) => {
 
     // Berechne den Gesamtbetrag in Cent
     const amount = items.reduce(
-      (sum, item) =>
-        sum + Math.round(item.product.price * 100) * item.quantity,
+      (sum, item) => sum + Math.round(item.product.price * 100) * item.quantity,
       0
     );
 
@@ -16,31 +15,20 @@ module.exports = async (req, res) => {
     const cartSummary = items
       .map((item) => `${item.product.name} x ${item.quantity}`)
       .join(", ");
-
-    // Kürze den String, falls er zu lang ist (max. 500 Zeichen)
     const shortenedCart = cartSummary.substring(0, 500);
 
-    // Extrahiere alle gewünschten Kundendaten aus dem Request
-    const email =
-      req.body.address && req.body.address.email
-        ? req.body.address.email
-        : "";
-    const customerName =
-      req.body.address && req.body.address.name
-        ? req.body.address.name
-        : "";
-    const phone =
-      req.body.address && req.body.address.phone
-        ? req.body.address.phone
-        : "";
-    // Optional: Falls du noch weitere Adressdetails separat brauchst,
-    // kannst du sie hier extrahieren. Wir speichern die gesamte Adresse als JSON.
-    const address =
-      req.body.address && Object.keys(req.body.address).length > 0
-        ? JSON.stringify(req.body.address)
-        : "";
+    // Extrahiere alle gewünschten Kundendaten aus dem address-Objekt
+    const addr = req.body.address || {};
+    const email = addr.email || "";
+    const firstName = addr.firstName || "";
+    const lastName = addr.lastName || "";
+    // Kombiniere Vor- und Nachname zu einem vollständigen Kundennamen
+    const customerName = `${firstName} ${lastName}`.trim();
+    const phone = addr.phone || "";
+    // Speichere das gesamte address-Objekt als JSON-String
+    const addressData =
+      Object.keys(addr).length > 0 ? JSON.stringify(addr) : "";
 
-    // Erstelle den Payment Intent mit allen zusätzlichen Informationen in den Metadaten
     const paymentIntent = await stripe.paymentIntents.create({
       amount,
       currency: "eur",
@@ -50,15 +38,13 @@ module.exports = async (req, res) => {
         customer_email: email,
         customer_name: customerName,
         phone: phone,
-        address: address,
+        address: addressData,
       },
     });
 
     res.status(200).json({ clientSecret: paymentIntent.client_secret });
   } catch (error) {
     console.error("Payment Intent Error:", error);
-    res
-      .status(500)
-      .json({ error: error.message || "Unbekannter Fehler" });
+    res.status(500).json({ error: error.message || "Unbekannter Fehler" });
   }
 };
