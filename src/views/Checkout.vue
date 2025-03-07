@@ -25,7 +25,7 @@
         </div>
       </div>
 
-      <!-- Adressformular (ähnlich wie in der Catering-Seite) -->
+      <!-- Adressformular im Catering-Stil -->
       <div class="address-form catering-form">
         <h2 class="section-title">Rechnungs- & Lieferadresse</h2>
         <form id="address-form" @submit.prevent>
@@ -121,7 +121,7 @@ export default {
     const formatPrice = (val) =>
       val.toFixed(2).replace(".", ",") + " €";
 
-    // Adressdaten, wie in der Catering-Seite
+    // Adressdaten, analog zur Catering-Seite
     const address = ref({
       firstName: "",
       lastName: "",
@@ -141,7 +141,7 @@ export default {
     const clientSecret = ref("");
 
     onMounted(async () => {
-      // Erstelle Payment Intent via Backend – übergib dabei auch das address-Objekt
+      // Erstelle Payment Intent via Backend – übergib das address-Objekt mit allen Feldern
       const res = await fetch("/api/create-payment-intent", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -298,12 +298,12 @@ export default {
   margin-bottom: 1.5rem;
 }
 
-/* Standard: Einspaltig */
+/* Standard: Felder einspaltig */
 .form-row:not(.double) {
   display: block;
 }
 
-/* Für Felder, die nebeneinander erscheinen sollen */
+/* Nebeneinander angeordnete Felder */
 .form-row.double {
   display: grid;
   grid-template-columns: 1fr;

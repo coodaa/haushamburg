@@ -17,18 +17,21 @@ module.exports = async (req, res) => {
       .join(", ");
     const shortenedCart = cartSummary.substring(0, 500);
 
-    // Extrahiere alle gewünschten Kundendaten aus dem address-Objekt
+    // Lese das address-Objekt aus dem Request
     const addr = req.body.address || {};
+
+    // Kombiniere Vor- und Nachname, falls vorhanden
+    const fullName = addr.firstName && addr.lastName
+      ? `${addr.firstName} ${addr.lastName}`
+      : "";
+
+    // Extrahiere weitere Felder
     const email = addr.email || "";
-    const firstName = addr.firstName || "";
-    const lastName = addr.lastName || "";
-    // Kombiniere Vor- und Nachname zu einem vollständigen Kundennamen
-    const customerName = `${firstName} ${lastName}`.trim();
     const phone = addr.phone || "";
     // Speichere das gesamte address-Objekt als JSON-String
-    const addressData =
-      Object.keys(addr).length > 0 ? JSON.stringify(addr) : "";
+    const addressData = Object.keys(addr).length > 0 ? JSON.stringify(addr) : "";
 
+    // Erstelle den Payment Intent und speichere alle Daten als Metadaten
     const paymentIntent = await stripe.paymentIntents.create({
       amount,
       currency: "eur",
@@ -36,7 +39,7 @@ module.exports = async (req, res) => {
       metadata: {
         cart: shortenedCart,
         customer_email: email,
-        customer_name: customerName,
+        customer_name: fullName,
         phone: phone,
         address: addressData,
       },
