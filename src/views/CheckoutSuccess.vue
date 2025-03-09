@@ -13,17 +13,67 @@
 </template>
 
 <script>
-import { onMounted } from "vue";
+import { onMounted, ref } from "vue";
 import { useCartStore } from "@/stores/cart";
+import { useRoute } from "vue-router";
 
 export default {
   name: "CheckoutSuccess",
   setup() {
     const cartStore = useCartStore();
+    const route = useRoute();
+    const emailStatus = ref("");
+
+    // Funktion, um die E-Mail zu versenden, falls noch nicht geschehen
+    const sendConfirmationEmail = async (sessionId) => {
+      // Prüfe, ob für diese Session bereits die E-Mail versendet wurde
+      if (localStorage.getItem(`emailSent-${sessionId}`)) {
+        console.log("E-Mail wurde bereits versendet.");
+        emailStatus.value = "Email bereits versendet.";
+        return;
+      }
+
+      try {
+        // API-Aufruf an Deinen Endpoint, der die E-Mail versendet.
+        // Hier nehmen wir an, dass Du die Session-Daten (z.B. sessionId) übergibst.
+        const res = await fetch("/api/sendCheckoutEmail", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          // Übergebe hier alle nötigen Daten, die der Endpoint erwartet.
+          // Du kannst z.B. sessionId, Kundendaten, Warenkorb, etc. übergeben.
+          body: JSON.stringify({ sessionId }),
+        });
+        const data = await res.json();
+        if (data.success) {
+          localStorage.setItem(`emailSent-${sessionId}`, "true");
+          emailStatus.value = "Email wurde versendet.";
+          console.log("E-Mail erfolgreich versendet.");
+        } else {
+          emailStatus.value = "Email-Versand fehlgeschlagen.";
+          console.error("Fehler beim E-Mail Versand:", data.error);
+        }
+      } catch (error) {
+        emailStatus.value = "Ein Fehler ist aufgetreten.";
+        console.error("Fehler beim E-Mail Versand:", error);
+      }
+    };
+
     onMounted(() => {
-      // Warenkorb leeren, wenn die Erfolgseite geladen wird
+      // Leere den Warenkorb beim Laden der Success-Seite
       cartStore.clearCart();
+
+      // Hole die session_id aus der URL, wenn vorhanden
+      const sessionId = route.query.session_id;
+      if (sessionId) {
+        sendConfirmationEmail(sessionId);
+      } else {
+        console.warn("Keine Session ID gefunden – E-Mail wird nicht versendet.");
+      }
     });
+
+    return {
+      emailStatus,
+    };
   },
 };
 </script>
