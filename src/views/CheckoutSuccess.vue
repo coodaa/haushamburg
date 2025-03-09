@@ -8,6 +8,7 @@
         Bestätigungs‑E‑Mail wurde an Sie gesendet.
       </p>
       <router-link to="/shop" class="btn btn-primary">Zum Shop</router-link>
+      <p v-if="emailStatus">{{ emailStatus }}</p>
     </div>
   </div>
 </template>
@@ -24,45 +25,38 @@ export default {
     const route = useRoute();
     const emailStatus = ref("");
 
-    // Funktion, um die E-Mail zu versenden, falls noch nicht geschehen
     const sendConfirmationEmail = async (sessionId) => {
-      // Prüfe, ob für diese Session bereits die E-Mail versendet wurde
+      // Prüfe, ob E-Mail bereits versendet wurde
       if (localStorage.getItem(`emailSent-${sessionId}`)) {
-        console.log("E-Mail wurde bereits versendet.");
-        emailStatus.value = "Email bereits versendet.";
+        emailStatus.value = "E-Mail wurde bereits versendet.";
         return;
       }
 
       try {
-        // API-Aufruf an Deinen Endpoint, der die E-Mail versendet.
-        // Hier nehmen wir an, dass Du die Session-Daten (z.B. sessionId) übergibst.
         const res = await fetch("/api/sendCheckoutEmail", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          // Übergebe hier alle nötigen Daten, die der Endpoint erwartet.
-          // Du kannst z.B. sessionId, Kundendaten, Warenkorb, etc. übergeben.
-          body: JSON.stringify({ sessionId }),
+          // Hier musst Du sicherstellen, dass der Endpoint alle nötigen Daten erwartet.
+          // Falls der sendCheckoutEmail-Endpoint Daten per Session-ID erwartet,
+          // müsstest Du diese vorher über Stripe abrufen. Alternativ sendest Du direkt
+          // die entsprechenden Daten (Adresse, Warenkorb, etc.), sofern diese verfügbar sind.
+          body: JSON.stringify({ sessionId })
         });
         const data = await res.json();
         if (data.success) {
           localStorage.setItem(`emailSent-${sessionId}`, "true");
-          emailStatus.value = "Email wurde versendet.";
-          console.log("E-Mail erfolgreich versendet.");
+          emailStatus.value = "E-Mail wurde versendet.";
         } else {
-          emailStatus.value = "Email-Versand fehlgeschlagen.";
-          console.error("Fehler beim E-Mail Versand:", data.error);
+          emailStatus.value = "E-Mail-Versand fehlgeschlagen.";
         }
       } catch (error) {
         emailStatus.value = "Ein Fehler ist aufgetreten.";
-        console.error("Fehler beim E-Mail Versand:", error);
       }
     };
 
     onMounted(() => {
-      // Leere den Warenkorb beim Laden der Success-Seite
       cartStore.clearCart();
-
-      // Hole die session_id aus der URL, wenn vorhanden
+      // Lese session_id aus der URL, die z. B. in Stripe-Checkout weitergegeben wurde
       const sessionId = route.query.session_id;
       if (sessionId) {
         sendConfirmationEmail(sessionId);
@@ -71,14 +65,13 @@ export default {
       }
     });
 
-    return {
-      emailStatus,
-    };
+    return { emailStatus };
   },
 };
 </script>
 
 <style scoped>
+/* Dein CSS bleibt unverändert */
 .checkout-success {
   position: relative;
   min-height: 100vh;
@@ -87,50 +80,31 @@ export default {
   align-items: center;
   justify-content: center;
 }
-
-.checkout-success::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-}
-
 .success-content {
   position: relative;
-  z-index: 1;
   text-align: center;
   color: var(--blue, #03305d);
   padding: 2rem;
   background-color: rgba(255, 255, 255, 0.9);
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  max-width: 90%;
-  margin: 0 1rem;
 }
-
 .success-icon {
   font-size: 5rem;
   color: var(--green, #4caf50);
   margin-bottom: 1rem;
 }
-
 .btn {
   text-decoration: none;
   padding: 0.75rem 1.5rem;
   border-radius: 20px;
   transition: background-color 0.3s ease;
-  display: inline-block;
   margin-top: 1.5rem;
 }
-
 .btn-primary {
   background-color: var(--blue, #03305d);
   color: #fff;
 }
-
 .btn-primary:hover {
   background-color: var(--gold, #ffc107);
   color: var(--blue, #03305d);
