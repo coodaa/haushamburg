@@ -43,9 +43,9 @@
               <router-link to="/Kontakt">Kontakt</router-link>
             </li>
             <!-- Reservieren-Link (wird auf Tablets und Mobile ausgeblendet) -->
-            <li class="reservierung-link">
+            <!-- <li class="reservierung-link">
               <router-link to="/reservierung">Reservieren</router-link>
-            </li>
+            </li> -->
             <!-- Shop-Button: Auf Desktop zeigt er "Shop" + Icon, auf Mobile nur das Icon -->
             <li>
               <router-link to="/reservierung">
