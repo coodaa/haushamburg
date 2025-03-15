@@ -29,7 +29,6 @@
       <div class="address-form catering-form">
         <h2 class="section-title">Rechnungs- & Lieferadresse</h2>
         <form id="address-form" @submit.prevent>
-          <!-- Vorname & Nachname nebeneinander -->
           <div class="form-row double">
             <div class="input-group">
               <label for="firstName">Vorname</label>
@@ -40,17 +39,14 @@
               <input id="lastName" v-model="address.lastName" type="text" required />
             </div>
           </div>
-          <!-- E-Mail in voller Breite -->
           <div class="form-row">
             <label for="email">E-Mail</label>
             <input id="email" v-model="address.email" type="email" required />
           </div>
-          <!-- Straße in voller Breite -->
           <div class="form-row">
             <label for="street">Straße & Nr.</label>
             <input id="street" v-model="address.street" type="text" required />
           </div>
-          <!-- PLZ & Stadt nebeneinander -->
           <div class="form-row double">
             <div class="input-group">
               <label for="postalCode">PLZ</label>
@@ -61,7 +57,6 @@
               <input id="city" v-model="address.city" type="text" required />
             </div>
           </div>
-          <!-- Land & Telefonnummer nebeneinander -->
           <div class="form-row double">
             <div class="input-group">
               <label for="country">Land</label>
@@ -78,7 +73,6 @@
       <!-- Stripe Payment Element -->
       <div class="payment-section">
         <h2 class="section-title">Zahlungsinformationen (Stripe)</h2>
-        <!-- Hier wird das Stripe Payment Element eingebunden -->
         <div id="payment-element" class="payment-element"></div>
         <button class="checkout-btn" @click="handleStripePayment">
           Mit Stripe bezahlen
@@ -138,16 +132,15 @@ export default {
       country: "",
       phone: "",
     });
-
     const message = ref("");
 
-    // Stripe Payment Element Setup
+    // Stripe Payment Element Setup (falls Stripe parallel genutzt wird)
     const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
     let stripe, elements, paymentElement;
     const clientSecret = ref("");
 
     onMounted(async () => {
-      // Erstelle Payment Intent via Backend – übergib das address-Objekt
+      // Stripe: Payment Intent erstellen (optional, falls Du Stripe Elements nutzt)
       const res = await fetch("/api/create-payment-intent", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -162,14 +155,13 @@ export default {
         return;
       }
       clientSecret.value = data.clientSecret;
-
       stripe = await stripePromise;
       const appearance = { theme: "flat" };
       elements = stripe.elements({ appearance, clientSecret: clientSecret.value });
       paymentElement = elements.create("payment");
       paymentElement.mount("#payment-element");
 
-      // PayPal Button initialisieren
+      // PayPal: Button initialisieren
       if (window.paypal) {
         window.paypal.Buttons({
           fundingSource: window.paypal.FUNDING.PAYPAL,
@@ -220,7 +212,7 @@ export default {
       );
     };
 
-    // Stripe Payment-Flow
+    // Stripe Payment-Flow (falls Stripe Elements verwendet wird)
     const handleStripePayment = async () => {
       message.value = "";
       if (!isAddressValid()) {
@@ -237,8 +229,7 @@ export default {
         message.value = error.message;
         console.error("Stripe Confirm Payment Error:", error);
       } else {
-        // Optional: Falls Du zusätzlich direkt im Checkout den E-Mail-Versand auslösen möchtest,
-        // kannst Du hier den API-Aufruf an sendCheckoutEmail einbauen.
+        // Optional: Direkt den E-Mail-Versand auslösen, falls gewünscht
         await fetch("/api/sendCheckoutEmail", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -257,19 +248,13 @@ export default {
         address: address.value,
         items: cartItems.value.length > 0
           ? cartItems.value
-          : [
-              {
-                product: {
-                  name: "Testprodukt",
-                  price: 10.0,
-                },
-                quantity: 2,
-              },
-            ],
-        total:
-          cartItems.value.length > 0
-            ? parseFloat(totalPrice.value)
-            : 20.0,
+          : [{
+              product: { name: "Testprodukt", price: 10.0 },
+              quantity: 2,
+            }],
+        total: cartItems.value.length > 0
+          ? parseFloat(totalPrice.value)
+          : 20.0,
       };
 
       try {

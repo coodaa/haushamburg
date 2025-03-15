@@ -149,3 +149,8 @@ app.use("/api", stripeRouter);
 app.listen(port, () => {
   console.log(`🚀 Backend läuft auf http://localhost:${port}`);
 });
+
+
+// API: Create PayPal Order (aus dem Ordner api)
+const createPaypalOrder = require("../api/create-paypal-order");
+app.post("/api/create-paypal-order", createPaypalOrder);

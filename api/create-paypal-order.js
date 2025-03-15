@@ -1,26 +1,21 @@
-// create-paypal-order.js
-const checkoutNodeJssdk = require("@paypal/checkout-server-sdk");
+// api/create-paypal-order.js
+const paypal = require("@paypal/checkout-server-sdk");
 
-// Erstelle die Umgebung (Sandbox für Tests) ybd
+// Erstelle eine Sandbox-Umgebung
 function environment() {
   const clientId = process.env.PAYPAL_CLIENT_ID;
   const clientSecret = process.env.PAYPAL_CLIENT_SECRET;
-  // Für den Live-Modus: new checkoutNodeJssdk.core.LiveEnvironment(clientId, clientSecret)
-  return new checkoutNodeJssdk.core.SandboxEnvironment(clientId, clientSecret);
+  return new paypal.core.SandboxEnvironment(clientId, clientSecret);
 }
 
 function client() {
-  return new checkoutNodeJssdk.core.PayPalHttpClient(environment());
+  return new paypal.core.PayPalHttpClient(environment());
 }
 
 module.exports = async (req, res) => {
   try {
-    // Berechne den Betrag aus den übermittelten Warenkorbdaten (hier als Beispiel: req.body.total)
-    // Stelle sicher, dass du den Gesamtbetrag korrekt berechnest und als String im Format "xx.xx" übergibst.
-    const amount = req.body.total ? req.body.total.toFixed(2) : "10.00";
-
-    // Erstelle einen neuen OrdersCreateRequest
-    const request = new checkoutNodeJssdk.orders.OrdersCreateRequest();
+    const { items, total, address } = req.body;
+    const request = new paypal.orders.OrdersCreateRequest();
     request.prefer("return=representation");
     request.requestBody({
       intent: "CAPTURE",
@@ -28,33 +23,25 @@ module.exports = async (req, res) => {
         {
           amount: {
             currency_code: "EUR",
-            value: amount,
+            value: total.toFixed(2),
           },
-          // Versandadresse (optional)
           shipping: {
             address: {
-              address_line_1: req.body.address?.street || "Unbekannt",
-              admin_area_2: req.body.address?.city || "Unbekannt",
-              postal_code: req.body.address?.postalCode || "00000",
-              country_code: req.body.address?.country || "DE",
+              address_line_1: address.street,
+              admin_area_2: address.city,
+              postal_code: address.postalCode,
+              country_code: address.country,
             },
           },
         },
       ],
-      application_context: {
-        brand_name: "Haus Hamburg",
-        landing_page: "BILLING",
-        user_action: "PAY_NOW",
-        return_url: process.env.FRONTEND_URL + "/checkout-success",
-        cancel_url: process.env.FRONTEND_URL + "/checkout-cancel",
-      },
     });
 
-    const paypalClient = client();
-    const order = await paypalClient.execute(request);
+    const clientInstance = client();
+    const order = await clientInstance.execute(request);
     res.status(200).json({ id: order.result.id });
   } catch (error) {
-    console.error("PayPal Order Error:", error);
-    res.status(500).json({ error: error.message || "Unbekannter Fehler" });
+    console.error("PayPal Order Creation Error:", error);
+    res.status(500).json({ error: error.message });
   }
 };
