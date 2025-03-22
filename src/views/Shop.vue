@@ -562,10 +562,10 @@ export default {
   right: 1rem;
   background-color: var(--blue);
   color: #fff;
-  border: none;
+  border: 3px solid var(--background);
   border-radius: 50%;
-  width: 3rem;
-  height: 3rem;
+  width: 5rem;
+  height: 5rem;
   display: flex;
   align-items: center;
   justify-content: center;

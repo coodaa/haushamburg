@@ -58,6 +58,7 @@
   --blue: #03305D;
   --gold: #F1BD3F;
   --beige: #D2C19F;
+  --background: #F2EDE9;
   --font-body: 'Poppins', sans-serif;
   --font-thunder: 'Thunder', sans-serif;
   --font-perfect: 'Perfect', sans-serif;
@@ -78,7 +79,7 @@
 body {
   font-family: var(--font-body);
   color: var(--blue);
-  background-color: #F2EDE9;
+  background-color: var(--background);
   overflow-x: hidden;
 }
 
