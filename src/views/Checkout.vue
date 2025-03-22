@@ -15,13 +15,21 @@
         Ihr Warenkorb ist leer.
       </div>
       <div v-else class="cart-summary">
-        <div v-for="(item, index) in cartItems" :key="index" class="cart-item">
+        <div
+          v-for="(item, index) in cartItems"
+          :key="index"
+          class="cart-item"
+        >
           <img :src="item.product.image" :alt="item.product.name" class="item-image" />
           <div class="item-details">
             <h3 class="item-name">{{ item.product.name }}</h3>
-            <p class="item-qty">{{ item.quantity }} x {{ formatPrice(item.product.price) }}</p>
+            <p class="item-qty">
+              {{ item.quantity }} x {{ formatPrice(item.product.price) }}
+            </p>
           </div>
-          <p class="item-total">{{ formatPrice(item.product.price * item.quantity) }}</p>
+          <p class="item-total">
+            {{ formatPrice(item.product.price * item.quantity) }}
+          </p>
         </div>
       </div>
 
@@ -29,42 +37,87 @@
       <div class="address-form catering-form">
         <h2 class="section-title">Rechnungs- & Lieferadresse</h2>
         <form id="address-form" @submit.prevent>
+          <!-- Vorname & Nachname nebeneinander -->
           <div class="form-row double">
             <div class="input-group">
               <label for="firstName">Vorname</label>
-              <input id="firstName" v-model="address.firstName" type="text" required />
+              <input
+                id="firstName"
+                v-model="address.firstName"
+                type="text"
+                required
+              />
             </div>
             <div class="input-group">
               <label for="lastName">Nachname</label>
-              <input id="lastName" v-model="address.lastName" type="text" required />
+              <input
+                id="lastName"
+                v-model="address.lastName"
+                type="text"
+                required
+              />
             </div>
           </div>
+          <!-- E-Mail in voller Breite -->
           <div class="form-row">
             <label for="email">E-Mail</label>
-            <input id="email" v-model="address.email" type="email" required />
+            <input
+              id="email"
+              v-model="address.email"
+              type="email"
+              required
+            />
           </div>
+          <!-- Straße in voller Breite -->
           <div class="form-row">
             <label for="street">Straße & Nr.</label>
-            <input id="street" v-model="address.street" type="text" required />
+            <input
+              id="street"
+              v-model="address.street"
+              type="text"
+              required
+            />
           </div>
+          <!-- PLZ & Stadt nebeneinander -->
           <div class="form-row double">
             <div class="input-group">
               <label for="postalCode">PLZ</label>
-              <input id="postalCode" v-model="address.postalCode" type="text" required />
+              <input
+                id="postalCode"
+                v-model="address.postalCode"
+                type="text"
+                required
+              />
             </div>
             <div class="input-group">
               <label for="city">Stadt</label>
-              <input id="city" v-model="address.city" type="text" required />
+              <input
+                id="city"
+                v-model="address.city"
+                type="text"
+                required
+              />
             </div>
           </div>
+          <!-- Land & Telefonnummer nebeneinander -->
           <div class="form-row double">
             <div class="input-group">
               <label for="country">Land</label>
-              <input id="country" v-model="address.country" type="text" required />
+              <!-- Dropdown mit gültigem ISO-Code -->
+              <select id="country" v-model="address.country" required>
+                <option disabled value="">Bitte auswählen</option>
+                <option value="DE">Deutschland</option>
+                <!-- Falls Du weitere Länder unterstützen möchtest, füge weitere Optionen hinzu -->
+              </select>
             </div>
             <div class="input-group">
               <label for="phone">Telefonnummer</label>
-              <input id="phone" v-model="address.phone" type="tel" required />
+              <input
+                id="phone"
+                v-model="address.phone"
+                type="tel"
+                required
+              />
             </div>
           </div>
         </form>
@@ -90,14 +143,20 @@
 
       <!-- Test-Button für den manuellen E-Mail Versand (optional) -->
       <div class="test-email">
-        <button @click="testEmail" class="text-button">E-Mail Test versenden</button>
+        <button @click="testEmail" class="text-button">
+          E-Mail Test versenden
+        </button>
       </div>
 
-      <div v-if="message" class="payment-message">{{ message }}</div>
+      <div v-if="message" class="payment-message">
+        {{ message }}
+      </div>
 
       <div class="checkout-summary">
         <p class="total-label">Gesamtsumme:</p>
-        <p class="total-amount"><strong>{{ formatPrice(totalPrice) }}</strong></p>
+        <p class="total-amount">
+          <strong>{{ formatPrice(totalPrice) }}</strong>
+        </p>
       </div>
     </div>
   </BasePage>
@@ -116,12 +175,15 @@ export default {
     const cartStore = useCartStore();
     const cartItems = computed(() => cartStore.items);
     const totalPrice = computed(() =>
-      cartStore.items.reduce((sum, item) => sum + item.product.price * item.quantity, 0)
+      cartStore.items.reduce(
+        (sum, item) => sum + item.product.price * item.quantity,
+        0
+      )
     );
     const formatPrice = (val) =>
       val.toFixed(2).replace(".", ",") + " €";
 
-    // Adressdaten – werden über das Formular befüllt
+    // Adressdaten (Default: Land auf "DE")
     const address = ref({
       firstName: "",
       lastName: "",
@@ -129,18 +191,18 @@ export default {
       street: "",
       postalCode: "",
       city: "",
-      country: "",
+      country: "DE", // Default gesetzt, damit der korrekte ISO-Code gesendet wird
       phone: "",
     });
     const message = ref("");
 
-    // Stripe Payment Element Setup (falls Stripe parallel genutzt wird)
+    // Stripe Payment Element Setup (optional, falls Stripe parallel genutzt wird)
     const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
     let stripe, elements, paymentElement;
     const clientSecret = ref("");
 
     onMounted(async () => {
-      // Stripe: Payment Intent erstellen (optional, falls Du Stripe Elements nutzt)
+      // Stripe: Payment Intent erstellen (falls Stripe Elements genutzt werden)
       const res = await fetch("/api/create-payment-intent", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -157,11 +219,14 @@ export default {
       clientSecret.value = data.clientSecret;
       stripe = await stripePromise;
       const appearance = { theme: "flat" };
-      elements = stripe.elements({ appearance, clientSecret: clientSecret.value });
+      elements = stripe.elements({
+        appearance,
+        clientSecret: clientSecret.value,
+      });
       paymentElement = elements.create("payment");
       paymentElement.mount("#payment-element");
 
-      // PayPal: Button initialisieren
+      // PayPal Button initialisieren
       if (window.paypal) {
         window.paypal.Buttons({
           fundingSource: window.paypal.FUNDING.PAYPAL,
@@ -198,24 +263,20 @@ export default {
       }
     });
 
-    // Validierung der Adresse
-    const isAddressValid = () => {
-      return (
-        address.value.firstName &&
-        address.value.lastName &&
-        address.value.email &&
-        address.value.street &&
-        address.value.postalCode &&
-        address.value.city &&
-        address.value.country &&
-        address.value.phone
-      );
-    };
-
-    // Stripe Payment-Flow (falls Stripe Elements verwendet wird)
+    // Stripe Payment-Flow (falls Stripe Elements verwendet werden)
     const handleStripePayment = async () => {
       message.value = "";
-      if (!isAddressValid()) {
+      // Validierung der Adresse
+      if (
+        !address.value.firstName ||
+        !address.value.lastName ||
+        !address.value.email ||
+        !address.value.street ||
+        !address.value.postalCode ||
+        !address.value.city ||
+        !address.value.country ||
+        !address.value.phone
+      ) {
         message.value = "Bitte füllen Sie alle Pflichtfelder aus.";
         return;
       }
@@ -229,7 +290,7 @@ export default {
         message.value = error.message;
         console.error("Stripe Confirm Payment Error:", error);
       } else {
-        // Optional: Direkt den E-Mail-Versand auslösen, falls gewünscht
+        // Optional: Direkt den E-Mail-Versand auslösen
         await fetch("/api/sendCheckoutEmail", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -242,19 +303,23 @@ export default {
       }
     };
 
-    // Testfunktion für den manuellen E-Mail Versand
+    // Testfunktion für manuellen E-Mail-Versand
     const testEmail = async () => {
       const testData = {
         address: address.value,
-        items: cartItems.value.length > 0
-          ? cartItems.value
-          : [{
-              product: { name: "Testprodukt", price: 10.0 },
-              quantity: 2,
-            }],
-        total: cartItems.value.length > 0
-          ? parseFloat(totalPrice.value)
-          : 20.0,
+        items:
+          cartItems.value.length > 0
+            ? cartItems.value
+            : [
+                {
+                  product: { name: "Testprodukt", price: 10.0 },
+                  quantity: 2,
+                },
+              ],
+        total:
+          cartItems.value.length > 0
+            ? parseFloat(totalPrice.value)
+            : 20.0,
       };
 
       try {
@@ -383,7 +448,8 @@ export default {
   color: var(--blue);
 }
 
-.form-row input {
+.form-row input,
+.form-row select {
   width: 100%;
   padding: 0.75rem 1rem;
   border: 1px solid #ccc;
@@ -393,7 +459,8 @@ export default {
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.form-row input:focus {
+.form-row input:focus,
+.form-row select:focus {
   outline: none;
   border-color: var(--blue);
   box-shadow: 0 0 5px rgba(3, 48, 93, 0.3);

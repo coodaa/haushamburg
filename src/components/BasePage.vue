@@ -30,11 +30,14 @@
     ></div>
 
     <!-- Seiteninhalt im zentrierten Wrapper -->
-      <div class="third-section">
-        <slot>
-          <p>{{ content }}</p>
-        </slot>
-      </div>
+    <div class="third-section">
+      <slot>
+        <p>{{ content }}</p>
+      </slot>
+    </div>
+
+    <!-- Overlay Slot für übergreifende Inhalte, z. B. das Warenkorb-Overlay -->
+    <slot name="overlay"></slot>
   </div>
 </template>
 
@@ -52,7 +55,6 @@ export default {
     },
     titleAbove: {
       type: String,
-      required: false,
       default: "",
     },
     titleMain: {
@@ -65,22 +67,18 @@ export default {
     },
     subtitle: {
       type: String,
-      required: false,
       default: "",
     },
     heading: {
       type: String,
-      required: false,
       default: "",
     },
     flowText: {
       type: String,
-      required: false,
       default: "",
     },
     parallaxImageSrc: {
       type: String,
-      required: false,
       default: "",
     },
     parallaxImageAlt: {
@@ -97,6 +95,7 @@ export default {
   },
 };
 </script>
+
 
 <style scoped>
 .base-page {

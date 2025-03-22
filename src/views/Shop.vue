@@ -9,10 +9,8 @@
     flowText="Hier finden Sie eine Auswahl unserer köstlichen Gerichte, die Sie ganz einfach bestellen können."
     parallaxImageSrc="/images/restaurant/haus-hamburg-leer-08.webp"
   >
-    <!-- Titel für Favoriten -->
+    <!-- Favoriten: Swiper für beliebte Produkte -->
     <h2 class="big-title-3">Unsere Favoriten</h2>
-
-    <!-- Swiper (Beliebte Produkte) -->
     <div class="swiper-section">
       <swiper
         :slides-per-view="slidesPerView"
@@ -115,14 +113,16 @@
         </div>
       </div>
     </div>
-  </BasePage>
 
-  <!-- Warenkorb-Overlay -->
-  <button class="open-cart-btn" @click="cartVisible = true">
-    <i class="fas fa-shopping-cart"></i>
-    <span v-if="itemsCount > 0" class="cart-badge">{{ itemsCount }}</span>
-  </button>
-  <CartOverlay :visible="cartVisible" @close="cartVisible = false" />
+    <!-- Overlay Slot: Warenkorb-Button und Overlay -->
+    <template #overlay>
+      <button class="open-cart-btn" @click="cartVisible = true">
+        <i class="fas fa-shopping-cart"></i>
+        <span v-if="itemsCount > 0" class="cart-badge">{{ itemsCount }}</span>
+      </button>
+      <CartOverlay :visible="cartVisible" @close="cartVisible = false" />
+    </template>
+  </BasePage>
 </template>
 
 <script>
@@ -133,7 +133,6 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import BasePage from "@/components/BasePage.vue";
-// Importiere statische Produkte aus der JSON-Datei
 import staticProducts from "@/data/products.json";
 import CartOverlay from "@/components/CartOverlay.vue";
 import { useCartStore } from "@/stores/cart";
@@ -171,7 +170,6 @@ export default {
 
     const addToCart = (product) => {
       cartStore.addItemWithQuantity(product, getQuantity(product));
-      // Zeige das Warenkorb-Overlay für 3 Sekunden an
       cartVisible.value = true;
       setTimeout(() => {
         cartVisible.value = false;
@@ -276,7 +274,6 @@ export default {
     const productsByCategory = (cat) =>
       products.value.filter(prod => prod.category === cat);
 
-    // Steuerung für das Warenkorb-Overlay
     const cartVisible = ref(false);
     const itemsCount = computed(() =>
       cartStore.items.reduce((acc, item) => acc + item.quantity, 0)
@@ -321,8 +318,7 @@ export default {
 </script>
 
 <style scoped>
-/* Basis-Stile für den Shop */
-
+/* Basis-Stile für die Shop-Seite */
 .big-title-3 {
   text-align: center;
   margin-top: 1.5rem;
@@ -354,7 +350,7 @@ export default {
 
 .pinned-category-tabs {
   position: fixed;
-  top: 5em;
+  top: 5em; /* Standard (Mobile) */
   left: 50%;
   transform: translateX(-50%);
   z-index: 2000;
@@ -362,9 +358,23 @@ export default {
   border-bottom-right-radius: 20px;
   border-bottom-left-radius: 20px;
   padding: 0.5rem 1rem;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-  width: 100%;
-  max-width: 92.5vw;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  width: calc(100% - 2em); /* entspricht 1em Abstand links und rechts */
+}
+
+/* Tablet-Geräte */
+@media (min-width: 768px) and (max-width: 1199px) {
+  .pinned-category-tabs {
+    top: 6em;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1200px) {
+  .pinned-category-tabs {
+    top: 7.6em;
+    width: calc(100% - 4em);
+  }
 }
 
 .category-tabs-wrapper {
@@ -603,5 +613,8 @@ export default {
   ::v-deep .swiper-button-next {
     display: block !important;
   }
+
 }
+
+
 </style>
