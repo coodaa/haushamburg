@@ -117,9 +117,9 @@
     <!-- Overlay Slot: Warenkorb-Button und Overlay -->
     <template #overlay>
       <button class="open-cart-btn" @click="cartVisible = true">
-        <i class="fas fa-shopping-cart"></i>
-        <span v-if="itemsCount > 0" class="cart-badge">{{ itemsCount }}</span>
-      </button>
+  <i class="fas fa-shopping-cart fa-3x"></i>
+  <span v-if="itemsCount > 0" class="cart-badge">{{ itemsCount }}</span>
+</button>
       <CartOverlay :visible="cartVisible" @close="cartVisible = false" />
     </template>
   </BasePage>
@@ -441,8 +441,14 @@ export default {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 15px;
-  max-width: 1200px;
   margin: 0 auto;
+}
+
+@media (min-width: 1200px) {
+  .product-grid {
+
+  max-width: calc(100% - 2em);;
+}
 }
 
 .product-card {
@@ -547,7 +553,7 @@ export default {
 /* CTA-Button */
 .cta-button {
   margin: 0 auto;
-  font-size: 1rem;
+  font-size: 1.3rem;
   margin-bottom: 1.5em;
 }
 .cta-button:hover {
@@ -555,7 +561,6 @@ export default {
   color: white;
 }
 
-/* Warenkorb-Overlay-Button */
 .open-cart-btn {
   position: fixed;
   bottom: 1rem;
@@ -571,16 +576,24 @@ export default {
   justify-content: center;
   cursor: pointer;
   z-index: 1500;
+  font-size: .7em;
 }
+
+
+/* Badge als perfekter Kreis ohne zusätzliche Padding */
 .open-cart-btn .cart-badge {
   position: absolute;
   top: -0.3rem;
   right: -0.3rem;
   background-color: red;
   color: #fff;
-  font-size: 0.7rem;
+  font-size: 1rem;
+  width: 1.6rem;
+  height: 1.6rem;
   border-radius: 50%;
-  padding: 0.1rem 0.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Scroll-to-top Button */
@@ -613,8 +626,6 @@ export default {
   ::v-deep .swiper-button-next {
     display: block !important;
   }
-
 }
-
 
 </style>
