@@ -6,7 +6,7 @@
     titleMain="Online Shop"
     subtitle="Bestellen Sie Ihre Lieblingsgerichte bequem online"
     heading="Willkommen in unserem Online-Shop"
-    flowText="Hier finden Sie eine Auswahl unserer köstlichen Gerichte, die Sie ganz einfach bestellen können."
+    flowText="Erleben Sie den Komfort unseres Online-Bestellservices: Entdecken Sie unser umfangreiches Angebot an frisch zubereiteten Gerichten, die nicht nur lecker, sondern auch ausgewogen sind. Bestellen Sie bequem online und genießen Sie eine schnelle, zuverlässige Lieferung direkt zu Ihnen nach Hause. Lassen Sie sich von unserem Service verwöhnen – genießen Sie Ihr Lieblingsessen, ohne Ihr Zuhause verlassen zu müssen, und erleben Sie ein kulinarisches Erlebnis, das so einfach ist wie ein paar Klicks."
     parallaxImageSrc="/images/restaurant/haus-hamburg-leer-08.webp"
   >
     <!-- Favoriten: Swiper für beliebte Produkte -->
@@ -114,12 +114,58 @@
       </div>
     </div>
 
-    <!-- Overlay Slot: Warenkorb-Button und Overlay -->
+    <!-- Overlay Slot: Discount Sticker, Warenkorb-Button und Overlay -->
     <template #overlay>
+      <!-- Discount Sticker: Nur anzeigen, wenn kein Kategorie-Menü sichtbar -->
+      <div v-if="!pinnedVisible"
+           class="shop-sticker-container"
+           :style="{ transform: 'translateY(' + discountStickerOffset + 'px)', opacity: discountStickerOpacity }">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="400"
+          height="400"
+          viewBox="0 0 256 256"
+          xml:space="preserve"
+        >
+          <!-- Gruppiere den Sternpfad separat -->
+          <g transform="translate(1.4066, 1.4066) scale(2.81)">
+            <path
+              d="M49.526 2.698l5.705 6.768c1.357 1.61 3.467 2.378 5.541 2.017l8.721-1.517c3.615-.629 6.926 2.149 6.934 5.819l.02 8.852c.005 2.105 1.127 4.05 2.948 5.107l7.656 4.443c3.174 1.842 3.924 6.098 1.572 8.915l-5.674 6.793c-1.35 1.616-1.74 3.827-1.024 5.807l3.009 8.325c1.247 3.451-.914 7.194-4.526 7.839l-8.714 1.557c-2.073.37-3.793 1.813-4.517 3.79l-3.046 8.311c-1.263 3.446-5.324 4.924-8.506 3.096l-7.676-4.409c-1.826-1.049-4.071-1.049-5.897 0l-7.676 4.409c-3.182 1.828-7.243.35-8.506-3.096l-3.046-8.311c-.725-1.977-2.444-3.42-4.517-3.79l-8.714-1.557c-3.613-.645-5.773-4.388-4.526-7.839l3.009-8.325c.716-1.98.326-4.191-1.024-5.807l-5.674-6.793c-2.353-2.816-1.602-7.073 1.572-8.915l7.656-4.443c1.821-1.057 2.944-3.001 2.948-5.107l.02-8.852c.008-3.67 3.319-6.448 6.934-5.819l8.721 1.517c2.074.361 4.184-.407 5.541-2.017l5.705-6.768c2.365-2.806 6.687-2.806 9.051 0z"
+              fill="#FFDD4D"
+            />
+          </g>
+          <!-- Text in einer separaten Gruppe, rotiert und mit zusätzlichem Versatz für mehr Rand -->
+
+            <g transform="rotate(-10,12,120) translate(4,10)">
+
+              <text
+  x="50%"
+  y="40%"
+  text-anchor="middle"
+  dominant-baseline="middle"
+  font-family="Arial"
+  font-size="35"
+  font-weight="bold"
+  fill="#03305D"
+>
+  <tspan x="50%" dy="0" font-size="60">10%</tspan>
+  <tspan x="50%" dy="1.2em">Rabatt</tspan>
+  <tspan x="50%" dy="1.5em" font-size="25" font-weight="normal">
+    auf alle online
+  </tspan>
+  <tspan x="50%" dy="1.2em" font-size="25" font-weight="normal">
+Bestellungen  </tspan>
+</text>
+          </g>
+        </svg>
+      </div>
+
+      <!-- Warenkorb-Button -->
       <button class="open-cart-btn" @click="cartVisible = true">
-  <i class="fas fa-shopping-cart fa-3x"></i>
-  <span v-if="itemsCount > 0" class="cart-badge">{{ itemsCount }}</span>
-</button>
+        <i class="fas fa-shopping-cart fa-3x"></i>
+        <span v-if="itemsCount > 0" class="cart-badge">{{ itemsCount }}</span>
+      </button>
+
       <CartOverlay :visible="cartVisible" @close="cartVisible = false" />
     </template>
   </BasePage>
@@ -151,7 +197,18 @@ export default {
     const showLeftArrow = ref(false);
     const showRightArrow = ref(false);
 
-    // Mengensteuerung: Initialisiere für jedes Produkt die Menge (Standard: 1)
+    // Reaktive Variable für das Scrollen
+    const scrollY = ref(0);
+    // Der Sticker bewegt sich langsamer (z. B. halber Scrollwert)
+    const discountStickerOffset = computed(() => scrollY.value * 0.5);
+    // Fadet ab ab scrollY=300 bis scrollY=500
+    const discountStickerOpacity = computed(() => {
+      if (scrollY.value < 300) return 1;
+      const extra = scrollY.value - 300;
+      return Math.max(0, 1 - extra / 200);
+    });
+
+    // Mengensteuerung: Standardwert 1 für jedes Produkt
     const quantities = ref({});
     products.value.forEach(product => {
       if (!quantities.value[product.name]) {
@@ -179,10 +236,10 @@ export default {
     const formatPrice = (val) => val.toFixed(2).replace(".", ",") + " €";
 
     const handleScroll = () => {
-      const y = window.scrollY;
+      scrollY.value = window.scrollY;
       const threshold = window.innerWidth < 768 ? 800 : 1500;
-      pinnedVisible.value = y > threshold;
-      showScrollTop.value = y > 200;
+      pinnedVisible.value = window.scrollY > threshold;
+      showScrollTop.value = window.scrollY > 200;
       updateActiveCategory();
     };
 
@@ -312,13 +369,49 @@ export default {
       getQuantity,
       cartVisible,
       itemsCount,
+      // Neue Variablen für den Sticker:
+      scrollY,
+      discountStickerOffset,
+      discountStickerOpacity,
     };
   },
 };
 </script>
 
 <style scoped>
-/* Basis-Stile für die Shop-Seite */
+/* Discount Sticker – dauerhaft sichtbar im Overlay */
+.shop-sticker-container {
+  position: fixed;
+  top: 14vh;
+  left: 3vw;
+  width: 7.5em;  /* Passe diesen Wert an, um den Sticker insgesamt größer zu machen */
+  height: 14em;  /* Passe diesen Wert ebenfalls an */
+  z-index: 2500;
+  transition: none !important;
+  animation: none !important;
+}
+
+
+.shop-sticker-container svg {
+  width: 100%;
+  height: 100%;
+}
+
+
+@media (min-width: 1200px) {
+  .shop-sticker-container {
+  position: fixed;
+  top: 14vh;
+  left: 6vw;
+  width: 20em;
+  height: 20em;
+  z-index: 2500;
+  transition: none !important;
+  animation: none !important;
+}
+}
+
+/* Basis-Stile für die Seite */
 .big-title-3 {
   text-align: center;
   margin-top: 1.5rem;
@@ -350,7 +443,7 @@ export default {
 
 .pinned-category-tabs {
   position: fixed;
-  top: 5em; /* Standard (Mobile) */
+  top: 5em;
   left: 50%;
   transform: translateX(-50%);
   z-index: 2000;
@@ -359,7 +452,7 @@ export default {
   border-bottom-left-radius: 20px;
   padding: 0.5rem 1rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  width: calc(100% - 2em); /* entspricht 1em Abstand links und rechts */
+  width: calc(100% - 2em);
 }
 
 /* Tablet-Geräte */
@@ -393,7 +486,7 @@ export default {
 .category-tabs button {
   display: inline-block;
   scroll-snap-align: start;
-  background: rgba(255,255,255,0.65);
+  background: rgba(255, 255, 255, 0.65);
   backdrop-filter: blur(4px);
   border: 2px solid var(--blue);
   border-radius: 20px;
@@ -443,12 +536,10 @@ export default {
   gap: 15px;
   margin: 0 auto;
 }
-
 @media (min-width: 1200px) {
   .product-grid {
-
-  max-width: calc(100% - 2em);;
-}
+    max-width: calc(100% - 2em);
+  }
 }
 
 .product-card {
@@ -458,8 +549,13 @@ export default {
   background: white;
   border-radius: 20px;
   padding: 1em;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   min-height: 20em;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
 }
 
 .image-container {
@@ -485,15 +581,15 @@ export default {
   margin-top: 0.5em;
 }
 .product-info h3 {
-  font-size: 1rem;
+  font-size: 1.2rem;
+  font-weight: bold;
   margin-bottom: 0.5em;
-  min-height: 1.5em;
-  max-height: 2em;
-  overflow: hidden;
+  color: var(--blue);
 }
 .description-swiper,
 .description {
-  font-size: 0.8rem;
+  font-size: 0.9rem;
+  font-style: italic;
   color: #666;
   flex-grow: 1;
   min-height: 3em;
@@ -501,31 +597,23 @@ export default {
   overflow: hidden;
 }
 .product-info .price {
-  font-size: 1.1rem;
-  color: var(--blue);
+  font-size: 1.2rem;
   font-weight: bold;
-  min-height: 1.5em;
-  max-height: 1.5em;
-  overflow: hidden;
+  color: var(--blue);
   margin-bottom: 0.5em;
 }
 .zusatzstoffe {
   font-size: 0.7rem;
   color: #999;
-  min-height: 1.5em;
   margin-bottom: 1em;
 }
 
-/* Gemeinsamer unterer Bereich in .common-info */
 .common-info .info-bottom {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
   margin-top: 0.5em;
-}
-.common-info .info-bottom .price {
-  margin: 0;
 }
 .quantity-control {
   display: flex;
@@ -536,29 +624,34 @@ export default {
   color: white;
   border: none;
   border-radius: 50%;
-  width: 1.8em;
-  height: 1.8em;
+  width: 2em;
+  height: 2em;
   cursor: pointer;
-  font-size: 1rem;
-  line-height: 1.8em;
+  font-size: 1.2rem;
+  line-height: 2em;
   text-align: center;
   margin: 0 0.3em;
 }
 .quantity-control span {
-  font-size: 1rem;
+  font-size: 1.2rem;
   min-width: 1.5em;
   text-align: center;
 }
 
-/* CTA-Button */
 .cta-button {
   margin: 0 auto;
-  font-size: 1.3rem;
-  margin-bottom: 1.5em;
+  font-size: 1.4rem;
+  padding: 0.75em 1.5em;
+  border: none;
+  border-radius: 10px;
+  background-color: var(--blue);
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 .cta-button:hover {
-  background: var(--blue);
-  color: white;
+  background-color: darkblue;
+  transform: scale(1.05);
 }
 
 .open-cart-btn {
@@ -576,11 +669,11 @@ export default {
   justify-content: center;
   cursor: pointer;
   z-index: 1500;
-  font-size: .7em;
+  font-size: 0.7em;
 }
-
-
-/* Badge als perfekter Kreis ohne zusätzliche Padding */
+.open-cart-btn i {
+  font-size: 3rem !important;
+}
 .open-cart-btn .cart-badge {
   position: absolute;
   top: -0.3rem;
@@ -596,7 +689,6 @@ export default {
   justify-content: center;
 }
 
-/* Scroll-to-top Button */
 .scroll-top-btn {
   position: fixed;
   right: 15px;
@@ -609,7 +701,7 @@ export default {
   padding: 10px 14px;
   cursor: pointer;
   z-index: 9999;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 .scroll-top-btn:hover {
   background: var(--blue);
@@ -627,5 +719,4 @@ export default {
     display: block !important;
   }
 }
-
 </style>
