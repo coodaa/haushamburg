@@ -46,7 +46,7 @@
                 </div>
               </div>
               <button class="cta-button" @click="addToCart(product)">
-                <i class="fas fa-shopping-cart"></i> In den Warenkorb
+                <i class="fas fa-shopping-cart"></i>Warenkorb
               </button>
             </div>
           </div>
@@ -382,10 +382,10 @@ export default {
 /* Discount Sticker – dauerhaft sichtbar im Overlay */
 .shop-sticker-container {
   position: fixed;
-  top: 14vh;
+  top: 16vh;
   left: 3vw;
-  width: 7.5em;  /* Passe diesen Wert an, um den Sticker insgesamt größer zu machen */
-  height: 14em;  /* Passe diesen Wert ebenfalls an */
+  width: 7.5em;
+  height: 14em;
   z-index: 2500;
   transition: none !important;
   animation: none !important;
@@ -522,8 +522,10 @@ export default {
 }
 
 .swiper-section {
-  max-width: 1200px;
+  max-width: 95vw;
   margin: 0 auto 30px;
+  padding-top: 2em; /* anpassen, bis es passt */
+
 }
 .my-swiper {
   width: 100%;
@@ -542,21 +544,31 @@ export default {
   }
 }
 
+.swiper-slide,
 .product-card {
+  overflow: visible;
+}
+
+.product-card {
+  overflow: visible;
+  z-index: 100;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   background: white;
   border-radius: 20px;
-  padding: 1em;
+  padding: 1em 1em 2.5em 1em;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   min-height: 20em;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  overflow: visible;
+  z-index: 1;
 }
 .product-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-3px);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
 }
+
 
 .image-container {
   flex: 0 0 auto;
@@ -600,7 +612,6 @@ export default {
   font-size: 1.2rem;
   font-weight: bold;
   color: var(--blue);
-  margin-bottom: 0.5em;
 }
 .zusatzstoffe {
   font-size: 0.7rem;
@@ -614,23 +625,30 @@ export default {
   align-items: center;
   width: 100%;
   margin-top: 0.5em;
+  padding: 0em 1em 1em 1.3em;
+}
+
+@media (min-width: 1200px) {
+  .common-info .info-bottom {
+
+  padding: 1em 4em 2em 4em;
+}
 }
 .quantity-control {
   display: flex;
   align-items: center;
 }
 .quantity-control button {
-  background: var(--blue);
-  color: white;
-  border: none;
+  background: var(--gold);
+  border: 3px solid var(--blue);
+  color: var(--blue);
   border-radius: 50%;
-  width: 2em;
-  height: 2em;
+  width: 1.5em;
+  height: 1.5em;
   cursor: pointer;
-  font-size: 1.2rem;
-  line-height: 2em;
+  font-size: 1.4rem;
   text-align: center;
-  margin: 0 0.3em;
+  margin: 0 0.1em;
 }
 .quantity-control span {
   font-size: 1.2rem;
@@ -640,7 +658,7 @@ export default {
 
 .cta-button {
   margin: 0 auto;
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   padding: 0.75em 1.5em;
   border: none;
   border-radius: 10px;

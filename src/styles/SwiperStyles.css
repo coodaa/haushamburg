@@ -45,6 +45,11 @@
   z-index: 10;
 }
 
+.swiper-slide,
+.product-card {
+  overflow: visible;
+}
+
 /* Standard-Dots */
 .swiper-pagination-bullet {
   width: 12px;
