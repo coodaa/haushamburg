@@ -100,7 +100,7 @@
     "description": "Sechs knusprige Kibbelinge im Bierteig.",
     "price": 6.0,
     "category": "Fisch",
-    "image": "https://www.haus-hamburg-leer.de/images/food/haus-hamburg-leer-30.webp",
+    "image": "https://www.haus-hamburg-leer.de/images/food/haus_hamburg_leer_kibbelinge.webp",
     "zusatzstoffe": ["1", "3"]
   },
   {
@@ -124,7 +124,7 @@
     "description": "Ofenkartoffel mit Kartoffelcreme und Greetsieler Krabben.",
     "price": 19.5,
     "category": "Fisch",
-    "image": "https://www.haus-hamburg-leer.de/images/food/haus-hamburg-leer-30.webp",
+    "image": "https://www.haus-hamburg-leer.de/images/food/haus_hamburg_leer_greetsielerßkrabben.webp",
     "zusatzstoffe": ["2"]
   },
   {
@@ -132,7 +132,7 @@
     "description": "Deluxe-Vorspeise: Matjes, Aalrauchmatjes, Bismarckhering, Brathering, Kutterkrabben & Räucherlachs.",
     "price": 14.8,
     "category": "Fisch",
-    "image": "https://www.haus-hamburg-leer.de/images/food/haus-hamburg-leer-30.webp",
+    "image": "https://www.haus-hamburg-leer.de/images/food/haus_hamburg_leer_bismarckhering.webp",
     "zusatzstoffe": ["1", "2"]
   },
   {
@@ -140,7 +140,7 @@
     "description": "Knusprige Fritten aus feinem Kartoffelbrei.",
     "price": 3.0,
     "category": "Vegetarisch",
-    "image": "https://www.haus-hamburg-leer.de/images/food/haus-hamburg-leer-30.webp",
+    "image": "https://www.haus-hamburg-leer.de/images/food/haus_hamburg_leer_ras-fritten.webp",
     "zusatzstoffe": ["1", "2", "3"]
   },
   {
