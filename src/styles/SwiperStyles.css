@@ -34,7 +34,7 @@
 /* Anpassung der Navigationspfeile */
 .swiper-button-next,
 .swiper-button-prev {
-  color: var(--blue); /* Navigation blau */
+  color: var(--blue) !important; /* Navigation blau */
 }
 
 /* 🎨 Pagination Dots - Jetzt in Blau */
@@ -54,9 +54,9 @@
 .swiper-pagination-bullet {
   width: 12px;
   height: 12px;
-  background: var(--blue); /* Blaue Farbe */
+  background: var(--blue) !important; /* Blaue Farbe */
   opacity: 0.5;
-  margin: 0 5px;
+  margin: 0 4px;
   transition: all 0.3s ease;
 }
 
@@ -102,9 +102,11 @@
 /* Größe der Navigationspfeile anpassen */
 .swiper-button-next,
 .swiper-button-prev {
-  width: 30px;
-  height: 30px;
+  top: 55% !important;
 }
+
+
+
 
 /* Größe der Pagination-Bullets anpassen */
 .swiper-pagination-bullet {

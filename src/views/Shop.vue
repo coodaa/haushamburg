@@ -4,7 +4,7 @@
     imageAlt="Online Shop"
     titleAbove="Shop"
     titleMain="Online Shop"
-    subtitle="Bestellen Sie Ihre Lieblingsgerichte bequem online"
+    subtitle="Bestell dien Lievlingsgerichten bekwäm online."
     heading="Willkommen in unserem Online-Shop"
     flowText="Erleben Sie den Komfort unseres Online-Bestellservices: Entdecken Sie unser umfangreiches Angebot an frisch zubereiteten Gerichten, die nicht nur lecker, sondern auch ausgewogen sind. Bestellen Sie bequem online und genießen Sie eine schnelle, zuverlässige Lieferung direkt zu Ihnen nach Hause. Lassen Sie sich von unserem Service verwöhnen – genießen Sie Ihr Lieblingsessen, ohne Ihr Zuhause verlassen zu müssen, und erleben Sie ein kulinarisches Erlebnis, das so einfach ist wie ein paar Klicks."
     parallaxImageSrc="/images/restaurant/haus-hamburg-leer-08.webp"
@@ -37,14 +37,8 @@
                 Zusatzstoffe: {{ product.zusatzstoffe.join(", ") }}
               </p>
               <p v-else style="visibility: hidden;">Zusatzstoffe:</p>
-              <div class="info-bottom">
                 <p class="price"><strong>{{ formatPrice(product.price) }}</strong></p>
-                <div class="quantity-control">
-                  <button @click="decreaseQty(product)">-</button>
-                  <span>{{ getQuantity(product) }}</span>
-                  <button @click="increaseQty(product)">+</button>
-                </div>
-              </div>
+
               <button class="cta-button" @click="addToCart(product)">
                 <i class="fas fa-shopping-cart"></i>Warenkorb
               </button>
@@ -98,14 +92,7 @@
               Zusatzstoffe: {{ product.zusatzstoffe.join(", ") }}
             </p>
             <p v-else style="visibility: hidden;">Zusatzstoffe:</p>
-            <div class="info-bottom">
               <p class="price"><strong>{{ formatPrice(product.price) }}</strong></p>
-              <div class="quantity-control">
-                <button @click="decreaseQty(product)">-</button>
-                <span>{{ getQuantity(product) }}</span>
-                <button @click="increaseQty(product)">+</button>
-              </div>
-            </div>
             <button class="cta-button" @click="addToCart(product)">
               <i class="fas fa-shopping-cart"></i> In den Warenkorb
             </button>
@@ -168,6 +155,20 @@ Bestellungen  </tspan>
 
       <CartOverlay :visible="cartVisible" @close="cartVisible = false" />
     </template>
+
+    <div class="zusatzstoff-hinweis">
+  <h2>Hinweis zu Zusatzstoffen</h2>
+  <p>
+    1 = Farbstoff
+    2 = Konservierungsstoff
+    3 = Geschmacksverstärker
+    4 = Säuerungsmittel
+    5 = Süßungsmittel
+    6 = Alkohol
+    7 = Milch / Laktose
+    <!-- usw. je nachdem, was du wirklich verwendest -->
+  </p>
+</div>
   </BasePage>
 </template>
 
@@ -321,9 +322,9 @@ export default {
           "Ras Fritten",
           "Rahmschnitzel",
           "Fischbrötchen",
-          "warmer Schokoladenkuchen",
-          "Fanta 0.5l",
-          "Haus Hamburg Hauswein 0.75l"
+          "Schokoladenkuchen",
+          "Fanta",
+          "Hauswein"
         ].includes(p.name)
       )
     );
@@ -379,18 +380,16 @@ export default {
 </script>
 
 <style scoped>
-/* Discount Sticker – dauerhaft sichtbar im Overlay */
 .shop-sticker-container {
   position: fixed;
-  top: 16vh;
+  top: 18vh;
   left: 3vw;
-  width: 7.5em;
-  height: 14em;
+  width: 7em;
+  height: 12em;
   z-index: 2500;
   transition: none !important;
   animation: none !important;
 }
-
 
 .shop-sticker-container svg {
   width: 100%;
@@ -408,7 +407,7 @@ export default {
   z-index: 2500;
   transition: none !important;
   animation: none !important;
-}
+  }
 }
 
 /* Basis-Stile für die Seite */
@@ -430,7 +429,7 @@ export default {
 }
 
 .category-section {
-  scroll-margin-top: 16rem;
+  scroll-margin-top: 10rem;
   margin-bottom: 40px;
 }
 
@@ -468,6 +467,9 @@ export default {
     top: 7.6em;
     width: calc(100% - 4em);
   }
+  .category-section {
+  scroll-margin-top: 13rem;
+}
 }
 
 .category-tabs-wrapper {
@@ -524,7 +526,10 @@ export default {
 .swiper-section {
   max-width: 95vw;
   margin: 0 auto 30px;
-  padding-top: 2em; /* anpassen, bis es passt */
+  padding-top: 2em;
+  overflow: visible;
+  position: relative; /* Falls noch nicht vorhanden */
+
 
 }
 .my-swiper {
@@ -538,47 +543,57 @@ export default {
   gap: 15px;
   margin: 0 auto;
 }
+
 @media (min-width: 1200px) {
   .product-grid {
     max-width: calc(100% - 2em);
   }
+
+  .swiper-section {
+    max-width: 85vw;
+  }
 }
 
-.swiper-slide,
-.product-card {
-  overflow: visible;
-}
 
 .product-card {
   overflow: visible;
-  z-index: 100;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   background: white;
   border-radius: 20px;
-  padding: 1em 1em 2.5em 1em;
+  padding: 1em 1em 1em 1em;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   min-height: 20em;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  overflow: visible;
-  z-index: 1;
 }
 .product-card:hover {
   transform: translateY(-3px);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
 }
 
-
 .image-container {
   flex: 0 0 auto;
-  height: 7em;
+  height: 10em;
   overflow: hidden;
   border-radius: 20px;
   background: #f2f2f2;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+@media (min-width: 900px) {
+  .image-container {
+   height: 15em;
+  }
+
+  .product-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-top: 23em;
+  }
 }
 .image-container img {
   width: 100%;
@@ -590,7 +605,8 @@ export default {
   flex: 1;
   display: flex;
   flex-direction: column;
-  margin-top: 0.5em;
+  margin-top: .5em;
+
 }
 .product-info h3 {
   font-size: 1.2rem;
@@ -604,14 +620,17 @@ export default {
   font-style: italic;
   color: #666;
   flex-grow: 1;
-  min-height: 3em;
-  max-height: 3em;
+  min-height: 5em;
+  max-height: 5em;
   overflow: hidden;
+  padding: 0em .5em;
 }
 .product-info .price {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   font-weight: bold;
   color: var(--blue);
+  padding-bottom: .5em;
+
 }
 .zusatzstoffe {
   font-size: 0.7rem;
@@ -630,46 +649,24 @@ export default {
 
 @media (min-width: 1200px) {
   .common-info .info-bottom {
+    padding: 1em 4em 2em 4em;
+  }
+  .product-info h3 {
 
-  padding: 1em 4em 2em 4em;
+  min-height: 3em;
+  }
 }
-}
-.quantity-control {
-  display: flex;
-  align-items: center;
-}
-.quantity-control button {
-  background: var(--gold);
-  border: 3px solid var(--blue);
-  color: var(--blue);
-  border-radius: 50%;
-  width: 1.5em;
-  height: 1.5em;
-  cursor: pointer;
-  font-size: 1.4rem;
-  text-align: center;
-  margin: 0 0.1em;
-}
-.quantity-control span {
-  font-size: 1.2rem;
-  min-width: 1.5em;
-  text-align: center;
-}
+
 
 .cta-button {
   margin: 0 auto;
-  font-size: 1.5rem;
-  padding: 0.75em 1.5em;
+  font-family: 'Poppins';
+  font-size: 1em;
   border: none;
   border-radius: 10px;
-  background-color: var(--blue);
-  color: #fff;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.3s ease;
-}
-.cta-button:hover {
-  background-color: darkblue;
-  transform: scale(1.05);
+  margin-bottom: 1em;
 }
 
 .open-cart-btn {
@@ -731,10 +728,26 @@ export default {
   display: none !important;
 }
 
-@media (min-width: 768px) {
-  ::v-deep .swiper-button-prev,
-  ::v-deep .swiper-button-next {
-    display: block !important;
-  }
+.zusatzstoff-hinweis {
+  background-color: #fafafa;
+  border: 1px solid #eee;
+  padding: 1em;
+  margin: 2em auto;
+  max-width: 700px;
+  border-radius: 10px;
 }
+.zusatzstoff-hinweis h2 {
+  font-size: 1.3rem;
+  color: var(--blue);
+  margin-bottom: 0.5em;
+}
+.zusatzstoff-hinweis p {
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: #666;
+  white-space: pre-line; /* Damit Umbrüche in HTML wirken */
+}
+
+
+
 </style>
