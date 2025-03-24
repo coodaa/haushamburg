@@ -108,7 +108,7 @@
     "description": "Fischbrötchen mit knusprigem Backfisch.",
     "price": 5.0,
     "category": "Fisch",
-    "image": "https://www.haus-hamburg-leer.de/images/food/haus-hamburg-leer-30.webp",
+    "image": "https://www.haus-hamburg-leer.de/images/food/haus_hamburg_leer_backfisch.webp",
     "zusatzstoffe": ["1", "5"]
   },
   {
