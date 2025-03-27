@@ -1,10 +1,10 @@
 [
   {
     "name": "Rahmschnitzel",
-    "description": "Knuspriges Schnitzel in Rahmsoße, serviert mit Beilagen.",
+    "description": "Knuspriges Schnitzel in Rahmsoße, mit Ras Fritten und Salat.",
     "price": 17.5,
     "category": "Fleisch",
-    "image": "https://www.haus-hamburg-leer.de/images/food/haus-hamburg-leer-30.webp",
+    "image": "https://www.haus-hamburg-leer.de/images/haus_hamburg_leer_rahmschnitzel.png",
     "zusatzstoffe": ["1", "7"]
   },
   {
