@@ -4,7 +4,7 @@
     "description": "Knuspriges Schnitzel in Rahmsoße, mit Ras Fritten und Salat.",
     "price": 17.5,
     "category": "Fleisch",
-    "image": "https://www.haus-hamburg-leer.de/images/haus_hamburg_leer_rahmschnitzel.webp",
+    "image": "https://www.haus-hamburg-leer.de/images/food/haus_hamburg_leer_rahmschnitzel.webp",
     "zusatzstoffe": ["1", "7"]
   },
   {
@@ -60,7 +60,7 @@
     "description": "Fischplatte mit feinen Fischfilets, Krabben, Bratkartoffeln und Salat.",
     "price": 25.5,
     "category": "Fisch",
-    "image": "https://www.haus-hamburg-leer.de/images/food/haus-hamburg-leer-30.webp",
+    "image": "https://www.haus-hamburg-leer.de/images/food/haus_hamburg_leer_fischplatte.webp",
     "zusatzstoffe": ["2", "4"]
   },
   {
@@ -68,7 +68,7 @@
     "description": "Filetierte Nordsee-Scholle mit Bratkartoffeln und Salat.",
     "price": 22.5,
     "category": "Fisch",
-    "image": "https://www.haus-hamburg-leer.de/images/food/haus-hamburg-leer-30.webp",
+    "image": "https://www.haus-hamburg-leer.de/images/food/haus_hamburg_leer_nordseescholle-filetiert.webp",
     "zusatzstoffe": []
   },
   {
@@ -76,7 +76,7 @@
     "description": "Filetierte Scholle mit Ras Fritten und Salat.",
     "price": 23.5,
     "category": "Fisch",
-    "image": "https://www.haus-hamburg-leer.de/images/food/haus-hamburg-leer-30.webp",
+    "image": "https://www.haus-hamburg-leer.de/images/food/haus_hamburg_leer_nordseescholle-ras-fritten.webp",
     "zusatzstoffe": ["1"]
   },
   {
