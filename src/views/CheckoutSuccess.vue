@@ -25,33 +25,19 @@ export default {
     const route = useRoute();
     const emailStatus = ref("");
 
-    const sendConfirmationEmail = async (sessionId) => {
-      // Überprüfe, ob für diese Session bereits eine E-Mail gesendet wurde
-      if (localStorage.getItem(`emailSent-${sessionId}`)) {
-        console.log("E-Mail wurde bereits versendet.");
-        emailStatus.value = "E-Mail wurde bereits versendet.";
-        return;
-      }
-
+    const sendConfirmationEmail = async (orderData) => {
       try {
         const res = await fetch("/api/sendCheckoutEmail", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          // Hier musst Du sicherstellen, dass der Endpoint alle nötigen Daten erhält.
-          // Falls Dein sendCheckoutEmail-Endpunkt z.B. die Session-Daten erwartet, musst Du diese
-          // vorher abrufen. Im einfachsten Fall stellst Du sicher, dass der Body alle nötigen Felder enthält.
-          // Für dieses Beispiel nehmen wir an, dass Du bereits alle Daten hast.
-          body: JSON.stringify({
-            address: {/* Deine Adressdaten */},
-            items: [/* Deine Warenkorb-Daten */],
-            total: 0 // Gesamtbetrag
-          }),
+          body: JSON.stringify(orderData),
         });
         const data = await res.json();
         console.log("Response from sendCheckoutEmail:", data);
         if (data.success) {
-          localStorage.setItem(`emailSent-${sessionId}`, "true");
           emailStatus.value = "E-Mail wurde versendet.";
+          // Bestelldaten nach erfolgreichem Versand ggf. entfernen
+          localStorage.removeItem("orderData");
         } else {
           emailStatus.value = "E-Mail-Versand fehlgeschlagen.";
         }
@@ -65,13 +51,19 @@ export default {
       // Leere den Warenkorb
       cartStore.clearCart();
 
-      // Lese die session_id aus der URL (z.B. /checkout-success?session_id=...)
-      const sessionId = route.query.session_id;
-      console.log("SessionId from route:", sessionId);
-      if (sessionId) {
-        sendConfirmationEmail(sessionId);
+      // Hole die Order-Daten aus localStorage
+      const storedOrderData = localStorage.getItem("orderData");
+      if (storedOrderData) {
+        const orderData = JSON.parse(storedOrderData);
+        // Optional: Session-ID aus URL, falls benötigt
+        const sessionId = route.query.session_id;
+        console.log("SessionId from route:", sessionId);
+        // Falls notwendig, kannst du die Session-ID in orderData ergänzen:
+        orderData.sessionId = sessionId;
+        // Sende die Bestätigungs-E-Mail
+        sendConfirmationEmail(orderData);
       } else {
-        console.warn("Keine Session ID gefunden – E-Mail wird nicht versendet.");
+        console.warn("Keine Bestelldaten gefunden – E-Mail wird nicht versendet.");
       }
     });
 

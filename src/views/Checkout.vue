@@ -4,9 +4,9 @@
     imageAlt="Checkout"
     titleAbove="Checkout"
     titleMain="Bezahlen"
-    subtitle="Überprüfen Sie Ihre Bestellung und wählen Sie Ihre Zahlungsmethode"
+    subtitle="Überprüfen Sie Ihre Bestellung und wählen Sie PayPal als Zahlungsmethode."
     heading="Checkout"
-    flowText="Bitte überprüfen Sie Ihre Bestellung, füllen Sie Ihre Adressdaten aus und wählen Sie zwischen Stripe‑Zahlung oder PayPal."
+    flowText="Bitte überprüfen Sie Ihre Bestellung, füllen Sie Ihre Adressdaten aus und wählen Sie PayPal als Zahlungsmethode."
     parallaxImageSrc="/images/mood/haus-hamburg-leer-pferd.webp"
   >
     <div class="checkout-container">
@@ -15,11 +15,7 @@
         Ihr Warenkorb ist leer.
       </div>
       <div v-else class="cart-summary">
-        <div
-          v-for="(item, index) in cartItems"
-          :key="index"
-          class="cart-item"
-        >
+        <div v-for="(item, index) in cartItems" :key="index" class="cart-item">
           <img :src="item.product.image" :alt="item.product.name" class="item-image" />
           <div class="item-details">
             <h3 class="item-name">{{ item.product.name }}</h3>
@@ -33,7 +29,7 @@
         </div>
       </div>
 
-      <!-- Adressformular -->
+      <!-- Adressformular inkl. Bemerkungen -->
       <div class="address-form catering-form">
         <h2 class="section-title">Rechnungs- & Lieferadresse</h2>
         <form id="address-form" @submit.prevent>
@@ -41,122 +37,69 @@
           <div class="form-row double">
             <div class="input-group">
               <label for="firstName">Vorname</label>
-              <input
-                id="firstName"
-                v-model="address.firstName"
-                type="text"
-                required
-              />
+              <input id="firstName" v-model="address.firstName" type="text" required />
             </div>
             <div class="input-group">
               <label for="lastName">Nachname</label>
-              <input
-                id="lastName"
-                v-model="address.lastName"
-                type="text"
-                required
-              />
+              <input id="lastName" v-model="address.lastName" type="text" required />
             </div>
           </div>
           <!-- E-Mail in voller Breite -->
           <div class="form-row">
             <label for="email">E-Mail</label>
-            <input
-              id="email"
-              v-model="address.email"
-              type="email"
-              required
-            />
+            <input id="email" v-model="address.email" type="email" required />
           </div>
           <!-- Straße in voller Breite -->
           <div class="form-row">
             <label for="street">Straße & Nr.</label>
-            <input
-              id="street"
-              v-model="address.street"
-              type="text"
-              required
-            />
+            <input id="street" v-model="address.street" type="text" required />
           </div>
           <!-- PLZ & Stadt nebeneinander -->
           <div class="form-row double">
             <div class="input-group">
               <label for="postalCode">PLZ</label>
-              <input
-                id="postalCode"
-                v-model="address.postalCode"
-                type="text"
-                required
-              />
+              <input id="postalCode" v-model="address.postalCode" type="text" required />
             </div>
             <div class="input-group">
               <label for="city">Stadt</label>
-              <input
-                id="city"
-                v-model="address.city"
-                type="text"
-                required
-              />
+              <input id="city" v-model="address.city" type="text" required />
             </div>
           </div>
           <!-- Land & Telefonnummer nebeneinander -->
           <div class="form-row double">
             <div class="input-group">
               <label for="country">Land</label>
-              <!-- Dropdown mit gültigem ISO-Code -->
               <select id="country" v-model="address.country" required>
                 <option disabled value="">Bitte auswählen</option>
                 <option value="DE">Deutschland</option>
-                <!-- Falls Du weitere Länder unterstützen möchtest, füge weitere Optionen hinzu -->
               </select>
             </div>
             <div class="input-group">
               <label for="phone">Telefonnummer</label>
-              <input
-                id="phone"
-                v-model="address.phone"
-                type="tel"
-                required
-              />
+              <input id="phone" v-model="address.phone" type="tel" required />
+            </div>
+          </div>
+          <!-- Neues Feld: Bemerkungen -->
+          <div class="form-row">
+            <div class="input-group">
+              <label for="remarks">Bemerkungen (z.B. Allergien, besondere Wünsche)</label>
+              <textarea id="remarks" v-model="remarks" rows="3" placeholder="Optional"></textarea>
             </div>
           </div>
         </form>
       </div>
 
-      <!-- Stripe Payment Element -->
-      <div class="payment-section">
-        <h2 class="section-title">Zahlungsinformationen (Stripe)</h2>
-        <div id="payment-element" class="payment-element"></div>
-        <button class="checkout-btn" @click="handleStripePayment">
-          Mit Stripe bezahlen
-        </button>
-        <p class="info-note">
-          Hinweis: Wallet-Optionen (Apple Pay, Google Pay etc.) erscheinen nur in einer Live‑Umgebung über HTTPS.
-        </p>
-      </div>
-
-      <!-- Oder Option: PayPal -->
+      <!-- PayPal Button -->
       <div class="paypal-section">
-        <h2 class="section-title">Oder mit PayPal</h2>
+        <h2 class="section-title">Zahlung mit PayPal</h2>
         <div id="paypal-button-container" class="paypal-button-container"></div>
       </div>
 
-      <!-- Test-Button für den manuellen E-Mail Versand (optional) -->
-      <div class="test-email">
-        <button @click="testEmail" class="text-button">
-          E-Mail Test versenden
-        </button>
-      </div>
-
-      <div v-if="message" class="payment-message">
-        {{ message }}
-      </div>
+      <div v-if="message" class="payment-message">{{ message }}</div>
 
       <div class="checkout-summary">
         <p class="total-label">Gesamtsumme:</p>
-        <p class="total-amount">
-          <strong>{{ formatPrice(totalPrice) }}</strong>
-        </p>
+        <p class="total-amount"><strong>{{ formatPrice(totalPrice) }}</strong></p>
       </div>
     </div>
   </BasePage>
@@ -164,7 +107,6 @@
 
 <script>
 import { ref, computed, onMounted } from "vue";
-import { loadStripe } from "@stripe/stripe-js";
 import BasePage from "@/components/BasePage.vue";
 import { useCartStore } from "@/stores/cart";
 
@@ -175,15 +117,11 @@ export default {
     const cartStore = useCartStore();
     const cartItems = computed(() => cartStore.items);
     const totalPrice = computed(() =>
-      cartStore.items.reduce(
-        (sum, item) => sum + item.product.price * item.quantity,
-        0
-      )
+      cartStore.items.reduce((sum, item) => sum + item.product.price * item.quantity, 0)
     );
-    const formatPrice = (val) =>
-      val.toFixed(2).replace(".", ",") + " €";
+    const formatPrice = (val) => val.toFixed(2).replace(".", ",") + " €";
 
-    // Adressdaten (Default: Land auf "DE")
+    // Adressdaten
     const address = ref({
       firstName: "",
       lastName: "",
@@ -191,41 +129,14 @@ export default {
       street: "",
       postalCode: "",
       city: "",
-      country: "DE", // Default gesetzt, damit der korrekte ISO-Code gesendet wird
+      country: "DE",
       phone: "",
     });
+    // Neues Feld für Bemerkungen
+    const remarks = ref("");
     const message = ref("");
 
-    // Stripe Payment Element Setup (optional, falls Stripe parallel genutzt wird)
-    const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
-    let stripe, elements, paymentElement;
-    const clientSecret = ref("");
-
     onMounted(async () => {
-      // Stripe: Payment Intent erstellen (falls Stripe Elements genutzt werden)
-      const res = await fetch("/api/create-payment-intent", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          items: cartStore.items,
-          address: address.value,
-        }),
-      });
-      const data = await res.json();
-      if (data.error) {
-        message.value = data.error;
-        return;
-      }
-      clientSecret.value = data.clientSecret;
-      stripe = await stripePromise;
-      const appearance = { theme: "flat" };
-      elements = stripe.elements({
-        appearance,
-        clientSecret: clientSecret.value,
-      });
-      paymentElement = elements.create("payment");
-      paymentElement.mount("#payment-element");
-
       // PayPal Button initialisieren
       if (window.paypal) {
         window.paypal.Buttons({
@@ -250,6 +161,19 @@ export default {
           onApprove: async (data, actions) => {
             const capture = await actions.order.capture();
             console.log("PayPal Capture:", capture);
+
+            // E-Mail-Versand auslösen inkl. Bemerkungen
+            await fetch("/api/sendCheckoutEmail", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                address: address.value,
+                items: cartItems.value,
+                total: parseFloat(totalPrice.value),
+                remarks: remarks.value,
+              }),
+            });
+
             cartStore.clearCart();
             window.location.href = "/checkout-success";
           },
@@ -263,99 +187,20 @@ export default {
       }
     });
 
-    // Stripe Payment-Flow (falls Stripe Elements verwendet werden)
-    const handleStripePayment = async () => {
-      message.value = "";
-      // Validierung der Adresse
-      if (
-        !address.value.firstName ||
-        !address.value.lastName ||
-        !address.value.email ||
-        !address.value.street ||
-        !address.value.postalCode ||
-        !address.value.city ||
-        !address.value.country ||
-        !address.value.phone
-      ) {
-        message.value = "Bitte füllen Sie alle Pflichtfelder aus.";
-        return;
-      }
-      const { error } = await stripe.confirmPayment({
-        elements,
-        confirmParams: {
-          return_url: window.location.origin + "/checkout-success",
-        },
-      });
-      if (error) {
-        message.value = error.message;
-        console.error("Stripe Confirm Payment Error:", error);
-      } else {
-        // Optional: Direkt den E-Mail-Versand auslösen
-        await fetch("/api/sendCheckoutEmail", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            address: address.value,
-            items: cartItems.value,
-            total: parseFloat(totalPrice.value),
-          }),
-        });
-      }
-    };
-
-    // Testfunktion für manuellen E-Mail-Versand
-    const testEmail = async () => {
-      const testData = {
-        address: address.value,
-        items:
-          cartItems.value.length > 0
-            ? cartItems.value
-            : [
-                {
-                  product: { name: "Testprodukt", price: 10.0 },
-                  quantity: 2,
-                },
-              ],
-        total:
-          cartItems.value.length > 0
-            ? parseFloat(totalPrice.value)
-            : 20.0,
-      };
-
-      try {
-        const res = await fetch("/api/sendCheckoutEmail", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(testData),
-        });
-        const data = await res.json();
-        if (data.error) {
-          message.value = data.error;
-          console.error("E-Mail Versand Fehler:", data.error);
-        } else {
-          message.value = "E-Mail wurde erfolgreich versendet!";
-          console.log("Test E-Mail Versand erfolgreich:", data);
-        }
-      } catch (error) {
-        message.value = "Ein Fehler ist aufgetreten.";
-        console.error("Fehler beim Testen des E-Mail Versands:", error);
-      }
-    };
-
     return {
       cartItems,
       totalPrice,
       formatPrice,
       address,
+      remarks,
       message,
-      handleStripePayment,
-      testEmail,
     };
   },
 };
 </script>
 
 <style scoped>
+/* Bestehendes Styling */
 .checkout-container {
   max-width: 800px;
   margin: 2rem auto;
@@ -449,7 +294,8 @@ export default {
 }
 
 .form-row input,
-.form-row select {
+.form-row select,
+.form-row textarea {
   width: 100%;
   padding: 0.75rem 1rem;
   border: 1px solid #ccc;
@@ -460,7 +306,8 @@ export default {
 }
 
 .form-row input:focus,
-.form-row select:focus {
+.form-row select:focus,
+.form-row textarea:focus {
   outline: none;
   border-color: var(--blue);
   box-shadow: 0 0 5px rgba(3, 48, 93, 0.3);
@@ -470,15 +317,6 @@ export default {
   .form-row.double {
     grid-template-columns: repeat(2, 1fr);
   }
-}
-
-.payment-element,
-.card-element,
-.address-element {
-  padding: 1rem;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  margin-bottom: 1rem;
 }
 
 .paypal-button-container,
@@ -503,50 +341,9 @@ export default {
   color: var(--blue);
 }
 
-.checkout-btn {
-  background-color: var(--blue);
-  color: #fff;
-  border: none;
-  padding: 0.8rem 1.5rem;
-  font-size: 1.2rem;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  width: 100%;
-}
-
-.checkout-btn:hover {
-  background-color: var(--gold);
-}
-
-.info-note {
-  text-align: center;
-  font-size: 0.9rem;
-  color: #666;
-  margin-top: 0.5rem;
-}
-
 .payment-message {
   color: red;
   text-align: center;
   margin-top: 1rem;
-}
-
-.test-email {
-  text-align: center;
-  margin-top: 2rem;
-}
-
-.text-button {
-  background: none;
-  border: none;
-  color: var(--blue);
-  text-decoration: underline;
-  cursor: pointer;
-  font-size: 1rem;
-}
-
-.text-button:hover {
-  color: var(--gold);
 }
 </style>

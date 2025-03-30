@@ -80,27 +80,49 @@ module.exports = async (req, res) => {
     </div>
   `;
 
-  // E-Mail-Inhalt für den Kunden
-  const customerEmailContent = `
-    <div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6; color: #333;">
-      <h2 style="color: #004a7f;">Bestellbestätigung – Ihr Restaurant</h2>
-      <p>Sehr geehrte/r ${address.firstName} ${address.lastName},</p>
-      <p>vielen Dank für Ihre Bestellung. Wir haben Ihre Bestellung erhalten und bereiten diese aktuell vor.</p>
-      <hr style="border: 1px solid #ddd;" />
-      <h3 style="color: #004a7f;">Ihre Bestellung:</h3>
-      ${orderDetails}
-      <p><strong>Gesamtsumme:</strong> ${total
-        .toFixed(2)
-        .replace(".", ",")} €</p>
-      <hr style="border: 1px solid #ddd;" />
-      <p>Die Lieferung erfolgt an:</p>
-      <p>${address.street}</p>
-      <p>${address.postalCode} ${address.city}</p>
-      <p>${address.country}</p>
-      <p>Bei Fragen erreichen Sie uns unter <a href="mailto:info@haus-hamburg-leer.de" style="color: #004a7f;">info@haus-hamburg-leer.de</a>.</p>
-      <p>Mit freundlichen Grüßen,<br/>Ihr Restaurant Team</p>
+// Beispiel: Neuer Kunden-E-Mail-Inhalt in sendCheckoutEmail.js
+const customerEmailContent = `
+  <div style="font-family: Arial, sans-serif; background: #f7f7f7; padding: 20px;">
+    <div style="max-width: 600px; margin: 0 auto; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+      <div style="background: #03305d; padding: 20px; text-align: center;">
+        <h2 style="color: #fff; margin: 0;">Bestellbestätigung</h2>
+      </div>
+      <div style="padding: 20px; line-height: 1.6; color: #333;">
+        <p>Sehr geehrte/r ${address.firstName} ${address.lastName},</p>
+        <p>vielen Dank für Ihre Bestellung bei <strong>Haus Hamburg</strong>. Wir haben Ihre Bestellung erfolgreich erhalten und werden diese umgehend bearbeiten.</p>
+        <hr style="border: none; border-top: 1px solid #ddd; margin: 20px 0;">
+        <h3 style="color: #03305d;">Ihre Bestellung:</h3>
+        ${orderDetails}
+        <p style="font-size: 1.1em;"><strong>Gesamtsumme:</strong> ${total
+          .toFixed(2)
+          .replace(".", ",")} €</p>
+        <hr style="border: none; border-top: 1px solid #ddd; margin: 20px 0;">
+        <h3 style="color: #03305d;">Lieferadresse:</h3>
+        <p>
+          ${address.street}<br>
+          ${address.postalCode} ${address.city}<br>
+          ${address.country}
+        </p>
+        <p>Bei Fragen erreichen Sie uns unter <a href="mailto:info@haus-hamburg-leer.de" style="color: #03305d; text-decoration: none;">info@haus-hamburg-leer.de</a>.</p>
+        <p>Mit freundlichen Grüßen,<br>Ihr Haus Hamburg Team</p>
+      </div>
+      <div style="background: #eee; padding: 10px; text-align: center; font-size: 0.9em; color: #777;">
+        © ${new Date().getFullYear()} Haus Hamburg - Alle Rechte vorbehalten.
+      </div>
     </div>
-  `;
+  </div>
+`;
+
+
+
+
+
+
+
+
+
+
+
 
   try {
     // Versende die E-Mail an den Shop-Inhaber
