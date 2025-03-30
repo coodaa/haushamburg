@@ -32,51 +32,68 @@
       <!-- Adressformular inkl. Bemerkungen -->
       <div class="address-form catering-form">
         <h2 class="section-title">Rechnungs- & Lieferadresse</h2>
+        <p class="form-hint">
+          Felder, die mit <span class="required">*</span> gekennzeichnet sind, sind Pflichtfelder.
+        </p>
         <form id="address-form" @submit.prevent>
           <!-- Vorname & Nachname nebeneinander -->
           <div class="form-row double">
             <div class="input-group">
-              <label for="firstName">Vorname</label>
+              <label for="firstName">Vorname <span class="required">*</span></label>
               <input id="firstName" v-model="address.firstName" type="text" required />
             </div>
             <div class="input-group">
-              <label for="lastName">Nachname</label>
+              <label for="lastName">Nachname <span class="required">*</span></label>
               <input id="lastName" v-model="address.lastName" type="text" required />
             </div>
           </div>
           <!-- E-Mail in voller Breite -->
           <div class="form-row">
-            <label for="email">E-Mail</label>
+            <label for="email">E-Mail <span class="required">*</span></label>
             <input id="email" v-model="address.email" type="email" required />
           </div>
           <!-- Straße in voller Breite -->
           <div class="form-row">
-            <label for="street">Straße & Nr.</label>
+            <label for="street">Straße & Nr. <span class="required">*</span></label>
             <input id="street" v-model="address.street" type="text" required />
           </div>
           <!-- PLZ & Stadt nebeneinander -->
           <div class="form-row double">
             <div class="input-group">
-              <label for="postalCode">PLZ</label>
-              <input id="postalCode" v-model="address.postalCode" type="text" required />
+              <label for="postalCode">PLZ <span class="required">*</span></label>
+              <input
+                id="postalCode"
+                v-model="address.postalCode"
+                type="text"
+                required
+                pattern="^\d+$"
+                inputmode="numeric"
+                title="Bitte nur Zahlen eingeben" />
             </div>
             <div class="input-group">
-              <label for="city">Stadt</label>
+              <label for="city">Stadt <span class="required">*</span></label>
               <input id="city" v-model="address.city" type="text" required />
             </div>
           </div>
           <!-- Land & Telefonnummer nebeneinander -->
           <div class="form-row double">
             <div class="input-group">
-              <label for="country">Land</label>
+              <label for="country">Land <span class="required">*</span></label>
               <select id="country" v-model="address.country" required>
                 <option disabled value="">Bitte auswählen</option>
                 <option value="DE">Deutschland</option>
               </select>
             </div>
             <div class="input-group">
-              <label for="phone">Telefonnummer</label>
-              <input id="phone" v-model="address.phone" type="tel" required />
+              <label for="phone">Telefonnummer <span class="required">*</span></label>
+              <input
+                id="phone"
+                v-model="address.phone"
+                type="tel"
+                required
+                pattern="^\d+$"
+                inputmode="numeric"
+                title="Bitte nur Zahlen eingeben" />
             </div>
           </div>
           <!-- Neues Feld: Bemerkungen -->
@@ -95,7 +112,14 @@
         <div id="paypal-button-container" class="paypal-button-container"></div>
       </div>
 
-      <div v-if="message" class="payment-message">{{ message }}</div>
+      <!-- Fehler-/Infoanzeige als Modal -->
+      <div v-if="showErrorModal" class="modal-overlay">
+        <div class="modal">
+          <h2>Achtung</h2>
+          <p>{{ errorModalMessage }}</p>
+          <button class="cta-button" @click="closeErrorModal">Schließen</button>
+        </div>
+      </div>
 
       <div class="checkout-summary">
         <p class="total-label">Gesamtsumme:</p>
@@ -134,13 +158,40 @@ export default {
     });
     // Neues Feld für Bemerkungen
     const remarks = ref("");
-    const message = ref("");
+    const showErrorModal = ref(false);
+    const errorModalMessage = ref("");
 
-    onMounted(async () => {
-      // PayPal Button initialisieren – ohne den fundingSource Parameter!
+    // Validierungsfunktion – wird in createOrder verwendet
+    const validateForm = () => {
+      if (
+        !address.value.firstName ||
+        !address.value.lastName ||
+        !address.value.email ||
+        !address.value.street ||
+        !address.value.postalCode ||
+        !address.value.city ||
+        !address.value.country ||
+        !address.value.phone
+      ) {
+        errorModalMessage.value = "Bitte füllen Sie alle erforderlichen Felder aus, bevor Sie fortfahren.";
+        showErrorModal.value = true;
+        return false;
+      }
+      return true;
+    };
+
+    const closeErrorModal = () => {
+      showErrorModal.value = false;
+    };
+
+    onMounted(() => {
       if (window.paypal) {
         window.paypal.Buttons({
           createOrder: async (data, actions) => {
+            // Validierung beim Klick, bevor die Bestellung erstellt wird
+            if (!validateForm()) {
+              throw new Error("Formular nicht vollständig ausgefüllt.");
+            }
             const orderRes = await fetch("/api/create-paypal-order", {
               method: "POST",
               headers: { "Content-Type": "application/json" },
@@ -152,37 +203,49 @@ export default {
             });
             const orderData = await orderRes.json();
             if (orderData.error) {
-              message.value = orderData.error;
+              errorModalMessage.value = orderData.error;
+              showErrorModal.value = true;
               throw new Error(orderData.error);
             }
             return orderData.id;
           },
           onApprove: async (data, actions) => {
-            const capture = await actions.order.capture();
-            console.log("PayPal Capture:", capture);
-
-            // E-Mail-Versand auslösen inkl. Bemerkungen
-            await fetch("/api/sendCheckoutEmail", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({
-                address: address.value,
-                items: cartItems.value,
-                total: parseFloat(totalPrice.value),
-                remarks: remarks.value,
-              }),
-            });
-
-            cartStore.clearCart();
-            window.location.href = "/checkout-success";
+            try {
+              const capture = await actions.order.capture();
+              console.log("PayPal Capture:", capture);
+              // E-Mail-Versand auslösen inkl. Bemerkungen
+              await fetch("/api/sendCheckoutEmail", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                  address: address.value,
+                  items: cartItems.value,
+                  total: parseFloat(totalPrice.value),
+                  remarks: remarks.value,
+                }),
+              });
+              cartStore.clearCart();
+              window.location.href = "/checkout-success";
+            } catch (err) {
+              errorModalMessage.value = "Ein Fehler ist beim Abschluss der Zahlung aufgetreten.";
+              showErrorModal.value = true;
+              console.error("Fehler bei onApprove:", err);
+            }
           },
           onError: (err) => {
-            message.value = "PayPal Fehler: " + err;
+            if (err && err.message === "Formular nicht vollständig ausgefüllt.") {
+              errorModalMessage.value = "Bitte füllen Sie alle erforderlichen Felder aus, bevor Sie fortfahren.";
+            } else {
+              errorModalMessage.value = "PayPal Fehler: " + err.message;
+            }
+            showErrorModal.value = true;
             console.error("PayPal Fehler:", err);
           },
         }).render("#paypal-button-container");
       } else {
         console.error("PayPal SDK wurde nicht geladen.");
+        errorModalMessage.value = "PayPal SDK konnte nicht geladen werden.";
+        showErrorModal.value = true;
       }
     });
 
@@ -192,7 +255,9 @@ export default {
       formatPrice,
       address,
       remarks,
-      message,
+      showErrorModal,
+      errorModalMessage,
+      closeErrorModal,
     };
   },
 };
@@ -265,6 +330,12 @@ export default {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
+.form-hint {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 1rem;
+}
+
 .form-row {
   margin-bottom: 1.5rem;
 }
@@ -289,6 +360,11 @@ export default {
   margin-bottom: 0.5rem;
   font-weight: bold;
   color: var(--blue);
+}
+
+.required {
+  color: red;
+  margin-left: 0.25rem;
 }
 
 .form-row input,
@@ -343,5 +419,31 @@ export default {
   color: red;
   text-align: center;
   margin-top: 1rem;
+}
+
+/* Modal für Fehlermeldungen */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+.modal {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 20px;
+  text-align: center;
+  max-width: 90%;
+}
+.modal .cta-button {
+  margin-top: 1.5rem;
+  text-align: center;
+  width: 100%;
 }
 </style>

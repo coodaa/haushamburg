@@ -1,11 +1,10 @@
-// api/create-paypal-order.js
 const paypal = require("@paypal/checkout-server-sdk");
 
-// Erstelle eine Sandbox-Umgebung
+// Erstelle die Live-Umgebung (für Sandbox ersetze LiveEnvironment durch SandboxEnvironment)
 function environment() {
   const clientId = process.env.PAYPAL_CLIENT_ID;
   const clientSecret = process.env.PAYPAL_CLIENT_SECRET;
-  return new paypal.core.SandboxEnvironment(clientId, clientSecret);
+  return new paypal.core.LiveEnvironment(clientId, clientSecret);
 }
 
 function client() {
@@ -15,6 +14,18 @@ function client() {
 module.exports = async (req, res) => {
   try {
     const { items, total, address } = req.body;
+
+    // Serverseitige Validierung der erforderlichen Felder
+    if (
+      !address ||
+      !address.street ||
+      !address.city ||
+      !address.postalCode ||
+      !address.country
+    ) {
+      return res.status(400).json({ error: "Bitte füllen Sie alle erforderlichen Felder aus, bevor Sie fortfahren." });
+    }
+
     const request = new paypal.orders.OrdersCreateRequest();
     request.prefer("return=representation");
     request.requestBody({
@@ -42,6 +53,13 @@ module.exports = async (req, res) => {
     res.status(200).json({ id: order.result.id });
   } catch (error) {
     console.error("PayPal Order Creation Error:", error);
+    // Suche nach spezifischen Fehlern, z.B. fehlende Postleitzahl
+    if (error.details && Array.isArray(error.details)) {
+      const postalCodeError = error.details.find(detail => detail.issue === "POSTAL_CODE_REQUIRED");
+      if (postalCodeError) {
+        return res.status(400).json({ error: "Bitte geben Sie eine gültige Postleitzahl ein." });
+      }
+    }
     res.status(500).json({ error: error.message });
   }
 };
