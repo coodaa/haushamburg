@@ -137,10 +137,9 @@ export default {
     const message = ref("");
 
     onMounted(async () => {
-      // PayPal Button initialisieren
+      // PayPal Button initialisieren – ohne den fundingSource Parameter!
       if (window.paypal) {
         window.paypal.Buttons({
-          fundingSource: window.paypal.FUNDING.PAYPAL,
           createOrder: async (data, actions) => {
             const orderRes = await fetch("/api/create-paypal-order", {
               method: "POST",
@@ -200,7 +199,6 @@ export default {
 </script>
 
 <style scoped>
-/* Bestehendes Styling */
 .checkout-container {
   max-width: 800px;
   margin: 2rem auto;
