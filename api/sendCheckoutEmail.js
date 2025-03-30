@@ -1,4 +1,3 @@
-// api/sendCheckoutEmail.js
 const nodemailer = require("nodemailer");
 
 module.exports = async (req, res) => {
@@ -51,7 +50,7 @@ module.exports = async (req, res) => {
       .replace(".", ",")} €</p>`;
   });
 
-  // E-Mail-Inhalt für den Shop-Inhaber
+  // E-Mail-Inhalt für den Shop-Inhaber (ohne Duplikate)
   const ownerEmailContent = `
     <div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6; color: #333;">
       <h2 style="color: #004a7f;">Neue Bestellung</h2>
