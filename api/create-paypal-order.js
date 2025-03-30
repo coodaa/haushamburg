@@ -15,15 +15,23 @@ module.exports = async (req, res) => {
   try {
     const { items, total, address } = req.body;
 
-    // Serverseitige Validierung der erforderlichen Felder
     if (
       !address ||
       !address.street ||
+      !address.street.trim() ||
       !address.city ||
+      !address.city.trim() ||
       !address.postalCode ||
-      !address.country
+      !address.postalCode.trim() ||
+      !address.country ||
+      !address.country.trim()
     ) {
-      return res.status(400).json({ error: "Bitte füllen Sie alle erforderlichen Felder aus, bevor Sie fortfahren." });
+      return res
+        .status(400)
+        .json({
+          error:
+            "Bitte füllen Sie alle erforderlichen Felder aus, bevor Sie fortfahren.",
+        });
     }
 
     const request = new paypal.orders.OrdersCreateRequest();
@@ -53,11 +61,14 @@ module.exports = async (req, res) => {
     res.status(200).json({ id: order.result.id });
   } catch (error) {
     console.error("PayPal Order Creation Error:", error);
-    // Suche nach spezifischen Fehlern, z.B. fehlende Postleitzahl
     if (error.details && Array.isArray(error.details)) {
-      const postalCodeError = error.details.find(detail => detail.issue === "POSTAL_CODE_REQUIRED");
+      const postalCodeError = error.details.find(
+        (detail) => detail.issue === "POSTAL_CODE_REQUIRED"
+      );
       if (postalCodeError) {
-        return res.status(400).json({ error: "Bitte geben Sie eine gültige Postleitzahl ein." });
+        return res
+          .status(400)
+          .json({ error: "Bitte geben Sie eine gültige Postleitzahl ein." });
       }
     }
     res.status(500).json({ error: error.message });

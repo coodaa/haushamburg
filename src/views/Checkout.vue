@@ -4,25 +4,39 @@
     imageAlt="Checkout"
     titleAbove="Checkout"
     titleMain="Bezahlen"
-    subtitle="Überprüfen Sie Ihre Bestellung und wählen Sie PayPal als Zahlungsmethode."
+    subtitle="Überprüfen Sie Ihre Bestellung und wählen Sie Ihre bevorzugte Zahlungsart."
     heading="Checkout"
     flowText="Bitte überprüfen Sie Ihre Bestellung, füllen Sie Ihre Adress- und Lieferinformationen aus – inklusive Lieferdatum und Zeitfenster – und bezahlen Sie mit PayPal."
     parallaxImageSrc="/images/mood/haus-hamburg-leer-pferd.webp"
   >
     <div class="checkout-container">
-      <h2 class="section-title">Ihre Bestellung</h2>
-      <div v-if="cartItems.length === 0" class="empty-cart">
-        Ihr Warenkorb ist leer.
-      </div>
-      <div v-else class="cart-summary">
-        <div v-for="(item, index) in cartItems" :key="index" class="cart-item">
-          <img :src="item.product.image" :alt="item.product.name" class="item-image" />
-          <div class="item-details">
-            <h3 class="item-name">{{ item.product.name }}</h3>
-            <p class="item-qty">{{ item.quantity }} x {{ formatPrice(item.product.price) }}</p>
-          </div>
-          <p class="item-total">{{ formatPrice(item.product.price * item.quantity) }}</p>
+      <!-- Bestellübersicht inkl. Gesamtsumme -->
+      <div class="order-summary">
+        <h2 class="summary-title">Ihre Bestellung</h2>
+        <div v-if="cartItems.length === 0" class="empty-cart">
+          Ihr Warenkorb ist leer.
         </div>
+        <div v-else class="cart-items">
+          <div v-for="(item, index) in cartItems" :key="index" class="cart-item">
+            <img :src="item.product.image" :alt="item.product.name" />
+            <div class="item-details">
+              <h3 class="item-name">{{ item.product.name }}</h3>
+              <p class="item-qty">{{ item.quantity }} x {{ formatPrice(item.product.price) }}</p>
+            </div>
+            <p class="item-total">{{ formatPrice(item.product.price * item.quantity) }}</p>
+          </div>
+          <div class="total-container">
+            <span class="total-label">Gesamtsumme:</span>
+            <span class="total-amount">{{ formatPrice(totalPrice) }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA-Button: Zurück zum Shop -->
+      <div class="back-to-shop">
+        <button class="cta-button shop-button" @click="goToShop">
+          Zurück zum Shop
+        </button>
       </div>
 
       <!-- Adress- und Lieferformular -->
@@ -129,7 +143,7 @@
 
       <!-- PayPal Button -->
       <div class="paypal-section">
-        <h2 class="section-title">Zahlung mit PayPal</h2>
+        <h2 class="section-title">Zahlung mit </h2>
         <div id="paypal-button-container" class="paypal-button-container"></div>
       </div>
 
@@ -138,14 +152,8 @@
         <div class="modal">
           <h2>Achtung</h2>
           <p>{{ errorModalMessage }}</p>
-          <button class="cta-button" @click="closeErrorModal">Schließen</button>
+          <button class="cta-button modal-close-btn" @click="closeErrorModal">Schließen</button>
         </div>
-      </div>
-
-      <!-- Zusammenfassung -->
-      <div class="checkout-summary">
-        <p class="total-label">Gesamtsumme:</p>
-        <p class="total-amount"><strong>{{ formatPrice(totalPrice) }}</strong></p>
       </div>
     </div>
   </BasePage>
@@ -159,7 +167,6 @@ import "flatpickr/dist/flatpickr.min.css";
 import BasePage from "@/components/BasePage.vue";
 import { useCartStore } from "@/stores/cart";
 
-// Beispielhafte Öffnungszeiten
 const openingHours = {
   Monday: { open: "17:00", close: "20:00" },
   Tuesday: null,
@@ -206,7 +213,6 @@ export default {
     );
     const formatPrice = (val) => val.toFixed(2).replace(".", ",") + " €";
 
-    // Adressdaten (Land wird intern immer auf "DE" gesetzt)
     const address = ref({
       firstName: "",
       lastName: "",
@@ -215,26 +221,18 @@ export default {
       postalCode: "",
       city: "",
       phone: "",
-      country: "DE"
+      country: "DE",
     });
     const remarks = ref("");
 
-    // Lieferfelder
     const deliveryDate = ref("");
     const deliveryWindow = ref("");
 
-    // Zusätzliche Optionen
-    const barzahlung = ref(false);
-    const trinkgeld = ref(0);
-
-    // Fehlermodal
     const showErrorModal = ref(false);
     const errorModalMessage = ref("");
 
-    // Mindestlieferdatum
     const minDeliveryDate = computed(() => getNextAvailableDeliveryDate());
 
-    // Verfügbare Lieferzeitfenster
     const availableDeliveryWindows = computed(() => {
       if (!deliveryDate.value) return [];
       const dateObj = new Date(deliveryDate.value);
@@ -266,33 +264,46 @@ export default {
       return slots;
     });
 
-    // Validierung der Felder inkl. Liefergebietskontrolle (Beispiel: PLZ "26789")
+
+
+
+    
+
     const validateForm = () => {
-      if (
-        !address.value.firstName ||
-        !address.value.lastName ||
-        !address.value.email ||
-        !address.value.street ||
-        !address.value.postalCode ||
-        !address.value.city ||
-        !address.value.phone ||
-        !deliveryDate.value ||
-        !deliveryWindow.value
-      ) {
-        errorModalMessage.value = "Bitte füllen Sie alle erforderlichen Felder aus, bevor Sie fortfahren.";
-        showErrorModal.value = true;
-        return false;
-      }
-      if (address.value.postalCode !== "26789") {
-        errorModalMessage.value = "Lieferung ist nur im Umkreis von 5 km möglich.";
-        showErrorModal.value = true;
-        return false;
-      }
-      return true;
-    };
+  if (
+    !address.value.firstName ||
+    !address.value.lastName ||
+    !address.value.email ||
+    !address.value.street ||
+    !address.value.postalCode ||
+    !address.value.city ||
+    !address.value.phone ||
+    !deliveryDate.value ||
+    !deliveryWindow.value
+  ) {
+    errorModalMessage.value = "Bitte füllen Sie alle erforderlichen Felder aus, bevor Sie fortfahren.";
+    showErrorModal.value = true;
+    return false;
+  }
+  // Wenn Du nur eine PLZ validieren möchtest, entferne oder passe diese Zeile an:
+  if (address.value.postalCode !== "26789") {
+    errorModalMessage.value = "Lieferung ist nur im Umkreis von 5 km möglich.";
+    showErrorModal.value = true;
+    return false;
+  }
+  return true;
+};
+
+
+
+
 
     const closeErrorModal = () => {
       showErrorModal.value = false;
+    };
+
+    const goToShop = () => {
+      window.location.href = "/shop";
     };
 
     onMounted(() => {
@@ -336,9 +347,11 @@ export default {
         deliveryWindow.value = availableDeliveryWindows.value[0];
       }
 
-      // PayPal-Button initialisieren
       if (window.paypal) {
         window.paypal.Buttons({
+          style: {
+    borderRadius: 20
+  },
           createOrder: async (data, actions) => {
             if (!validateForm()) {
               throw new Error("Bitte füllen Sie alle erforderlichen Felder aus, bevor Sie fortfahren.");
@@ -352,8 +365,6 @@ export default {
                 address: address.value,
                 deliveryDate: deliveryDate.value,
                 deliveryWindow: deliveryWindow.value,
-                barzahlung: barzahlung.value,
-                trinkgeld: trinkgeld.value,
               }),
             });
             const orderData = await orderRes.json();
@@ -378,8 +389,6 @@ export default {
                   remarks: remarks.value,
                   deliveryDate: deliveryDate.value,
                   deliveryWindow: deliveryWindow.value,
-                  barzahlung: barzahlung.value,
-                  trinkgeld: trinkgeld.value,
                 }),
               });
               cartStore.clearCart();
@@ -390,19 +399,15 @@ export default {
               console.error("Fehler bei onApprove:", err);
             }
           },
-         
-
           onError: (err) => {
-  if (err.message.includes("Formular nicht vollständig")) {
-    errorModalMessage.value = "Bitte überprüfen Sie Ihre Eingaben – alle Pflichtfelder müssen ausgefüllt sein.";
-  } else {
-    errorModalMessage.value = err.message; // kein "PayPal Fehler:"-Prefix
-  }
-  showErrorModal.value = true;
-  console.error("PayPal Fehler:", err);
-},
-
-
+            if (err.message.includes("Formular nicht vollständig")) {
+              errorModalMessage.value = "Bitte überprüfen Sie Ihre Eingaben – alle Pflichtfelder müssen ausgefüllt sein.";
+            } else {
+              errorModalMessage.value = err.message;
+            }
+            showErrorModal.value = true;
+            console.error("PayPal Fehler:", err);
+          },
         }).render("#paypal-button-container");
       } else {
         console.error("PayPal SDK wurde nicht geladen.");
@@ -423,8 +428,6 @@ export default {
       formatPrice,
       address,
       remarks,
-      barzahlung,
-      trinkgeld,
       deliveryDate,
       deliveryWindow,
       availableDeliveryWindows,
@@ -432,6 +435,7 @@ export default {
       showErrorModal,
       errorModalMessage,
       closeErrorModal,
+      goToShop,
     };
   },
 };
@@ -444,22 +448,22 @@ export default {
   padding: 1rem;
   background: #fff;
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
-.checkout-header {
-  text-align: center;
-  margin-bottom: 2rem;
-}
-.checkout-header h1 {
-  font-size: 2.5rem;
-  margin-bottom: 0.5rem;
-}
-.checkout-header p {
-  font-size: 1.1rem;
-  color: #555;
-}
+
+/* Bestellübersicht & Gesamtsumme */
 .order-summary {
   margin-bottom: 2rem;
+  padding: 1rem;
+  background: var(--background, #f9f9f9);
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+.summary-title {
+  text-align: center;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: var(--blue);
 }
 .cart-items {
   display: flex;
@@ -469,39 +473,75 @@ export default {
 .cart-item {
   display: flex;
   align-items: center;
-  border-bottom: 1px solid #ddd;
-  padding: 1rem 0;
+  padding: 0.5rem;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
 }
 .cart-item img {
-  width: 80px;
-  height: 80px;
+  width: 60px;
+  height: 60px;
   object-fit: cover;
-  border-radius: 4px;
-  margin-right: 1rem;
+  border-radius: 8px;
+  margin-right: 0.75rem;
 }
 .item-details {
   flex: 1;
 }
 .item-name {
   font-size: 1.1rem;
+  font-weight: bold;
   color: var(--blue);
-  margin: 0;
+  margin: 0 0 0.25rem;
 }
 .item-qty {
   font-size: 0.9rem;
-  color: #666;
+  color: #555;
 }
 .item-total {
-  font-size: 1.1rem;
+  font-size: 1rem;
+  font-weight: bold;
+  color: var(--blue);
+  margin-left: 1rem;
+  white-space: nowrap;
+}
+.total-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 1rem;
+}
+.total-label {
+  font-size: 1.2rem;
+  margin-right: 0.5rem;
+  color: #666;
+}
+.total-amount {
+  font-size: 1.8rem;
   font-weight: bold;
   color: var(--blue);
 }
-.form-section {
-  margin-bottom: 2rem;
-  padding: 1rem;
-  background: #fdfdfd;
-  border-radius: 10px;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+.shop-button {
+  font-size: 1.5rem;
+  padding: 0.75rem 1.5rem;
+  cursor: pointer;
+  display: block;
+  margin: 0 auto;
+}
+
+.cta-button:hover,
+.cta-button:focus {
+  transform: scale(1.01);
+}
+
+/* Formular */
+.address-form.catering-form {
+  max-width: 48em;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: var(--background, #fff);
+  border-radius: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 .form-hint {
   font-size: 0.9rem;
@@ -546,38 +586,22 @@ export default {
   border-color: var(--blue);
   box-shadow: 0 0 5px rgba(3,48,93,0.3);
 }
+
+/* Lieferoptionen */
 .delivery-options {
-  background-color: #f9f9f9;
+  background-color: var(--beige, #f9f9f9);
   padding: 1rem;
   border-radius: 20px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.05);
   margin-bottom: 2rem;
 }
+
+/* PayPal & Fehlermodal */
 .paypal-button-container,
 .payment-section {
   margin-top: 1rem;
   text-align: center;
 }
-.checkout-summary {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 2rem;
-}
-.total-label {
-  font-size: 1.2rem;
-  color: #666;
-}
-.total-amount {
-  font-size: 1.5rem;
-  color: var(--blue);
-}
-.payment-message {
-  color: red;
-  text-align: center;
-  margin-top: 1rem;
-}
-/* Modal */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -604,4 +628,7 @@ export default {
   justify-content: center;
   align-items: center;
 }
+
+
+
 </style>
