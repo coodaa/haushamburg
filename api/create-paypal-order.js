@@ -1,5 +1,9 @@
 const paypal = require("@paypal/checkout-server-sdk");
 
+// Falls du Node 18 oder höher verwendest, ist fetch global verfügbar.
+// Bei älteren Node-Versionen: installiere "node-fetch" und aktiviere folgende Zeile:
+// const fetch = require("node-fetch");
+
 // Erstelle die Live-Umgebung (für Sandbox ersetze LiveEnvironment durch SandboxEnvironment)
 function environment() {
   const clientId = process.env.PAYPAL_CLIENT_ID;
@@ -11,29 +15,103 @@ function client() {
   return new paypal.core.PayPalHttpClient(environment());
 }
 
+/**
+ * Berechnet die Entfernung in Kilometern zwischen zwei Punkten (Haversine-Formel)
+ */
+function haversineDistance(lat1, lon1, lat2, lon2) {
+  const R = 6371; // Erdradius in km
+  const dLat = ((lat2 - lat1) * Math.PI) / 180;
+  const dLon = ((lon2 - lon1) * Math.PI) / 180;
+  const a =
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos((lat1 * Math.PI) / 180) *
+      Math.cos((lat2 * Math.PI) / 180) *
+      Math.sin(dLon / 2) *
+      Math.sin(dLon / 2);
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  return R * c;
+}
+
+/**
+ * Geocodiert eine Adresse in Koordinaten mithilfe der Nominatim API (OpenStreetMap)
+ */
+async function geocodeAddress(address) {
+  // Bereinige die Straßenangabe: ersetze en-/em-Dashes durch einen normalen Bindestrich,
+  // trimme Leerzeichen und ersetze mehrere Leerzeichen durch ein einzelnes.
+  let cleanedStreet = address.street
+    .replace(/[–—]/g, "-")
+    .trim()
+    .replace(/\s+/g, " ");
+  // Für die Geocoding-Abfrage verwenden wir den ausgeschriebenen Ländernamen.
+  const queryCountry = "Deutschland";
+  const query = encodeURIComponent(
+    `${cleanedStreet}, ${address.postalCode} ${address.city}, ${queryCountry}`
+  );
+  const url = `https://nominatim.openstreetmap.org/search?format=json&limit=1&q=${query}`;
+
+  const response = await fetch(url, {
+    headers: {
+      "User-Agent": "DeineAppName", // Gib hier einen aussagekräftigen User-Agent an
+    },
+  });
+  const data = await response.json();
+
+  if (data && data.length > 0) {
+    return {
+      lat: parseFloat(data[0].lat),
+      lon: parseFloat(data[0].lon),
+    };
+  }
+  throw new Error("Adresse konnte nicht gefunden werden.");
+}
+
 module.exports = async (req, res) => {
   try {
     const { items, total, address } = req.body;
 
+    // Basis-Validierung: Prüfe, ob alle erforderlichen Felder vorhanden und nicht leer sind
     if (
       !address ||
-      !address.street ||
-      !address.street.trim() ||
-      !address.city ||
-      !address.city.trim() ||
-      !address.postalCode ||
-      !address.postalCode.trim() ||
-      !address.country ||
-      !address.country.trim()
+      !address.street?.trim() ||
+      !address.city?.trim() ||
+      !address.postalCode?.trim() ||
+      !address.country?.trim()
     ) {
-      return res
-        .status(400)
-        .json({
-          error:
-            "Bitte füllen Sie alle erforderlichen Felder aus, bevor Sie fortfahren.",
-        });
+      return res.status(400).json({
+        error:
+          "Bitte füllen Sie alle erforderlichen Felder aus, bevor Sie fortfahren.",
+      });
     }
 
+    // Erzwinge, dass nur deutsche Adressen genutzt werden
+    address.country = "DE";
+
+    // Geocode die Adresse des Nutzers
+    const userCoordinates = await geocodeAddress(address);
+
+    // Aktualisierte Referenzkoordinaten für das Historische Rathaus Leer:
+    // (Rathausstraße 1, 26789 Leer, Ostfriesland, Deutschland)
+    const hausHamburg = { lat: 53.22666931152344, lon: 7.4508161544799805 };
+
+    // Berechne die Entfernung in Kilometern
+    const distance = haversineDistance(
+      userCoordinates.lat,
+      userCoordinates.lon,
+      hausHamburg.lat,
+      hausHamburg.lon
+    );
+    console.log("User-Koordinaten:", userCoordinates);
+    console.log("Ziel-Koordinaten (Historisches Rathaus Leer):", hausHamburg);
+    console.log("Berechnete Entfernung:", distance, "km");
+
+    // Überprüfe, ob die Adresse innerhalb eines 5km-Radius liegt
+    if (distance > 5) {
+      return res
+        .status(400)
+        .json({ error: "Lieferung ist nur im Umkreis von 5 km möglich." });
+    }
+
+    // Erstelle den PayPal-Order, wenn die Adresse innerhalb des Lieferradius liegt
     const request = new paypal.orders.OrdersCreateRequest();
     request.prefer("return=representation");
     request.requestBody({
@@ -61,16 +139,6 @@ module.exports = async (req, res) => {
     res.status(200).json({ id: order.result.id });
   } catch (error) {
     console.error("PayPal Order Creation Error:", error);
-    if (error.details && Array.isArray(error.details)) {
-      const postalCodeError = error.details.find(
-        (detail) => detail.issue === "POSTAL_CODE_REQUIRED"
-      );
-      if (postalCodeError) {
-        return res
-          .status(400)
-          .json({ error: "Bitte geben Sie eine gültige Postleitzahl ein." });
-      }
-    }
     res.status(500).json({ error: error.message });
   }
 };

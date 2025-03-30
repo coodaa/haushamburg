@@ -10,7 +10,7 @@
     parallaxImageSrc="/images/mood/haus-hamburg-leer-pferd.webp"
   >
     <div class="checkout-container">
-      <!-- Bestellübersicht inkl. Gesamtsumme -->
+      <!-- Bestellübersicht -->
       <div class="order-summary">
         <h2 class="summary-title">Ihre Bestellung</h2>
         <div v-if="cartItems.length === 0" class="empty-cart">
@@ -32,7 +32,7 @@
         </div>
       </div>
 
-      <!-- CTA-Button: Zurück zum Shop -->
+      <!-- Zurück zum Shop -->
       <div class="back-to-shop">
         <button class="cta-button shop-button" @click="goToShop">
           Zurück zum Shop
@@ -50,60 +50,46 @@
           <div class="form-row double">
             <div class="input-group">
               <label for="firstName">Vorname <span class="required">*</span></label>
-              <input id="firstName" v-model="address.firstName" type="text" required />
+              <input id="firstName" v-model="address.firstName" type="text" required :class="{ 'input-error': errors.firstName }" />
             </div>
             <div class="input-group">
               <label for="lastName">Nachname <span class="required">*</span></label>
-              <input id="lastName" v-model="address.lastName" type="text" required />
+              <input id="lastName" v-model="address.lastName" type="text" required :class="{ 'input-error': errors.lastName }" />
             </div>
           </div>
           <!-- E-Mail -->
           <div class="form-row">
             <label for="email">E-Mail <span class="required">*</span></label>
-            <input id="email" v-model="address.email" type="email" required />
+            <input id="email" v-model="address.email" type="email" required :class="{ 'input-error': errors.email }" />
           </div>
           <!-- Straße -->
           <div class="form-row">
             <label for="street">Straße & Nr. <span class="required">*</span></label>
-            <input id="street" v-model="address.street" type="text" required />
+            <input id="street" v-model="address.street" type="text" required :class="{ 'input-error': errors.street }" />
           </div>
           <!-- PLZ & Stadt -->
           <div class="form-row double">
             <div class="input-group">
               <label for="postalCode">PLZ <span class="required">*</span></label>
-              <input
-                id="postalCode"
-                v-model="address.postalCode"
-                type="text"
-                required
-                pattern="^\d+$"
-                inputmode="numeric"
-                title="Bitte nur Zahlen eingeben" />
+              <input id="postalCode" v-model="address.postalCode" type="text" required pattern="^\d+$" inputmode="numeric" title="Bitte nur Zahlen eingeben" :class="{ 'input-error': errors.postalCode }" />
             </div>
             <div class="input-group">
               <label for="city">Stadt <span class="required">*</span></label>
-              <input id="city" v-model="address.city" type="text" required />
+              <input id="city" v-model="address.city" type="text" required :class="{ 'input-error': errors.city }" />
             </div>
           </div>
           <!-- Land & Telefonnummer -->
           <div class="form-row double">
             <div class="input-group">
               <label for="country">Land <span class="required">*</span></label>
-              <select id="country" v-model="address.country" required>
+              <select id="country" v-model="address.country" required :class="{ 'input-error': errors.country }">
                 <option disabled value="">Bitte auswählen</option>
                 <option value="DE">Deutschland</option>
               </select>
             </div>
             <div class="input-group">
               <label for="phone">Telefonnummer <span class="required">*</span></label>
-              <input
-                id="phone"
-                v-model="address.phone"
-                type="tel"
-                required
-                pattern="^\d+$"
-                inputmode="numeric"
-                title="Bitte nur Zahlen eingeben" />
+              <input id="phone" v-model="address.phone" type="tel" required pattern="^\d+$" inputmode="numeric" title="Bitte nur Zahlen eingeben" :class="{ 'input-error': errors.phone }" />
             </div>
           </div>
           <!-- Lieferdatum und Lieferzeitfenster -->
@@ -111,18 +97,13 @@
             <div class="form-row">
               <div class="input-group">
                 <label for="deliveryDate">Lieferdatum <span class="required">*</span></label>
-                <input
-                  type="text"
-                  id="deliveryDate"
-                  ref="deliveryDateInput"
-                  required
-                  placeholder="Datum wählen" />
+                <input type="text" id="deliveryDate" ref="deliveryDateInput" required placeholder="Datum wählen" :class="{ 'input-error': errors.deliveryDate }" />
               </div>
             </div>
             <div class="form-row">
               <div class="input-group">
                 <label for="deliveryWindow">Lieferzeitfenster <span class="required">*</span></label>
-                <select id="deliveryWindow" v-model="deliveryWindow" required>
+                <select id="deliveryWindow" v-model="deliveryWindow" required :class="{ 'input-error': errors.deliveryWindow }">
                   <option disabled value="">Bitte wählen</option>
                   <option v-for="(slot, index) in availableDeliveryWindows" :key="index" :value="slot">
                     {{ slot }}
@@ -143,7 +124,7 @@
 
       <!-- PayPal Button -->
       <div class="paypal-section">
-        <h2 class="section-title">Zahlung mit </h2>
+        <h2 class="section-title">Zahlung mit</h2>
         <div id="paypal-button-container" class="paypal-button-container"></div>
       </div>
 
@@ -160,7 +141,7 @@
 </template>
 
 <script>
-import { ref, computed, onMounted, watch } from "vue";
+import { ref, computed, onMounted, watch, reactive } from "vue";
 import flatpickr from "flatpickr";
 import { German } from "flatpickr/dist/l10n/de.js";
 import "flatpickr/dist/flatpickr.min.css";
@@ -182,6 +163,7 @@ function getWeekdayName(date) {
   return days[date.getDay()];
 }
 
+// Ändere die Funktion, sodass ein Date-Objekt zurückgegeben wird.
 function getNextAvailableDeliveryDate() {
   let date = new Date();
   date.setMinutes(date.getMinutes() + 90);
@@ -199,7 +181,7 @@ function getNextAvailableDeliveryDate() {
     date.setDate(date.getDate() + 1);
     date.setHours(0, 0, 0, 0);
   }
-  return date.toISOString().split("T")[0];
+  return date; // Rückgabe als Date-Objekt
 }
 
 export default {
@@ -231,11 +213,28 @@ export default {
     const showErrorModal = ref(false);
     const errorModalMessage = ref("");
 
+    // Neues Fehlerobjekt für die Felder
+    const errors = reactive({
+      firstName: false,
+      lastName: false,
+      email: false,
+      street: false,
+      postalCode: false,
+      city: false,
+      phone: false,
+      country: false,
+      deliveryDate: false,
+      deliveryWindow: false,
+    });
+
     const minDeliveryDate = computed(() => getNextAvailableDeliveryDate());
 
     const availableDeliveryWindows = computed(() => {
       if (!deliveryDate.value) return [];
-      const dateObj = new Date(deliveryDate.value);
+      const dateObj = new Date(
+        // Falls der Nutzer ein Datum im deutschen Format eingibt, wandeln wir es in ein Date-Objekt um.
+        deliveryDate.value.replace(/(\d{2})\.(\d{2})\.(\d{4})/, "$3-$2-$1")
+      );
       const dayName = getWeekdayName(dateObj);
       const hours = openingHours[dayName];
       if (!hours) return [];
@@ -245,7 +244,7 @@ export default {
       const start = new Date(dateObj);
       start.setHours(openHour, openMinute, 0, 0);
       const today = new Date();
-      if (deliveryDate.value === today.toISOString().split("T")[0]) {
+      if (deliveryDate.value === today.toLocaleDateString("de-DE").replace(/\./g, "-")) {
         const minTime = new Date(today);
         minTime.setMinutes(minTime.getMinutes() + 90);
         if (minTime > start) start.setTime(minTime.getTime());
@@ -264,39 +263,67 @@ export default {
       return slots;
     });
 
-
-
-
-    
-
     const validateForm = () => {
-  if (
-    !address.value.firstName ||
-    !address.value.lastName ||
-    !address.value.email ||
-    !address.value.street ||
-    !address.value.postalCode ||
-    !address.value.city ||
-    !address.value.phone ||
-    !deliveryDate.value ||
-    !deliveryWindow.value
-  ) {
-    errorModalMessage.value = "Bitte füllen Sie alle erforderlichen Felder aus, bevor Sie fortfahren.";
-    showErrorModal.value = true;
-    return false;
-  }
-  // Wenn Du nur eine PLZ validieren möchtest, entferne oder passe diese Zeile an:
-  if (address.value.postalCode !== "26789") {
-    errorModalMessage.value = "Lieferung ist nur im Umkreis von 5 km möglich.";
-    showErrorModal.value = true;
-    return false;
-  }
-  return true;
-};
+      // Fehler zurücksetzen
+      errors.firstName = false;
+      errors.lastName = false;
+      errors.email = false;
+      errors.street = false;
+      errors.postalCode = false;
+      errors.city = false;
+      errors.phone = false;
+      errors.country = false;
+      errors.deliveryDate = false;
+      errors.deliveryWindow = false;
 
+      let valid = true;
+      if (!address.value.firstName) {
+        errors.firstName = true;
+        valid = false;
+      }
+      if (!address.value.lastName) {
+        errors.lastName = true;
+        valid = false;
+      }
+      if (!address.value.email) {
+        errors.email = true;
+        valid = false;
+      }
+      if (!address.value.street) {
+        errors.street = true;
+        valid = false;
+      }
+      if (!address.value.postalCode) {
+        errors.postalCode = true;
+        valid = false;
+      }
+      if (!address.value.city) {
+        errors.city = true;
+        valid = false;
+      }
+      if (!address.value.phone) {
+        errors.phone = true;
+        valid = false;
+      }
+      if (!address.value.country) {
+        errors.country = true;
+        valid = false;
+      }
+      if (!deliveryDate.value) {
+        errors.deliveryDate = true;
+        valid = false;
+      }
+      if (!deliveryWindow.value) {
+        errors.deliveryWindow = true;
+        valid = false;
+      }
 
-
-
+      if (!valid) {
+        errorModalMessage.value = "Bitte füllen Sie alle erforderlichen Felder aus, bevor Sie fortfahren.";
+        showErrorModal.value = true;
+      }
+      return valid;
+    };
 
     const closeErrorModal = () => {
       showErrorModal.value = false;
@@ -307,12 +334,11 @@ export default {
     };
 
     onMounted(() => {
-      if (!deliveryDate.value) {
-        deliveryDate.value = minDeliveryDate.value;
-      }
+      // Flatpickr konfigurieren mit deutschem Format
       flatpickr("#deliveryDate", {
         locale: German,
-        dateFormat: "Y-m-d",
+        dateFormat: "d.m.Y",
+        defaultDate: minDeliveryDate.value,
         minDate: minDeliveryDate.value,
         disable: [
           function(date) {
@@ -343,6 +369,11 @@ export default {
           }
         }
       });
+      // Falls kein Datum gewählt wurde, setze das Standarddatum
+      if (!deliveryDate.value) {
+        deliveryDate.value = flatpickr.formatDate(minDeliveryDate.value, "d.m.Y");
+      }
+
       if (availableDeliveryWindows.value.length > 0 && !deliveryWindow.value) {
         deliveryWindow.value = availableDeliveryWindows.value[0];
       }
@@ -350,11 +381,11 @@ export default {
       if (window.paypal) {
         window.paypal.Buttons({
           style: {
-    borderRadius: 20
-  },
+            borderRadius: 20
+          },
           createOrder: async (data, actions) => {
             if (!validateForm()) {
-              throw new Error("Bitte füllen Sie alle erforderlichen Felder aus, bevor Sie fortfahren.");
+              throw new Error(errorModalMessage.value);
             }
             const orderRes = await fetch("/api/create-paypal-order", {
               method: "POST",
@@ -436,6 +467,7 @@ export default {
       errorModalMessage,
       closeErrorModal,
       goToShop,
+      errors,
     };
   },
 };
@@ -451,7 +483,7 @@ export default {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Bestellübersicht & Gesamtsumme */
+/* Bestellübersicht */
 .order-summary {
   margin-bottom: 2rem;
   padding: 1rem;
@@ -528,7 +560,6 @@ export default {
   display: block;
   margin: 0 auto;
 }
-
 .cta-button:hover,
 .cta-button:focus {
   transform: scale(1.01);
@@ -587,6 +618,11 @@ export default {
   box-shadow: 0 0 5px rgba(3,48,93,0.3);
 }
 
+/* Fehler-Stil */
+.input-error {
+  border: 1px solid red !important;
+}
+
 /* Lieferoptionen */
 .delivery-options {
   background-color: var(--beige, #f9f9f9);
@@ -628,7 +664,4 @@ export default {
   justify-content: center;
   align-items: center;
 }
-
-
-
 </style>
