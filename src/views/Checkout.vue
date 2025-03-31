@@ -26,8 +26,27 @@
             <p class="item-total">{{ formatPrice(item.product.price * item.quantity) }}</p>
           </div>
           <div class="total-container">
-            <span class="total-label">Gesamtsumme:</span>
+            <span class="total-label">Zwischensumme:</span>
             <span class="total-amount">{{ formatPrice(totalPrice) }}</span>
+          </div>
+          <!-- Versandkosten-Bereich -->
+          <div class="shipping-container">
+            <span class="shipping-text" v-if="shippingCost > 0">
+              Liefergebühr: {{ formatPrice(shippingCost) }} <small>(ab 25 € versandkostenfrei)</small>
+            </span>
+            <span class="shipping-text" v-else>
+              Versandkostenfrei!
+            </span>
+            <div v-if="shippingCost > 0" class="progress-bar-container">
+              <div class="progress-bar" :style="{ width: progressPercent + '%' }"></div>
+            </div>
+            <div v-if="shippingCost > 0" class="progress-info">
+              Noch {{ formatPrice(amountRemaining) }} fehlen für kostenlosen Versand.
+            </div>
+          </div>
+          <div class="total-container">
+            <span class="total-label">Gesamtsumme:</span>
+            <span class="total-amount">{{ formatPrice(finalTotal) }}</span>
           </div>
         </div>
       </div>
@@ -163,7 +182,6 @@ function getWeekdayName(date) {
   return days[date.getDay()];
 }
 
-// Ändere die Funktion, sodass ein Date-Objekt zurückgegeben wird.
 function getNextAvailableDeliveryDate() {
   let date = new Date();
   date.setMinutes(date.getMinutes() + 90);
@@ -181,7 +199,7 @@ function getNextAvailableDeliveryDate() {
     date.setDate(date.getDate() + 1);
     date.setHours(0, 0, 0, 0);
   }
-  return date; // Rückgabe als Date-Objekt
+  return date;
 }
 
 export default {
@@ -193,6 +211,11 @@ export default {
     const totalPrice = computed(() =>
       cartStore.items.reduce((sum, item) => sum + item.product.price * item.quantity, 0)
     );
+    // Versandkosten: 2,50€ falls Warenkorb < 25€, sonst 0
+    const shippingCost = computed(() => (totalPrice.value < 25 ? 2.5 : 0));
+    const amountRemaining = computed(() => (totalPrice.value < 25 ? 25 - totalPrice.value : 0));
+    const progressPercent = computed(() => (totalPrice.value < 25 ? (totalPrice.value / 25) * 100 : 100));
+    const finalTotal = computed(() => totalPrice.value + shippingCost.value);
     const formatPrice = (val) => val.toFixed(2).replace(".", ",") + " €";
 
     const address = ref({
@@ -213,7 +236,7 @@ export default {
     const showErrorModal = ref(false);
     const errorModalMessage = ref("");
 
-    // Neues Fehlerobjekt für die Felder
+    // Fehlerobjekt
     const errors = reactive({
       firstName: false,
       lastName: false,
@@ -232,7 +255,6 @@ export default {
     const availableDeliveryWindows = computed(() => {
       if (!deliveryDate.value) return [];
       const dateObj = new Date(
-        // Falls der Nutzer ein Datum im deutschen Format eingibt, wandeln wir es in ein Date-Objekt um.
         deliveryDate.value.replace(/(\d{2})\.(\d{2})\.(\d{4})/, "$3-$2-$1")
       );
       const dayName = getWeekdayName(dateObj);
@@ -264,7 +286,6 @@ export default {
     });
 
     const validateForm = () => {
-      // Fehler zurücksetzen
       errors.firstName = false;
       errors.lastName = false;
       errors.email = false;
@@ -277,46 +298,16 @@ export default {
       errors.deliveryWindow = false;
 
       let valid = true;
-      if (!address.value.firstName) {
-        errors.firstName = true;
-        valid = false;
-      }
-      if (!address.value.lastName) {
-        errors.lastName = true;
-        valid = false;
-      }
-      if (!address.value.email) {
-        errors.email = true;
-        valid = false;
-      }
-      if (!address.value.street) {
-        errors.street = true;
-        valid = false;
-      }
-      if (!address.value.postalCode) {
-        errors.postalCode = true;
-        valid = false;
-      }
-      if (!address.value.city) {
-        errors.city = true;
-        valid = false;
-      }
-      if (!address.value.phone) {
-        errors.phone = true;
-        valid = false;
-      }
-      if (!address.value.country) {
-        errors.country = true;
-        valid = false;
-      }
-      if (!deliveryDate.value) {
-        errors.deliveryDate = true;
-        valid = false;
-      }
-      if (!deliveryWindow.value) {
-        errors.deliveryWindow = true;
-        valid = false;
-      }
+      if (!address.value.firstName) { errors.firstName = true; valid = false; }
+      if (!address.value.lastName) { errors.lastName = true; valid = false; }
+      if (!address.value.email) { errors.email = true; valid = false; }
+      if (!address.value.street) { errors.street = true; valid = false; }
+      if (!address.value.postalCode) { errors.postalCode = true; valid = false; }
+      if (!address.value.city) { errors.city = true; valid = false; }
+      if (!address.value.phone) { errors.phone = true; valid = false; }
+      if (!address.value.country) { errors.country = true; valid = false; }
+      if (!deliveryDate.value) { errors.deliveryDate = true; valid = false; }
+      if (!deliveryWindow.value) { errors.deliveryWindow = true; valid = false; }
 
       if (!valid) {
         errorModalMessage.value = "Bitte füllen Sie alle erforderlichen Felder aus, bevor Sie fortfahren.";
@@ -334,7 +325,6 @@ export default {
     };
 
     onMounted(() => {
-      // Flatpickr konfigurieren mit deutschem Format
       flatpickr("#deliveryDate", {
         locale: German,
         dateFormat: "d.m.Y",
@@ -369,20 +359,16 @@ export default {
           }
         }
       });
-      // Falls kein Datum gewählt wurde, setze das Standarddatum
       if (!deliveryDate.value) {
         deliveryDate.value = flatpickr.formatDate(minDeliveryDate.value, "d.m.Y");
       }
-
       if (availableDeliveryWindows.value.length > 0 && !deliveryWindow.value) {
         deliveryWindow.value = availableDeliveryWindows.value[0];
       }
 
       if (window.paypal) {
         window.paypal.Buttons({
-          style: {
-            borderRadius: 20
-          },
+          style: { borderRadius: 20 },
           createOrder: async (data, actions) => {
             if (!validateForm()) {
               throw new Error(errorModalMessage.value);
@@ -392,7 +378,7 @@ export default {
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify({
                 items: cartStore.items,
-                total: totalPrice.value,
+                total: finalTotal.value,
                 address: address.value,
                 deliveryDate: deliveryDate.value,
                 deliveryWindow: deliveryWindow.value,
@@ -416,7 +402,7 @@ export default {
                 body: JSON.stringify({
                   address: address.value,
                   items: cartItems.value,
-                  total: parseFloat(totalPrice.value),
+                  total: parseFloat(finalTotal.value),
                   remarks: remarks.value,
                   deliveryDate: deliveryDate.value,
                   deliveryWindow: deliveryWindow.value,
@@ -456,6 +442,10 @@ export default {
     return {
       cartItems,
       totalPrice,
+      shippingCost,
+      finalTotal,
+      amountRemaining,
+      progressPercent,
       formatPrice,
       address,
       remarks,
@@ -487,7 +477,7 @@ export default {
 .order-summary {
   margin-bottom: 2rem;
   padding: 1rem;
-  background: var(--background, #f9f9f9);
+  background: #f9f9f9;
   border-radius: 10px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
@@ -495,7 +485,7 @@ export default {
   text-align: center;
   font-size: 1.8rem;
   margin-bottom: 1rem;
-  color: var(--blue);
+  color: #004a7f;
 }
 .cart-items {
   display: flex;
@@ -523,7 +513,7 @@ export default {
 .item-name {
   font-size: 1.1rem;
   font-weight: bold;
-  color: var(--blue);
+  color: #004a7f;
   margin: 0 0 0.25rem;
 }
 .item-qty {
@@ -533,7 +523,7 @@ export default {
 .item-total {
   font-size: 1rem;
   font-weight: bold;
-  color: var(--blue);
+  color: #004a7f;
   margin-left: 1rem;
   white-space: nowrap;
 }
@@ -551,8 +541,41 @@ export default {
 .total-amount {
   font-size: 1.8rem;
   font-weight: bold;
-  color: var(--blue);
+  color: #004a7f;
 }
+
+/* Versandkosten-Bereich */
+.shipping-container {
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  color: #666;
+  text-align: right;
+}
+.shipping-text {
+  display: inline-block;
+  margin-bottom: 0.3rem;
+}
+.progress-bar-container {
+  position: relative;
+  width: 100%;
+  height: 6px;
+  background: #e0e0e0;
+  border-radius: 3px;
+  margin-top: 0.3rem;
+}
+.progress-bar {
+  height: 100%;
+  background: #4caf50;
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+.progress-info {
+  font-size: 0.75rem;
+  color: #999;
+  margin-top: 0.2rem;
+}
+
+/* Shop-Button */
 .shop-button {
   font-size: 1.5rem;
   padding: 0.75rem 1.5rem;
@@ -570,7 +593,7 @@ export default {
   max-width: 48em;
   margin: 2rem auto;
   padding: 2rem;
-  background: var(--background, #fff);
+  background: #fff;
   border-radius: 20px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
@@ -594,7 +617,7 @@ export default {
 .form-row label {
   font-weight: bold;
   margin-bottom: 0.5rem;
-  color: var(--blue);
+  color: #004a7f;
 }
 .required {
   color: red;
@@ -614,7 +637,7 @@ export default {
 .form-row select:focus,
 .form-row textarea:focus {
   outline: none;
-  border-color: var(--blue);
+  border-color: #004a7f;
   box-shadow: 0 0 5px rgba(3,48,93,0.3);
 }
 
@@ -625,7 +648,7 @@ export default {
 
 /* Lieferoptionen */
 .delivery-options {
-  background-color: var(--beige, #f9f9f9);
+  background-color: #f9f9f9;
   padding: 1rem;
   border-radius: 20px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.05);
