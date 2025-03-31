@@ -20,7 +20,7 @@
     "description": "Saftiges Tomahawk-Steak vom Ammerländer Edelschwein mit Pommes und Salat.",
     "price": 24.5,
     "category": "Fleisch",
-    "image": "https://www.haus-hamburg-leer.de/images/food/haus-hamburg-leer-30.webp",
+    "image": "https://www.haus-hamburg-leer.de/images/food/haus_hamburg_leer_tomahawk.webp",
     "zusatzstoffe": []
   },
   {
@@ -84,7 +84,7 @@
     "description": "Scholle mit Krabben, Bratkartoffeln und Salat.",
     "price": 26.5,
     "category": "Fisch",
-    "image": "https://www.haus-hamburg-leer.de/images/food/haus-hamburg-leer-30.webp",
+    "image": "https://www.haus-hamburg-leer.de/images/food/haus_hamburg_leer_scholle-mit-krabben.webp",
     "zusatzstoffe": ["1"]
   },
   {
