@@ -12,7 +12,7 @@
     "description": "Gedünsteter Grünkohl mit zwei Kohlwürsten und knusprigen Bratkartoffeln.",
     "price": 19.8,
     "category": "Fleisch",
-    "image": "https://www.haus-hamburg-leer.de/images/food/haus-hamburg-leer-30.webp",
+    "image": "https://www.haus-hamburg-leer.de/images/food/haus_hamburg_leer_grünkohl.webp",
     "zusatzstoffe": ["2"]
   },
   {
@@ -92,7 +92,7 @@
     "description": "Drei Matjesfilets mit Zwiebeln, Bratkartoffeln und Salat.",
     "price": 16.8,
     "category": "Fisch",
-    "image": "https://www.haus-hamburg-leer.de/images/food/haus-hamburg-leer-30.webp",
+    "image": "https://www.haus-hamburg-leer.de/images/food/haus_hamburg_leer_matjes.webp",
     "zusatzstoffe": ["1", "2"]
   },
   {
