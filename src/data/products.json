@@ -116,7 +116,7 @@
     "description": "Nordseeschollenfilet mit Ofenkartoffel und Salat.",
     "price": 23.5,
     "category": "Fisch",
-    "image": "https://www.haus-hamburg-leer.de/images/food/haus-hamburg-leer-30.webp",
+    "image": "https://www.haus-hamburg-leer.de/images/food/haus_hamburg_leer_scholle-ofenkartoffel.webp",
     "zusatzstoffe": []
   },
   {
@@ -124,7 +124,7 @@
     "description": "Ofenkartoffel mit Kartoffelcreme und Greetsieler Krabben.",
     "price": 19.5,
     "category": "Fisch",
-    "image": "https://www.haus-hamburg-leer.de/images/food/haus_hamburg_leer_greetsielerßkrabben.webp",
+    "image": "https://www.haus-hamburg-leer.de/images/food/haus_hamburg_leer_ofenkartoffel-greetsieler-krabben.webp",
     "zusatzstoffe": ["2"]
   },
   {
@@ -164,7 +164,7 @@
     "description": "Hausgemachte Mayonnaise (kleine Portion).",
     "price": 0.5,
     "category": "Vegetarisch",
-    "image": "https://www.haus-hamburg-leer.de/images/food/haus-hamburg-leer-30.webp",
+    "image": "https://www.haus-hamburg-leer.de/images/food/haus_hamburg_leer_mayonnaise.webp",
     "zusatzstoffe": ["2"]
   },
   {
@@ -172,7 +172,7 @@
     "description": "Kleine Portion Remoulade zum Dippen.",
     "price": 0.5,
     "category": "Vegetarisch",
-    "image": "https://www.haus-hamburg-leer.de/images/food/haus-hamburg-leer-30.webp",
+    "image": "https://www.haus-hamburg-leer.de/images/food/haus_hamburg_leer_remoulade.webp",
     "zusatzstoffe": []
   },
   {
@@ -180,7 +180,7 @@
     "description": "Kleine Portion Ketchup als Dip.",
     "price": 0.5,
     "category": "Vegetarisch",
-    "image": "https://www.haus-hamburg-leer.de/images/food/haus-hamburg-leer-30.webp",
+    "image": "https://www.haus-hamburg-leer.de/images/food/haus_hamburg_leer_ketchup.webp",
     "zusatzstoffe": ["3"]
   },
   {
@@ -188,7 +188,7 @@
     "description": "Kleine Portion würziger Knoblauchsauce.",
     "price": 0.5,
     "category": "Vegetarisch",
-    "image": "https://www.haus-hamburg-leer.de/images/food/haus-hamburg-leer-30.webp",
+    "image": "https://www.haus-hamburg-leer.de/images/food/haus_hamburg_leer_knoblauchsoße.webp",
     "zusatzstoffe": ["1"]
   },
   {
@@ -228,7 +228,7 @@
     "description": "Kleine Portion Vanillesauce zu Desserts.",
     "price": 1.5,
     "category": "Desserts",
-    "image": "https://www.haus-hamburg-leer.de/images/food/haus-hamburg-leer-30.webp",
+    "image": "https://www.haus-hamburg-leer.de/images/food/haus_hamburg_leer_vanillesoße.webp",
     "zusatzstoffe": []
   },
   {
@@ -268,7 +268,7 @@
     "description": "Fanta Orangenlimonade (0,5l) – erfrischend.",
     "price": 3.0,
     "category": "Getränke",
-    "image": "https://www.haus-hamburg-leer.de/images/food/haus-hamburg-leer-30.webp",
+    "image": "https://www.haus-hamburg-leer.de/images/food/haus_hamburg_leer_fanta.webp",
     "zusatzstoffe": ["1"]
   },
   {
@@ -300,7 +300,7 @@
     "description": "Jever Pils (0,33l, 4,9% Vol.) – erfrischend.",
     "price": 2.82,
     "category": "Getränke",
-    "image": "https://www.haus-hamburg-leer.de/images/food/haus-hamburg-leer-30.webp",
+    "image": "https://www.haus-hamburg-leer.de/images/food/haus_hamburg_leer_jever.webp",
     "zusatzstoffe": ["2"]
   },
   {
