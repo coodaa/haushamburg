@@ -157,17 +157,18 @@ Bestellungen  </tspan>
     </template>
 
     <div class="zusatzstoff-hinweis">
-  <h2>Hinweis zu Zusatzstoffen</h2>
+  <h2>Wichtige Hinweise</h2>
   <p>
-    1 = Farbstoff
-    2 = Konservierungsstoff
-    3 = Geschmacksverstärker
-    4 = Säuerungsmittel
-    5 = Süßungsmittel
-    6 = Alkohol
-    7 = Milch / Laktose
-    <!-- usw. je nachdem, was du wirklich verwendest -->
+    Unsere Gerichte enthalten verschiedene Zusatzstoffe:
+    <br />1 = Farbstoff, 2 = Konservierungsstoff, 3 = Geschmacksverstärker, 4 = Säuerungsmittel,
+    <br />5 = Süßungsmittel, 6 = Alkohol, 7 = Milch / Laktose
   </p>
+  <hr />
+  <p class="ki-hinweis" style="margin-top: 1em;">
+    * Bitte beachten Sie: Die dargestellten Bilder wurden teilweise mithilfe einer KI erstellt. Die Abbildungen dienen lediglich
+    als Annäherung und können vom tatsächlichen Produkt abweichen.
+  </p>
+
 </div>
   </BasePage>
 </template>
@@ -313,7 +314,8 @@ export default {
     };
 
     const slidesPerView = computed(() => (window.innerWidth < 768 ? 1.3 : 3));
-    const categories = ["Fisch", "Fleisch", "Vegetarisch", "Desserts", "Getränke"];
+    const categories = ["Fisch", "Fleisch", "Vegetarisch", "Dips", "Desserts", "Getränke"];
+
 
     const popularProducts = computed(() =>
       products.value.filter(p =>
