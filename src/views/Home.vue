@@ -63,22 +63,21 @@
       <!-- Speisekarte-Sektion -->
       <section class="svg-section">
         <div class="scalloped-svg"></div>
-        <div class="section-food big-title-4">
-          <h2>aus der speisekarte</h2>
-          <!-- Swiper Carousel -->
-          <CustomSwiper :items="selection" :slides-per-view="slidesPerView" />
-          <!-- CTA-Button für die Speisekarte -->
-          <div class="menu-button-container">
-            <button class="cta-button" @click="goToSpeisekarte">
-              <i class="fas fa-fish"></i>
-              <span class="cta-text"> mee(h)r</span>
-            </button>
-          </div>
-        </div>
+
+
       </section>
 
+      <Favorites
+            :popularProducts="popularProducts"
+            :slidesPerView="slidesPerView"
+            :formatPrice="formatPrice"
+            :addToCart="addToCart"
+          />
+
       <!-- Kundenbewertungen -->
-      <Review />
+      <section class="review-section">
+              <Review />
+                </section>
     </main>
   </div>
 </template>
@@ -86,16 +85,19 @@
 <script>
 import CustomSwiper from "../components/CustomSwiper.vue";
 import Review from "../components/Review.vue";
-import "../styles/Home.css";
+import Favorites from "@/components/FavoriteProducts.vue";
+import staticProducts from "@/data/products.json";
 
 export default {
   name: "Home",
   components: {
     CustomSwiper,
     Review,
+    Favorites
   },
   data() {
     return {
+      // Header Animation
       words: ["Moin!", "Ahoi!", "Hallo!"],
       currentIndex: 0,
       currentWord: "Moin!",
@@ -105,15 +107,33 @@ export default {
       rotation: 0,
       rotationDirection: 1,
       isWobbling: false,
+      // Swiper-Auswahl für die Speisekarte
       selection: [
         { image: "/images/food/haus-hamburg-leer-18.webp", alt: "Fischbrötchen 1", link: "/speisekarte" },
         { image: "/images/food/haus-hamburg-leer-30.webp", alt: "Fischbrötchen 2", link: "/speisekarte" },
         { image: "/images/food/haus-hamburg-leer-37.webp", alt: "Fischbrötchen 3", link: "/speisekarte" },
-        { image: "/images/food/haus-hamburg-leer-28.webp", alt: "Fischbrötchen 4", link: "/speisekarte" },
+        { image: "/images/food/haus-hamburg-leer-28.webp", alt: "Fischbrötchen 4", link: "/speisekarte" }
       ],
+      // Anzahl Slides pro View, wird dynamisch angepasst
       slidesPerView: 1,
       wordInterval: null,
+      // Produkte importieren
+      products: staticProducts
     };
+  },
+  computed: {
+    popularProducts() {
+      // Filtere hier beliebte Produkte, z.B. anhand des Namens
+      const popularNames = [
+        "Kibbelinge",
+        "Ras Fritten",
+        "Fischbrötchen mit Backfisch",
+        "Hauswein"
+      ];
+      return this.products.filter(product =>
+        popularNames.includes(product.name)
+      );
+    }
   },
   mounted() {
     this.startWordAnimation();
@@ -164,17 +184,26 @@ export default {
     goToSpeisekarte() {
       this.$router.push("/speisekarte");
     },
+    formatPrice(val) {
+      return val.toFixed(2).replace(".", ",") + " €";
+    },
+    addToCart(product) {
+      // Hier kannst du deine Logik zum Warenkorb-Hinzufügen einbauen.
+      // Beispiel: Mit einem globalen Store (z.B. Vuex, Pinia) arbeiten.
+      console.log("Produkt in den Warenkorb gelegt:", product);
+    }
   },
   beforeUnmount() {
     if (this.wordInterval) {
       clearInterval(this.wordInterval);
     }
     window.removeEventListener("resize", this.updateSlidesPerView);
-  },
+  }
 };
 </script>
 
 <style scoped>
+
 /* Header-Row */
 .header-row {
   margin-top: 17vh !important;
@@ -340,13 +369,22 @@ export default {
 }
 
 /* Restaurant-Sektion */
-.restaurant-section {
+.restaurant-section, .review-section {
   background-color: var(--beige);
   border-radius: 20px;
   padding: 1em;
   padding-top: 5em;
   margin-top: -4em;
 }
+
+.review-section {
+  padding-top: 2em;
+  border-bottom-right-radius: 0px ;
+  border-bottom-left-radius: 0px ;
+  margin-top: 2em;
+  margin-bottom: -1em;
+}
+
 
 .restaurant-header {
   display: flex;
@@ -621,4 +659,5 @@ export default {
     padding: 0em 2em;
   }
 }
+
 </style>

@@ -1,10 +1,10 @@
 <template>
   <div class="container">
     <div>
-      <div class="navbar" :class="{ 'scrolled': isScrolled }">
-        <div class="scalloped-svg" :class="{ 'hidden': isScrolled }"></div>
+      <div class="navbar" :class="{ scrolled: isScrolled }">
+        <div class="scalloped-svg" :class="{ hidden: isScrolled }"></div>
 
-        <!-- Linke Seite: Burger-Menü & Navigationslinks -->
+        <!-- Linke Seite: Burger-Menü & Navigationslinks (Desktop: sichtbar, Mobile: im Burger-Menü) -->
         <div class="nav-left">
           <div
             class="burger-menu"
@@ -21,6 +21,7 @@
             <div class="burger-icon"></div>
             <div class="burger-icon"></div>
           </div>
+          <!-- Navigationslinks (Desktop) -->
           <ul class="nav-links">
             <li><router-link to="/speisekarte">Speisekarte</router-link></li>
             <li><router-link to="/catering">Catering</router-link></li>
@@ -42,21 +43,16 @@
             <li class="Kontakt-link">
               <router-link to="/Kontakt">Kontakt</router-link>
             </li>
-            <!-- Reservieren-Link (wird auf Tablets und Mobile ausgeblendet) -->
+            <!-- Reservieren-Link: Auf Desktop sichtbar, auf Mobilgeräten ausgeblendet -->
             <li class="reservierung-link">
               <router-link to="/reservierung">Reservieren</router-link>
             </li>
-            <!-- Shop-Button: Auf Desktop zeigt er "Shop" + Icon, auf Mobile nur das Icon -->
+            <!-- Shop-Button -->
             <li>
-              <!-- <router-link to="/reservierung"> -->
-                <router-link to="/shop">
-
+              <router-link to="/shop">
                 <button class="cta-button" aria-label="Shop" title="Shop">
-
                   <i class="fas fa-shopping-cart"></i>
                   <span class="cta-text">bestellen</span>
-                  <!-- <span class="cta-text">Shop</span> -->
-
                 </button>
               </router-link>
             </li>
@@ -64,19 +60,19 @@
         </div>
       </div>
 
-      <!-- Mobiles Menü -->
+      <!-- Mobiles Menü (erscheint beim Öffnen des Burger-Menüs) -->
       <div class="mobile-menu" :class="{ open: menuOpen }" id="mobile-menu" role="menu">
         <ul class="mobile-links">
           <li><router-link to="/speisekarte" @click="closeMenu">Speisekarte</router-link></li>
           <li><router-link to="/catering" @click="closeMenu">Catering</router-link></li>
           <li><router-link to="/ueber" @click="closeMenu">Über uns</router-link></li>
           <li><router-link to="/Kontakt" @click="closeMenu">Kontakt</router-link></li>
+          <!-- Reservieren-Link erscheint im mobilen Menü -->
           <li>
             <router-link to="/reservierung" @click="closeMenu">
               <button class="cta-button">Reservieren</button>
             </router-link>
           </li>
-          <!-- Optional: Shop-Link im mobilen Menü, falls erwünscht -->
         </ul>
       </div>
     </div>
@@ -84,9 +80,8 @@
 </template>
 
 <script>
-import { ref, onUnmounted } from "vue";
+import { ref, onMounted, onUnmounted } from "vue";
 import "@fortawesome/fontawesome-free/css/all.min.css";
-import "@/styles/Navbar.css";
 
 export default {
   name: "Navbar",
@@ -94,8 +89,18 @@ export default {
     const isScrolled = ref(false);
     const menuOpen = ref(false);
 
+    // Misst die Navbar-Höhe und setzt die CSS-Variable --navbar-height
+    const updateNavbarHeight = () => {
+      const navbarEl = document.querySelector(".navbar");
+      if (navbarEl) {
+        const height = navbarEl.offsetHeight;
+        document.documentElement.style.setProperty("--navbar-height", `${height}px`);
+      }
+    };
+
     const handleScroll = () => {
       isScrolled.value = window.scrollY > 300;
+      updateNavbarHeight();
     };
 
     const toggleMenu = () => {
@@ -112,9 +117,15 @@ export default {
       document.body.classList.remove("no-scroll");
     };
 
-    window.addEventListener("scroll", handleScroll);
+    onMounted(() => {
+      updateNavbarHeight();
+      window.addEventListener("scroll", handleScroll);
+      window.addEventListener("resize", updateNavbarHeight);
+    });
+
     onUnmounted(() => {
       window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", updateNavbarHeight);
     });
 
     return {
@@ -129,7 +140,6 @@ export default {
 
 <style scoped>
 /* Grundlegende Navbar-Stile */
-
 .navbar {
   position: fixed;
   top: 0;
@@ -262,7 +272,6 @@ export default {
   list-style: none;
 }
 
-/* Rechte Navigation */
 .nav-right {
   display: flex;
   align-items: center;
@@ -272,22 +281,11 @@ export default {
   z-index: 1001;
 }
 
-/* Reservierung-Link: nur auf Desktop anzeigen (ab 1200px) */
-.reservierung-link {
+.nav-right .Kontakt-link {
   display: none;
 }
 
-@media (min-width: 1200px) {
-  .reservierung-link {
-    display: inline;
-    font-size: 1.2rem;
-    text-transform: uppercase;
-    color: var(--blue);
-    font-weight: bold;
-  }
-}
-
-/* Shop-Button: Auf Desktop zeigt er "Shop" + Icon, auf Mobile nur das Icon */
+/* Shop-Button */
 .cta-button .cta-text {
   display: none;
 }
@@ -341,13 +339,12 @@ export default {
   color: var(--gold);
 }
 
-/* Kein Scrollen, wenn Menü geöffnet */
 .no-scroll {
   overflow: hidden;
   height: 100%;
 }
 
-/* Tablets: Für Geräte zwischen 768px und 1200px */
+/* Tablets */
 @media (min-width: 768px) and (max-width: 1200px) {
   .navbar {
     padding: 4.5em 2em;
@@ -398,7 +395,7 @@ export default {
   }
 }
 
-/* Desktop Geräte */
+/* Desktop */
 @media (min-width: 1200px) {
   .navbar {
     justify-content: space-between;
@@ -480,6 +477,13 @@ export default {
 @media (min-width: 1440px) {
   .scalloped-svg {
     background-size: calc(100% / 40);
+  }
+}
+
+/* Reservieren-Link: Auf Mobilgeräten ausblenden */
+@media (max-width: 767px) {
+  .reservierung-link {
+    display: none !important;
   }
 }
 

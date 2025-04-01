@@ -7,14 +7,11 @@ export default defineConfig({
   server: {
     host: true,
     proxy: {
-      // Leitet alle Anfragen, die mit /api beginnen, an dein Backend weiter
-      '/api': {
-        target: 'http://localhost:3000', // Backend-URL
+      "/api": {
+        target: "http://localhost:3000",
         changeOrigin: true,
-        // Falls dein Backend den Endpunkt ohne den Prefix /api erwartet, kannst du rewrite verwenden:
-        // rewrite: (path) => path.replace(/^\/api/, '')
-      }
-    }
+      },
+    },
   },
   resolve: {
     alias: {
@@ -27,5 +24,5 @@ export default defineConfig({
   },
   esbuild: {
     legalComments: "none",
-  }
+  },
 });

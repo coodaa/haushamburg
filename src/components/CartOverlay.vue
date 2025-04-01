@@ -1,5 +1,5 @@
 <template>
-  <div class="cart-overlay" v-if="visible">
+  <div class="cart-overlay" v-if="visible" :style="{ top: overlayTop }">
     <div class="cart-overlay-content">
       <header>
         <h2>Warenkorb</h2>
@@ -13,11 +13,9 @@
           <div v-for="(item, index) in cartItems" :key="index" class="cart-item">
             <img :src="item.product.image" :alt="item.product.name" />
             <div class="item-details">
-              <!-- Titel mit fester Mindesthöhe für 2 Zeilen -->
               <h3 class="item-name" :title="item.product.name">
                 {{ item.product.name }}
               </h3>
-              <!-- Untere Zeile: Aktionen (Plus/Minus + Mülleimer) und Preis -->
               <div class="item-controls">
                 <div class="action-controls">
                   <div class="quantity-control">
@@ -37,7 +35,6 @@
           </div>
         </div>
       </div>
-      <!-- Footer nur anzeigen, wenn Artikel im Warenkorb sind -->
       <footer v-if="cartItems.length > 0">
         <div class="summary">
           <div class="summary-item">
@@ -60,7 +57,7 @@
 </template>
 
 <script>
-import { computed } from "vue";
+import { computed, ref, onMounted, onUnmounted } from "vue";
 import { useCartStore } from "@/stores/cart";
 import { useRouter } from "vue-router";
 
@@ -83,9 +80,7 @@ export default {
         0
       )
     );
-    // Rabattierter Gesamtpreis (10% Rabatt)
     const discountedTotalPrice = computed(() => totalPrice.value * 0.9);
-    // Rabattbetrag in Euro
     const discountValue = computed(
       () => totalPrice.value - discountedTotalPrice.value
     );
@@ -111,6 +106,34 @@ export default {
       router.push("/checkout");
     };
 
+    // Lokale Ref zum Einlesen der aktuellen Navbar-Höhe
+    const navbarHeight = ref(
+      getComputedStyle(document.documentElement)
+        .getPropertyValue("--navbar-height")
+        .trim() || "70px"
+    );
+
+    // Funktion, um den aktuellen Wert der CSS-Variable zu lesen
+    const updateLocalNavbarHeight = () => {
+      navbarHeight.value =
+        getComputedStyle(document.documentElement)
+          .getPropertyValue("--navbar-height")
+          .trim() || "70px";
+    };
+
+    // Aktualisiere bei Resize und Scroll (falls sich die Navbar-Höhe ändert)
+    onMounted(() => {
+      window.addEventListener("resize", updateLocalNavbarHeight);
+      window.addEventListener("scroll", updateLocalNavbarHeight);
+    });
+    onUnmounted(() => {
+      window.removeEventListener("resize", updateLocalNavbarHeight);
+      window.removeEventListener("scroll", updateLocalNavbarHeight);
+    });
+
+    // Berechne den top-Wert des Overlays dynamisch
+    const overlayTop = computed(() => `calc(${navbarHeight.value} + 1rem)`);
+
     return {
       cartItems,
       totalPrice,
@@ -121,6 +144,7 @@ export default {
       removeItem,
       formatPrice,
       checkout,
+      overlayTop,
     };
   },
 };
@@ -129,14 +153,14 @@ export default {
 <style scoped>
 .cart-overlay {
   position: fixed;
-  top: 0;
+  top: 5em !important;
   right: 0;
   bottom: 0;
   width: 100%;
   max-width: 400px;
   background-color: #fff;
   box-shadow: -2px 0 5px rgba(0, 0, 0, 0.3);
-  z-index: 1500;
+  z-index: 500;
   overflow-y: auto;
   transition: transform 0.3s ease;
 }
@@ -145,11 +169,13 @@ export default {
   padding: 1.5rem;
 }
 
-/* Header */
+/* Restliche Styles bleiben unverändert */
+
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-top: 2em;
   margin-bottom: 2em;
 }
 
@@ -162,14 +188,13 @@ header h2 {
 .close-btn {
   background: none;
   border: none;
-  font-size: 2rem;
+  font-size: 3rem;
   cursor: pointer;
   color: #900;
 }
 
-/* Bestellübersicht */
 .order-summary {
-  background: #f9f9f9;
+  background: var(--background);
   border-radius: 10px;
   padding: 1rem;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
@@ -182,7 +207,6 @@ header h2 {
   color: #666;
 }
 
-/* Artikel-Liste */
 .cart-items {
   display: flex;
   flex-direction: column;
@@ -206,7 +230,6 @@ header h2 {
   margin-right: 0.75rem;
 }
 
-/* Details: Titel und Controls */
 .item-details {
   flex: 1;
   display: flex;
@@ -214,7 +237,6 @@ header h2 {
   justify-content: center;
 }
 
-/* Titel mit fester Mindesthöhe für 2 Zeilen */
 .item-name {
   font-size: 1.1rem;
   font-weight: bold;
@@ -225,7 +247,6 @@ header h2 {
   overflow: hidden;
 }
 
-/* Untere Zeile: Aktionen (Plus/Minus, Mülleimer) und Preis */
 .item-controls {
   display: flex;
   align-items: center;
@@ -235,14 +256,13 @@ header h2 {
 .action-controls {
   display: flex;
   align-items: center;
-  gap: 2rem; /* Mehr Abstand zwischen Mengensteuerung und Löschen */
+  gap: 2rem;
 }
 
 .quantity-control {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-
 }
 
 .quantity-control button {
@@ -266,7 +286,6 @@ header h2 {
   color: #004a7f;
 }
 
-/* Entfernen-Button */
 .remove-btn {
   background: none;
   border: none;
@@ -279,7 +298,6 @@ header h2 {
   font-size: 1rem;
 }
 
-/* Zusammenfassung der Preise */
 .summary {
   display: flex;
   flex-direction: column;
@@ -300,7 +318,6 @@ header h2 {
   color: #004a7f;
 }
 
-/* Footer und Checkout-Button */
 footer {
   border-top: 1px solid #ddd;
   padding-top: 1rem;
@@ -312,7 +329,7 @@ footer {
   border: none;
   padding: 0.8rem;
   font-size: 1.2rem;
-  border-radius: 4px;
+  border-radius: 20px;
   cursor: pointer;
   transition: background-color 0.3s ease;
   width: 100%;
@@ -320,5 +337,21 @@ footer {
 
 .checkout-btn:hover {
   background-color: var(--gold, #f1c40f);
+  color: var(--blue);
 }
+
+
+@media (min-width: 1200px) {
+  .cart-overlay {
+  top: 7em !important;
+}
+
+
+/* Restliche Styles bleiben unverändert */
+
+header {
+  margin-top: 3em;
+  margin-bottom: 2em;
+}
+  }
 </style>

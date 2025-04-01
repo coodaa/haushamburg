@@ -658,13 +658,12 @@ export default {
   }
 }
 
-
 .cta-button {
   margin: 0 auto;
   font-family: 'Poppins';
   font-size: 1em;
   border: none;
-  border-radius: 10px;
+  border-radius: 20px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.3s ease;
   margin-bottom: 1em;

@@ -11,6 +11,8 @@
     <Footer />
     <!-- CookieBanner sendet das "cookiesAccepted"-Event -->
     <CookieBanner @cookiesAccepted="loadGoogleAnalytics" />
+    <!-- Global eingebundener Warenkorb-Button -->
+    <OpenCartButton />
   </div>
 </template>
 
@@ -18,6 +20,7 @@
 import Navbar from './components/Navbar.vue';
 import Footer from './components/Footer.vue';
 import CookieBanner from './components/CookieBanner.vue';
+import OpenCartButton from '@/components/OpenCartButton.vue';
 
 export default {
   name: 'App',
@@ -25,6 +28,7 @@ export default {
     Navbar,
     Footer,
     CookieBanner,
+    OpenCartButton
   },
   methods: {
     beforeEnterTransition(el, done) {
@@ -94,7 +98,6 @@ export default {
 
 .fade-bounce-enter-active {
   animation: fadeInBounce 0.6s cubic-bezier(0.35, 1.5, 0.6, 1) forwards;
-  /* Hardware-Beschleunigung für mobile Browser */
   will-change: transform;
   transform: translate3d(0, 0, 0);
 }
@@ -105,14 +108,6 @@ export default {
   transform: translate3d(0, 0, 0);
 }
 
-.fade-bounce-enter-active,
-.fade-bounce-leave-active {
-  width: 100%;
-  top: 0;
-  left: 0;
-}
-
-/* Einblend-Animation (mit Bounce) */
 @keyframes fadeInBounce {
   0% {
     opacity: 0;
@@ -130,7 +125,6 @@ export default {
   }
 }
 
-/* Ausblend-Animation */
 @keyframes fadeOut {
   0% {
     opacity: 1;

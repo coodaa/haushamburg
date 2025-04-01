@@ -2,7 +2,7 @@
 <template>
   <!-- Google Bewertungen -->
   <div class="google-reviews">
-    <h3>Was unsere Gäste sagen</h3>
+    <h3 class="review-text">WAS UNSERE GÄSTE SAGEN</h3>
     <div class="elfsight-app-993dc481-952b-4721-8494-6d5d6cf46578" data-elfsight-app-lazy></div>
   </div>
 </template>
@@ -34,6 +34,11 @@
   min-height: 400px;
   border: none;
   transition: height 0.3s ease;
+}
+
+.google-reviews .review-text {
+  font-size: calc(var(--title-size)*0.5);
+  font-family: var(--font-thunder);
 }
 
 /* Responsive Anpassungen */

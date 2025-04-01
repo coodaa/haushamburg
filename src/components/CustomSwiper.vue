@@ -18,7 +18,7 @@
 
 <script>
 import { Swiper, SwiperSlide } from "swiper/vue";
-import { Pagination, Navigation } from "swiper/modules"; // WICHTIG: Pagination importieren!
+import { Pagination, Navigation } from "swiper/modules"; // 
 import "swiper/swiper-bundle.css";
 
 export default {
@@ -33,7 +33,7 @@ export default {
   setup() {
     return {
       Pagination,
-      Navigation, // Navigation auch importieren, falls Pfeile benötigt werden
+      Navigation,
     };
   },
 };
