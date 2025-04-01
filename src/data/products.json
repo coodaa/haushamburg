@@ -44,7 +44,7 @@
     "description": "Herzhafte Schaschlikpfanne, serviert mit frischem Brötchen.",
     "price": 15.0,
     "category": "Fleisch",
-    "image": "https://www.haus-hamburg-leer.de/images/food/haus_hamburg_leer_snirtjebraten.webp",
+    "image": "https://www.haus-hamburg-leer.de/images/food/haus_hamburg_leer_schaschlikpfanne.webp",
     "zusatzstoffe": ["1"]
   },
   {
@@ -52,7 +52,7 @@
     "description": "Gemischter Salat mit Hähnchenstreifen und Honig-Senf-Dressing.",
     "price": 6.5,
     "category": "Fleisch",
-    "image": "https://www.haus-hamburg-leer.de/images/food/haus-hamburg-leer-30.webp",
+    "image": "https://www.haus-hamburg-leer.de/images/food/haus_hamburg_leer_salat-mit-hähnchen.webp",
     "zusatzstoffe": []
   },
   {
@@ -148,7 +148,7 @@
     "description": "Ofenkartoffel mit Kartoffelcreme und Salat.",
     "price": 9.5,
     "category": "Vegetarisch",
-    "image": "https://www.haus-hamburg-leer.de/images/food/haus-hamburg-leer-30.webp",
+    "image": "https://www.haus-hamburg-leer.de/images/food/haus_hamburg_leer_ofenkartoffel-kartoffelcreme.webp",
     "zusatzstoffe": []
   },
   {
@@ -212,7 +212,7 @@
     "description": "Hausgemachte Pfannkuchen mit Nutella – 28 cm Durchmesser.",
     "price": 4.5,
     "category": "Desserts",
-    "image": "https://www.haus-hamburg-leer.de/images/food/haus-hamburg-leer-30.webp",
+    "image": "https://www.haus-hamburg-leer.de/images/food/haus_hamburg_leer_pfannkuchen-nutella.webp",
     "zusatzstoffe": ["1"]
   },
   {
@@ -308,7 +308,7 @@
     "description": "Hauswein (0,75l, 12,5% Vol.) – trocken.",
     "price": 14.99,
     "category": "Getränke",
-    "image": "https://www.haus-hamburg-leer.de/images/food/haus-hamburg-leer-30.webp",
+    "image": "https://www.haus-hamburg-leer.de/images/food/haus-hamburg-leer-21.webp",
     "zusatzstoffe": ["1", "6"]
   }
 ]
