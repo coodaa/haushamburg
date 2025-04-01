@@ -66,13 +66,12 @@
 
 
       </section>
-
       <Favorites
-            :popularProducts="popularProducts"
-            :slidesPerView="slidesPerView"
-            :formatPrice="formatPrice"
-            :addToCart="addToCart"
-          />
+      :popularProducts="popularProducts"
+      :slidesPerView="slidesPerView"
+      :formatPrice="formatPrice"
+      :addToCart="addToCart"
+    />
 
       <!-- Kundenbewertungen -->
       <section class="review-section">
