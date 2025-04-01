@@ -6,7 +6,7 @@
     titleMain="Online Shop"
     subtitle="Bestell dien Lievlingsgerichten bekwäm online."
     heading="Willkommen in unserem Online-Shop"
-    flowText="Erleben Sie den Komfort unseres Online-Bestellservices: Entdecken Sie unser umfangreiches Angebot an frisch zubereiteten Gerichten, die nicht nur lecker, sondern auch ausgewogen sind. Bestellen Sie bequem online und genießen Sie eine schnelle, zuverlässige Lieferung direkt zu Ihnen nach Hause. Lassen Sie sich von unserem Service verwöhnen – genießen Sie Ihr Lieblingsessen, ohne Ihr Zuhause verlassen zu müssen, und erleben Sie ein kulinarisches Erlebnis, das so einfach ist wie ein paar Klicks."
+flowText="Entdecken Sie unseren komfortablen Online-Bestellservice: Frisch zubereitete, leckere und ausgewogene Gerichte – bequem online bestellen, schnell geliefert und 10% Rabatt beim Checkout erhalten"
     parallaxImageSrc="/images/restaurant/haus-hamburg-leer-08.webp"
   >
     <!-- Favoriten: Swiper für beliebte Produkte -->

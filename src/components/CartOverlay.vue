@@ -5,27 +5,35 @@
         <h2>Warenkorb</h2>
         <button class="close-btn" @click="$emit('close')">&times;</button>
       </header>
-      <div class="cart-items">
+      <div class="order-summary">
         <div v-if="cartItems.length === 0" class="empty-cart">
           Dein Warenkorb ist leer.
         </div>
-        <div v-for="(item, index) in cartItems" :key="index" class="cart-item">
-          <img :src="item.product.image" :alt="item.product.name" />
-          <div class="item-info">
-            <h3>{{ item.product.name }}</h3>
-            <p>{{ formatPrice(item.product.price) }}</p>
-            <div class="quantity-control">
-              <button @click="decreaseQty(item)">-</button>
-              <span>{{ item.quantity }}</span>
-              <button @click="increaseQty(item)">+</button>
+        <div v-else class="cart-items">
+          <div v-for="(item, index) in cartItems" :key="index" class="cart-item">
+            <img :src="item.product.image" :alt="item.product.name" />
+            <div class="item-details">
+              <h3 class="item-name">{{ item.product.name }}</h3>
+              <p class="item-qty">{{ item.quantity }} x {{ formatPrice(item.product.price) }}</p>
             </div>
+            <button class="remove-btn" @click="removeItem(item)">&times;</button>
           </div>
-          <button class="remove-btn" @click="removeItem(item)">&#10005;</button>
         </div>
       </div>
       <footer>
-        <div class="total">
-          Gesamt: {{ formatPrice(totalPrice) }}
+        <div class="summary">
+          <div class="summary-item">
+            <span>Gesamt:</span>
+            <span>{{ formatPrice(totalPrice) }}</span>
+          </div>
+          <div class="summary-item">
+            <span>Rabatt (10%):</span>
+            <span>- {{ formatPrice(discountValue) }}</span>
+          </div>
+          <div class="summary-item total-final">
+            <span>Zu zahlen:</span>
+            <span>{{ formatPrice(discountedTotalPrice) }}</span>
+          </div>
         </div>
         <button class="checkout-btn" @click="checkout">Zur Kasse</button>
       </footer>
@@ -52,7 +60,16 @@ export default {
 
     const cartItems = computed(() => cartStore.items);
     const totalPrice = computed(() =>
-      cartStore.items.reduce((sum, item) => sum + item.product.price * item.quantity, 0)
+      cartStore.items.reduce(
+        (sum, item) => sum + item.product.price * item.quantity,
+        0
+      )
+    );
+    // Rabattierter Gesamtpreis (10% Rabatt)
+    const discountedTotalPrice = computed(() => totalPrice.value * 0.9);
+    // Rabattbetrag in Euro
+    const discountValue = computed(
+      () => totalPrice.value - discountedTotalPrice.value
     );
 
     const increaseQty = (item) => {
@@ -69,16 +86,18 @@ export default {
       cartStore.removeItem(item.product);
     };
 
-    const formatPrice = (val) => val.toFixed(2).replace(".", ",") + " €";
+    const formatPrice = (val) =>
+      val.toFixed(2).replace(".", ",") + " €";
 
     const checkout = () => {
-      // Statt Stripe-Redirect: Navigiere zur eigenen Checkout-Seite
       router.push("/checkout");
     };
 
     return {
       cartItems,
       totalPrice,
+      discountedTotalPrice,
+      discountValue,
       increaseQty,
       decreaseQty,
       removeItem,
@@ -108,10 +127,17 @@ export default {
   padding: 1.5rem;
 }
 
-.cart-overlay header {
+/* Header */
+header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+header h2 {
+  font-size: 1.8rem;
+  color: #004a7f;
+  margin: 0;
 }
 
 .close-btn {
@@ -119,73 +145,102 @@ export default {
   border: none;
   font-size: 2rem;
   cursor: pointer;
+  color: #900;
 }
 
+/* Bestellübersicht */
+.order-summary {
+  background: #f9f9f9;
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1.5rem;
+}
+
+.empty-cart {
+  text-align: center;
+  font-size: 1.1rem;
+  color: #666;
+}
+
+/* Artikel-Liste */
 .cart-items {
-  margin: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .cart-item {
   display: flex;
   align-items: center;
-  margin-bottom: 1rem;
+  padding: 0.5rem;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
 }
 
 .cart-item img {
   width: 60px;
   height: 60px;
   object-fit: cover;
-  border-radius: 4px;
-  margin-right: 1rem;
+  border-radius: 8px;
+  margin-right: 0.75rem;
 }
 
-.item-info h3 {
-  margin: 0;
-  font-size: 1rem;
+.item-details {
+  flex: 1;
 }
 
-.quantity-control {
-  display: flex;
-  align-items: center;
-  gap: 0.3rem;
-  margin-top: 0.5rem;
+.item-name {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #004a7f;
+  margin: 0 0 0.25rem;
 }
 
-.quantity-control button {
-  width: 1.8rem;
-  height: 1.8rem;
-  border: none;
-  border-radius: 50%;
-  background-color: var(--blue);
-  color: #fff;
-  cursor: pointer;
+.item-qty {
+  font-size: 0.9rem;
+  color: #555;
 }
 
+/* Entfernen-Button */
 .remove-btn {
   background: none;
   border: none;
-  font-size: 1.2rem;
-  margin-left: auto;
+  font-size: 1.5rem;
   cursor: pointer;
   color: #900;
 }
 
+/* Zusammenfassung der Preise */
+.summary {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1rem;
+  color: #666;
+}
+
+.total-final {
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #004a7f;
+}
+
+/* Footer und Checkout-Button */
 footer {
   border-top: 1px solid #ddd;
   padding-top: 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.total {
-  font-size: 1.2rem;
-  font-weight: bold;
-  text-align: right;
 }
 
 .checkout-btn {
-  background-color: var(--blue);
+  background-color: var(--blue, #004a7f);
   color: #fff;
   border: none;
   padding: 0.8rem;
@@ -193,9 +248,10 @@ footer {
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  width: 100%;
 }
 
 .checkout-btn:hover {
-  background-color: var(--gold);
+  background-color: var(--gold, #f1c40f);
 }
 </style>
