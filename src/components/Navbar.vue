@@ -43,18 +43,18 @@
               <router-link to="/Kontakt">Kontakt</router-link>
             </li>
             <!-- Reservieren-Link (wird auf Tablets und Mobile ausgeblendet) -->
-            <!-- <li class="reservierung-link">
+            <li class="reservierung-link">
               <router-link to="/reservierung">Reservieren</router-link>
-            </li> -->
+            </li>
             <!-- Shop-Button: Auf Desktop zeigt er "Shop" + Icon, auf Mobile nur das Icon -->
             <li>
-              <router-link to="/reservierung">
-                <!-- <router-link to="/shop"> -->
+              <!-- <router-link to="/reservierung"> -->
+                <router-link to="/shop">
 
                 <button class="cta-button" aria-label="Shop" title="Shop">
 
                   <i class="fas fa-shopping-cart"></i>
-                  <span class="cta-text">reservierung</span>
+                  <span class="cta-text">bestellen</span>
                   <!-- <span class="cta-text">Shop</span> -->
 
                 </button>

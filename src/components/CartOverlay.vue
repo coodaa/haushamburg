@@ -13,14 +13,31 @@
           <div v-for="(item, index) in cartItems" :key="index" class="cart-item">
             <img :src="item.product.image" :alt="item.product.name" />
             <div class="item-details">
-              <h3 class="item-name">{{ item.product.name }}</h3>
-              <p class="item-qty">{{ item.quantity }} x {{ formatPrice(item.product.price) }}</p>
+              <!-- Titel mit fester Mindesthöhe für 2 Zeilen -->
+              <h3 class="item-name" :title="item.product.name">
+                {{ item.product.name }}
+              </h3>
+              <!-- Untere Zeile: Aktionen (Plus/Minus + Mülleimer) und Preis -->
+              <div class="item-controls">
+                <div class="action-controls">
+                  <div class="quantity-control">
+                    <button @click="decreaseQty(item)">-</button>
+                    <span>{{ item.quantity }}</span>
+                    <button @click="increaseQty(item)">+</button>
+                  </div>
+                  <button class="remove-btn" @click="removeItem(item)">
+                    <i class="fas fa-trash"></i>
+                  </button>
+                </div>
+                <p class="item-total">
+                  {{ formatPrice(item.product.price * item.quantity) }}
+                </p>
+              </div>
             </div>
-            <button class="remove-btn" @click="removeItem(item)">&times;</button>
           </div>
         </div>
       </div>
-      <!-- Footer nur anzeigen, wenn der Warenkorb nicht leer ist -->
+      <!-- Footer nur anzeigen, wenn Artikel im Warenkorb sind -->
       <footer v-if="cartItems.length > 0">
         <div class="summary">
           <div class="summary-item">
@@ -133,6 +150,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 2em;
 }
 
 header h2 {
@@ -173,7 +191,7 @@ header h2 {
 
 .cart-item {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   padding: 0.5rem;
   background: #fff;
   border-radius: 8px;
@@ -181,36 +199,84 @@ header h2 {
 }
 
 .cart-item img {
-  width: 60px;
-  height: 60px;
+  width: 80px;
+  height: 80px;
   object-fit: cover;
   border-radius: 8px;
   margin-right: 0.75rem;
 }
 
+/* Details: Titel und Controls */
 .item-details {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
+/* Titel mit fester Mindesthöhe für 2 Zeilen */
 .item-name {
   font-size: 1.1rem;
   font-weight: bold;
   color: #004a7f;
-  margin: 0 0 0.25rem;
+  margin: 0 0 0.5rem;
+  min-height: 2.4rem;
+  line-height: 1.2;
+  overflow: hidden;
 }
 
-.item-qty {
+/* Untere Zeile: Aktionen (Plus/Minus, Mülleimer) und Preis */
+.item-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.action-controls {
+  display: flex;
+  align-items: center;
+  gap: 2rem; /* Mehr Abstand zwischen Mengensteuerung und Löschen */
+}
+
+.quantity-control {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+}
+
+.quantity-control button {
+  width: 1.8rem;
+  height: 1.8rem;
   font-size: 0.9rem;
-  color: #555;
+  border: none;
+  border-radius: 50%;
+  background-color: var(--blue, #004a7f);
+  color: #fff;
+  cursor: pointer;
+}
+
+.quantity-control span {
+  font-size: 1rem;
+}
+
+.item-total {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #004a7f;
 }
 
 /* Entfernen-Button */
 .remove-btn {
   background: none;
   border: none;
-  font-size: 1.5rem;
   cursor: pointer;
   color: #900;
+  font-size: 1.2em;
+}
+
+.remove-btn i {
+  font-size: 1rem;
 }
 
 /* Zusammenfassung der Preise */

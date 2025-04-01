@@ -1,13 +1,13 @@
 <template>
   <BasePage
-    imageSrc="/images/mood/haus-hamburg-leer-pferd.webp"
+    imageSrc="/images/history/haus-hamburg-leer-onkes2.webp"
     imageAlt="Checkout"
     titleAbove="Checkout"
     titleMain="Bezahlen"
     subtitle="Überprüfen Sie Ihre Bestellung und wählen Sie Ihre bevorzugte Zahlungsart."
     heading="Checkout"
     flowText="Bitte überprüfen Sie Ihre Bestellung, füllen Sie Ihre Adress- und Lieferinformationen aus – inklusive Lieferdatum und Zeitfenster – und bezahlen Sie mit PayPal."
-    parallaxImageSrc="/images/mood/haus-hamburg-leer-pferd.webp"
+    parallaxImageSrc="/images/food/haus-hamburg-leer-21.webp"
   >
     <div class="checkout-container">
       <!-- Bestellübersicht -->
@@ -25,9 +25,13 @@
             </div>
             <p class="item-total">{{ formatPrice(item.product.price * item.quantity) }}</p>
           </div>
-          <div class="total-container">
+          <div class="total-container small">
             <span class="total-label">Zwischensumme:</span>
             <span class="total-amount">{{ formatPrice(totalPrice) }}</span>
+          </div>
+          <div class="total-container small" v-if="totalPrice > 0">
+            <span class="total-label">Rabatt (10%):</span>
+            <span class="total-amount">- {{ formatPrice(discountValue) }}</span>
           </div>
           <!-- Versandkosten-Bereich -->
           <div class="shipping-container">
@@ -44,7 +48,7 @@
               Noch {{ formatPrice(amountRemaining) }} fehlen für kostenlosen Versand.
             </div>
           </div>
-          <div class="total-container">
+          <div class="total-container final">
             <span class="total-label">Gesamtsumme:</span>
             <span class="total-amount">{{ formatPrice(finalTotal) }}</span>
           </div>
@@ -211,11 +215,15 @@ export default {
     const totalPrice = computed(() =>
       cartStore.items.reduce((sum, item) => sum + item.product.price * item.quantity, 0)
     );
+    // Rabatt (10%) Berechnung
+    const discountValue = computed(() => totalPrice.value * 0.1);
+    const discountedTotalPrice = computed(() => totalPrice.value - discountValue.value);
     // Versandkosten: 2,50€ falls Warenkorb < 25€, sonst 0
     const shippingCost = computed(() => (totalPrice.value < 25 ? 2.5 : 0));
     const amountRemaining = computed(() => (totalPrice.value < 25 ? 25 - totalPrice.value : 0));
     const progressPercent = computed(() => (totalPrice.value < 25 ? (totalPrice.value / 25) * 100 : 100));
-    const finalTotal = computed(() => totalPrice.value + shippingCost.value);
+    // Gesamtsumme: Rabattierter Preis + Versandkosten
+    const finalTotal = computed(() => discountedTotalPrice.value + shippingCost.value);
     const formatPrice = (val) => val.toFixed(2).replace(".", ",") + " €";
 
     const address = ref({
@@ -442,6 +450,8 @@ export default {
     return {
       cartItems,
       totalPrice,
+      discountValue,
+      discountedTotalPrice,
       shippingCost,
       finalTotal,
       amountRemaining,
@@ -527,19 +537,26 @@ export default {
   margin-left: 1rem;
   white-space: nowrap;
 }
+
+/* Totals */
 .total-container {
   display: flex;
   justify-content: flex-end;
   align-items: center;
   margin-top: 1rem;
 }
+.total-container.small {
+  font-size: 0.9rem;
+}
+.total-container.final {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
 .total-label {
-  font-size: 1.2rem;
   margin-right: 0.5rem;
   color: #666;
 }
 .total-amount {
-  font-size: 1.8rem;
   font-weight: bold;
   color: #004a7f;
 }

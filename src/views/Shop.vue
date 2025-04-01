@@ -1,13 +1,13 @@
 <template>
   <BasePage
-    imageSrc="/images/catering/haus-hamburg-leer-catering-1.webp"
+    imageSrc="/images/food/haus-hamburg-leer-13.webp"
     imageAlt="Online Shop"
     titleAbove="Shop"
     titleMain="Online Shop"
     subtitle="Bestell dien Lievlingsgerichten bekwäm online."
     heading="Willkommen in unserem Online-Shop"
 flowText="Entdecken Sie unseren komfortablen Online-Bestellservice: Frisch zubereitete, leckere und ausgewogene Gerichte – bequem online bestellen, schnell geliefert und 10% Rabatt beim Checkout erhalten"
-    parallaxImageSrc="/images/restaurant/haus-hamburg-leer-08.webp"
+    parallaxImageSrc="/images/food/haus-hamburg-leer-18.webp"
   >
     <!-- Favoriten: Swiper für beliebte Produkte -->
     <h2 class="big-title-3">Unsere Favoriten</h2>
@@ -325,7 +325,6 @@ export default {
           "Rahmschnitzel",
           "Fischbrötchen",
           "Schokoladenkuchen",
-          "Fanta",
           "Hauswein"
         ].includes(p.name)
       )

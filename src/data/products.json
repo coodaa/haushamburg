@@ -249,7 +249,7 @@
   },
   {
     "name": "Coca‑Cola",
-    "description": "Coca‑Cola (0,5l) – erfrischend.",
+    "description": "Coca‑Cola (0,5l)",
     "price": 3.0,
     "category": "Getränke",
     "image": "https://www.haus-hamburg-leer.de/images/food/haus_hamburg_leer_coca-cola.webp",
@@ -257,7 +257,7 @@
   },
   {
     "name": "Coca‑Cola Zero Sugar",
-    "description": "Coca‑Cola Zero Sugar (0,5l) – erfrischend.",
+    "description": "Coca‑Cola Zero Sugar (0,5l)",
     "price": 3.0,
     "category": "Getränke",
     "image": "https://www.haus-hamburg-leer.de/images/food/haus_hamburg_leer_coca-cola-zero.webp",
@@ -265,7 +265,7 @@
   },
   {
     "name": "Fanta",
-    "description": "Fanta Orangenlimonade (0,5l) – erfrischend.",
+    "description": "Fanta Orangenlimonade (0,5l)",
     "price": 3.0,
     "category": "Getränke",
     "image": "https://www.haus-hamburg-leer.de/images/food/haus_hamburg_leer_fanta.webp",
@@ -273,7 +273,7 @@
   },
   {
     "name": "Apfelschorle Vilsa",
-    "description": "Apfelschorle (0,5l) – kühl.",
+    "description": "Apfelschorle (0,5l)",
     "price": 3.0,
     "category": "Getränke",
     "image": "https://www.haus-hamburg-leer.de/images/food/haus_hamburg_leer_apfelschorle-vilsa.webp",
@@ -281,7 +281,7 @@
   },
   {
     "name": "Traubenschorle",
-    "description": "Traubenschorle (0,33l) – erfrischend.",
+    "description": "Traubenschorle (0,33l)",
     "price": 3.2,
     "category": "Getränke",
     "image": "https://www.haus-hamburg-leer.de/images/food/haus_hamburg_leer_traubenschorle-fritz.webp",
@@ -289,7 +289,7 @@
   },
   {
     "name": "Mezzo Mix",
-    "description": "Mezzo Mix (0,5l) – erfrischend.",
+    "description": "Mezzo Mix (0,5l)",
     "price": 3.0,
     "category": "Getränke",
     "image": "https://www.haus-hamburg-leer.de/images/food/haus_hamburg_leer_mezzomix.webp",
@@ -297,7 +297,7 @@
   },
   {
     "name": "Jever Pils",
-    "description": "Jever Pils (0,33l, 4,9% Vol.) – erfrischend.",
+    "description": "Jever Pils (0,33l, 4,9% Vol.)",
     "price": 3.0,
     "category": "Getränke",
     "image": "https://www.haus-hamburg-leer.de/images/food/haus_hamburg_leer_jever.webp",
@@ -305,7 +305,7 @@
   },
   {
     "name": "Hauswein",
-    "description": "Hauswein (0,75l, 12,5% Vol.) – trocken.",
+    "description": "Unser Haus Hamburg Hauswein (0,75l, 12,5% Vol.) – trocken.",
     "price": 14.99,
     "category": "Getränke",
     "image": "https://www.haus-hamburg-leer.de/images/food/haus-hamburg-leer-21.webp",
