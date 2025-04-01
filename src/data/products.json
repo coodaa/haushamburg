@@ -24,11 +24,11 @@
     "zusatzstoffe": []
   },
   {
-    "name": "Schweineschnitzel - Wiener Art -",
+    "name": "Schweineschnitzel - Wiener Art",
     "description": "Paniertes Schweineschnitzel nach Wiener Art mit Ras Fritten und Salat.",
     "price": 17.5,
     "category": "Fleisch",
-    "image": "https://www.haus-hamburg-leer.de/images/food/haus-hamburg-leer-30.webp",
+    "image": "https://www.haus-hamburg-leer.de/images/food/haus_hamburg_leer_schweineschnitzel.webp",
     "zusatzstoffe": ["3"]
   },
   {
@@ -44,7 +44,7 @@
     "description": "Herzhafte Schaschlikpfanne, serviert mit frischem Brötchen.",
     "price": 15.0,
     "category": "Fleisch",
-    "image": "https://www.haus-hamburg-leer.de/images/food/haus-hamburg-leer-30.webp",
+    "image": "https://www.haus-hamburg-leer.de/images/food/haus_hamburg_leer_snirtjebraten.webp",
     "zusatzstoffe": ["1"]
   },
   {
@@ -156,7 +156,7 @@
     "description": "Ofenkartoffel mit Kartoffelcreme, Räucherlachs und Salat.",
     "price": 15.5,
     "category": "Fisch",
-    "image": "https://www.haus-hamburg-leer.de/images/food/haus-hamburg-leer-30.webp",
+    "image": "https://www.haus-hamburg-leer.de/images/food/haus_hamburg_leer_ofenkartoffel-lachs.webp",
     "zusatzstoffe": ["2"]
   },
   {
@@ -196,7 +196,7 @@
     "description": "Beilagensalat aus Blattsalaten, Radieschen & roter Bete mit Honig-Senf-Dressing.",
     "price": 3.5,
     "category": "Vegetarisch",
-    "image": "https://www.haus-hamburg-leer.de/images/food/haus-hamburg-leer-30.webp",
+    "image": "https://www.haus-hamburg-leer.de/images/food/haus_hamburg_leer_kleiner-salat.webp",
     "zusatzstoffe": []
   },
   {
@@ -204,7 +204,7 @@
     "description": "Hausgemachte Pfannkuchen mit Apfelmus – 28 cm Durchmesser.",
     "price": 4.5,
     "category": "Desserts",
-    "image": "https://www.haus-hamburg-leer.de/images/food/haus-hamburg-leer-30.webp",
+    "image": "https://www.haus-hamburg-leer.de/images/food/haus_hamburg_leer_pfannkuchen-apfelmus.webp",
     "zusatzstoffe": ["1"]
   },
   {
@@ -236,7 +236,7 @@
     "description": "Hausgemachte rote Grütze.",
     "price": 4.5,
     "category": "Desserts",
-    "image": "https://www.haus-hamburg-leer.de/images/food/haus-hamburg-leer-30.webp",
+    "image": "https://www.haus-hamburg-leer.de/images/food/haus_hamburg_leer_rote-grütze.webp",
     "zusatzstoffe": []
   },
   {
@@ -284,7 +284,7 @@
     "description": "Traubenschorle (0,33l) – erfrischend.",
     "price": 3.2,
     "category": "Getränke",
-    "image": "https://www.haus-hamburg-leer.de/images/food/haus-hamburg-leer-30.webp",
+    "image": "https://www.haus-hamburg-leer.de/images/food/haus_hamburg_leer_traubenschorle-fritz.webp",
     "zusatzstoffe": []
   },
   {
