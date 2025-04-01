@@ -20,7 +20,8 @@
           </div>
         </div>
       </div>
-      <footer>
+      <!-- Footer nur anzeigen, wenn der Warenkorb nicht leer ist -->
+      <footer v-if="cartItems.length > 0">
         <div class="summary">
           <div class="summary-item">
             <span>Gesamt:</span>
