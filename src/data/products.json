@@ -132,7 +132,7 @@
     "description": "Deluxe-Vorspeise: Matjes, Aalrauchmatjes, Bismarckhering, Brathering, Kutterkrabben & Räucherlachs.",
     "price": 14.8,
     "category": "Fisch",
-    "image": "https://www.haus-hamburg-leer.de/images/food/haus_hamburg_leer_bismarckhering.webp",
+    "image": "https://www.haus-hamburg-leer.de/images/food/haus_hamburg_leer_vorspeise-haus-hamburg.webp",
     "zusatzstoffe": ["1", "2"]
   },
   {
@@ -252,7 +252,7 @@
     "description": "Coca‑Cola (0,5l) – erfrischend.",
     "price": 2.75,
     "category": "Getränke",
-    "image": "https://www.haus-hamburg-leer.de/images/food/haus-hamburg-leer-30.webp",
+    "image": "https://www.haus-hamburg-leer.de/images/food/haus_hamburg_leer_coca-cola.webp",
     "zusatzstoffe": ["2"]
   },
   {
@@ -260,7 +260,7 @@
     "description": "Coca‑Cola Zero Sugar (0,5l) – erfrischend.",
     "price": 2.75,
     "category": "Getränke",
-    "image": "https://www.haus-hamburg-leer.de/images/food/haus-hamburg-leer-30.webp",
+    "image": "https://www.haus-hamburg-leer.de/images/food/haus_hamburg_leer_coca-cola-zero.webp",
     "zusatzstoffe": ["2"]
   },
   {
@@ -276,7 +276,7 @@
     "description": "Apfelschorle (0,5l) – kühl.",
     "price": 2.85,
     "category": "Getränke",
-    "image": "https://www.haus-hamburg-leer.de/images/food/haus-hamburg-leer-30.webp",
+    "image": "https://www.haus-hamburg-leer.de/images/food/haus_hamburg_leer_apfelschorle-vilsa.webp",
     "zusatzstoffe": []
   },
   {
@@ -292,7 +292,7 @@
     "description": "Mezzo Mix (0,5l) – erfrischend.",
     "price": 3.0,
     "category": "Getränke",
-    "image": "https://www.haus-hamburg-leer.de/images/food/haus-hamburg-leer-30.webp",
+    "image": "https://www.haus-hamburg-leer.de/images/haus_hamburg_leer_mezzomix.webp",
     "zusatzstoffe": ["1"]
   },
   {
