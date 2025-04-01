@@ -250,7 +250,7 @@
   {
     "name": "Coca‑Cola",
     "description": "Coca‑Cola (0,5l) – erfrischend.",
-    "price": 2.75,
+    "price": 3.0,
     "category": "Getränke",
     "image": "https://www.haus-hamburg-leer.de/images/food/haus_hamburg_leer_coca-cola.webp",
     "zusatzstoffe": ["2"]
@@ -258,7 +258,7 @@
   {
     "name": "Coca‑Cola Zero Sugar",
     "description": "Coca‑Cola Zero Sugar (0,5l) – erfrischend.",
-    "price": 2.75,
+    "price": 3.0,
     "category": "Getränke",
     "image": "https://www.haus-hamburg-leer.de/images/food/haus_hamburg_leer_coca-cola-zero.webp",
     "zusatzstoffe": ["2"]
@@ -274,7 +274,7 @@
   {
     "name": "Apfelschorle Vilsa",
     "description": "Apfelschorle (0,5l) – kühl.",
-    "price": 2.85,
+    "price": 3.0,
     "category": "Getränke",
     "image": "https://www.haus-hamburg-leer.de/images/food/haus_hamburg_leer_apfelschorle-vilsa.webp",
     "zusatzstoffe": []
@@ -298,7 +298,7 @@
   {
     "name": "Jever Pils",
     "description": "Jever Pils (0,33l, 4,9% Vol.) – erfrischend.",
-    "price": 2.82,
+    "price": 3.0,
     "category": "Getränke",
     "image": "https://www.haus-hamburg-leer.de/images/food/haus_hamburg_leer_jever.webp",
     "zusatzstoffe": ["2"]
