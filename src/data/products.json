@@ -1,6 +1,6 @@
 [
   {
-    "name": "Rahmschnitzel *",
+    "name": "Rahmschnitzel*",
     "description": "Knuspriges Schnitzel in Rahmsoße, mit Ras Fritten und Salat.",
     "price": 17.5,
     "category": "Fleisch",
@@ -8,7 +8,7 @@
     "zusatzstoffe": ["1", "7"]
   },
   {
-    "name": "Grünkohl mit Kohlwürsten *",
+    "name": "Grünkohl mit Kohlwürsten*",
     "description": "Gedünsteter Grünkohl mit zwei Kohlwürsten und knusprigen Bratkartoffeln.",
     "price": 19.8,
     "category": "Fleisch",
@@ -16,7 +16,7 @@
     "zusatzstoffe": ["2"]
   },
   {
-    "name": "Tomahawk vom Ammerländer Edelschwein *",
+    "name": "Tomahawk vom Ammerländer Edelschwein*",
     "description": "Saftiges Tomahawk-Steak vom Ammerländer Edelschwein mit Pommes und Salat.",
     "price": 24.5,
     "category": "Fleisch",
@@ -24,7 +24,7 @@
     "zusatzstoffe": []
   },
   {
-    "name": "Schweineschnitzel - Wiener Art *",
+    "name": "Schweineschnitzel - Wiener Art*",
     "description": "Paniertes Schweineschnitzel nach Wiener Art mit Ras Fritten und Salat.",
     "price": 17.5,
     "category": "Fleisch",
@@ -32,7 +32,7 @@
     "zusatzstoffe": ["3"]
   },
   {
-    "name": "Snirtjebraten *",
+    "name": "Snirtjebraten*",
     "description": "Ostfriesischer Snirtjebraten mit knusprigen Bratkartoffeln.",
     "price": 21.3,
     "category": "Fleisch",
@@ -40,7 +40,7 @@
     "zusatzstoffe": []
   },
   {
-    "name": "Schaschlikpfanne *",
+    "name": "Schaschlikpfanne*",
     "description": "Herzhafte Schaschlikpfanne, serviert mit frischem Brötchen.",
     "price": 15.0,
     "category": "Fleisch",
@@ -48,7 +48,7 @@
     "zusatzstoffe": ["1"]
   },
   {
-    "name": "kleiner Salat mit Hähnchenbruststreifen *",
+    "name": "kleiner Salat mit Hähnchenbruststreifen*",
     "description": "Gemischter Salat mit Hähnchenstreifen und Honig-Senf-Dressing.",
     "price": 6.5,
     "category": "Fleisch",
@@ -56,7 +56,7 @@
     "zusatzstoffe": []
   },
   {
-    "name": "Fischplatte *",
+    "name": "Fischplatte*",
     "description": "Fischplatte mit feinen Fischfilets, Krabben, Bratkartoffeln und Salat.",
     "price": 25.5,
     "category": "Fisch",
@@ -64,7 +64,7 @@
     "zusatzstoffe": ["2", "4"]
   },
   {
-    "name": "Nordsee Scholle (filetiert) *",
+    "name": "Nordsee Scholle (filetiert)*",
     "description": "Filetierte Nordsee-Scholle mit Bratkartoffeln und Salat.",
     "price": 22.5,
     "category": "Fisch",
@@ -72,7 +72,7 @@
     "zusatzstoffe": []
   },
   {
-    "name": "Nordsee Scholle & Ras Fritten *",
+    "name": "Nordsee Scholle & Ras Fritten*",
     "description": "Filetierte Scholle mit Ras Fritten und Salat.",
     "price": 23.5,
     "category": "Fisch",
@@ -80,7 +80,7 @@
     "zusatzstoffe": ["1"]
   },
   {
-    "name": "Nordsee Scholle mit Krabben *",
+    "name": "Nordsee Scholle mit Krabben*",
     "description": "Scholle mit Krabben, Bratkartoffeln und Salat.",
     "price": 26.5,
     "category": "Fisch",
@@ -88,7 +88,7 @@
     "zusatzstoffe": ["1"]
   },
   {
-    "name": "Matjesfilets (3 Stück) *",
+    "name": "Matjesfilets*",
     "description": "Drei Matjesfilets mit Zwiebeln, Bratkartoffeln und Salat.",
     "price": 16.8,
     "category": "Fisch",
@@ -112,7 +112,7 @@
     "zusatzstoffe": ["1", "5"]
   },
   {
-    "name": "Scholle mit Ofenkartoffel *",
+    "name": "Scholle mit Ofenkartoffel*",
     "description": "Nordseeschollenfilet mit Ofenkartoffel und Salat.",
     "price": 23.5,
     "category": "Fisch",
@@ -120,7 +120,7 @@
     "zusatzstoffe": []
   },
   {
-    "name": "Ofenkartoffel mit Greetsieler Krabben *",
+    "name": "Ofenkartoffel mit Greetsieler Krabben*",
     "description": "Ofenkartoffel mit Kartoffelcreme und Greetsieler Krabben.",
     "price": 19.5,
     "category": "Fisch",
@@ -128,7 +128,7 @@
     "zusatzstoffe": ["2"]
   },
   {
-    "name": "Vorspeise Haus Hamburg deluxe *",
+    "name": "Vorspeise Haus Hamburg deluxe*",
     "description": "Deluxe-Vorspeise: Matjes, Aalrauchmatjes, Bismarckhering, Brathering, Kutterkrabben & Räucherlachs.",
     "price": 14.8,
     "category": "Fisch",
@@ -144,7 +144,7 @@
     "zusatzstoffe": ["1", "2", "3"]
   },
   {
-    "name": "Ofenkartoffel mit Kartoffelcreme *",
+    "name": "Ofenkartoffel mit Kartoffelcreme*",
     "description": "Ofenkartoffel mit Kartoffelcreme und Salat.",
     "price": 9.5,
     "category": "Vegetarisch",
@@ -152,7 +152,7 @@
     "zusatzstoffe": []
   },
   {
-    "name": "Ofenkartoffel mit Räucherlachs *",
+    "name": "Ofenkartoffel mit Räucherlachs*",
     "description": "Ofenkartoffel mit Kartoffelcreme, Räucherlachs und Salat.",
     "price": 15.5,
     "category": "Fisch",
@@ -192,7 +192,7 @@
     "zusatzstoffe": ["1"]
   },
   {
-    "name": "kleiner gemischter Beilagensalat *",
+    "name": "kleiner gemischter Beilagensalat*",
     "description": "Beilagensalat aus Blattsalaten, Radieschen & roter Bete mit Honig-Senf-Dressing.",
     "price": 3.5,
     "category": "Vegetarisch",
@@ -200,7 +200,7 @@
     "zusatzstoffe": []
   },
   {
-    "name": "Pfannkuchen mit Apfelmus *",
+    "name": "Pfannkuchen mit Apfelmus*",
     "description": "Hausgemachte Pfannkuchen mit Apfelmus – 28 cm Durchmesser.",
     "price": 4.5,
     "category": "Desserts",
@@ -208,7 +208,7 @@
     "zusatzstoffe": ["1"]
   },
   {
-    "name": "Pfannkuchen mit Nutella *",
+    "name": "Pfannkuchen mit Nutella*",
     "description": "Hausgemachte Pfannkuchen mit Nutella – 28 cm Durchmesser.",
     "price": 4.5,
     "category": "Desserts",
@@ -216,7 +216,7 @@
     "zusatzstoffe": ["1"]
   },
   {
-    "name": "Schokoladenkuchen *",
+    "name": "Schokoladenkuchen*",
     "description": "Warmer Schokoladenkuchen mit reichhaltigem Geschmack.",
     "price": 4.5,
     "category": "Desserts",
@@ -224,7 +224,7 @@
     "zusatzstoffe": ["3"]
   },
   {
-    "name": "Portion Vanillesosse *",
+    "name": "Portion Vanillesosse*",
     "description": "Kleine Portion Vanillesauce zu Desserts.",
     "price": 1.5,
     "category": "Desserts",
@@ -232,7 +232,7 @@
     "zusatzstoffe": []
   },
   {
-    "name": "rote Grütze *",
+    "name": "rote Grütze*",
     "description": "Hausgemachte rote Grütze.",
     "price": 4.5,
     "category": "Desserts",
@@ -240,7 +240,7 @@
     "zusatzstoffe": []
   },
   {
-    "name": "warmer Apfelstrudel mit Vanillesosse *",
+    "name": "warmer Apfelstrudel mit Vanillesosse*",
     "description": "Warmer Apfelstrudel mit Apfelstücken, Rosinen & Vanillesauce.",
     "price": 6.0,
     "category": "Desserts",
