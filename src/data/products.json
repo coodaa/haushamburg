@@ -220,7 +220,7 @@
     "description": "Warmer Schokoladenkuchen mit reichhaltigem Geschmack.",
     "price": 4.5,
     "category": "Desserts",
-    "image": "https://www.haus-hamburg-leer.de/images/food/haus-hamburg-leer-30.webp",
+    "image": "https://www.haus-hamburg-leer.de/images/food/haus_hamburg_leer_schokokuchen.webp",
     "zusatzstoffe": ["3"]
   },
   {
@@ -244,7 +244,7 @@
     "description": "Warmer Apfelstrudel mit Apfelstücken, Rosinen & Vanillesauce.",
     "price": 6.0,
     "category": "Desserts",
-    "image": "https://www.haus-hamburg-leer.de/images/food/haus-hamburg-leer-30.webp",
+    "image": "https://www.haus-hamburg-leer.de/images/food/haus_hamburg_leer_apfelstrudel.webp",
     "zusatzstoffe": []
   },
   {
