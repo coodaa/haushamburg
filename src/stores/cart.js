@@ -2,7 +2,8 @@ import { defineStore } from 'pinia';
 
 export const useCartStore = defineStore('cart', {
   state: () => ({
-    items: []  // Jeder Eintrag: { product, quantity }
+    items: [],  // Jeder Eintrag: { product, quantity }
+    overlayVisible: false  // Neuer Zustand für das Overlay
   }),
   actions: {
     addItemWithQuantity(product, quantity) {
@@ -12,6 +13,8 @@ export const useCartStore = defineStore('cart', {
       } else {
         this.items.push({ product, quantity });
       }
+      // Overlay anzeigen, wenn etwas hinzugefügt wird:
+      this.overlayVisible = true;
     },
     removeItem(product) {
       this.items = this.items.filter(i => i.product.name !== product.name);
@@ -24,6 +27,9 @@ export const useCartStore = defineStore('cart', {
     },
     clearCart() {
       this.items = [];
+    },
+    closeOverlay() {
+      this.overlayVisible = false;
     }
   },
   getters: {
@@ -32,5 +38,5 @@ export const useCartStore = defineStore('cart', {
     totalItems: (state) =>
       state.items.reduce((sum, item) => sum + item.quantity, 0)
   },
-  persist: true  // Hier wird festgelegt, dass der Store im Local Storage gespeichert wird
+  persist: true
 });

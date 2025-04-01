@@ -157,19 +157,17 @@ Bestellungen  </tspan>
     </template>
 
     <div class="zusatzstoff-hinweis">
-  <h2>Wichtige Hinweise</h2>
-  <p>
-    Unsere Gerichte enthalten verschiedene Zusatzstoffe:
-    <br />1 = Farbstoff, 2 = Konservierungsstoff, 3 = Geschmacksverstärker, 4 = Säuerungsmittel,
-    <br />5 = Süßungsmittel, 6 = Alkohol, 7 = Milch / Laktose
-  </p>
-  <hr />
-  <p class="ki-hinweis" style="margin-top: 1em;">
-    * Bitte beachten Sie: Die dargestellten Bilder wurden teilweise mithilfe einer KI erstellt. Die Abbildungen dienen lediglich
-    als Annäherung und können vom tatsächlichen Produkt abweichen.
-  </p>
-
-</div>
+      <h2>Wichtige Hinweise</h2>
+      <p>
+        Unsere Gerichte enthalten verschiedene Zusatzstoffe:
+        <br />1 = Farbstoff, 2 = Konservierungsstoff, 3 = Geschmacksverstärker, 4 = Säuerungsmittel,
+        <br />5 = Süßungsmittel, 6 = Alkohol, 7 = Milch / Laktose, 8 = Gluten, 9 = Senf, 10 = Krustentiere
+      </p>
+      <hr />
+      <p class="ki-hinweis" style="margin-top: 1em;">
+        * Bitte beachten Sie: Die dargestellten Bilder wurden teilweise mithilfe einer KI erstellt.
+      </p>
+    </div>
   </BasePage>
 </template>
 
@@ -182,14 +180,14 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import BasePage from "@/components/BasePage.vue";
 import staticProducts from "@/data/products.json";
-import CartOverlay from "@/components/CartOverlay.vue";
 import { useCartStore } from "@/stores/cart";
 
 export default {
-  components: { BasePage, Swiper, SwiperSlide, CartOverlay },
+  components: { BasePage, Swiper, SwiperSlide },
   setup() {
     const cartStore = useCartStore();
     const products = ref(staticProducts);
+
     const selectedCategory = ref("");
     const categoryRefs = {};
     const categoryTabsContainer = ref(null);
@@ -227,12 +225,12 @@ export default {
     };
     const getQuantity = (product) => quantities.value[product.name] || 1;
 
+  
+
     const addToCart = (product) => {
       cartStore.addItemWithQuantity(product, getQuantity(product));
-      cartVisible.value = true;
-      setTimeout(() => {
-        cartVisible.value = false;
-      }, 3000);
+      // Globales Event auslösen
+      window.dispatchEvent(new CustomEvent('cart-item-added'));
     };
 
     const formatPrice = (val) => val.toFixed(2).replace(".", ",") + " €";
@@ -321,7 +319,7 @@ export default {
       products.value.filter(p =>
         [
           "Kibbelinge",
-          "Ras Fritten",
+          "Ras-Fritten",
           "Rahmschnitzel",
           "Fischbrötchen",
           "Schokoladenkuchen",

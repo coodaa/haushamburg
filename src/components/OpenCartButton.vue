@@ -1,15 +1,15 @@
 <template>
   <div>
-    <button class="open-cart-btn" @click="showCart = true">
+    <button class="open-cart-btn" @click="toggleCart">
       <i class="fas fa-shopping-cart fa-3x"></i>
       <span v-if="itemsCount > 0" class="cart-badge">{{ itemsCount }}</span>
     </button>
-    <CartOverlay :visible="showCart" @close="showCart = false" />
+    <CartOverlay :visible="cartVisible" @close="cartVisible = false" />
   </div>
 </template>
 
 <script>
-import { ref, computed } from "vue";
+import { ref, computed, onMounted, onUnmounted } from "vue";
 import { useCartStore } from "@/stores/cart";
 import CartOverlay from "@/components/CartOverlay.vue";
 
@@ -17,12 +17,32 @@ export default {
   name: "OpenCartButton",
   components: { CartOverlay },
   setup() {
-    const showCart = ref(false);
     const cartStore = useCartStore();
+    const cartVisible = ref(false);
+
     const itemsCount = computed(() =>
       cartStore.items.reduce((acc, item) => acc + item.quantity, 0)
     );
-    return { showCart, itemsCount };
+
+    const toggleCart = () => {
+      cartVisible.value = !cartVisible.value;
+    };
+
+    onMounted(() => {
+      window.addEventListener('cart-item-added', () => {
+        cartVisible.value = true;
+      });
+    });
+
+    onUnmounted(() => {
+      window.removeEventListener('cart-item-added');
+    });
+
+    return {
+      itemsCount,
+      cartVisible,
+      toggleCart
+    };
   }
 };
 </script>
@@ -42,12 +62,14 @@ export default {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  z-index: 100;
+  z-index: 1500;
   font-size: 0.7em;
 }
+
 .open-cart-btn i {
   font-size: 3rem !important;
 }
+
 .cart-badge {
   position: absolute;
   top: -0.3rem;
@@ -61,11 +83,5 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-@media (min-width: 1200px) {
-  .open-cart-btn {
-    right: 2rem;
-  }
 }
 </style>

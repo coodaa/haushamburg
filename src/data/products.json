@@ -1,11 +1,11 @@
 [
   {
     "name": "Rahmschnitzel*",
-    "description": "Knuspriges Schnitzel in Rahmsoße, mit Ras Fritten und Salat.",
+    "description": "Knuspriges Schnitzel in Rahmsoße, mit Ras-Fritten und Salat.",
     "price": 17.5,
     "category": "Fleisch",
     "image": "https://www.haus-hamburg-leer.de/images/food/haus_hamburg_leer_rahmschnitzel.webp",
-    "zusatzstoffe": ["1", "7"]
+    "zusatzstoffe": ["3", "7"]  
   },
   {
     "name": "Grünkohl mit Kohlwürsten*",
@@ -24,12 +24,12 @@
     "zusatzstoffe": []
   },
   {
-    "name": "Schweineschnitzel - Wiener Art*",
-    "description": "Paniertes Schweineschnitzel nach Wiener Art mit Ras Fritten und Salat.",
+    "name": "Schweineschnitzel Wiener Art*",
+    "description": "Paniertes Schweineschnitzel nach Wiener Art mit Ras-Fritten und Salat.",
     "price": 17.5,
     "category": "Fleisch",
     "image": "https://www.haus-hamburg-leer.de/images/food/haus_hamburg_leer_schweineschnitzel.webp",
-    "zusatzstoffe": ["3"]
+    "zusatzstoffe": ["3", "8"]
   },
   {
     "name": "Snirtjebraten*",
@@ -37,7 +37,7 @@
     "price": 21.3,
     "category": "Fleisch",
     "image": "https://www.haus-hamburg-leer.de/images/food/haus_hamburg_leer_snirtjebraten.webp",
-    "zusatzstoffe": []
+    "zusatzstoffe": ["1", "2"]
   },
   {
     "name": "Schaschlikpfanne*",
@@ -45,15 +45,15 @@
     "price": 15.0,
     "category": "Fleisch",
     "image": "https://www.haus-hamburg-leer.de/images/food/haus_hamburg_leer_schaschlikpfanne.webp",
-    "zusatzstoffe": ["1"]
+    "zusatzstoffe": ["1", "3", "8"]
   },
   {
-    "name": "kleiner Salat mit Hähnchenbruststreifen*",
+    "name": "Kleiner Salat mit Hähnchenbruststreifen*",
     "description": "Gemischter Salat mit Hähnchenstreifen und Honig-Senf-Dressing.",
     "price": 6.5,
     "category": "Fleisch",
     "image": "https://www.haus-hamburg-leer.de/images/food/haus_hamburg_leer_salat-mit-hähnchen.webp",
-    "zusatzstoffe": []
+    "zusatzstoffe": ["5", "9"]
   },
   {
     "name": "Fischplatte*",
@@ -61,10 +61,10 @@
     "price": 25.5,
     "category": "Fisch",
     "image": "https://www.haus-hamburg-leer.de/images/food/haus_hamburg_leer_fischplatte.webp",
-    "zusatzstoffe": ["2", "4"]
+    "zusatzstoffe": ["2", "4", "10"]
   },
   {
-    "name": "Nordsee Scholle (filetiert)*",
+    "name": "Nordsee-Scholle (filetiert)*",
     "description": "Filetierte Nordsee-Scholle mit Bratkartoffeln und Salat.",
     "price": 22.5,
     "category": "Fisch",
@@ -72,20 +72,20 @@
     "zusatzstoffe": []
   },
   {
-    "name": "Nordsee Scholle & Ras Fritten*",
-    "description": "Filetierte Scholle mit Ras Fritten und Salat.",
+    "name": "Nordsee-Scholle & Ras-Fritten*",
+    "description": "Filetierte Scholle mit Ras-Fritten und Salat.",
     "price": 23.5,
     "category": "Fisch",
     "image": "https://www.haus-hamburg-leer.de/images/food/haus_hamburg_leer_nordseescholle-ras-fritten.webp",
-    "zusatzstoffe": ["1"]
+    "zusatzstoffe": ["1", "8"]
   },
   {
-    "name": "Nordsee Scholle mit Krabben*",
+    "name": "Nordsee-Scholle mit Krabben*",
     "description": "Scholle mit Krabben, Bratkartoffeln und Salat.",
     "price": 26.5,
     "category": "Fisch",
     "image": "https://www.haus-hamburg-leer.de/images/food/haus_hamburg_leer_scholle-mit-krabben.webp",
-    "zusatzstoffe": ["1"]
+    "zusatzstoffe": ["10"]
   },
   {
     "name": "Matjesfilets*",
@@ -101,7 +101,7 @@
     "price": 6.0,
     "category": "Fisch",
     "image": "https://www.haus-hamburg-leer.de/images/food/haus_hamburg_leer_kibbelinge.webp",
-    "zusatzstoffe": ["1", "3"]
+    "zusatzstoffe": ["1", "3", "8"]
   },
   {
     "name": "Fischbrötchen mit Backfisch",
@@ -109,11 +109,11 @@
     "price": 5.0,
     "category": "Fisch",
     "image": "https://www.haus-hamburg-leer.de/images/food/haus_hamburg_leer_backfisch.webp",
-    "zusatzstoffe": ["1", "5"]
+    "zusatzstoffe": ["1", "5", "8"]
   },
   {
     "name": "Scholle mit Ofenkartoffel*",
-    "description": "Nordseeschollenfilet mit Ofenkartoffel und Salat.",
+    "description": "Nordsee-Schollenfilet mit Ofenkartoffel und Salat.",
     "price": 23.5,
     "category": "Fisch",
     "image": "https://www.haus-hamburg-leer.de/images/food/haus_hamburg_leer_scholle-ofenkartoffel.webp",
@@ -125,23 +125,23 @@
     "price": 19.5,
     "category": "Fisch",
     "image": "https://www.haus-hamburg-leer.de/images/food/haus_hamburg_leer_ofenkartoffel-greetsieler-krabben.webp",
-    "zusatzstoffe": ["2"]
+    "zusatzstoffe": ["2", "7", "10"]
   },
   {
     "name": "Vorspeise Haus Hamburg deluxe*",
-    "description": "Deluxe-Vorspeise: Matjes, Aalrauchmatjes, Bismarckhering, Brathering, Kutterkrabben & Räucherlachs.",
+    "description": "Deluxe-Vorspeise: Matjes, Aalrauchmatjes, Bismarckhering, Brathering, Kutterkrabben und Räucherlachs.",
     "price": 14.8,
     "category": "Fisch",
     "image": "https://www.haus-hamburg-leer.de/images/food/haus_hamburg_leer_vorspeise-haus-hamburg.webp",
-    "zusatzstoffe": ["1", "2"]
+    "zusatzstoffe": ["1", "2", "10"]
   },
   {
-    "name": "Ras Fritten",
+    "name": "Ras-Fritten",
     "description": "Knusprige Fritten aus feinem Kartoffelbrei.",
     "price": 3.0,
     "category": "Vegetarisch",
     "image": "https://www.haus-hamburg-leer.de/images/food/haus_hamburg_leer_ras-fritten.webp",
-    "zusatzstoffe": ["1", "2", "3"]
+    "zusatzstoffe": ["1", "3", "8"]
   },
   {
     "name": "Ofenkartoffel mit Kartoffelcreme*",
@@ -149,7 +149,7 @@
     "price": 9.5,
     "category": "Vegetarisch",
     "image": "https://www.haus-hamburg-leer.de/images/food/haus_hamburg_leer_ofenkartoffel-kartoffelcreme.webp",
-    "zusatzstoffe": []
+    "zusatzstoffe": ["7"]
   },
   {
     "name": "Ofenkartoffel mit Räucherlachs*",
@@ -157,7 +157,7 @@
     "price": 15.5,
     "category": "Fisch",
     "image": "https://www.haus-hamburg-leer.de/images/food/haus_hamburg_leer_ofenkartoffel-lachs.webp",
-    "zusatzstoffe": ["2"]
+    "zusatzstoffe": ["2", "7"]
   },
   {
     "name": "Portion Mayonnaise",
@@ -165,7 +165,7 @@
     "price": 0.5,
     "category": "Dips",
     "image": "https://www.haus-hamburg-leer.de/images/food/haus_hamburg_leer_mayonnaise.webp",
-    "zusatzstoffe": ["2"]
+    "zusatzstoffe": ["2", "9"]
   },
   {
     "name": "Portion Remoulade",
@@ -173,7 +173,7 @@
     "price": 0.5,
     "category": "Dips",
     "image": "https://www.haus-hamburg-leer.de/images/food/haus_hamburg_leer_remoulade.webp",
-    "zusatzstoffe": []
+    "zusatzstoffe": ["2", "9", "10"]
   },
   {
     "name": "Portion Ketchup",
@@ -181,23 +181,23 @@
     "price": 0.5,
     "category": "Dips",
     "image": "https://www.haus-hamburg-leer.de/images/food/haus_hamburg_leer_ketchup.webp",
-    "zusatzstoffe": ["3"]
+    "zusatzstoffe": ["3", "5"]
   },
   {
-    "name": "Portion Knoblauchsauce",
-    "description": "Kleine Portion würziger Knoblauchsauce.",
+    "name": "Portion Knoblauchsoße",
+    "description": "Kleine Portion würziger Knoblauchsoße.",
     "price": 0.5,
     "category": "Dips",
     "image": "https://www.haus-hamburg-leer.de/images/food/haus_hamburg_leer_knoblauchsoße.webp",
-    "zusatzstoffe": ["1"]
+    "zusatzstoffe": ["1", "7"]
   },
   {
-    "name": "kleiner gemischter Beilagensalat*",
-    "description": "Beilagensalat aus Blattsalaten, Radieschen & roter Bete mit Honig-Senf-Dressing.",
+    "name": "Kleiner gemischter Beilagensalat*",
+    "description": "Beilagensalat aus Blattsalaten, Radieschen und roter Bete mit Honig-Senf-Dressing.",
     "price": 3.5,
     "category": "Vegetarisch",
     "image": "https://www.haus-hamburg-leer.de/images/food/haus_hamburg_leer_kleiner-salat.webp",
-    "zusatzstoffe": []
+    "zusatzstoffe": ["5", "9"]
   },
   {
     "name": "Pfannkuchen mit Apfelmus*",
@@ -205,7 +205,7 @@
     "price": 4.5,
     "category": "Desserts",
     "image": "https://www.haus-hamburg-leer.de/images/food/haus_hamburg_leer_pfannkuchen-apfelmus.webp",
-    "zusatzstoffe": ["1"]
+    "zusatzstoffe": ["1", "8"]
   },
   {
     "name": "Pfannkuchen mit Nutella*",
@@ -213,7 +213,7 @@
     "price": 4.5,
     "category": "Desserts",
     "image": "https://www.haus-hamburg-leer.de/images/food/haus_hamburg_leer_pfannkuchen-nutella.webp",
-    "zusatzstoffe": ["1"]
+    "zusatzstoffe": ["1", "5", "8"]
   },
   {
     "name": "Schokoladenkuchen*",
@@ -221,59 +221,59 @@
     "price": 4.5,
     "category": "Desserts",
     "image": "https://www.haus-hamburg-leer.de/images/food/haus_hamburg_leer_schokokuchen.webp",
-    "zusatzstoffe": ["3"]
+    "zusatzstoffe": ["3", "7", "8"]
   },
   {
-    "name": "Portion Vanillesosse*",
-    "description": "Kleine Portion Vanillesauce zu Desserts.",
+    "name": "Portion Vanillesoße*",
+    "description": "Kleine Portion Vanillesoße zu Desserts.",
     "price": 1.5,
     "category": "Desserts",
     "image": "https://www.haus-hamburg-leer.de/images/food/haus_hamburg_leer_vanillesoße.webp",
-    "zusatzstoffe": []
+    "zusatzstoffe": ["5", "7"]
   },
   {
-    "name": "rote Grütze*",
+    "name": "Rote Grütze*",
     "description": "Hausgemachte rote Grütze.",
     "price": 4.5,
     "category": "Desserts",
     "image": "https://www.haus-hamburg-leer.de/images/food/haus_hamburg_leer_rote-grütze.webp",
-    "zusatzstoffe": []
+    "zusatzstoffe": ["5"]
   },
   {
-    "name": "warmer Apfelstrudel mit Vanillesosse*",
-    "description": "Warmer Apfelstrudel mit Apfelstücken, Rosinen & Vanillesauce.",
+    "name": "Warmer Apfelstrudel mit Vanillesoße*",
+    "description": "Warmer Apfelstrudel mit Apfelstücken, Rosinen und Vanillesoße.",
     "price": 6.0,
     "category": "Desserts",
     "image": "https://www.haus-hamburg-leer.de/images/food/haus_hamburg_leer_apfelstrudel.webp",
-    "zusatzstoffe": []
+    "zusatzstoffe": ["5", "7", "8"]
   },
   {
-    "name": "Coca‑Cola",
-    "description": "Coca‑Cola (0,5l)",
+    "name": "Coca-Cola",
+    "description": "Coca-Cola (0,5 l)",
     "price": 3.0,
     "category": "Getränke",
     "image": "https://www.haus-hamburg-leer.de/images/food/haus_hamburg_leer_coca-cola.webp",
-    "zusatzstoffe": ["2"]
+    "zusatzstoffe": ["5"]
   },
   {
-    "name": "Coca‑Cola Zero Sugar",
-    "description": "Coca‑Cola Zero Sugar (0,5l)",
+    "name": "Coca-Cola Zero Sugar",
+    "description": "Coca-Cola Zero Sugar (0,5 l)",
     "price": 3.0,
     "category": "Getränke",
     "image": "https://www.haus-hamburg-leer.de/images/food/haus_hamburg_leer_coca-cola-zero.webp",
-    "zusatzstoffe": ["2"]
+    "zusatzstoffe": ["5"]
   },
   {
     "name": "Fanta",
-    "description": "Fanta Orangenlimonade (0,5l)",
+    "description": "Fanta Orangenlimonade (0,5 l)",
     "price": 3.0,
     "category": "Getränke",
     "image": "https://www.haus-hamburg-leer.de/images/food/haus_hamburg_leer_fanta.webp",
-    "zusatzstoffe": ["1"]
+    "zusatzstoffe": ["1", "5"]
   },
   {
     "name": "Apfelschorle Vilsa",
-    "description": "Apfelschorle (0,5l)",
+    "description": "Apfelschorle (0,5 l)",
     "price": 3.0,
     "category": "Getränke",
     "image": "https://www.haus-hamburg-leer.de/images/food/haus_hamburg_leer_apfelschorle-vilsa.webp",
@@ -281,7 +281,7 @@
   },
   {
     "name": "Traubenschorle",
-    "description": "Traubenschorle (0,33l)",
+    "description": "Traubenschorle (0,33 l)",
     "price": 3.2,
     "category": "Getränke",
     "image": "https://www.haus-hamburg-leer.de/images/food/haus_hamburg_leer_traubenschorle-fritz.webp",
@@ -289,23 +289,23 @@
   },
   {
     "name": "Mezzo Mix",
-    "description": "Mezzo Mix (0,5l)",
+    "description": "Mezzo Mix (0,5 l)",
     "price": 3.0,
     "category": "Getränke",
     "image": "https://www.haus-hamburg-leer.de/images/food/haus_hamburg_leer_mezzomix.webp",
-    "zusatzstoffe": ["1"]
+    "zusatzstoffe": ["1", "5"]
   },
   {
     "name": "Jever Pils",
-    "description": "Jever Pils (0,33l, 4,9% Vol.)",
+    "description": "Jever Pils (0,33 l, 4,9 % Vol.)",
     "price": 3.0,
     "category": "Getränke",
     "image": "https://www.haus-hamburg-leer.de/images/food/haus_hamburg_leer_jever.webp",
-    "zusatzstoffe": ["2"]
+    "zusatzstoffe": ["2", "6", "8"]
   },
   {
     "name": "Hauswein",
-    "description": "Unser Haus Hamburg Hauswein (0,75l, 12,5% Vol.) – trocken.",
+    "description": "Unser Haus Hamburg Hauswein (0,75 l, 12,5 % Vol.) – trocken.",
     "price": 14.99,
     "category": "Getränke",
     "image": "https://www.haus-hamburg-leer.de/images/food/haus-hamburg-leer-21.webp",

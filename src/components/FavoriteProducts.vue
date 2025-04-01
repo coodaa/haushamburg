@@ -29,7 +29,9 @@
                 Zusatzstoffe: {{ product.zusatzstoffe.join(", ") }}
               </p>
               <p v-else style="visibility: hidden;">Zusatzstoffe:</p>
-              <p class="fp-price"><strong>{{ formatPrice(product.price) }}</strong></p>
+              <p class="fp-price">
+                <strong>{{ formatPrice(product.price) }}</strong>
+              </p>
               <button class="cta-button" @click="handleAddToCart(product)">
                 <i class="fas fa-shopping-cart"></i> Warenkorb
               </button>
@@ -215,20 +217,14 @@ export default defineComponent({
   font-size: 1.3em;
 }
 
-
 ::v-deep .swiper-button-prev,
 ::v-deep .swiper-button-next {
   display: none !important;
 }
 
-
-
 @media (min-width: 1200px) {
   .fp-swiper-section {
-  max-width: 85vw;
-
+    max-width: 85vw;
+  }
 }
-}
-
-
 </style>

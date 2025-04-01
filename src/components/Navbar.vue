@@ -51,7 +51,7 @@
             <li>
               <router-link to="/shop">
                 <button class="cta-button" aria-label="Shop" title="Shop">
-                  <i class="fas fa-shopping-cart"></i>
+                  <i class="fas fa-fish"></i>
                   <span class="cta-text">bestellen</span>
                 </button>
               </router-link>
