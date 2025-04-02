@@ -1,6 +1,6 @@
 <template>
   <BasePage
-    imageSrc="/images/history/haus-hamburg-leer-onkes2.webp"
+    imageSrc="/images/history/haus-hamburg-leer_checkout.jpg"
     imageAlt="Checkout"
     titleAbove="Checkout"
     titleMain="Bezahlen"
@@ -111,7 +111,7 @@
               </select>
             </div>
             <div class="input-group">
-              <label for="phone">Telefonnummer <span class="required">*</span></label>
+              <label for="phone">Telefon <span class="required">*</span></label>
               <input id="phone" v-model="address.phone" type="tel" required pattern="^\d+$" inputmode="numeric" title="Bitte nur Zahlen eingeben" :class="{ 'input-error': errors.phone }" />
             </div>
           </div>
@@ -281,9 +281,10 @@ export default {
       }
       const end = new Date(dateObj);
       end.setHours(closeHour, closeMinute, 0, 0);
-      for (let time = start.getTime(); time + 15 * 60 * 1000 <= end.getTime(); time += 15 * 60 * 1000) {
+      // Schleife in 30-Minuten-Schritten
+      for (let time = start.getTime(); time + 30 * 60 * 1000 <= end.getTime(); time += 30 * 60 * 1000) {
         const slotStart = new Date(time);
-        const slotEnd = new Date(time + 15 * 60 * 1000);
+        const slotEnd = new Date(time + 30 * 60 * 1000);
         const slotLabel =
           slotStart.toLocaleTimeString("de-DE", { hour: "2-digit", minute: "2-digit" }) +
           " - " +
@@ -549,7 +550,7 @@ export default {
   font-size: 0.9rem;
 }
 .total-container.final {
-  font-size: 1.8rem;
+  font-size: 1.2rem;
   font-weight: bold;
 }
 .total-label {
@@ -656,6 +657,22 @@ export default {
   outline: none;
   border-color: #004a7f;
   box-shadow: 0 0 5px rgba(3,48,93,0.3);
+}
+
+/* Einheitliches Styling für das Select-Element (auch mobile Version) */
+select#country {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  /* Optional: Eigener Hintergrundpfeil */
+  background-image: url('/images/arrow-down.svg');
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
 }
 
 /* Fehler-Stil */

@@ -62,7 +62,7 @@ export default {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  z-index: 1500;
+  z-index: 100;
   font-size: 0.7em;
 }
 

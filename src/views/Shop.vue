@@ -6,7 +6,7 @@
     titleMain="Online Shop"
     subtitle="Bestell dien Lievlingsgerichten bekwäm online."
     heading="Willkommen in unserem Online-Shop"
-flowText="Entdecken Sie unseren komfortablen Online-Bestellservice: Frisch zubereitete, leckere und ausgewogene Gerichte – bequem online bestellen, schnell geliefert und 10% Rabatt beim Checkout erhalten"
+    flowText="Entdecken Sie unseren komfortablen Online-Bestellservice: Frisch zubereitete, leckere und ausgewogene Gerichte – bequem online bestellen, schnell geliefert und 10% Rabatt beim Checkout erhalten"
     parallaxImageSrc="/images/food/haus-hamburg-leer-18.webp"
   >
     <!-- Favoriten: Swiper für beliebte Produkte -->
@@ -37,8 +37,7 @@ flowText="Entdecken Sie unseren komfortablen Online-Bestellservice: Frisch zuber
                 Zusatzstoffe: {{ product.zusatzstoffe.join(", ") }}
               </p>
               <p v-else style="visibility: hidden;">Zusatzstoffe:</p>
-                <p class="price"><strong>{{ formatPrice(product.price) }}</strong></p>
-
+              <p class="price"><strong>{{ formatPrice(product.price) }}</strong></p>
               <button class="cta-button" @click="addToCart(product)">
                 <i class="fas fa-shopping-cart"></i>Warenkorb
               </button>
@@ -92,7 +91,7 @@ flowText="Entdecken Sie unseren komfortablen Online-Bestellservice: Frisch zuber
               Zusatzstoffe: {{ product.zusatzstoffe.join(", ") }}
             </p>
             <p v-else style="visibility: hidden;">Zusatzstoffe:</p>
-              <p class="price"><strong>{{ formatPrice(product.price) }}</strong></p>
+            <p class="price"><strong>{{ formatPrice(product.price) }}</strong></p>
             <button class="cta-button" @click="addToCart(product)">
               <i class="fas fa-shopping-cart"></i> In den Warenkorb
             </button>
@@ -101,9 +100,8 @@ flowText="Entdecken Sie unseren komfortablen Online-Bestellservice: Frisch zuber
       </div>
     </div>
 
-    <!-- Overlay Slot: Discount Sticker, Warenkorb-Button und Overlay -->
+    <!-- Overlay Slot: Nur der Discount-Sticker -->
     <template #overlay>
-      <!-- Discount Sticker: Nur anzeigen, wenn kein Kategorie-Menü sichtbar -->
       <div v-if="!pinnedVisible"
            class="shop-sticker-container"
            :style="{ transform: 'translateY(' + discountStickerOffset + 'px)', opacity: discountStickerOpacity }">
@@ -122,38 +120,29 @@ flowText="Entdecken Sie unseren komfortablen Online-Bestellservice: Frisch zuber
             />
           </g>
           <!-- Text in einer separaten Gruppe, rotiert und mit zusätzlichem Versatz für mehr Rand -->
-
-            <g transform="rotate(-10,12,120) translate(4,10)">
-
-              <text
-  x="50%"
-  y="40%"
-  text-anchor="middle"
-  dominant-baseline="middle"
-  font-family="Arial"
-  font-size="35"
-  font-weight="bold"
-  fill="#03305D"
->
-  <tspan x="50%" dy="0" font-size="60">10%</tspan>
-  <tspan x="50%" dy="1.2em">Rabatt</tspan>
-  <tspan x="50%" dy="1.5em" font-size="25" font-weight="normal">
-    auf alle online
-  </tspan>
-  <tspan x="50%" dy="1.2em" font-size="25" font-weight="normal">
-Bestellungen  </tspan>
-</text>
+          <g transform="rotate(-10,12,120) translate(4,10)">
+            <text
+              x="50%"
+              y="40%"
+              text-anchor="middle"
+              dominant-baseline="middle"
+              font-family="Arial"
+              font-size="35"
+              font-weight="bold"
+              fill="#03305D"
+            >
+              <tspan x="50%" dy="0" font-size="60">10%</tspan>
+              <tspan x="50%" dy="1.2em">Rabatt</tspan>
+              <tspan x="50%" dy="1.5em" font-size="25" font-weight="normal">
+                auf alle online
+              </tspan>
+              <tspan x="50%" dy="1.2em" font-size="25" font-weight="normal">
+                Bestellungen
+              </tspan>
+            </text>
           </g>
         </svg>
       </div>
-
-      <!-- Warenkorb-Button -->
-      <button class="open-cart-btn" @click="cartVisible = true">
-        <i class="fas fa-shopping-cart fa-3x"></i>
-        <span v-if="itemsCount > 0" class="cart-badge">{{ itemsCount }}</span>
-      </button>
-
-      <CartOverlay :visible="cartVisible" @close="cartVisible = false" />
     </template>
 
     <div class="zusatzstoff-hinweis">
@@ -224,8 +213,6 @@ export default {
       }
     };
     const getQuantity = (product) => quantities.value[product.name] || 1;
-
-  
 
     const addToCart = (product) => {
       cartStore.addItemWithQuantity(product, getQuantity(product));
@@ -314,7 +301,6 @@ export default {
     const slidesPerView = computed(() => (window.innerWidth < 768 ? 1.3 : 3));
     const categories = ["Fisch", "Fleisch", "Vegetarisch", "Dips", "Desserts", "Getränke"];
 
-
     const popularProducts = computed(() =>
       products.value.filter(p =>
         [
@@ -369,7 +355,7 @@ export default {
       getQuantity,
       cartVisible,
       itemsCount,
-      // Neue Variablen für den Sticker:
+      // Variablen für den Discount-Sticker:
       scrollY,
       discountStickerOffset,
       discountStickerOpacity,
@@ -395,17 +381,16 @@ export default {
   height: 100%;
 }
 
-
 @media (min-width: 1200px) {
   .shop-sticker-container {
-  position: fixed;
-  top: 14vh;
-  left: 6vw;
-  width: 20em;
-  height: 20em;
-  z-index: 2500;
-  transition: none !important;
-  animation: none !important;
+    position: fixed;
+    top: 14vh;
+    left: 6vw;
+    width: 20em;
+    height: 20em;
+    z-index: 2500;
+    transition: none !important;
+    animation: none !important;
   }
 }
 
@@ -467,8 +452,8 @@ export default {
     width: calc(100% - 4em);
   }
   .category-section {
-  scroll-margin-top: 13rem;
-}
+    scroll-margin-top: 13rem;
+  }
 }
 
 .category-tabs-wrapper {
@@ -527,9 +512,7 @@ export default {
   margin: 0 auto 30px;
   padding-top: 2em;
   overflow: visible;
-  position: relative; /* Falls noch nicht vorhanden */
-
-
+  position: relative;
 }
 .my-swiper {
   width: 100%;
@@ -547,12 +530,10 @@ export default {
   .product-grid {
     max-width: calc(100% - 2em);
   }
-
   .swiper-section {
     max-width: 85vw;
   }
 }
-
 
 .product-card {
   overflow: visible;
@@ -561,7 +542,7 @@ export default {
   justify-content: space-between;
   background: white;
   border-radius: 20px;
-  padding: 1em 1em 1em 1em;
+  padding: 1em;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   min-height: 20em;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -584,14 +565,13 @@ export default {
 
 @media (min-width: 900px) {
   .image-container {
-   height: 15em;
+    height: 15em;
   }
-
   .product-info {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  margin-top: 23em;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-top: 23em;
   }
 }
 .image-container img {
@@ -604,8 +584,7 @@ export default {
   flex: 1;
   display: flex;
   flex-direction: column;
-  margin-top: .5em;
-
+  margin-top: 0.5em;
 }
 .product-info h3 {
   font-size: 1.2rem;
@@ -622,14 +601,13 @@ export default {
   min-height: 5em;
   max-height: 5em;
   overflow: hidden;
-  padding: 0em .5em;
+  padding: 0 0.5em;
 }
 .product-info .price {
   font-size: 1.3rem;
   font-weight: bold;
   color: var(--blue);
-  padding-bottom: .5em;
-
+  padding-bottom: 0.5em;
 }
 .zusatzstoffe {
   font-size: 0.7rem;
@@ -643,7 +621,7 @@ export default {
   align-items: center;
   width: 100%;
   margin-top: 0.5em;
-  padding: 0em 1em 1em 1.3em;
+  padding: 0 1.3em 1em 1.3em;
 }
 
 @media (min-width: 1200px) {
@@ -651,8 +629,7 @@ export default {
     padding: 1em 4em 2em 4em;
   }
   .product-info h3 {
-
-  min-height: 3em;
+    min-height: 3em;
   }
 }
 
@@ -681,7 +658,7 @@ export default {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  z-index: 1500;
+  z-index: 100;
   font-size: 0.7em;
 }
 .open-cart-btn i {
@@ -743,9 +720,6 @@ export default {
   font-size: 0.9rem;
   line-height: 1.4;
   color: #666;
-  white-space: pre-line; /* Damit Umbrüche in HTML wirken */
+  white-space: pre-line;
 }
-
-
-
 </style>

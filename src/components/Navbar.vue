@@ -433,7 +433,7 @@ export default {
     align-items: center;
     justify-content: flex-end;
     text-align: right;
-    gap: 1em;
+    gap: 2em;
   }
   .nav-links {
     flex-direction: row;
@@ -482,6 +482,12 @@ export default {
 
 /* Reservieren-Link: Auf Mobilgeräten ausblenden */
 @media (max-width: 767px) {
+  .reservierung-link {
+    display: none !important;
+  }
+}
+
+@media (max-width: 1199px) {
   .reservierung-link {
     display: none !important;
   }

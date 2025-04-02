@@ -1,57 +1,63 @@
 <template>
-  <div class="cart-overlay" v-if="visible" :style="{ top: overlayTop }">
-    <div class="cart-overlay-content">
-      <header>
-        <h2>Warenkorb</h2>
-        <button class="close-btn" @click="$emit('close')">&times;</button>
-      </header>
-      <div class="order-summary">
-        <div v-if="cartItems.length === 0" class="empty-cart">
-          Dein Warenkorb ist leer.
-        </div>
-        <div v-else class="cart-items">
-          <div v-for="(item, index) in cartItems" :key="index" class="cart-item">
-            <img :src="item.product.image" :alt="item.product.name" />
-            <div class="item-details">
-              <h3 class="item-name" :title="item.product.name">
-                {{ item.product.name }}
-              </h3>
-              <div class="item-controls">
-                <div class="action-controls">
-                  <div class="quantity-control">
-                    <button @click="decreaseQty(item)">-</button>
-                    <span>{{ item.quantity }}</span>
-                    <button @click="increaseQty(item)">+</button>
+  <!-- Vollflächiger Wrapper, der Klicks außerhalb des Warenkorbs erkennt -->
+  <div class="cart-overlay-wrapper" v-if="visible" @click="handleOverlayClick">
+    <!-- Warenkorb-Bereich, Klicks hier sollen nicht weitergereicht werden -->
+    <div class="cart-overlay" :style="{ top: overlayTop }" @click.stop>
+      <div class="cart-overlay-content">
+        <header>
+          <h2>Warenkorb</h2>
+          <button class="close-btn" @click="$emit('close')">&times;</button>
+        </header>
+        <!-- Scrollbarer Bereich für die Bestellübersicht -->
+        <div class="order-summary">
+          <div v-if="cartItems.length === 0" class="empty-cart">
+            Dein Warenkorb ist leer.
+          </div>
+          <div v-else class="cart-items">
+            <div v-for="(item, index) in cartItems" :key="index" class="cart-item">
+              <img :src="item.product.image" :alt="item.product.name" />
+              <div class="item-details">
+                <h3 class="item-name" :title="item.product.name">
+                  {{ item.product.name }}
+                </h3>
+                <div class="item-controls">
+                  <div class="action-controls">
+                    <div class="quantity-control">
+                      <button @click="decreaseQty(item)">-</button>
+                      <span>{{ item.quantity }}</span>
+                      <button @click="increaseQty(item)">+</button>
+                    </div>
+                    <button class="remove-btn" @click="removeItem(item)">
+                      <i class="fas fa-trash"></i>
+                    </button>
                   </div>
-                  <button class="remove-btn" @click="removeItem(item)">
-                    <i class="fas fa-trash"></i>
-                  </button>
+                  <p class="item-total">
+                    {{ formatPrice(item.product.price * item.quantity) }}
+                  </p>
                 </div>
-                <p class="item-total">
-                  {{ formatPrice(item.product.price * item.quantity) }}
-                </p>
               </div>
             </div>
           </div>
         </div>
+        <!-- Footer-Bereich fixiert am unteren Rand -->
+        <footer v-if="cartItems.length > 0">
+          <div class="summary">
+            <div class="summary-item">
+              <span>Gesamt:</span>
+              <span>{{ formatPrice(totalPrice) }}</span>
+            </div>
+            <div class="summary-item">
+              <span>Rabatt (10%):</span>
+              <span>- {{ formatPrice(discountValue) }}</span>
+            </div>
+            <div class="summary-item total-final">
+              <span>Zu zahlen:</span>
+              <span>{{ formatPrice(discountedTotalPrice) }}</span>
+            </div>
+          </div>
+          <button class="checkout-btn" @click="checkout">Zur Kasse</button>
+        </footer>
       </div>
-      <footer v-if="cartItems.length > 0">
-        <div class="summary">
-          <div class="summary-item">
-            <span>Gesamt:</span>
-            <span>{{ formatPrice(totalPrice) }}</span>
-          </div>
-          <div class="summary-item">
-            <span>Rabatt (10%):</span>
-            <span>- {{ formatPrice(discountValue) }}</span>
-          </div>
-          <div class="summary-item total-final">
-            <span>Zu zahlen:</span>
-            <span>{{ formatPrice(discountedTotalPrice) }}</span>
-          </div>
-        </div>
-        <button class="checkout-btn" @click="checkout">Zur Kasse</button>
-      </footer>
     </div>
   </div>
 </template>
@@ -69,7 +75,7 @@ export default {
       default: false,
     },
   },
-  setup() {
+  setup(props, { emit }) {
     const cartStore = useCartStore();
     const router = useRouter();
 
@@ -102,8 +108,15 @@ export default {
     const formatPrice = (val) =>
       val.toFixed(2).replace(".", ",") + " €";
 
+    // Schließt das Overlay und navigiert zur Checkout-Seite
     const checkout = () => {
+      emit("close"); // Overlay ausblenden
       router.push("/checkout");
+    };
+
+    // Handler, der das Overlay schließt, wenn außerhalb geklickt wird
+    const handleOverlayClick = () => {
+      emit("close");
     };
 
     // Lokale Ref zum Einlesen der aktuellen Navbar-Höhe
@@ -113,7 +126,6 @@ export default {
         .trim() || "70px"
     );
 
-    // Funktion, um den aktuellen Wert der CSS-Variable zu lesen
     const updateLocalNavbarHeight = () => {
       navbarHeight.value =
         getComputedStyle(document.documentElement)
@@ -121,7 +133,6 @@ export default {
           .trim() || "70px";
     };
 
-    // Aktualisiere bei Resize und Scroll (falls sich die Navbar-Höhe ändert)
     onMounted(() => {
       window.addEventListener("resize", updateLocalNavbarHeight);
       window.addEventListener("scroll", updateLocalNavbarHeight);
@@ -145,38 +156,54 @@ export default {
       formatPrice,
       checkout,
       overlayTop,
+      handleOverlayClick,
     };
   },
 };
 </script>
 
 <style scoped>
-.cart-overlay {
+/* Vollflächiger Wrapper, der den gesamten Viewport abdeckt */
+.cart-overlay-wrapper {
   position: fixed;
-  top: 5em !important;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 500;
+  /* Optional: Halbdurchsichtiger Hintergrund */
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* Warenkorb-Bereich (sichtbar rechts) */
+.cart-overlay {
+  position: absolute;
+  top: 0;
   right: 0;
   bottom: 0;
   width: 100%;
   max-width: 400px;
   background-color: #fff;
   box-shadow: -2px 0 5px rgba(0, 0, 0, 0.3);
-  z-index: 500;
-  overflow-y: auto;
+  overflow: hidden;
   transition: transform 0.3s ease;
 }
 
+/* Inhalt innerhalb des Warenkorb-Bereichs */
 .cart-overlay-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   padding: 1.5rem;
 }
 
-/* Restliche Styles bleiben unverändert */
-
+/* Header-Bereich */
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-top: 2em;
-  margin-bottom: 2em;
+  margin-bottom: 1em;
 }
 
 header h2 {
@@ -193,7 +220,10 @@ header h2 {
   color: #900;
 }
 
+/* Scrollbarer Bereich für Artikel */
 .order-summary {
+  flex: 1;
+  overflow-y: auto;
   background: var(--background);
   border-radius: 10px;
   padding: 1rem;
@@ -210,7 +240,7 @@ header h2 {
 .cart-items {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 0.5rem;
 }
 
 .cart-item {
@@ -277,7 +307,9 @@ header h2 {
 }
 
 .quantity-control span {
-  font-size: 1rem;
+  display: inline-block;
+  width: .9rem; /* oder einen anderen passenden Wert */
+  text-align: center;
 }
 
 .item-total {
@@ -296,6 +328,12 @@ header h2 {
 
 .remove-btn i {
   font-size: 1rem;
+}
+
+/* Footer-Bereich fixiert am unteren Rand */
+footer {
+  border-top: 1px solid #ddd;
+  padding-top: 1rem;
 }
 
 .summary {
@@ -318,11 +356,6 @@ header h2 {
   color: #004a7f;
 }
 
-footer {
-  border-top: 1px solid #ddd;
-  padding-top: 1rem;
-}
-
 .checkout-btn {
   background-color: var(--blue, #004a7f);
   color: #fff;
@@ -340,18 +373,14 @@ footer {
   color: var(--blue);
 }
 
-
+/* Anpassung bei größeren Bildschirmen */
 @media (min-width: 1200px) {
   .cart-overlay {
-  top: 7em !important;
-}
-
-
-/* Restliche Styles bleiben unverändert */
-
-header {
-  margin-top: 3em;
-  margin-bottom: 2em;
-}
+    top: 7em !important;
   }
+  header {
+    margin-top: 3em;
+    margin-bottom: 2em;
+  }
+}
 </style>

@@ -57,6 +57,7 @@ import { Pagination, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import { useCartStore } from "@/stores/cart";
 
 export default defineComponent({
   name: "FavoriteProducts",
@@ -73,16 +74,19 @@ export default defineComponent({
     formatPrice: {
       type: Function,
       required: true
-    },
-    addToCart: {
-      type: Function,
-      required: true
     }
   },
   setup(props) {
+    const cartStore = useCartStore();
+
+    // Diese Funktion fügt den Artikel mit einer Standardmenge (hier 1) in den Warenkorb.
     const handleAddToCart = (product) => {
-      props.addToCart(product);
+      cartStore.addItemWithQuantity(product, 1);
+      // Optional: Du kannst hier auch ein globales Event dispatchen,
+      // um z. B. ein Feedback (wie ein Toast) anzuzeigen:
+      window.dispatchEvent(new CustomEvent('cart-item-added'));
     };
+
     return { Pagination, Navigation, handleAddToCart };
   }
 });
