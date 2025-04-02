@@ -63,26 +63,24 @@
       <!-- Speisekarte-Sektion -->
       <section class="svg-section">
         <div class="scalloped-svg"></div>
-
-
       </section>
+
       <Favorites
-      :popularProducts="popularProducts"
-      :slidesPerView="slidesPerView"
-      :formatPrice="formatPrice"
-      :addToCart="addToCart"
-    />
+        :popularProducts="popularProducts"
+        :slidesPerView="slidesPerView"
+        :formatPrice="formatPrice"
+        :addToCart="addToCart"
+      />
 
       <!-- Kundenbewertungen -->
       <section class="review-section">
-              <Review />
-                </section>
+        <Review />
+      </section>
     </main>
   </div>
 </template>
 
 <script>
-import CustomSwiper from "../components/CustomSwiper.vue";
 import Review from "../components/Review.vue";
 import Favorites from "@/components/FavoriteProducts.vue";
 import staticProducts from "@/data/products.json";
@@ -90,7 +88,6 @@ import staticProducts from "@/data/products.json";
 export default {
   name: "Home",
   components: {
-    CustomSwiper,
     Review,
     Favorites
   },
@@ -106,13 +103,6 @@ export default {
       rotation: 0,
       rotationDirection: 1,
       isWobbling: false,
-      // Swiper-Auswahl für die Speisekarte
-      selection: [
-        { image: "/images/food/haus-hamburg-leer-18.webp", alt: "Fischbrötchen 1", link: "/speisekarte" },
-        { image: "/images/food/haus-hamburg-leer-30.webp", alt: "Fischbrötchen 2", link: "/speisekarte" },
-        { image: "/images/food/haus-hamburg-leer-37.webp", alt: "Fischbrötchen 3", link: "/speisekarte" },
-        { image: "/images/food/haus-hamburg-leer-28.webp", alt: "Fischbrötchen 4", link: "/speisekarte" }
-      ],
       // Anzahl Slides pro View, wird dynamisch angepasst
       slidesPerView: 1,
       wordInterval: null,
@@ -122,7 +112,7 @@ export default {
   },
   computed: {
     popularProducts() {
-      // Filtere hier beliebte Produkte, z.B. anhand des Namens
+      // Filtere hier beliebte Produkte anhand des Namens
       const popularNames = [
         "Kibbelinge",
         "Ras Fritten",
@@ -187,8 +177,8 @@ export default {
       return val.toFixed(2).replace(".", ",") + " €";
     },
     addToCart(product) {
-      // Hier kannst du deine Logik zum Warenkorb-Hinzufügen einbauen.
-      // Beispiel: Mit einem globalen Store (z.B. Vuex, Pinia) arbeiten.
+      // Hier kannst du die Logik zum Hinzufügen in den Warenkorb einbauen,
+      // z.B. über einen globalen Store (Vuex, Pinia) oder ein globales Event.
       console.log("Produkt in den Warenkorb gelegt:", product);
     }
   },
@@ -202,7 +192,6 @@ export default {
 </script>
 
 <style scoped>
-
 /* Header-Row */
 .header-row {
   margin-top: 17vh !important;
@@ -383,7 +372,6 @@ export default {
   margin-top: 2em;
   margin-bottom: -1em;
 }
-
 
 .restaurant-header {
   display: flex;
@@ -658,5 +646,4 @@ export default {
     padding: 0em 2em;
   }
 }
-
 </style>
