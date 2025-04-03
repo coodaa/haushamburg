@@ -333,12 +333,11 @@ export default {
 /* Mobiles Menü als Vollbild-Overlay */
 .mobile-menu {
   position: fixed;
-  top: 0;
+  top: 4vh;
   left: 0;
   width: 100%;
   height: 100%;
-  background:     rgba(242, 237, 233, 0.9)  ; /* #F2EDE9 mit 80% Deckkraft */
-
+  background:     rgba(242, 237, 233, 0.95)  ; /* #F2EDE9 mit 80% Deckkraft */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -352,6 +351,7 @@ export default {
 .mobile-menu.open {
   transform: translateY(0);
   opacity: 1;
+
 }
 
 /* Close-Button im mobilen Menü */
