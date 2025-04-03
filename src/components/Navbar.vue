@@ -439,6 +439,8 @@ export default {
 /* No-scroll, wenn das Menü geöffnet ist */
 .no-scroll {
   overflow: hidden;
+  position: fixed;
+  width: 100%;
   height: 100%;
 }
 
