@@ -32,7 +32,7 @@
         <div class="home-container">
           <img
             src="/images/outside/haus-hamburg-leer-start.webp"
-            alt="Haus Hamburg"
+            alt="Außenansicht vom Fischrestaurant Haus Hamburg in der Altstadt von Leer"
             class="inverted-radius"
           />
         </div>
@@ -44,18 +44,21 @@
           <h2 class="restaurant-heading big-title-3">das restaurant</h2>
           <div class="restaurant-text">
             <p>
-              Entdecken Sie das <strong>authentische Norddeutschland</strong> im Haus Hamburg, Ihrem Fischrestaurant mitten in der charmanten Altstadt von Leer, Ostfriesland.
-              Bei uns erwarten Sie nicht nur fangfrische Fischspezialitäten, sondern auch eine Vielfalt an norddeutschen Köstlichkeiten.
+              Willkommen im <strong>Haus Hamburg</strong> – Ihrem <strong>Fischrestaurant in Leer</strong>, Ostfriesland.
+              Bei uns erwarten Sie <strong>frisch zubereitete Fischgerichte</strong>, <strong>vegetarische Spezialitäten</strong>
+              und ein <strong>Online-Bestellservice</strong> mit <strong>Lieferung nach Hause</strong> in Leer.
             </p>
             <p>
-              Auch Vegetarier sind bei uns herzlich willkommen. Unser Menü bietet eine Auswahl an kreativen, vegetarischen Gerichten.
+              Auch Vegetarier sind bei uns herzlich willkommen. Unser Angebot umfasst eine Auswahl an
+              <strong>vegetarischen Gerichten</strong>.
             </p>
-            <p><strong>Wir freuen uns darauf, Sie in unserem gemütlichen Restaurant begrüßen zu dürfen!</strong></p>
+
+            <p><strong>Wir freuen uns auf Ihren Besuch im Haus Hamburg in Leer!</strong></p>
           </div>
         </div>
         <img
           src="/images/restaurant/haus-hamburg-leer-innen.webp"
-          alt="Restaurant Innenansicht"
+          alt="Innenansicht des Restaurants Haus Hamburg in Leer"
           class="restaurant-image"
         />
       </section>
@@ -65,6 +68,7 @@
         <div class="scalloped-svg"></div>
       </section>
 
+      <!-- Beliebte Produkte -->
       <Favorites
         :popularProducts="popularProducts"
         :slidesPerView="slidesPerView"
@@ -81,6 +85,7 @@
 </template>
 
 <script>
+import { useHead } from '@vueuse/head';
 import Review from "../components/Review.vue";
 import Favorites from "@/components/FavoriteProducts.vue";
 import staticProducts from "@/data/products.json";
@@ -89,11 +94,10 @@ export default {
   name: "Home",
   components: {
     Review,
-    Favorites
+    Favorites,
   },
   data() {
     return {
-      // Header Animation
       words: ["Moin!", "Ahoi!", "Hallo!"],
       currentIndex: 0,
       currentWord: "Moin!",
@@ -103,16 +107,13 @@ export default {
       rotation: 0,
       rotationDirection: 1,
       isWobbling: false,
-      // Anzahl Slides pro View, wird dynamisch angepasst
       slidesPerView: 1,
       wordInterval: null,
-      // Produkte importieren
-      products: staticProducts
+      products: staticProducts,
     };
   },
   computed: {
     popularProducts() {
-      // Filtere hier beliebte Produkte anhand des Namens
       const popularNames = [
         "Kibbelinge",
         "Ras Fritten",
@@ -128,6 +129,37 @@ export default {
     this.startWordAnimation();
     this.updateSlidesPerView();
     window.addEventListener("resize", this.updateSlidesPerView);
+  },
+  setup() {
+    useHead({
+      title: "Haus Hamburg – Fischrestaurant in Leer | Online-Bestellung & Catering",
+      meta: [
+        {
+          name: "description",
+          content: "Fischrestaurant Haus Hamburg in Leer: Online-Bestellung mit PayPal, SEPA oder Kreditkarte. Frischer Fisch, vegetarisch, Catering-Service & Lieferung."
+        },
+        {
+          name: "keywords",
+          content: "Haus Hamburg, Fischrestaurant Leer, Fisch bestellen Leer, Catering Leer, Online Fischbestellung, Altstadt Leer, vegetarisch, PayPal, Kreditkarte, SEPA"
+        },
+        {
+          property: "og:title",
+          content: "Haus Hamburg – Fischrestaurant in Leer"
+        },
+        {
+          property: "og:description",
+          content: "Genießen Sie frischen Fisch & vegetarische Küche in Leer. Jetzt auch online bestellen oder Catering anfragen."
+        },
+        {
+          property: "og:image",
+          content: "https://www.haus-hamburg-leer.de/images/social/og-image.jpg"
+        },
+        {
+          property: "og:url",
+          content: "https://www.haus-hamburg-leer.de"
+        }
+      ]
+    });
   },
   methods: {
     startWordAnimation() {
@@ -170,15 +202,10 @@ export default {
       const width = window.innerWidth;
       this.slidesPerView = width >= 1700 ? 4 : width >= 1400 ? 3 : width >= 1024 ? 2 : 1;
     },
-    goToSpeisekarte() {
-      this.$router.push("/speisekarte");
-    },
     formatPrice(val) {
       return val.toFixed(2).replace(".", ",") + " €";
     },
     addToCart(product) {
-      // Hier kannst du die Logik zum Hinzufügen in den Warenkorb einbauen,
-      // z.B. über einen globalen Store (Vuex, Pinia) oder ein globales Event.
       console.log("Produkt in den Warenkorb gelegt:", product);
     }
   },
@@ -190,6 +217,7 @@ export default {
   }
 };
 </script>
+
 
 <style scoped>
 /* Header-Row */
