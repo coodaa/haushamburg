@@ -2,32 +2,24 @@
 <html lang="de">
   <head>
     <meta charset="UTF-8" />
-    <!-- Verhindert Rendering-Probleme in älteren IE-Versionen -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- SDK-Script mit zusätzlichen Funding-Optionen -->
-    <script src="https://www.paypal.com/sdk/js?client-id=ASVaWcLxdKrUNp95yTzwEeUmI3YvIw5YQpIczfHNe3m9EZJi6OjEw77jNTbedoov0Tu96CVLa9XOkxJl&currency=EUR&components=buttons,applepay,googlepay"></script>
 
-    <title>Haus Hamburg – Fischrestaurant in der Altstadt von Leer, Ostfriesland</title>
+    <!-- Titel -->
+    <title>Haus Hamburg Leer – Online Essen bestellen & Catering in Ostfriesland</title>
 
-    <!-- Beschreibung und Keywords -->
-    <meta
-      name="description"
-      content="Haus Hamburg – Ihr gemütliches Fischrestaurant in der Altstadt von Leer, Ostfriesland. Neben dem Rathaus genießen Sie frische Fischspezialitäten und regionale Küche."
-    />
-    <meta
-      name="keywords"
-      content="Fischrestaurant Leer, Altstadt Leer, regionale Küche, Haus Hamburg, Fischspezialitäten Ostfriesland, Restaurant neben Rathaus"
-    />
+    <!-- Meta SEO -->
+    <meta name="description" content="Frische Fischgerichte, Fleisch & vegetarische Speisen online bestellen in Leer. Haus Hamburg bietet Lieferservice, Catering und akzeptiert PayPal, SEPA & Kreditkarte." />
+    <meta name="keywords" content="Essen bestellen Leer, Online bestellen Leer, Lieferservice Leer, Catering Leer, Haus Hamburg, Fischrestaurant Leer, PayPal Essen, Kreditkarte bestellen, SEPA Zahlung, Haus Hamburg Leer" />
     <meta name="robots" content="index, follow" />
     <meta name="theme-color" content="#03305D" />
 
-    <!-- Open Graph Tags für Social Media -->
-    <meta property="og:title" content="Haus Hamburg – Fischrestaurant in Leer, Ostfriesland" />
-    <meta
-      property="og:description"
-      content="Genießen Sie frische Fischspezialitäten und regionale Küche in der Altstadt von Leer, direkt neben dem Rathaus. Willkommen im Haus Hamburg!"
-    />
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://haus-hamburg-leer.de" />
+
+    <!-- Open Graph (Facebook, WhatsApp etc.) -->
+    <meta property="og:title" content="Haus Hamburg Leer – Online Essen bestellen & Catering" />
+    <meta property="og:description" content="Bestellen Sie Fisch, Fleisch & vegetarische Gerichte online in Leer. Lieferservice & Catering vom Haus Hamburg. Jetzt online zahlen mit PayPal, SEPA & Kreditkarte." />
     <meta property="og:image" content="https://haus-hamburg-leer.de/haushamburg_logo.png" />
     <meta property="og:url" content="https://haus-hamburg-leer.de" />
     <meta property="og:type" content="restaurant" />
@@ -35,13 +27,10 @@
 
     <!-- Twitter Cards -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Haus Hamburg – Fischrestaurant in der Altstadt von Leer, Ostfriesland" />
-    <meta name="twitter:description" content="Haus Hamburg – Ihr gemütliches Fischrestaurant in der Altstadt von Leer, Ostfriesland. Neben dem Rathaus genießen Sie frische Fischspezialitäten und regionale Küche." />
+    <meta name="twitter:title" content="Haus Hamburg Leer – Online Essen bestellen & Catering" />
+    <meta name="twitter:description" content="Jetzt warmes Essen online bestellen in Leer – Fisch, Fleisch & vegetarisch. Haus Hamburg bietet Catering & Lieferservice. Online zahlen mit PayPal, SEPA & Kreditkarte." />
     <meta name="twitter:image" content="https://haus-hamburg-leer.de/haushamburg_logo.png" />
     <meta name="twitter:site" content="@DeinTwitterHandle" />
-
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://haus-hamburg-leer.de" />
 
     <!-- Favicons -->
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
@@ -50,13 +39,13 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="manifest" href="/site.webmanifest" />
 
-    <!-- Structured Data (JSON-LD) -->
+    <!-- JSON-LD: Structured Data (Schema.org) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "Restaurant",
-      "name": "Restaurant Haus Hamburg",
-      "description": "Gemütliches Fischrestaurant in der Altstadt von Leer, Ostfriesland. Genießen Sie frische Fischspezialitäten und regionale Küche neben dem Rathaus.",
+      "name": "Haus Hamburg",
+      "description": "Frische Fischgerichte, Fleisch und vegetarische Speisen online bestellen in Leer. Lieferservice, Catering & Abholung. Bezahlung mit PayPal, SEPA & Kreditkarte.",
       "image": "https://haus-hamburg-leer.de/haushamburg_logo.png",
       "@id": "https://haus-hamburg-leer.de",
       "url": "https://haus-hamburg-leer.de",
@@ -64,7 +53,7 @@
       "email": "info@haus-hamburg-leer.de",
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "Rathausstr. 3 – 5",
+        "streetAddress": "Rathausstraße 3–5",
         "addressLocality": "Leer",
         "postalCode": "26789",
         "addressCountry": "DE"
@@ -75,6 +64,12 @@
         "longitude": 7.4616
       },
       "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Friday"],
+          "opens": "17:00",
+          "closes": "21:00"
+        },
         {
           "@type": "OpeningHoursSpecification",
           "dayOfWeek": ["Saturday"],
@@ -98,30 +93,45 @@
           "dayOfWeek": ["Sunday"],
           "opens": "16:00",
           "closes": "19:30"
-        },
-        {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": ["Monday", "Tuesday", "Friday"],
-          "opens": "17:00",
-          "closes": "21:00"
-        },
-        {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": ["Wednesday", "Thursday"],
-          "opens": "00:00",
-          "closes": "00:00"
         }
       ],
-      "servesCuisine": ["Fish", "Regional"],
-      "priceRange": "€€"
+      "servesCuisine": ["Fisch", "Regional", "Vegetarisch"],
+      "priceRange": "€€",
+      "acceptsReservations": "true",
+      "hasMenu": "https://haus-hamburg-leer.de/speisekarte",
+      "makesOffer": [
+        {
+          "@type": "Offer",
+          "name": "Essen online bestellen in Leer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Lieferservice",
+            "description": "Frisch gekochte Gerichte aus der Küche des Haus Hamburg direkt nach Hause geliefert in Leer und Umgebung."
+          },
+          "priceCurrency": "EUR",
+          "availability": "https://schema.org/InStock"
+        },
+        {
+          "@type": "Offer",
+          "name": "Catering-Service Leer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Catering",
+            "description": "Professionelles Catering in Leer und Umgebung für Feiern, Hochzeiten und Firmenevents – von Haus Hamburg."
+          },
+          "priceCurrency": "EUR",
+          "availability": "https://schema.org/InStock"
+        }
+      ],
+      "paymentAccepted": ["PayPal", "SEPA", "Kreditkarte"]
     }
     </script>
 
-    <!-- Externe Skripte -->
+    <!-- SDKs und Scripte -->
+    <script src="https://www.paypal.com/sdk/js?client-id=ASVaWcLxdKrUNp95yTzwEeUmI3YvIw5YQpIczfHNe3m9EZJi6OjEw77jNTbedoov0Tu96CVLa9XOkxJl&currency=EUR&components=buttons,applepay,googlepay"></script>
+    <script src="https://js.stripe.com/v3"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js" defer></script>
     <script src="https://static.elfsight.com/platform/platform.js" async></script>
-    <!-- Stripe.js einbinden -->
-    <script src="https://js.stripe.com/v3"></script>
   </head>
   <body>
     <div id="app"></div>

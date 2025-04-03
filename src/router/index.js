@@ -18,16 +18,15 @@ const ProductList = () => import("../views/ProductList.vue");
 const Shop = () => import("../views/Shop.vue");
 const CheckoutSuccess = () => import("../views/CheckoutSuccess.vue");
 
-
 const routes = [
   {
     path: "/",
     name: "home",
     component: Home,
     meta: {
-      title: "Haus Hamburg - Startseite",
-      description:
-        "Willkommen im Haus Hamburg! Entdecken Sie unsere frischen Fischspezialitäten.",
+      title: "Haus Hamburg – Fischrestaurant in Leer, Ostfriesland",
+      description: "Genießen Sie frische Fischgerichte in der Altstadt von Leer. Fischrestaurant mit Lieferservice, Catering & gemütlicher Atmosphäre.",
+      keywords: "Haus Hamburg, Fischrestaurant Leer, Restaurant Altstadt, regionale Küche, Fischgerichte, Ostfriesland"
     },
   },
   {
@@ -35,8 +34,9 @@ const routes = [
     name: "kontakt",
     component: Kontakt,
     meta: {
-      title: "Kontakt - Haus Hamburg",
-      description: "Kontaktieren Sie uns für Reservierungen oder Fragen.",
+      title: "Kontakt – Haus Hamburg in Leer",
+      description: "Kontaktieren Sie unser Team bei Fragen zu Reservierungen, Catering oder Online-Bestellungen.",
+      keywords: "Kontakt Haus Hamburg, Telefonnummer Leer, Fischrestaurant, Catering Anfrage, Reservierung Leer"
     },
   },
   {
@@ -44,9 +44,9 @@ const routes = [
     name: "speisekarte",
     component: Speisekarte,
     meta: {
-      title: "Speisekarte - Haus Hamburg",
-      description:
-        "Entdecken Sie unsere leckere Speisekarte mit frischen Fischgerichten und regionalen Spezialitäten.",
+      title: "Speisekarte – Fisch & regionale Küche in Leer",
+      description: "Unsere Speisekarte bietet frischen Fisch, Fleisch, vegetarische Gerichte & Desserts. Jetzt ansehen & Appetit holen!",
+      keywords: "Speisekarte Haus Hamburg, Fischgerichte, Restaurant Leer, vegetarisch, Desserts, Fischrestaurant"
     },
   },
   {
@@ -54,9 +54,9 @@ const routes = [
     name: "catering",
     component: Catering,
     meta: {
-      title: "Catering - Haus Hamburg",
-      description:
-        "Unser Catering-Service für Ihr Event – Qualität und Genuss für Ihre Gäste.",
+      title: "Catering-Service in Leer – Haus Hamburg",
+      description: "Ob Hochzeit, Firmenfeier oder Event: Wir liefern frische Speisen direkt zu Ihnen. Jetzt Catering anfragen.",
+      keywords: "Catering Leer, Fischcatering, Eventservice Leer, Haus Hamburg, Cateringservice Ostfriesland"
     },
   },
   {
@@ -64,9 +64,9 @@ const routes = [
     name: "ueber",
     component: Ueber,
     meta: {
-      title: "Über uns - Haus Hamburg",
-      description:
-        "Erfahren Sie mehr über unser Restaurant und unsere Philosophie.",
+      title: "Über uns – Haus Hamburg in Leer",
+      description: "Erfahren Sie mehr über unser Restaurant, unsere Geschichte und unsere Leidenschaft für frische Küche.",
+      keywords: "Über uns Haus Hamburg, Fischrestaurant Geschichte, Leer Altstadt, Team Haus Hamburg"
     },
   },
   {
@@ -74,9 +74,9 @@ const routes = [
     name: "reservierung",
     component: Reservierung,
     meta: {
-      title: "Reservierung - Haus Hamburg",
-      description:
-        "Reservieren Sie einfach online einen Tisch in unserem Restaurant.",
+      title: "Reservierung – Tisch online buchen in Leer",
+      description: "Reservieren Sie jetzt bequem online Ihren Tisch im Haus Hamburg in der Altstadt von Leer.",
+      keywords: "Tisch reservieren Leer, Restaurant Reservierung, Haus Hamburg Online buchen, Ostfriesland Essen gehen"
     },
   },
   {
@@ -84,9 +84,9 @@ const routes = [
     name: "impressum",
     component: Impressum,
     meta: {
-      title: "Impressum - Haus Hamburg",
-      description:
-        "Rechtliche Hinweise zu unserer Website und unserem Restaurant.",
+      title: "Impressum – Haus Hamburg",
+      description: "Impressum & rechtliche Hinweise zu unserem Fischrestaurant in Leer.",
+      keywords: "Impressum, Restaurant Leer, Haus Hamburg, rechtliche Informationen"
     },
   },
   {
@@ -94,8 +94,9 @@ const routes = [
     name: "datenschutz",
     component: Datenschutz,
     meta: {
-      title: "Datenschutz - Haus Hamburg",
-      description: "Unsere Datenschutzbestimmungen zum Schutz Ihrer Daten.",
+      title: "Datenschutz – Haus Hamburg",
+      description: "Informationen zum Datenschutz für unsere Website-Besucher und Gäste.",
+      keywords: "Datenschutz Haus Hamburg, DSGVO, Website Leer, Restaurant Datenschutz"
     },
   },
   {
@@ -103,19 +104,21 @@ const routes = [
     name: "stellenangebote",
     component: Stellenangebote,
     meta: {
-      title: "Stellenangebote - Haus Hamburg",
-      description: "Offene Stellen – Werden Sie Teil unseres Teams!",
+      title: "Jobs in Leer – Haus Hamburg sucht dich!",
+      description: "Bewirb dich jetzt beim Haus Hamburg in Leer – Gastronomie, Küche, Service & mehr!",
+      keywords: "Jobs Leer, Haus Hamburg Stellenangebote, Gastronomie Jobs Ostfriesland, Servicekraft, Koch Leer"
     },
   },
 
-  // 🛒 Shop-Seiten
+  // 🛒 Shop
   {
     path: "/shop",
     name: "shop",
     component: Shop,
     meta: {
-      title: "Online-Shop - Haus Hamburg",
-      description: "Bestellen Sie frische Fischgerichte bequem online.",
+      title: "Online Essen bestellen in Leer – Haus Hamburg",
+      description: "Jetzt Fisch, Fleisch, vegetarische Gerichte & mehr online bestellen. Lieferung direkt nach Hause in Leer & Umgebung.",
+      keywords: "Essen bestellen Leer, Haus Hamburg Online Shop, Fischgerichte liefern, Lieferservice Ostfriesland"
     },
   },
   {
@@ -123,8 +126,9 @@ const routes = [
     name: "productlist",
     component: ProductList,
     meta: {
-      title: "Produkte - Haus Hamburg",
-      description: "Unsere Speisen und Getränke.",
+      title: "Produkte – Haus Hamburg Online Shop",
+      description: "Alle Gerichte und Getränke auf einen Blick – Jetzt online bestellen.",
+      keywords: "Fischprodukte Online, Haus Hamburg Menü, Online bestellen Leer"
     },
   },
   {
@@ -132,35 +136,35 @@ const routes = [
     name: "checkout",
     component: Checkout,
     meta: {
-      title: "Checkout - Haus Hamburg",
-      description:
-        "Überprüfen Sie Ihren Warenkorb und bezahlen Sie sicher online.",
+      title: "Warenkorb & Bezahlung – Haus Hamburg Online Shop",
+      description: "Zahlung mit PayPal, Kreditkarte oder SEPA – sicher & schnell.",
+      keywords: "Online bezahlen Leer, Haus Hamburg Checkout, PayPal Essen bestellen, Kreditkarte Restaurant"
     },
   },
-
   {
     path: "/checkout-success",
     name: "checkout-success",
     component: CheckoutSuccess,
     meta: {
-      title: "Checkout Success - Haus Hamburg",
-      description: "Ihre Zahlung war erfolgreich. Vielen Dank für Ihren Einkauf!",
+      title: "Danke für Ihre Bestellung – Haus Hamburg",
+      description: "Ihre Bestellung war erfolgreich. Wir bereiten Ihre Speisen frisch zu!",
+      keywords: "Bestellung erfolgreich, Danke Haus Hamburg, Essen geliefert Leer"
     },
   },
- 
-  // 404 Fehlerseite
+
+  // Fallback-Route
   {
     path: "/:pathMatch(.*)*",
     name: "notfound",
     component: NotFound,
     meta: {
-      title: "Seite nicht gefunden - Haus Hamburg",
-      description: "404 - Diese Seite existiert nicht.",
+      title: "404 – Seite nicht gefunden",
+      description: "Die Seite existiert leider nicht. Bitte zurück zur Startseite.",
+      keywords: "Fehler 404, Seite nicht gefunden, Haus Hamburg Leer"
     },
   },
 ];
 
-// Router erstellen
 const router = createRouter({
   history: createWebHistory(),
   routes,
@@ -169,9 +173,9 @@ const router = createRouter({
   },
 });
 
-// Dynamischen Titel setzen (SEO)
+// Dynamischer <title> setzen (optional redundant – App.vue macht’s besser)
 router.beforeEach((to, from, next) => {
-  document.title = to.meta.title || "Haus Hamburg";
+  if (to.meta?.title) document.title = to.meta.title;
   next();
 });
 

@@ -1,3 +1,7 @@
 User-agent: *
 Allow: /
+
+# Sitemap für alle Crawler
 Sitemap: https://www.haus-hamburg-leer.de/sitemap.xml
+
+Disallow: /checkout-success

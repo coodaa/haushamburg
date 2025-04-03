@@ -1,17 +1,19 @@
 <template>
   <div id="app">
     <Navbar />
-    <transition
-      name="fade-bounce"
-      mode="out-in"
-      @before-enter="beforeEnterTransition"
-    >
-      <router-view :key="$route.fullPath" />
-    </transition>
+
+    <main role="main" aria-label="Hauptinhalt">
+      <transition
+        name="fade-bounce"
+        mode="out-in"
+        @before-enter="beforeEnterTransition"
+      >
+        <router-view :key="$route.fullPath" />
+      </transition>
+    </main>
+
     <Footer />
-    <!-- CookieBanner sendet das "cookiesAccepted"-Event -->
     <CookieBanner @cookiesAccepted="loadGoogleAnalytics" />
-    <!-- Global eingebundener Warenkorb-Button -->
     <OpenCartButton />
   </div>
 </template>
@@ -21,6 +23,7 @@ import Navbar from './components/Navbar.vue';
 import Footer from './components/Footer.vue';
 import CookieBanner from './components/CookieBanner.vue';
 import OpenCartButton from '@/components/OpenCartButton.vue';
+import { useRouter } from 'vue-router';
 
 export default {
   name: 'App',
@@ -53,14 +56,15 @@ export default {
             img.addEventListener('error', checkDone);
           }
         });
-        // Fallback, falls ein Bild zu lange lädt
+
+        // Fallback nach 3 Sekunden
         setTimeout(() => {
           if (typeof done === 'function') done();
         }, 3000);
       }, 50);
     },
+
     loadGoogleAnalytics() {
-      // Prüfen, ob der GA-Code bereits geladen ist
       if (document.querySelector('script[src*="googletagmanager.com/gtag/js"]')) return;
 
       const script = document.createElement('script');
@@ -69,18 +73,41 @@ export default {
       document.head.appendChild(script);
 
       window.dataLayer = window.dataLayer || [];
-      function gtag(){ dataLayer.push(arguments); }
+      function gtag() { dataLayer.push(arguments); }
       window.gtag = gtag;
       gtag('js', new Date());
       gtag('config', 'G-2FVK4ZXYNM');
     },
+
+    updateMeta(name, content) {
+      let tag = document.querySelector(`meta[name="${name}"]`);
+      if (!tag) {
+        tag = document.createElement("meta");
+        tag.setAttribute("name", name);
+        document.head.appendChild(tag);
+      }
+      tag.setAttribute("content", content);
+    }
   },
+
   mounted() {
-    // Wenn der Nutzer bereits zugestimmt hat, GA sofort laden
+    // Cookie-Zustimmung prüfen
     if (localStorage.getItem("cookiesAccepted") === "true") {
       this.loadGoogleAnalytics();
     }
-  },
+
+    // Dynamische Meta-Tags nach jeder Route
+    const router = useRouter();
+    router.afterEach((to) => {
+      const title = to.meta.title || "Haus Hamburg – Online Essen bestellen in Leer";
+      const description = to.meta.description || "Jetzt Essen online bestellen in Leer bei Haus Hamburg – Fisch, Fleisch, vegetarisch und Catering. Lieferung nach Hause in Ostfriesland.";
+      const keywords = to.meta.keywords || "Essen bestellen Leer, Fischrestaurant, Lieferservice, Catering, Haus Hamburg";
+
+      document.title = title;
+      this.updateMeta("description", description);
+      this.updateMeta("keywords", keywords);
+    });
+  }
 };
 </script>
 
@@ -90,7 +117,7 @@ export default {
   min-height: 100vh;
 }
 
-/* Transition-Klassen für Fade und Bounce */
+/* Transition-Stile */
 .fade-bounce-enter-from {
   opacity: 0;
   transform: translateY(20px);
@@ -99,13 +126,11 @@ export default {
 .fade-bounce-enter-active {
   animation: fadeInBounce 0.6s cubic-bezier(0.35, 1.5, 0.6, 1) forwards;
   will-change: transform;
-  transform: translate3d(0, 0, 0);
 }
 
 .fade-bounce-leave-active {
   animation: fadeOut 0.3s ease-in-out forwards;
   will-change: transform;
-  transform: translate3d(0, 0, 0);
 }
 
 @keyframes fadeInBounce {
