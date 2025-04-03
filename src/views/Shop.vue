@@ -2,9 +2,9 @@
   <BasePage
     imageSrc="/images/food/haus-hamburg-leer-13.webp"
     imageAlt="Online Shop"
-    titleAbove="Shop"
+    titleAbove="Bestellen"
     titleMain="Online Shop"
-    subtitle="Bestell dien Lievlingsgerichten bekwäm online."
+    subtitle="Bestell dien Leevlingsspeisen ganz bequem vun to Huus."
     heading="Willkommen in unserem Online-Shop"
     flowText="Entdecken Sie unseren komfortablen Online-Bestellservice: Frisch zubereitete, leckere und ausgewogene Gerichte – bequem online bestellen, schnell geliefert und 10% Rabatt beim Checkout erhalten"
     parallaxImageSrc="/images/food/haus-hamburg-leer-18.webp"
@@ -367,9 +367,9 @@ export default {
 <style scoped>
 .shop-sticker-container {
   position: fixed;
-  top: 18vh;
-  left: 3vw;
-  width: 7em;
+  top: 42vh;
+  left: 4vw;
+  width: 9em;
   height: 12em;
   z-index: 500;
   transition: none !important;
@@ -384,10 +384,9 @@ export default {
 @media (min-width: 1200px) {
   .shop-sticker-container {
     position: fixed;
-    top: 14vh;
-    left: 6vw;
+    top: 15vh;
     width: 20em;
-    height: 20em;
+    height: 25em;
     z-index: 2500;
     transition: none !important;
     animation: none !important;
@@ -442,6 +441,14 @@ export default {
 @media (min-width: 768px) and (max-width: 1199px) {
   .pinned-category-tabs {
     top: 6em;
+  }
+
+  .shop-sticker-container {
+    position: fixed;
+    top: 15vh;
+    width: 14em;
+    height: 25em;
+
   }
 }
 
