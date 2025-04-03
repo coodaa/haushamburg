@@ -48,29 +48,57 @@
               <router-link to="/reservierung">Reservieren</router-link>
             </li>
             <!-- Shop-Button -->
+
             <li>
-              <router-link to="/shop">
-                <button class="cta-button" aria-label="Shop" title="Shop">
-                  <i class="fas fa-fish"></i>
-                  <span class="cta-text">bestellen</span>
-                </button>
-              </router-link>
-            </li>
+  <router-link to="/shop" @click="closeMenu">
+    <button class="cta-button btn-shop" aria-label="Shop" title="Shop">
+      <i class="fas fa-fish"></i>
+      <span class="cta-text">Online Shop</span>
+    </button>
+  </router-link>
+</li>
+
           </ul>
         </div>
       </div>
 
-      <!-- Mobiles Menü (erscheint beim Öffnen des Burger-Menüs) -->
+      <!-- Mobiles Menü (Vollbild-Overlay mit Close-Button) -->
       <div class="mobile-menu" :class="{ open: menuOpen }" id="mobile-menu" role="menu">
+        <button class="close-btn" @click="closeMenu" aria-label="Menü schließen">&times;</button>
         <ul class="mobile-links">
-          <li><router-link to="/speisekarte" @click="closeMenu">Speisekarte</router-link></li>
-          <li><router-link to="/catering" @click="closeMenu">Catering</router-link></li>
-          <li><router-link to="/ueber" @click="closeMenu">Über uns</router-link></li>
-          <li><router-link to="/Kontakt" @click="closeMenu">Kontakt</router-link></li>
-          <!-- Reservieren-Link erscheint im mobilen Menü -->
+          <li>
+            <router-link to="/speisekarte" @click="closeMenu">
+              <button class="cta-button">Speisekarte</button>
+            </router-link>
+          </li>
+          <li>
+            <router-link to="/catering" @click="closeMenu">
+              <button class="cta-button">Catering</button>
+            </router-link>
+          </li>
+          <li>
+            <router-link to="/ueber" @click="closeMenu">
+              <button class="cta-button">Über uns</button>
+            </router-link>
+          </li>
+          <li>
+            <router-link to="/Kontakt" @click="closeMenu">
+              <button class="cta-button">Kontakt</button>
+            </router-link>
+          </li>
+          <!-- Reservieren-Link -->
           <li>
             <router-link to="/reservierung" @click="closeMenu">
-              <button class="cta-button">Reservieren</button>
+              <button class="cta-button">Tisch buchen</button>
+            </router-link>
+          </li>
+          <!-- Online bestellen: Hervorgehoben -->
+          <li>
+            <router-link to="/shop" @click="closeMenu">
+              <button class="cta-button btn-shop" aria-label="Shop" title="Shop">
+                <i class="fas fa-fish"></i>
+                <span class="cta-text">Online bestellen</span>
+              </button>
             </router-link>
           </li>
         </ul>
@@ -139,7 +167,13 @@ export default {
 </script>
 
 <style scoped>
-/* Grundlegende Navbar-Stile */
+/* Basis-Schriftart für das mobile Menü */
+.mobile-menu,
+.mobile-menu * {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* Navbar-Grundstyles */
 .navbar {
   position: fixed;
   top: 0;
@@ -229,7 +263,7 @@ export default {
   position: absolute;
   width: 100%;
   height: 3px;
-  background-color: #000;
+  background-color: var(--blue);
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
@@ -258,7 +292,7 @@ export default {
   transform: translateY(-10px) rotate(-45deg);
 }
 
-/* Navigationslinks */
+/* Desktop-Navigationslinks */
 .nav-left .nav-links {
   display: none;
 }
@@ -285,7 +319,7 @@ export default {
   display: none;
 }
 
-/* Shop-Button */
+/* Shop-Button im Desktop */
 .cta-button .cta-text {
   display: none;
 }
@@ -296,55 +330,119 @@ export default {
   }
 }
 
-/* Mobiles Menü */
+/* Mobiles Menü als Vollbild-Overlay */
 .mobile-menu {
   position: fixed;
-  top: 3em;
+  top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: var(--blue);
-  color: #fff;
-  padding: 100px 20px;
-  transform: translateX(-100%);
-  transition: transform 0.3s ease, opacity 0.3s ease;
+  background:     rgba(242, 237, 233, 0.9)  ; /* #F2EDE9 mit 80% Deckkraft */
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(-100%);
   opacity: 0;
+  transition: transform 0.4s ease, opacity 0.4s ease;
   z-index: 999;
 }
 
 .mobile-menu.open {
-  transform: translateX(0);
+  transform: translateY(0);
   opacity: 1;
 }
 
+/* Close-Button im mobilen Menü */
+.close-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 2.5rem;
+  color: #fff;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.close-btn:hover {
+  transform: scale(1.1);
+}
+
+/* Container und Anordnung der mobilen Links */
 .mobile-links {
   list-style: none;
   padding: 0;
   margin: 0;
+  text-align: center;
+}
+
+.mobile-links li {
+  margin: 1rem auto;
+  width: 90%;
+  max-width: 350px;
+  text-align: center;
+}
+
+/* Einheitlicher Button-Look für die Navigationseinträge */
+.mobile-links button.cta-button,
+.mobile-links a.cta-button {
   display: flex;
-  flex-direction: column;
-  gap: 1.5em;
   align-items: center;
-}
-
-.mobile-links a {
-  text-decoration: none;
-  font-size: 1.5rem;
+  justify-content: center;
+  width: 100%;
+  padding: 0.8rem 1rem;
+  font-size: 1.6rem;
+  text-transform: uppercase;
   font-weight: bold;
+  border: none;
+  background-color: var(--blue);
   color: #fff;
-  transition: color 0.3s ease;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  text-decoration: none;
 }
 
-.mobile-links a:hover {
-  color: var(--gold);
+/* Hover-Effekt für Standard-Buttons */
+.mobile-links button.cta-button:hover,
+.mobile-links a.cta-button:hover {
+  background-color: var(--gold);
+  transform: scale(1.02);
 }
 
+/* Icons in den Buttons */
+.mobile-links button.cta-button i,
+.mobile-links a.cta-button i {
+  font-size: 1.4rem;
+  vertical-align: middle;
+  margin-right: 0.4rem;
+}
+
+/* Hervorhebung für den "Online bestellen"-Button */
+.mobile-links button.cta-button.btn-shop {
+  font-size: 1.8rem;
+  padding: 1rem 1.2rem;
+  background-color: var(--gold);
+  color: var(--blue);
+  border: 2px solid var(--gold);
+  transform: none;
+}
+
+/* Optionaler Hover-Effekt für den hervorgehobenen Button */
+.mobile-links button.cta-button.btn-shop:hover {
+  background-color: #ffd700;
+  transform: scale(1.03);
+}
+
+/* No-scroll, wenn das Menü geöffnet ist */
 .no-scroll {
   overflow: hidden;
   height: 100%;
 }
 
-/* Tablets */
+/* Responsive Anpassungen für Tablets */
 @media (min-width: 768px) and (max-width: 1200px) {
   .navbar {
     padding: 4.5em 2em;
@@ -395,7 +493,7 @@ export default {
   }
 }
 
-/* Desktop */
+/* Desktop Anpassungen */
 @media (min-width: 1200px) {
   .navbar {
     justify-content: space-between;
@@ -511,5 +609,10 @@ export default {
   text-align: center;
   line-height: 1.2rem;
   box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
+
+/* Stelle sicher, dass der Text im Online Shop-Button im mobilen Menü sichtbar ist */
+.mobile-menu .btn-shop .cta-text {
+  display: inline !important;
 }
 </style>

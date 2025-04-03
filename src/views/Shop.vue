@@ -371,7 +371,7 @@ export default {
   left: 3vw;
   width: 7em;
   height: 12em;
-  z-index: 2500;
+  z-index: 500;
   transition: none !important;
   animation: none !important;
 }

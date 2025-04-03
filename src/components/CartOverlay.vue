@@ -143,7 +143,7 @@ export default {
     });
 
     // Berechne den top-Wert des Overlays dynamisch
-    const overlayTop = computed(() => `calc(${navbarHeight.value} + 1rem)`);
+    const overlayTop = computed(() => `calc(${navbarHeight.value} - 2em)`);
 
     return {
       cartItems,
