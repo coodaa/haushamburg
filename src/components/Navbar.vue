@@ -333,7 +333,7 @@ export default {
 /* Mobiles Menü als Vollbild-Overlay */
 .mobile-menu {
   position: fixed;
-  top: 4vh;
+  top: 5vh;
   left: 0;
   width: 100%;
   height: 100%;
