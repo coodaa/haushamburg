@@ -158,10 +158,11 @@ export default {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 5em;
   background-image: url('@/assets/dropround.svg');
   background-repeat: repeat-x;
   background-position: top left;
+  background-size:  calc(100% / 10);
   z-index: 0;
 }
 

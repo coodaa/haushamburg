@@ -131,19 +131,34 @@ export default {
       updateNavbarHeight();
     };
 
-    const toggleMenu = () => {
-      menuOpen.value = !menuOpen.value;
-      if (menuOpen.value) {
-        document.body.classList.add("no-scroll");
-      } else {
-        document.body.classList.remove("no-scroll");
-      }
-    };
+    let scrollPosition = 0;
 
-    const closeMenu = () => {
-      menuOpen.value = false;
-      document.body.classList.remove("no-scroll");
-    };
+const toggleMenu = () => {
+  menuOpen.value = !menuOpen.value;
+
+  if (menuOpen.value) {
+    scrollPosition = window.scrollY;
+    document.body.style.overflow = "hidden";
+    document.body.style.position = "relative";
+    document.body.style.top = `-${scrollPosition}px`;
+    document.body.style.width = "100%";
+    document.documentElement.classList.add("no-scroll");
+  } else {
+    closeMenu();
+  }
+};
+
+const closeMenu = () => {
+  menuOpen.value = false;
+  document.body.style.removeProperty("overflow");
+  document.body.style.removeProperty("position");
+  document.body.style.removeProperty("top");
+  document.body.style.removeProperty("width");
+  document.documentElement.classList.remove("no-scroll");
+
+  // Wichtig: Scrollposition zurücksetzen
+  window.scrollTo(0, scrollPosition);
+};
 
     onMounted(() => {
       updateNavbarHeight();
@@ -356,15 +371,7 @@ export default {
 
 /* Close-Button im mobilen Menü */
 .close-btn {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  font-size: 2.5rem;
-  color: #fff;
-  background: none;
-  border: none;
-  cursor: pointer;
-  transition: transform 0.2s ease;
+ display: none;
 }
 
 .close-btn:hover {
@@ -442,6 +449,12 @@ export default {
   position: fixed;
   width: 100%;
   height: 100%;
+}
+
+html.no-scroll,
+body.no-scroll {
+  overflow: hidden;
+  touch-action: none; /* <- verhindert Scroll auf Touchgeräten */
 }
 
 /* Responsive Anpassungen für Tablets */
