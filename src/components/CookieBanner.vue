@@ -1,10 +1,13 @@
 <template>
   <div v-if="showBanner" class="cookie-banner">
     <p>
-      Wir verwenden Cookies, um Ihnen das beste Nutzererlebnis auf unserer Website zu bieten. Durch die Nutzung unserer Website stimmen Sie der Verwendung von Cookies zu.
+      Wir verwenden Cookies, um Ihnen das beste Nutzererlebnis auf unserer Website zu bieten.
+      Durch die Nutzung unserer Website stimmen Sie der Verwendung von Cookies zu.
     </p>
-    <button @click="acceptCookies">Akzeptieren</button>
-    <button @click="declineCookies">Ablehnen</button>
+    <div class="button-group">
+      <button @click="acceptCookies">Akzeptieren</button>
+      <button @click="declineCookies">Ablehnen</button>
+    </div>
   </div>
 </template>
 
@@ -30,7 +33,7 @@ export default {
     declineCookies() {
       localStorage.setItem("cookiesAccepted", "false");
       this.showBanner = false;
-      // Optional: Entferne GA-Script, falls es bereits geladen wurde.
+
       const gaScript = document.querySelector('script[src*="googletagmanager.com/gtag/js"]');
       if (gaScript) {
         gaScript.remove();
@@ -50,27 +53,58 @@ export default {
   background: var(--blue);
   color: #fff;
   padding: 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+  text-align: center;
 }
+
 .cookie-banner p {
   margin: 0;
-  flex: 1;
-  font-size: 1rem;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  max-width: 600px;
 }
+
+.button-group {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
 .cookie-banner button {
-  margin-left: 1rem;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 1.2rem;
   border: none;
   background: var(--gold);
   color: var(--blue);
   cursor: pointer;
   border-radius: 30px;
+  font-size: 1rem;
   transition: background 0.3s ease;
 }
+
 .cookie-banner button:hover {
   background: #d1a531;
+}
+
+@media (min-width: 768px) {
+  .cookie-banner {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+  }
+
+  .button-group {
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+  }
+
+  .cookie-banner p {
+    margin-right: 1rem;
+    text-align: left;
+  }
 }
 </style>

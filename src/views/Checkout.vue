@@ -670,7 +670,7 @@ select#country {
   padding: 0.75rem 1rem;
   font-size: 1rem;
   /* Optional: Eigener Hintergrundpfeil */
-  background-image: url('/images/arrow-down.svg');
+  background-image: url('/images/arrow-down.png');
   background-repeat: no-repeat;
   background-position: right 1rem center;
 }
