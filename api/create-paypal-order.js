@@ -42,27 +42,38 @@ async function geocodeAddress(address) {
     .replace(/[–—]/g, "-")
     .trim()
     .replace(/\s+/g, " ");
-  // Für die Geocoding-Abfrage verwenden wir den ausgeschriebenen Ländernamen.
+  // Verwende den ausgeschriebenen Ländernamen
   const queryCountry = "Deutschland";
   const query = encodeURIComponent(
     `${cleanedStreet}, ${address.postalCode} ${address.city}, ${queryCountry}`
   );
   const url = `https://nominatim.openstreetmap.org/search?format=json&limit=1&q=${query}`;
 
-  const response = await fetch(url, {
-    headers: {
-      "User-Agent": "DeineAppName", // Gib hier einen aussagekräftigen User-Agent an
-    },
-  });
-  const data = await response.json();
-
-  if (data && data.length > 0) {
-    return {
-      lat: parseFloat(data[0].lat),
-      lon: parseFloat(data[0].lon),
-    };
+  try {
+    const response = await fetch(url, {
+      headers: { "User-Agent": "DeineAppName" },
+    });
+    // Lese zuerst als Text, um eventuelle Fehlertexte zu loggen
+    const responseText = await response.text();
+    console.log("Geocode Response Text:", responseText);
+    let data;
+    try {
+      data = JSON.parse(responseText);
+    } catch (err) {
+      console.error("Fehler beim Parsen der Geocode-Antwort:", responseText);
+      throw new Error("Adresse konnte nicht geocodet werden.");
+    }
+    if (data && data.length > 0) {
+      return {
+        lat: parseFloat(data[0].lat),
+        lon: parseFloat(data[0].lon),
+      };
+    }
+    throw new Error("Adresse konnte nicht gefunden werden.");
+  } catch (error) {
+    console.error("Geocode-Error:", error);
+    throw error;
   }
-  throw new Error("Adresse konnte nicht gefunden werden.");
 }
 
 module.exports = async (req, res) => {
@@ -88,10 +99,14 @@ module.exports = async (req, res) => {
 
     // Geocode die Adresse des Nutzers
     const userCoordinates = await geocodeAddress(address);
+    console.log("User-Koordinaten:", userCoordinates);
 
-    // Aktualisierte Referenzkoordinaten für das Historische Rathaus Leer:
-    // (Rathausstraße 1, 26789 Leer, Ostfriesland, Deutschland)
+    // Referenzkoordinaten für das Historische Rathaus Leer:
     const hausHamburg = { lat: 53.22666931152344, lon: 7.4508161544799805 };
+    console.log(
+      "Ziel-Koordinaten (Historisches Rathaus Leer):",
+      hausHamburg
+    );
 
     // Berechne die Entfernung in Kilometern
     const distance = haversineDistance(
@@ -100,8 +115,6 @@ module.exports = async (req, res) => {
       hausHamburg.lat,
       hausHamburg.lon
     );
-    console.log("User-Koordinaten:", userCoordinates);
-    console.log("Ziel-Koordinaten (Historisches Rathaus Leer):", hausHamburg);
     console.log("Berechnete Entfernung:", distance, "km");
 
     // Überprüfe, ob die Adresse innerhalb eines 5km-Radius liegt
@@ -135,10 +148,13 @@ module.exports = async (req, res) => {
     });
 
     const clientInstance = client();
+    // Hol den Order-Vorgang vom PayPal-SDK
     const order = await clientInstance.execute(request);
+    console.log("PayPal Order Response:", order);
     res.status(200).json({ id: order.result.id });
   } catch (error) {
     console.error("PayPal Order Creation Error:", error);
+    // Stelle sicher, dass immer eine JSON-Antwort zurückgegeben wird, auch im Fehlerfall
     res.status(500).json({ error: error.message });
   }
 };
