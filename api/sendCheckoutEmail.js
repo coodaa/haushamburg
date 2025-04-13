@@ -1,16 +1,15 @@
-const nodemailer = require("nodemailer");
+// api/sendCheckoutEmail.js
+import nodemailer from "nodemailer";
 
-module.exports = async (req, res) => {
+export default async function handler(req, res) {
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method Not Allowed" });
   }
 
-  // Logge die empfangenen Daten zur Überprüfung
   console.log("Received checkout order:", JSON.stringify(req.body, null, 2));
 
   const { address, items, total, remarks, deliveryDate, deliveryWindow } = req.body;
 
-  // Prüfe, ob alle Pflichtfelder vorhanden sind
   if (
     !address ||
     !address.firstName ||
@@ -31,7 +30,6 @@ module.exports = async (req, res) => {
     return res.status(400).json({ error: "Bitte füllen Sie alle erforderlichen Felder aus!" });
   }
 
-  // Erstelle den Nodemailer-Transporter
   const transporter = nodemailer.createTransport({
     host: "smtp.strato.de",
     port: 465,
@@ -42,7 +40,6 @@ module.exports = async (req, res) => {
     },
   });
 
-  // Baue die Bestelldetails zusammen
   let orderDetails = "";
   items.forEach((item) => {
     orderDetails += `<p>${item.quantity} x ${item.product.name} – ${parseFloat(item.product.price)
@@ -50,7 +47,6 @@ module.exports = async (req, res) => {
       .replace(".", ",")} €</p>`;
   });
 
-  // E-Mail-Inhalt für den Shop-Inhaber (ohne Duplikate)
   const ownerEmailContent = `
     <div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6; color: #333;">
       <h2 style="color: #004a7f;">Neue Bestellung</h2>
@@ -76,7 +72,6 @@ module.exports = async (req, res) => {
     </div>
   `;
 
-  // E-Mail-Inhalt für den Kunden
   const customerEmailContent = `
     <div style="font-family: Arial, sans-serif; background: #f7f7f7; padding: 20px;">
       <div style="max-width: 600px; margin: 0 auto; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
@@ -131,4 +126,4 @@ module.exports = async (req, res) => {
     console.error("❌ E-Mail Versand fehlgeschlagen:", error);
     return res.status(500).json({ error: "E-Mail konnte nicht gesendet werden" });
   }
-};
+}
