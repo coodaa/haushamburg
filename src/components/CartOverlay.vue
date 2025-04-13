@@ -12,6 +12,13 @@
         <div class="order-summary">
           <div v-if="cartItems.length === 0" class="empty-cart">
             Dein Warenkorb ist leer.
+            <!-- Großer Shop-Button unter dem leeren Warenkorb -->
+            <router-link to="/shop" class="shop-link">
+              <button class="cta-button btn-shop">
+                <i class="fas fa-fish"></i>
+                <span class="cta-text">Zum Shop</span>
+              </button>
+            </router-link>
           </div>
           <div v-else class="cart-items">
             <div v-for="(item, index) in cartItems" :key="index" class="cart-item">
@@ -94,17 +101,14 @@ export default {
     const increaseQty = (item) => {
       cartStore.updateQuantity(item.product, item.quantity + 1);
     };
-
     const decreaseQty = (item) => {
       if (item.quantity > 1) {
         cartStore.updateQuantity(item.product, item.quantity - 1);
       }
     };
-
     const removeItem = (item) => {
       cartStore.removeItem(item.product);
     };
-
     const formatPrice = (val) =>
       val.toFixed(2).replace(".", ",") + " €";
 
@@ -163,7 +167,6 @@ export default {
 </script>
 
 <style scoped>
-/* Vollflächiger Wrapper, der den gesamten Viewport abdeckt */
 .cart-overlay-wrapper {
   position: fixed;
   top: 0;
@@ -171,11 +174,9 @@ export default {
   width: 100%;
   height: 100%;
   z-index: 500;
-  /* Optional: Halbdurchsichtiger Hintergrund */
   background: rgba(0, 0, 0, 0.3);
 }
 
-/* Warenkorb-Bereich (sichtbar rechts) */
 .cart-overlay {
   position: absolute;
   top: 0;
@@ -189,7 +190,6 @@ export default {
   transition: transform 0.3s ease;
 }
 
-/* Inhalt innerhalb des Warenkorb-Bereichs */
 .cart-overlay-content {
   display: flex;
   flex-direction: column;
@@ -197,7 +197,6 @@ export default {
   padding: 1.5rem;
 }
 
-/* Header-Bereich */
 header {
   display: flex;
   justify-content: space-between;
@@ -220,7 +219,6 @@ header h2 {
   color: #900;
 }
 
-/* Scrollbarer Bereich für Artikel */
 .order-summary {
   flex: 1;
   overflow-y: auto;
@@ -235,6 +233,7 @@ header h2 {
   text-align: center;
   font-size: 1.1rem;
   color: #666;
+  padding: 1rem;
 }
 
 .cart-items {
@@ -308,7 +307,7 @@ header h2 {
 
 .quantity-control span {
   display: inline-block;
-  width: .9rem; /* oder einen anderen passenden Wert */
+  width: 0.9rem;
   text-align: center;
 }
 
@@ -330,7 +329,6 @@ header h2 {
   font-size: 1rem;
 }
 
-/* Footer-Bereich fixiert am unteren Rand */
 footer {
   border-top: 1px solid #ddd;
   padding-top: 1rem;
@@ -373,7 +371,37 @@ footer {
   color: var(--blue);
 }
 
-/* Anpassung bei größeren Bildschirmen */
+/* Styling für den Shop-Link als Button */
+.shop-link {
+  display: block;
+  margin-top: 1rem;
+  text-align: center;
+}
+.shop-link .cta-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.8rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  border: none;
+  background-color: var(--gold, #f1c40f);
+  color: var(--blue, #004a7f);
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.shop-link .cta-button:hover {
+  background-color: #ffd700;
+  transform: scale(1.03);
+}
+.shop-link .cta-button i {
+  margin-right: 0.5rem;
+}
+
+/* Responsive Anpassungen */
 @media (min-width: 1200px) {
   .cart-overlay {
     top: 7em !important;
