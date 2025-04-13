@@ -1,8 +1,9 @@
-const paypal = require("@paypal/checkout-server-sdk");
+// api/create-paypal-order.js
+import paypal from "@paypal/checkout-server-sdk"; // oder: import * as paypal from "@paypal/checkout-server-sdk";
 
 // Falls du Node 18 oder höher verwendest, ist fetch global verfügbar.
-// Bei älteren Node-Versionen: installiere "node-fetch" und aktiviere folgende Zeile:
-// const fetch = require("node-fetch");
+// Für ältere Node-Versionen kannst du z. B. node-fetch importieren:
+// import fetch from "node-fetch";
 
 // Erstelle die Live-Umgebung (für Sandbox ersetze LiveEnvironment durch SandboxEnvironment)
 function environment() {
@@ -76,7 +77,7 @@ async function geocodeAddress(address) {
   }
 }
 
-module.exports = async (req, res) => {
+export default async function handler(req, res) {
   try {
     const { items, total, address } = req.body;
 
@@ -157,7 +158,6 @@ module.exports = async (req, res) => {
     res.status(200).json({ id: order.result.id });
   } catch (error) {
     console.error("PayPal Order Creation Error:", error);
-    // Stelle sicher, dass immer ein JSON-Objekt zurückgegeben wird
     res.status(500).json({ error: error.message });
   }
-};
+}
