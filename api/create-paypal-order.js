@@ -125,7 +125,7 @@ export default async function handler(req, res) {
       );
       return res
         .status(400)
-        .json({ error: "Lieferung ist nur im Umkreis von 5 km möglich." });
+        .json({ error: "Die Lieferung ist leider nur im Umkreis von 5 km möglich." });
     }
 
     // Erstelle den PayPal-Order, wenn die Adresse innerhalb des Lieferradius liegt
