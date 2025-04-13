@@ -53,7 +53,7 @@ async function geocodeAddress(address) {
     const response = await fetch(url, {
       headers: { "User-Agent": "DeineAppName" },
     });
-    // Lese zuerst als Text, um eventuelle Fehlertexte zu loggen
+    // Lese zuerst als Text, um den exakten Inhalt zu loggen
     const responseText = await response.text();
     console.log("Geocode Response Text:", responseText);
     let data;
@@ -88,6 +88,7 @@ module.exports = async (req, res) => {
       !address.postalCode?.trim() ||
       !address.country?.trim()
     ) {
+      console.error("Validierungsfehler: Fehlende Adressdaten");
       return res.status(400).json({
         error:
           "Bitte füllen Sie alle erforderlichen Felder aus, bevor Sie fortfahren.",
@@ -103,10 +104,7 @@ module.exports = async (req, res) => {
 
     // Referenzkoordinaten für das Historische Rathaus Leer:
     const hausHamburg = { lat: 53.22666931152344, lon: 7.4508161544799805 };
-    console.log(
-      "Ziel-Koordinaten (Historisches Rathaus Leer):",
-      hausHamburg
-    );
+    console.log("Ziel-Koordinaten (Historisches Rathaus Leer):", hausHamburg);
 
     // Berechne die Entfernung in Kilometern
     const distance = haversineDistance(
@@ -119,6 +117,11 @@ module.exports = async (req, res) => {
 
     // Überprüfe, ob die Adresse innerhalb eines 5km-Radius liegt
     if (distance > 5) {
+      console.error(
+        "Lieferadresse außerhalb des erlaubten Radius:",
+        distance,
+        "km"
+      );
       return res
         .status(400)
         .json({ error: "Lieferung ist nur im Umkreis von 5 km möglich." });
@@ -148,13 +151,13 @@ module.exports = async (req, res) => {
     });
 
     const clientInstance = client();
-    // Hol den Order-Vorgang vom PayPal-SDK
+    console.log("Sende Order-Anfrage an PayPal:", request);
     const order = await clientInstance.execute(request);
     console.log("PayPal Order Response:", order);
     res.status(200).json({ id: order.result.id });
   } catch (error) {
     console.error("PayPal Order Creation Error:", error);
-    // Stelle sicher, dass immer eine JSON-Antwort zurückgegeben wird, auch im Fehlerfall
+    // Stelle sicher, dass immer ein JSON-Objekt zurückgegeben wird
     res.status(500).json({ error: error.message });
   }
 };
