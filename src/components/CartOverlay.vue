@@ -13,12 +13,12 @@
           <div v-if="cartItems.length === 0" class="empty-cart">
             Dein Warenkorb ist leer.
             <!-- Großer Shop-Button unter dem leeren Warenkorb -->
-            <router-link to="/shop" class="shop-link">
-              <button class="cta-button btn-shop">
-                <i class="fas fa-fish"></i>
-                <span class="cta-text">Zum Shop</span>
-              </button>
-            </router-link>
+            <router-link to="/shop" class="shop-link" @click.native="$emit('close')">
+  <button class="cta-button btn-shop">
+    <i class="fas fa-fish"></i>
+    <span class="cta-text">Zum Shop</span>
+  </button>
+</router-link>
           </div>
           <div v-else class="cart-items">
             <div v-for="(item, index) in cartItems" :key="index" class="cart-item">
