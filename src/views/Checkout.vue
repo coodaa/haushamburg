@@ -188,16 +188,17 @@ function getWeekdayName(date) {
 
 function getNextAvailableDeliveryDate() {
   let date = new Date();
-  date.setMinutes(date.getMinutes() + 90);
+  date.setMinutes(date.getMinutes() + 30);
   while (true) {
-    const weekday = getWeekdayName(date);
-    if (openingHours[weekday]) {
-      const [openHour, openMinute] = openingHours[weekday].open.split(":").map(Number);
-      const [closeHour, closeMinute] = openingHours[weekday].close.split(":").map(Number);
-      const openTime = new Date(date);
-      openTime.setHours(openHour, openMinute, 0, 0);
+    const day = getWeekdayName(date);
+    const hrs = openingHours[day];
+    if (hrs) {
+      const [oh, om] = hrs.open.split(":").map(Number);
+      const [ch, cm] = hrs.close.split(":").map(Number);
+      const openTime  = new Date(date);
+      openTime.setHours(oh, om, 0, 0);
       const closeTime = new Date(date);
-      closeTime.setHours(closeHour, closeMinute, 0, 0);
+      closeTime.setHours(ch, cm, 0, 0);
       if (date < closeTime) break;
     }
     date.setDate(date.getDate() + 1);
@@ -259,41 +260,48 @@ export default {
     });
 
     const minDeliveryDate = computed(() => getNextAvailableDeliveryDate());
+// Computed für die Liefer-Zeitfenster am gewählten Datum
+const availableDeliveryWindows = computed(() => {
+  if (!deliveryDate.value) return [];
+  // Datum im Format "DD.MM.YYYY" in JS-Date umwandeln
+  const [d, m, y] = deliveryDate.value.split(".");
+  const dt = new Date(+y, +m - 1, +d);
 
-    const availableDeliveryWindows = computed(() => {
-      if (!deliveryDate.value) return [];
-      const dateObj = new Date(
-        deliveryDate.value.replace(/(\d{2})\.(\d{2})\.(\d{4})/, "$3-$2-$1")
-      );
-      const dayName = getWeekdayName(dateObj);
-      const hours = openingHours[dayName];
-      if (!hours) return [];
-      const slots = [];
-      const [openHour, openMinute] = hours.open.split(":").map(Number);
-      const [closeHour, closeMinute] = hours.close.split(":").map(Number);
-      const start = new Date(dateObj);
-      start.setHours(openHour, openMinute, 0, 0);
-      const today = new Date();
-      if (deliveryDate.value === today.toLocaleDateString("de-DE").replace(/\./g, "-")) {
-        const minTime = new Date(today);
-        minTime.setMinutes(minTime.getMinutes() + 90);
-        if (minTime > start) start.setTime(minTime.getTime());
-      }
-      const end = new Date(dateObj);
-      end.setHours(closeHour, closeMinute, 0, 0);
-      // Schleife in 30-Minuten-Schritten
-      for (let time = start.getTime(); time + 30 * 60 * 1000 <= end.getTime(); time += 30 * 60 * 1000) {
-        const slotStart = new Date(time);
-        const slotEnd = new Date(time + 30 * 60 * 1000);
-        const slotLabel =
-          slotStart.toLocaleTimeString("de-DE", { hour: "2-digit", minute: "2-digit" }) +
-          " - " +
-          slotEnd.toLocaleTimeString("de-DE", { hour: "2-digit", minute: "2-digit" });
-        slots.push(slotLabel);
-      }
-      return slots;
-    });
+  const day = getWeekdayName(dt);
+  const hrs = openingHours[day];
+  if (!hrs) return [];
 
+  const [oh, om] = hrs.open.split(":").map(Number);
+  const [ch, cm] = hrs.close.split(":").map(Number);
+
+  let start = new Date(dt);
+  start.setHours(oh, om, 0, 0);
+
+  const end = new Date(dt);
+  end.setHours(ch, cm, 0, 0);
+
+  const today = new Date();
+  // Nur heute: Vorlauf von 30 Min. ab jetzt
+  if (deliveryDate.value === today.toLocaleDateString("de-DE")) {
+    const minT = new Date();
+    minT.setMinutes(minT.getMinutes() + 30);
+    if (minT > start) start = minT;
+  }
+
+  // Erzeuge 30-Minuten-Slots
+  const slots = [];
+  for (let t = start.getTime(); t + 30*60*1000 <= end.getTime(); t += 30*60*1000) {
+    const s = new Date(t);
+    const e = new Date(t + 30*60*1000);
+    slots.push(
+      s.toLocaleTimeString("de-DE", { hour: "2-digit", minute: "2-digit" }) +
+      " - " +
+      e.toLocaleTimeString("de-DE", { hour: "2-digit", minute: "2-digit" })
+    );
+  }
+
+  return slots;
+});
     const validateForm = () => {
       errors.firstName = false;
       errors.lastName = false;
