@@ -25,41 +25,69 @@
         </div>
       </div>
 
-      <!-- Öffnungszeiten -->
-      <div class="opening-hours">
-        <h3 class="contact-header">Öffnungszeiten</h3>
+     <!-- Öffnungszeiten -->
+<div class="opening-hours">
+  <h3 class="contact-header">Öffnungszeiten</h3>
 
-        <div class="hours-grid">
-          <div class="day-time">
-            <div class="day">Montag:</div>
-            <div class="time">17:00 – 20:00</div>
-          </div>
-          <div class="day-time">
-            <div class="day">Dienstag:</div>
-            <div class="time">Geschlossen</div>
-          </div>
-          <div class="day-time">
-            <div class="day">Mittwoch:</div>
-            <div class="time">Geschlossen</div>
-          </div>
-          <div class="day-time">
-            <div class="day">Donnerstag:</div>
-            <div class="time">Geschlossen</div>
-          </div>
-          <div class="day-time">
-            <div class="day">Freitag:</div>
-            <div class="time">17:00 – 21:00</div>
-          </div>
-          <div class="day-time">
-            <div class="day">Samstag:</div>
-            <div class="time">15:00 – 21:00</div>
-          </div>
-          <div class="day-time">
-            <div class="day">Sonntag:</div>
-            <div class="time">16:00 – 19:30</div>
-          </div>
-        </div>
+  <div class="hours-grid">
+    <!-- ───────── Montag ───────── -->
+    <div class="day-time">
+      <div class="day">Montag:</div>
+      <div class="times">
+        <span class="time snack">Imbiss&nbsp;12:00 – 14:30</span>
+        <span class="time main">17:00 – 20:00</span>
       </div>
+    </div>
+
+    <!-- ───────── Dienstag ───────── -->
+    <div class="day-time">
+      <div class="day">Dienstag:</div>
+      <div class="times">
+        <span class="time main">Geschlossen</span>
+      </div>
+    </div>
+
+    <!-- ───────── Mittwoch ───────── -->
+    <div class="day-time">
+      <div class="day">Mittwoch:</div>
+      <div class="times">
+        <span class="time main">Geschlossen</span>
+      </div>
+    </div>
+
+    <!-- ───────── Donnerstag ───────── -->
+    <div class="day-time">
+      <div class="day">Donnerstag:</div>
+      <div class="times">
+        <span class="time main">Geschlossen</span>
+      </div>
+    </div>
+
+    <!-- ───────── Freitag ───────── -->
+    <div class="day-time">
+      <div class="day">Freitag:</div>
+      <div class="times">
+        <span class="time main">17:00 – 21:00</span>
+      </div>
+    </div>
+
+    <!-- ───────── Samstag ───────── -->
+    <div class="day-time">
+      <div class="day">Samstag:</div>
+      <div class="times">
+        <span class="time main">12:30 – 21:00</span>
+      </div>
+    </div>
+
+    <!-- ───────── Sonntag ───────── -->
+    <div class="day-time">
+      <div class="day">Sonntag:</div>
+      <div class="times">
+        <span class="time main">12:30 – 20:00</span>
+      </div>
+    </div>
+  </div>
+</div>
     </div>
   </div>
 </template>
@@ -176,6 +204,17 @@ export default {
   font-size: 1em;
   line-height: 1.2;
 }
+
+/* Zeiten gruppieren (mehrere Zeilen untereinander) */
+.times{
+  display:flex;
+  flex-direction:column;
+  gap:0.15em;
+}
+
+/* Haupt- und Imbiss-Zeit leicht unterschiedlich einfärben */
+.time.main { color:var(--blue); }
+.time.snack{ color:#888; font-size:.9em; }
 
 /* Responsive Anpassungen für mobile Geräte */
 @media (max-width: 480px) {

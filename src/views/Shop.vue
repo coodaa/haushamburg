@@ -11,6 +11,11 @@
   >
     <!-- Favoriten: Swiper für beliebte Produkte -->
     <h2 class="big-title-3">Unsere Favoriten</h2>
+    <p class="opening-hours-note">
+  Die Lieferung ist nur an&nbsp;den Öffnungstagen des Restaurants zwischen
+  <strong>17:00&nbsp;–&nbsp;20:00&nbsp;Uhr</strong>
+  möglich.
+</p>
     <div class="swiper-section">
       <swiper
         :slides-per-view="slidesPerView"
@@ -401,6 +406,14 @@ export default {
   text-transform: uppercase;
   color: var(--blue);
 }
+
+.opening-hours-note{
+  text-align:center;
+  font-size:.9rem;
+  color:#555;
+  margin:-0.3rem 0 1.2rem;  /* leicht anpassen, damit es sauber sitzt */
+}
+.opening-hours-note strong{color:#004a7f;}
 
 .fade-enter-active,
 .fade-leave-active {

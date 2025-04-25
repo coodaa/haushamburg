@@ -134,6 +134,10 @@
                 </select>
               </div>
             </div>
+            <p class="opening-hours-note">
+  Lieferungen sind nur an&nbsp;den Öffnungstagen des Restaurants zwischen
+  <strong>&nbsp;17&nbsp;–&nbsp;20&nbsp;Uhr</strong> möglich.
+</p>
           </div>
           <!-- Optional: Bemerkungen -->
           <div class="form-row">
@@ -715,6 +719,7 @@ select#country {
   box-shadow: 0 2px 8px rgba(0,0,0,0.05);
   margin-bottom: 2rem;
 }
+
 
 /* PayPal & Fehlermodal */
 .paypal-button-container,

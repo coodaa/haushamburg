@@ -49,7 +49,12 @@
         <!-- Footer-Bereich fixiert am unteren Rand -->
         <footer v-if="cartItems.length > 0">
           <div class="summary">
+            <p class="opening-hours-note">
+  Lieferungen sind nur an den Öffnungstagen des Restaurants&nbsp;zwischen
+  <strong>17:00&nbsp;–&nbsp;20:00&nbsp;Uhr</strong> möglich.
+</p>
             <div class="summary-item">
+
               <span>Gesamt:</span>
               <span>{{ formatPrice(totalPrice) }}</span>
             </div>
@@ -62,6 +67,7 @@
               <span>{{ formatPrice(discountedTotalPrice) }}</span>
             </div>
           </div>
+
           <button class="checkout-btn" @click="checkout">Zur Kasse</button>
         </footer>
       </div>
@@ -400,6 +406,15 @@ footer {
 .shop-link .cta-button i {
   margin-right: 0.5rem;
 }
+
+.opening-hours-note {
+  text-align: center;
+  font-size: 0.85rem;
+  color: #555;
+  margin: 0 0 0.8rem;
+  line-height: 1.3;
+}
+.opening-hours-note strong { color: #004a7f; }
 
 /* Responsive Anpassungen */
 @media (min-width: 1200px) {
