@@ -171,15 +171,22 @@ import "flatpickr/dist/flatpickr.min.css";
 import BasePage from "@/components/BasePage.vue";
 import { useCartStore } from "@/stores/cart";
 
+// immer 17–20 Uhr, nur Fr–Mo geöffnet
 const openingHours = {
-  Monday: { open: "17:00", close: "20:00" },
-  Tuesday: null,
-  Wednesday: null,
+  Monday:   { open: "17:00", close: "20:00" },
+  Tuesday:  null,
+  Wednesday:null,
   Thursday: null,
-  Friday: { open: "17:00", close: "21:00" },
-  Saturday: { open: "15:00", close: "21:00" },
-  Sunday: { open: "16:00", close: "19:30" },
+  Friday:   { open: "17:00", close: "20:00" },
+  Saturday: { open: "17:00", close: "20:00" },
+  Sunday:   { open: "17:00", close: "20:00" },
 };
+
+const openingDayNumbers = [5, 6, 0, 1];
+
+// Urlaub: 24.05.–05.06.2025
+const vacationStart = new Date(2025, 4, 24); // 4 = Mai (0-basiert)
+const vacationEnd   = new Date(2025, 5,  5); // 5 = Juni
 
 function getWeekdayName(date) {
   const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -189,18 +196,22 @@ function getWeekdayName(date) {
 function getNextAvailableDeliveryDate() {
   let date = new Date();
   date.setMinutes(date.getMinutes() + 30);
+
   while (true) {
-    const day = getWeekdayName(date);
-    const hrs = openingHours[day];
-    if (hrs) {
-      const [oh, om] = hrs.open.split(":").map(Number);
-      const [ch, cm] = hrs.close.split(":").map(Number);
-      const openTime  = new Date(date);
-      openTime.setHours(oh, om, 0, 0);
-      const closeTime = new Date(date);
-      closeTime.setHours(ch, cm, 0, 0);
-      if (date < closeTime) break;
+    // ► Urlaub überspringen
+    if (date >= vacationStart && date <= vacationEnd) {
+      date.setDate(date.getDate() + 1);
+      date.setHours(0, 0, 0, 0);
+      continue;
     }
+
+    const hrs = openingHours[getWeekdayName(date)];
+    if (hrs) {
+      const [ch, cm] = hrs.close.split(":").map(Number);
+      const closeTime = new Date(date); closeTime.setHours(ch, cm, 0, 0);
+      if (date < closeTime) break; // Datum liegt vor Ladenschluss
+    }
+
     date.setDate(date.getDate() + 1);
     date.setHours(0, 0, 0, 0);
   }
@@ -261,15 +272,22 @@ export default {
 
     const minDeliveryDate = computed(() => getNextAvailableDeliveryDate());
 // Computed für die Liefer-Zeitfenster am gewählten Datum
+
+// Computed: verfügbare Lieferfenster
 const availableDeliveryWindows = computed(() => {
   if (!deliveryDate.value) return [];
-  // Datum im Format "DD.MM.YYYY" in JS-Date umwandeln
+
+  // "DD.MM.YYYY" -> Date
   const [d, m, y] = deliveryDate.value.split(".");
   const dt = new Date(+y, +m - 1, +d);
 
-  const day = getWeekdayName(dt);
-  const hrs = openingHours[day];
-  if (!hrs) return [];
+   // ► Urlaub: keine Slots
+   if (dt >= vacationStart && dt <= vacationEnd) return [];
+
+const hrs = openingHours[getWeekdayName(dt)];
+if (!hrs) return [];
+
+
 
   const [oh, om] = hrs.open.split(":").map(Number);
   const [ch, cm] = hrs.close.split(":").map(Number);
@@ -280,28 +298,43 @@ const availableDeliveryWindows = computed(() => {
   const end = new Date(dt);
   end.setHours(ch, cm, 0, 0);
 
+  /* ---------- NEU: Start für den heutigen Tag runden ---------- */
   const today = new Date();
-  // Nur heute: Vorlauf von 30 Min. ab jetzt
-  if (deliveryDate.value === today.toLocaleDateString("de-DE")) {
-    const minT = new Date();
-    minT.setMinutes(minT.getMinutes() + 30);
-    if (minT > start) start = minT;
-  }
 
-  // Erzeuge 30-Minuten-Slots
+/* Nur für den heutigen Tag einen Puffer setzen */
+if (
+  dt.getFullYear() === today.getFullYear() &&
+  dt.getMonth()   === today.getMonth()   &&
+  dt.getDate()    === today.getDate()
+) {
+  const minT = new Date();
+  minT.setMinutes(minT.getMinutes() + 30);
+
+  // auf nächstes 30-Min-Intervall runden
+  const add = (30 - (minT.getMinutes() % 30)) % 30;
+  minT.setMinutes(minT.getMinutes() + add, 0, 0);
+
+  if (minT > start) start = minT;
+}
+  /* ------------------------------------------------------------ */
+
+  // Slots à 30 Minuten erzeugen
   const slots = [];
-  for (let t = start.getTime(); t + 30*60*1000 <= end.getTime(); t += 30*60*1000) {
+  for (let t = start.getTime(); t + 30 * 60 * 1000 <= end.getTime(); t += 30 * 60 * 1000) {
     const s = new Date(t);
-    const e = new Date(t + 30*60*1000);
+    const e = new Date(t + 30 * 60 * 1000);
     slots.push(
       s.toLocaleTimeString("de-DE", { hour: "2-digit", minute: "2-digit" }) +
       " - " +
       e.toLocaleTimeString("de-DE", { hour: "2-digit", minute: "2-digit" })
     );
   }
-
   return slots;
 });
+
+
+
+
     const validateForm = () => {
       errors.firstName = false;
       errors.lastName = false;
@@ -342,40 +375,26 @@ const availableDeliveryWindows = computed(() => {
     };
 
     onMounted(() => {
+
       flatpickr("#deliveryDate", {
-        locale: German,
-        dateFormat: "d.m.Y",
-        defaultDate: minDeliveryDate.value,
-        minDate: minDeliveryDate.value,
-        disable: [
-          function(date) {
-            const weekday = date.getDay();
-            const allowedWeekdays = Object.keys(openingHours)
-              .filter(day => openingHours[day])
-              .map(day => {
-                switch (day) {
-                  case "Sunday": return 0;
-                  case "Monday": return 1;
-                  case "Tuesday": return 2;
-                  case "Wednesday": return 3;
-                  case "Thursday": return 4;
-                  case "Friday": return 5;
-                  case "Saturday": return 6;
-                  default: return -1;
-                }
-              });
-            return allowedWeekdays.indexOf(weekday) === -1;
-          }
-        ],
-        onChange: (selectedDates, dateStr) => {
-          deliveryDate.value = dateStr;
-          if (availableDeliveryWindows.value.length > 0) {
-            deliveryWindow.value = availableDeliveryWindows.value[0];
-          } else {
-            deliveryWindow.value = "";
-          }
-        }
-      });
+  locale: German,
+  dateFormat: "d.m.Y",
+  defaultDate: minDeliveryDate.value,
+  minDate:     minDeliveryDate.value,
+  disable: [
+    // geschlossene Wochentage
+    date => !openingDayNumbers.includes(date.getDay()),
+    // ► Urlaub sperren
+    date => date >= vacationStart && date <= vacationEnd
+  ],
+  onChange: (_, str) => {
+    deliveryDate.value = str;
+    deliveryWindow.value = availableDeliveryWindows.value[0] || "";
+  }
+});
+
+
+
       if (!deliveryDate.value) {
         deliveryDate.value = flatpickr.formatDate(minDeliveryDate.value, "d.m.Y");
       }
