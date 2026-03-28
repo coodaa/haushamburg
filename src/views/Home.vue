@@ -78,7 +78,7 @@
 
       <!-- Kundenbewertungen -->
       <section class="review-section">
-        <Review />
+        <GoogleReviews />
       </section>
     </main>
   </div>
@@ -86,14 +86,14 @@
 
 <script>
 import { useHead } from '@vueuse/head';
-import Review from "../components/Review.vue";
+import GoogleReviews from "@/components/GoogleReviews.vue";
 import Favorites from "@/components/FavoriteProducts.vue";
 import staticProducts from "@/data/products.json";
 
 export default {
   name: "Home",
   components: {
-    Review,
+    GoogleReviews,
     Favorites,
   },
   data() {

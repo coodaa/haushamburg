@@ -173,10 +173,49 @@ const router = createRouter({
   },
 });
 
-// Dynamischer <title> setzen (optional redundant – App.vue macht’s besser)
-router.beforeEach((to, from, next) => {
-  if (to.meta?.title) document.title = to.meta.title;
-  next();
+const BASE_URL = "https://haus-hamburg-leer.de";
+
+function setMeta(selector, attrName, attrValue, content) {
+  let el = document.querySelector(selector);
+  if (!el) {
+    el = document.createElement("meta");
+    el.setAttribute(attrName, attrValue);
+    document.head.appendChild(el);
+  }
+  el.setAttribute("content", content);
+}
+
+function setCanonical(href) {
+  let el = document.querySelector("link[rel=’canonical’]");
+  if (!el) {
+    el = document.createElement("link");
+    el.setAttribute("rel", "canonical");
+    document.head.appendChild(el);
+  }
+  el.setAttribute("href", href);
+}
+
+router.afterEach((to) => {
+  const m = to.meta || {};
+  if (m.title) document.title = m.title;
+
+  if (m.description) {
+    setMeta("meta[name=’description’]", "name", "description", m.description);
+    setMeta("meta[property=’og:description’]", "property", "og:description", m.description);
+    setMeta("meta[name=’twitter:description’]", "name", "twitter:description", m.description);
+  }
+
+  const ogTitle = m.title || document.title;
+  setMeta("meta[property=’og:title’]", "property", "og:title", ogTitle);
+  setMeta("meta[name=’twitter:title’]", "name", "twitter:title", ogTitle);
+
+  const canonical = `${BASE_URL}${to.path === "/" ? "" : to.path}`;
+  setMeta("meta[property=’og:url’]", "property", "og:url", canonical);
+  setCanonical(canonical);
+
+  setMeta("meta[name=’robots’]", "name", "robots",
+    m.noindex ? "noindex, nofollow" : "index, follow"
+  );
 });
 
 export default router;

@@ -36,22 +36,21 @@
     </div>
 
     <!-- Google Bewertungen -->
-    <div class="google-reviews">
-      <h3>Was unsere Gäste sagen</h3>
-      <div class="elfsight-app-993dc481-952b-4721-8494-6d5d6cf46578" data-elfsight-app-lazy></div>
-    </div>
+    <GoogleReviews />
   </BasePage>
 </template>
 
 <script>
 import BasePage from "@/components/BasePage.vue";
 import ContactInfo from "../components/ContactInfo.vue";
+import GoogleReviews from "@/components/GoogleReviews.vue";
 
 export default {
   name: "Kontakt",
   components: {
     BasePage,
     ContactInfo,
+    GoogleReviews,
   },
   data() {
     return {
@@ -162,34 +161,8 @@ export default {
   color: var(--blue);
 }
 
-/* Google Bewertungen Styling */
-.google-reviews {
-  margin: 2em auto;
-  padding: 1em;
-  font-size: 1em;
-  line-height: 1.5;
-}
-
-.google-reviews h3 {
-  margin-bottom: 1em;
-  color: var(--blue);
-  font-size: 1.2em;
-  line-height: 1.2;
-}
-
-.elfsight-app-993dc481-952b-4721-8494-6d5d6cf46578 {
-  width: 100%;
-  height: auto;
-  min-height: 400px;
-  border: none;
-  transition: height 0.3s ease;
-}
-
 /* Responsive Anpassungen */
 @media (min-width: 1024px) {
-  .google-reviews .elfsight-app-993dc481-952b-4721-8494-6d5d6cf46578 {
-    min-height: 600px;
-  }
   .map-container {
     padding: 1em;
     box-shadow: 0;
@@ -197,17 +170,8 @@ export default {
 }
 
 @media (max-width: 768px) {
-  .google-reviews .elfsight-app-993dc481-952b-4721-8494-6d5d6cf46578 {
-    min-height: 500px;
-  }
   .map-container iframe {
     height: 300px;
-  }
-}
-
-@media (max-width: 480px) {
-  .google-reviews .elfsight-app-993dc481-952b-4721-8494-6d5d6cf46578 {
-    min-height: 30vh;
   }
 }
 </style>
