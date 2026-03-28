@@ -65,18 +65,9 @@ export default {
     },
 
     loadGoogleAnalytics() {
-      if (document.querySelector('script[src*="googletagmanager.com/gtag/js"]')) return;
-
-      const script = document.createElement('script');
-      script.async = true;
-      script.src = "https://www.googletagmanager.com/gtag/js?id=G-2FVK4ZXYNM";
-      document.head.appendChild(script);
-
-      window.dataLayer = window.dataLayer || [];
-      function gtag() { dataLayer.push(arguments); }
-      window.gtag = gtag;
-      gtag('js', new Date());
-      gtag('config', 'G-2FVK4ZXYNM');
+      if (window.gtag) {
+        window.gtag('consent', 'update', { analytics_storage: 'granted' });
+      }
     },
 
     updateMeta(name, content) {
