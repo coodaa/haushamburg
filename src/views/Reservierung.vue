@@ -219,5 +219,10 @@ export default {
   .additional-info {
     padding-top: 6em;
   }
+
+  .svg-section .scalloped-svg {
+    height: 8em;
+    background-size: calc(100% / 14);
+  }
 }
 </style>
