@@ -31,14 +31,16 @@ export default {
       cartVisible.value = !cartVisible.value;
     };
 
+    const onCartAdded = () => {
+      cartVisible.value = true;
+    };
+
     onMounted(() => {
-      window.addEventListener('cart-item-added', () => {
-        cartVisible.value = true;
-      });
+      window.addEventListener('cart-item-added', onCartAdded);
     });
 
     onUnmounted(() => {
-      window.removeEventListener('cart-item-added');
+      window.removeEventListener('cart-item-added', onCartAdded);
     });
 
     return {
