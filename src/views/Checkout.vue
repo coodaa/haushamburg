@@ -406,6 +406,17 @@ if (
         deliveryWindow.value = availableDeliveryWindows.value[0];
       }
 
+      // PayPal SDK dynamisch laden (nur auf Checkout-Seite)
+      const loadPayPal = () => new Promise((resolve, reject) => {
+        if (window.paypal) { resolve(); return; }
+        const script = document.createElement("script");
+        script.src = "https://www.paypal.com/sdk/js?client-id=ASVaWcLxdKrUNp95yTzwEeUmI3YvIw5YQpIczfHNe3m9EZJi6OjEw77jNTbedoov0Tu96CVLa9XOkxJl&currency=EUR&components=buttons,applepay,googlepay";
+        script.onload = resolve;
+        script.onerror = reject;
+        document.head.appendChild(script);
+      });
+
+      loadPayPal().then(() => {
       if (window.paypal) {
         window.paypal.Buttons({
           style: { borderRadius: 20 },
@@ -471,6 +482,10 @@ if (
         errorModalMessage.value = "PayPal SDK konnte nicht geladen werden.";
         showErrorModal.value = true;
       }
+      }).catch(() => {
+        errorModalMessage.value = "PayPal konnte nicht geladen werden.";
+        showErrorModal.value = true;
+      });
     });
 
     watch(availableDeliveryWindows, (newSlots) => {

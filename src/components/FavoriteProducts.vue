@@ -221,8 +221,8 @@ export default defineComponent({
   font-size: 1.3em;
 }
 
-::v-deep .swiper-button-prev,
-::v-deep .swiper-button-next {
+:deep(.swiper-button-prev),
+:deep(.swiper-button-next) {
   display: none !important;
 }
 

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="showCart">
     <button class="open-cart-btn" @click="toggleCart">
       <i class="fas fa-shopping-cart fa-3x"></i>
       <span v-if="itemsCount > 0" class="cart-badge">{{ itemsCount }}</span>
@@ -10,6 +10,7 @@
 
 <script>
 import { ref, computed, onMounted, onUnmounted } from "vue";
+import { useRoute } from "vue-router";
 import { useCartStore } from "@/stores/cart";
 import CartOverlay from "@/components/CartOverlay.vue";
 
@@ -17,8 +18,10 @@ export default {
   name: "OpenCartButton",
   components: { CartOverlay },
   setup() {
+    const route = useRoute();
     const cartStore = useCartStore();
     const cartVisible = ref(false);
+    const showCart = computed(() => ["/shop", "/checkout"].includes(route.path));
 
     const itemsCount = computed(() =>
       cartStore.items.reduce((acc, item) => acc + item.quantity, 0)
@@ -39,6 +42,7 @@ export default {
     });
 
     return {
+      showCart,
       itemsCount,
       cartVisible,
       toggleCart
