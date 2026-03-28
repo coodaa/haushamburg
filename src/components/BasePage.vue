@@ -204,7 +204,7 @@ export default {
   left: 50%;
   margin-left: -50vw;
   z-index: 1;
-  overflow: hidden;
+  overflow: visible;
   margin-top: -1em;
   padding: 1rem;
 }
