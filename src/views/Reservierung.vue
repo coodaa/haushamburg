@@ -188,6 +188,7 @@ export default {
 /* SVG-Sektion */
 .svg-section {
   position: relative;
+  z-index: 3;
   padding: 2em 1em 1em 1em;
   margin-top: -1em;
   width: 100vw;
