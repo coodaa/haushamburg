@@ -16,16 +16,22 @@
         Herzlich willkommen bei <strong>Haus Hamburg</strong>! Über unseren Online-Service können Sie ganz einfach Ihren Tisch buchen. Wählen Sie das gewünschte Datum, die Uhrzeit und die Anzahl der Gäste, um Ihren Besuch bei uns zu planen.
       </p>
 
-      <!-- Hintergrundbereich für das Reservierungsformular -->
+      <!-- OpenTable Reservierung -->
       <div class="contact">
-        <div class="opentable-embed">
-          <iframe
-            src="https://www.opentable.de/restref/client/?restref=387363&lang=de-DE&ot_source=Restaurant%2520website&fbclid=PAZXh0bgNhZW0CMTEAAaYogoVV1mACQOyyrhqMiTQtwrekrxDVhfYWmEosS2itqEUM2Uk4hmv_LIY_aem_ifDT7I84jrlAuXU5XCCLlw&corrid=09611799-3f75-412d-a06c-87e37880e5eb"
-            frameborder="0"
-            width="100%"
-            height="600"
-            allowfullscreen
-          ></iframe>
+        <div class="opentable-card">
+          <p class="ot-label">Jetzt direkt bei OpenTable reservieren</p>
+          <a
+            href="https://www.opentable.de/restref/client/?restref=387363&lang=de-DE&ot_source=Restaurant%20website"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="ot-button"
+          >
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm0 18a8 8 0 110-16 8 8 0 010 16zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z" fill="currentColor"/>
+            </svg>
+            Tisch reservieren
+          </a>
+          <p class="ot-note">Sie werden zu OpenTable weitergeleitet – schnell, sicher und ohne Wartezeit.</p>
         </div>
       </div>
 
@@ -126,20 +132,57 @@ export default {
   z-index: 2;
 }
 
-/* OpenTable-Widget */
-.opentable-embed {
-  margin: 0 auto;
+/* OpenTable Card */
+.opentable-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+  background: #fff;
   border-radius: 20px;
-  overflow: hidden;
-  background-color: #FFFFFF;
-  max-width: 35em;
+  padding: 2.5rem 2rem;
+  max-width: 28rem;
+  margin: 0 auto;
+  box-shadow: 0 2px 16px rgba(3, 48, 93, 0.08);
 }
 
-.opentable-embed iframe {
-  display: block;
-  width: 100%;
-  border: none;
-  border-radius: 20px;
+.ot-label {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--blue);
+  margin: 0;
+}
+
+.ot-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: var(--blue);
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 700;
+  padding: 0.85rem 2rem;
+  border-radius: 50px;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.ot-button svg {
+  width: 1.3rem;
+  height: 1.3rem;
+  flex-shrink: 0;
+}
+
+.ot-button:hover {
+  background: var(--gold);
+  color: var(--blue);
+  transform: translateY(-2px);
+}
+
+.ot-note {
+  font-size: 0.82rem;
+  color: #999;
+  margin: 0;
 }
 
 /* SVG-Sektion */
