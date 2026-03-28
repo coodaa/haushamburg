@@ -206,7 +206,7 @@ export default {
   background-repeat: repeat-x;
   background-position: top left;
   background-size:  calc(100% / 10);
-  z-index: 0;
+  z-index: 3;
 }
 
 .additional-info {
