@@ -10,36 +10,40 @@ function emailWrapper(content) {
 <!DOCTYPE html>
 <html lang="de">
 <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"></head>
-<body style="margin:0; padding:0; background-color:#e8e0da; font-family: Georgia, 'Times New Roman', serif;">
-  <table width="100%" cellpadding="0" cellspacing="0" style="background-color:#e8e0da; padding: 32px 16px;">
+<body style="margin:0; padding:0; background-color:${BEIGE}; font-family: Georgia, 'Times New Roman', serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background-color:${BEIGE}; padding: 32px 16px;">
     <tr><td align="center">
-      <table width="600" cellpadding="0" cellspacing="0" style="max-width:600px; width:100%; background-color:#ffffff; border-radius:4px; overflow:hidden; box-shadow: 0 2px 12px rgba(4,48,93,0.10);">
+      <table width="560" cellpadding="0" cellspacing="0" style="max-width:560px; width:100%;">
 
         <!-- Header -->
         <tr>
-          <td style="background-color:${NAVY}; padding: 32px 40px; text-align:center;">
-            <p style="margin:0 0 6px 0; color:${GOLD}; font-size:11px; letter-spacing:3px; text-transform:uppercase;">Haus Hamburg · Leer</p>
-            <h1 style="margin:0; color:#ffffff; font-size:26px; font-weight:normal; letter-spacing:1px;">Catering</h1>
-            <div style="margin-top:16px; height:2px; background: linear-gradient(to right, transparent, ${GOLD}, transparent);"></div>
+          <td style="background-color:${NAVY}; padding: 36px 48px 28px; text-align:center;">
+            <p style="margin:0 0 10px 0; color:${GOLD}; font-size:10px; letter-spacing:4px; text-transform:uppercase; font-family: Arial, sans-serif;">Haus Hamburg &nbsp;&middot;&nbsp; Leer</p>
+            <h1 style="margin:0 0 20px; color:#ffffff; font-size:28px; font-weight:normal; letter-spacing:2px;">Catering</h1>
+            <table width="100%" cellpadding="0" cellspacing="0"><tr>
+              <td style="height:1px; background-color:transparent; width:30%;"></td>
+              <td style="height:1px; background-color:${GOLD};"></td>
+              <td style="height:1px; background-color:transparent; width:30%;"></td>
+            </tr></table>
           </td>
         </tr>
 
         <!-- Content -->
         <tr>
-          <td style="padding: 36px 40px; color:#2a2a2a;">
+          <td style="background-color:#ffffff; padding: 40px 48px; color:#2a2a2a;">
             ${content}
           </td>
         </tr>
 
         <!-- Footer -->
         <tr>
-          <td style="background-color:${BEIGE}; padding: 20px 40px; text-align:center; border-top: 1px solid #e0d8d2;">
-            <p style="margin:0; font-size:12px; color:#888; letter-spacing:0.5px;">
-              Haus Hamburg · Neue Straße 1 · 26789 Leer
+          <td style="padding: 20px 48px; text-align:center;">
+            <p style="margin:0; font-size:11px; color:#999; font-family: Arial, sans-serif; letter-spacing:0.5px;">
+              Haus Hamburg &nbsp;&middot;&nbsp; Neue Stra&szlig;e 1 &nbsp;&middot;&nbsp; 26789 Leer
             </p>
-            <p style="margin:6px 0 0; font-size:12px;">
+            <p style="margin:6px 0 0; font-size:11px; font-family: Arial, sans-serif;">
               <a href="mailto:info@haus-hamburg-leer.de" style="color:${NAVY}; text-decoration:none;">info@haus-hamburg-leer.de</a>
-              &nbsp;·&nbsp;
+              &nbsp;&middot;&nbsp;
               <a href="https://www.haus-hamburg-leer.de" style="color:${NAVY}; text-decoration:none;">haus-hamburg-leer.de</a>
             </p>
           </td>
@@ -55,10 +59,9 @@ function emailWrapper(content) {
 function row(label, value) {
   return `
   <tr>
-    <td style="padding: 10px 14px; background-color:${BEIGE}; border-radius:3px; font-size:13px; color:#666; width:38%; vertical-align:top;">${label}</td>
-    <td style="padding: 10px 14px; font-size:14px; color:#1a1a1a; font-weight:bold; vertical-align:top;">${value}</td>
-  </tr>
-  <tr><td colspan="2" style="height:4px;"></td></tr>`;
+    <td style="padding: 11px 0; font-size:12px; color:#999; font-family: Arial, sans-serif; letter-spacing:0.5px; width:40%; vertical-align:top; border-bottom:1px solid #f0ebe7;">${label}</td>
+    <td style="padding: 11px 0 11px 16px; font-size:14px; color:#1a1a1a; vertical-align:top; border-bottom:1px solid #f0ebe7;">${value}</td>
+  </tr>`;
 }
 
 export default async function handler(req, res) {
@@ -97,19 +100,19 @@ export default async function handler(req, res) {
   });
 
   const ownerContent = `
-    <h2 style="margin:0 0 6px; color:${NAVY}; font-size:20px; font-weight:normal;">Neue Catering-Anfrage</h2>
-    <p style="margin:0 0 24px; color:#888; font-size:13px;">Eingegangen am ${new Date().toLocaleDateString("de-DE", { day: "2-digit", month: "2-digit", year: "numeric", hour: "2-digit", minute: "2-digit" })} Uhr</p>
+    <h2 style="margin:0 0 4px; color:${NAVY}; font-size:22px; font-weight:normal;">Neue Catering-Anfrage</h2>
+    <p style="margin:0 0 32px; color:#aaa; font-size:12px; font-family:Arial,sans-serif; letter-spacing:0.5px;">Eingegangen am ${new Date().toLocaleString("de-DE", { day: "2-digit", month: "2-digit", year: "numeric", hour: "2-digit", minute: "2-digit" })} Uhr</p>
 
-    <p style="margin:0 0 8px; font-size:12px; text-transform:uppercase; letter-spacing:2px; color:${PINK};">Kontakt</p>
-    <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:24px;">
+    <p style="margin:0 0 4px; font-size:10px; text-transform:uppercase; letter-spacing:3px; color:${GOLD}; font-family:Arial,sans-serif;">Kontakt</p>
+    <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:28px; border-top:1px solid #f0ebe7;">
       ${row("Name", name)}
-      ${row("E-Mail", `<a href="mailto:${email}" style="color:${NAVY};">${email}</a>`)}
-      ${row("Telefon", `<a href="tel:${phone}" style="color:${NAVY};">${phone}</a>`)}
+      ${row("E-Mail", `<a href="mailto:${email}" style="color:${NAVY}; text-decoration:none;">${email}</a>`)}
+      ${row("Telefon", `<a href="tel:${phone}" style="color:${NAVY}; text-decoration:none;">${phone}</a>`)}
     </table>
 
-    <p style="margin:0 0 8px; font-size:12px; text-transform:uppercase; letter-spacing:2px; color:${PINK};">Veranstaltung</p>
-    <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:24px;">
-      ${row("Datum & Uhrzeit", formattedDate)}
+    <p style="margin:0 0 4px; font-size:10px; text-transform:uppercase; letter-spacing:3px; color:${GOLD}; font-family:Arial,sans-serif;">Veranstaltung</p>
+    <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:28px; border-top:1px solid #f0ebe7;">
+      ${row("Datum &amp; Uhrzeit", formattedDate)}
       ${row("Ort", location)}
       ${row("Personen", guests)}
       ${row("Budget p.P.", budget || "nicht angegeben")}
@@ -117,36 +120,34 @@ export default async function handler(req, res) {
     </table>
 
     ${message ? `
-    <p style="margin:0 0 8px; font-size:12px; text-transform:uppercase; letter-spacing:2px; color:${PINK};">Nachricht</p>
-    <div style="background-color:${BEIGE}; padding:16px; border-left:3px solid ${GOLD}; border-radius:0 3px 3px 0; font-size:14px; line-height:1.7; color:#333;">
+    <p style="margin:0 0 4px; font-size:10px; text-transform:uppercase; letter-spacing:3px; color:${GOLD}; font-family:Arial,sans-serif;">Nachricht</p>
+    <div style="padding:16px 20px; border-left:3px solid ${GOLD}; background-color:${BEIGE}; font-size:14px; line-height:1.8; color:#333;">
       ${message}
     </div>` : ""}
   `;
 
   const customerContent = `
-    <p style="margin:0 0 20px; font-size:16px; color:#2a2a2a;">Liebe/r ${name},</p>
-    <p style="margin:0 0 24px; font-size:15px; line-height:1.7; color:#444;">
-      vielen Dank für Ihre Catering-Anfrage. Wir haben Ihre Nachricht erhalten und melden uns in Kürze persönlich bei Ihnen.
+    <p style="margin:0 0 20px; font-size:17px; color:${NAVY}; font-weight:normal;">Liebe/r ${name},</p>
+    <p style="margin:0 0 32px; font-size:15px; line-height:1.8; color:#555; font-family:Arial,sans-serif;">
+      vielen Dank f&uuml;r Ihre Catering-Anfrage. Wir haben Ihre Nachricht erhalten und melden uns in K&uuml;rze pers&ouml;nlich bei Ihnen.
     </p>
 
-    <div style="background-color:${BEIGE}; border-radius:4px; padding:20px 24px; margin-bottom:28px;">
-      <p style="margin:0 0 14px; font-size:12px; text-transform:uppercase; letter-spacing:2px; color:${PINK};">Ihre Angaben im Überblick</p>
-      <table width="100%" cellpadding="0" cellspacing="0">
-        ${row("Datum & Uhrzeit", formattedDate)}
-        ${row("Ort", location)}
-        ${row("Personen", guests)}
-        ${row("Budget p.P.", budget || "nicht angegeben")}
-        ${row("Catering-Art", cateringType ? cateringType.join(", ") : "nicht angegeben")}
-      </table>
-    </div>
+    <p style="margin:0 0 4px; font-size:10px; text-transform:uppercase; letter-spacing:3px; color:${GOLD}; font-family:Arial,sans-serif;">Ihre Angaben</p>
+    <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:32px; border-top:1px solid #f0ebe7;">
+      ${row("Datum &amp; Uhrzeit", formattedDate)}
+      ${row("Ort", location)}
+      ${row("Personen", guests)}
+      ${row("Budget p.P.", budget || "nicht angegeben")}
+      ${row("Catering-Art", cateringType ? cateringType.join(", ") : "nicht angegeben")}
+    </table>
 
-    <p style="margin:0 0 8px; font-size:14px; line-height:1.7; color:#444;">
+    <p style="margin:0 0 8px; font-size:14px; line-height:1.8; color:#555; font-family:Arial,sans-serif;">
       Bei Fragen erreichen Sie uns jederzeit unter
-      <a href="mailto:info@haus-hamburg-leer.de" style="color:${NAVY};">info@haus-hamburg-leer.de</a>.
+      <a href="mailto:info@haus-hamburg-leer.de" style="color:${NAVY}; text-decoration:none;">info@haus-hamburg-leer.de</a>.
     </p>
-    <p style="margin:24px 0 0; font-size:14px; color:#444;">
-      Mit freundlichen Grüßen,<br>
-      <span style="color:${NAVY}; font-size:16px;">Ihr Haus Hamburg Team</span>
+    <p style="margin:28px 0 0; font-size:14px; color:#555; font-family:Arial,sans-serif; line-height:1.8;">
+      Mit freundlichen Gr&uuml;&szlig;en,<br>
+      <span style="color:${NAVY}; font-size:16px; font-family:Georgia,'Times New Roman',serif;">Ihr Haus Hamburg Team</span>
     </p>
   `;
 
