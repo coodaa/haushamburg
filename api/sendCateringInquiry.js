@@ -86,7 +86,7 @@ export default async function handler(req, res) {
   }
 
   const formattedDate = new Date(dateTime).toLocaleDateString("de-DE", {
-    weekday: "long", year: "numeric", month: "long", day: "numeric", hour: "2-digit", minute: "2-digit"
+    weekday: "long", year: "numeric", month: "long", day: "numeric"
   });
 
   const transporter = nodemailer.createTransport({
@@ -112,7 +112,7 @@ export default async function handler(req, res) {
 
     <p style="margin:0 0 4px; font-size:10px; text-transform:uppercase; letter-spacing:3px; color:${GOLD}; font-family:Arial,sans-serif;">Veranstaltung</p>
     <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:28px; border-top:1px solid #f0ebe7;">
-      ${row("Datum &amp; Uhrzeit", formattedDate)}
+      ${row("Datum", formattedDate)}
       ${row("Ort", location)}
       ${row("Personen", guests)}
       ${row("Budget p.P.", budget || "nicht angegeben")}
@@ -134,7 +134,7 @@ export default async function handler(req, res) {
 
     <p style="margin:0 0 4px; font-size:10px; text-transform:uppercase; letter-spacing:3px; color:${GOLD}; font-family:Arial,sans-serif;">Ihre Angaben</p>
     <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:32px; border-top:1px solid #f0ebe7;">
-      ${row("Datum &amp; Uhrzeit", formattedDate)}
+      ${row("Datum", formattedDate)}
       ${row("Ort", location)}
       ${row("Personen", guests)}
       ${row("Budget p.P.", budget || "nicht angegeben")}
