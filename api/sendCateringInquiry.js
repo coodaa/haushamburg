@@ -1,12 +1,10 @@
-// /api/sendCateringInquiry.js
-const nodemailer = require("nodemailer");
+import nodemailer from "nodemailer";
 
-module.exports = async function handler(req, res) {
+export default async function handler(req, res) {
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method Not Allowed" });
   }
 
-  // Logge den Request-Body zur Fehlersuche
   console.log("Received catering inquiry:", req.body);
 
   const {
@@ -21,17 +19,15 @@ module.exports = async function handler(req, res) {
     dateTime,
   } = req.body;
 
-  // Pflichtfelder überprüfen (hier werden z. B. Name, E‑Mail, Telefon, Gästezahl, Ort und Datum verlangt)
   if (!name || !email || !phone || !guests || !location || !dateTime) {
     return res
       .status(400)
       .json({ error: "Bitte füllen Sie alle Pflichtfelder aus!" });
   }
 
-  // Erstelle den Nodemailer-Transporter
   const transporter = nodemailer.createTransport({
-    host: "smtp.strato.de", // Dein SMTP-Server, hier Strato
-    port: 465,              // SSL-Port (alternativ 587 für TLS)
+    host: "smtp.strato.de",
+    port: 465,
     secure: true,
     auth: {
       user: process.env.EMAIL_USER,
@@ -39,7 +35,6 @@ module.exports = async function handler(req, res) {
     },
   });
 
-  // Inhalt für die E-Mail an Dich (Shop-Inhaber)
   const ownerEmailContent = `
     <div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6; color: #333;">
       <h2 style="color: #004a7f;">Neue Catering-Anfrage</h2>
@@ -65,7 +60,6 @@ module.exports = async function handler(req, res) {
     </div>
   `;
 
-  // Inhalt für die Bestätigungs-E-Mail an den Kunden
   const customerEmailContent = `
     <div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6; color: #333;">
       <h2 style="color: #004a7f;">Bestellbestätigung – Haus Hamburg Catering</h2>
@@ -87,7 +81,6 @@ module.exports = async function handler(req, res) {
   `;
 
   try {
-    // Sende E-Mail an Dich (Shop-Inhaber)
     await transporter.sendMail({
       from: `"Catering Anfrage" <${process.env.EMAIL_USER}>`,
       to: "info@haus-hamburg-leer.de",
@@ -95,7 +88,6 @@ module.exports = async function handler(req, res) {
       html: ownerEmailContent,
     });
 
-    // Sende Bestätigungs-E-Mail an den Kunden (falls eine E-Mail-Adresse vorhanden ist)
     if (email) {
       await transporter.sendMail({
         from: `"Haus Hamburg Catering" <${process.env.EMAIL_USER}>`,
@@ -106,13 +98,9 @@ module.exports = async function handler(req, res) {
     }
 
     console.log("✅ E-Mails erfolgreich gesendet!");
-    return res
-      .status(200)
-      .json({ success: true, message: "E-Mail wurde gesendet!" });
+    return res.status(200).json({ success: true, message: "E-Mail wurde gesendet!" });
   } catch (error) {
     console.error("❌ E-Mail Versand fehlgeschlagen:", error);
-    return res
-      .status(500)
-      .json({ error: "E-Mail konnte nicht gesendet werden" });
+    return res.status(500).json({ error: "E-Mail konnte nicht gesendet werden" });
   }
-};
+}
