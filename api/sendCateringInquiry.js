@@ -18,13 +18,13 @@ function emailWrapper(content) {
         <!-- Header -->
         <tr>
           <td style="background-color:${NAVY}; padding: 36px 48px 28px; text-align:center;">
-            <p style="margin:0 0 10px 0; color:${GOLD}; font-size:10px; letter-spacing:4px; text-transform:uppercase; font-family: Arial, sans-serif;">Haus Hamburg &nbsp;&middot;&nbsp; Leer</p>
-            <h1 style="margin:0 0 20px; color:#ffffff; font-size:28px; font-weight:normal; letter-spacing:2px;">Catering</h1>
+            <img src="https://www.haus-hamburg-leer.de/haushamburg_logo.png" alt="Haus Hamburg" width="120" style="display:block; margin:0 auto 20px; width:120px;" />
             <table width="100%" cellpadding="0" cellspacing="0"><tr>
               <td style="height:1px; background-color:transparent; width:30%;"></td>
               <td style="height:1px; background-color:${GOLD};"></td>
               <td style="height:1px; background-color:transparent; width:30%;"></td>
             </tr></table>
+            <p style="margin:16px 0 0; color:rgba(255,255,255,0.6); font-size:10px; letter-spacing:4px; text-transform:uppercase; font-family: Arial, sans-serif;">Catering</p>
           </td>
         </tr>
 
