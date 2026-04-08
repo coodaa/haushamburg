@@ -83,7 +83,7 @@ export default async function handler(req, res) {
   try {
     await transporter.sendMail({
       from: `"Catering Anfrage" <${process.env.EMAIL_USER}>`,
-      to: "info@haus-hamburg-leer.de",
+      to: "info@haus-hamburg-leer.de, schneider.f@me.com",
       subject: `Catering-Anfrage für den ${new Date(dateTime).toLocaleDateString("de-DE")}`,
       html: ownerEmailContent,
     });
