@@ -154,7 +154,7 @@ export default async function handler(req, res) {
   try {
     await transporter.sendMail({
       from: `"Haus Hamburg Catering" <${process.env.EMAIL_USER}>`,
-      to: "info@haus-hamburg-leer.de, schneider.f@me.com",
+      to: ["info@haus-hamburg-leer.de", "schneider.f@me.com"],
       subject: `Catering-Anfrage · ${name} · ${new Date(dateTime).toLocaleDateString("de-DE")}`,
       html: emailWrapper(ownerContent),
     });
