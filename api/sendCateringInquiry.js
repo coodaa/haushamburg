@@ -170,7 +170,7 @@ export default async function handler(req, res) {
     console.log("✅ E-Mails erfolgreich gesendet!");
     return res.status(200).json({ success: true, message: "E-Mail wurde gesendet!" });
   } catch (error) {
-    console.error("❌ E-Mail Versand fehlgeschlagen:", error);
+    console.error("❌ E-Mail Versand fehlgeschlagen:", error.message, error.code, error.response);
     return res.status(500).json({ error: "E-Mail konnte nicht gesendet werden" });
   }
 }
