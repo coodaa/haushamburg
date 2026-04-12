@@ -27,6 +27,11 @@
               <strong>Inhaberin:</strong> Helga Wagemann<br />
               Alle Rechte vorbehalten.
             </p>
+            <h3>Website:</h3>
+            <p>
+              Konzeption &amp; Entwicklung:<br />
+              <a href="https://www.coodaa.de" target="_blank" rel="noopener noreferrer"><strong>coodaa</strong> – Florian Schneider</a>
+            </p>
           </div>
 
           <!-- Logo rechts neben dem Text -->

@@ -81,8 +81,8 @@ export default {
 }
 
 .made-by {
-  font-size: 0.75rem;
-  opacity: 0.5;
+  font-size: 0.8rem;
+  opacity: 0.65;
 }
 
 .made-by a {
