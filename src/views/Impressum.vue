@@ -30,7 +30,7 @@
             <h3>Website:</h3>
             <p>
               Konzeption &amp; Entwicklung:<br />
-              <a href="https://www.coodaa.de" target="_blank" rel="noopener noreferrer" style="text-decoration:none;"><strong>coodaa</strong> – Florian Schneider</a>
+              <a href="https://www.coodaa.de" target="_blank" rel="noopener noreferrer" style="text-decoration:none;"><strong>coodaa</strong></a>
             </p>
           </div>
 
