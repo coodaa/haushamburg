@@ -16,7 +16,7 @@
       <router-link to="/kontakt">Kontakt</router-link>
     </div>
     <p>&copy; 2025 Haus Hamburg. Alle Rechte vorbehalten.</p>
-    <p class="made-by">Entwickelt von <a href="https://coodaa.de" target="_blank" rel="noopener noreferrer">Florian Schneider · coodaa.de</a></p>
+    <p class="made-by">Entwickelt von <a href="https://www.coodaa.de" target="_blank" rel="noopener noreferrer">Florian Schneider · coodaa.de</a></p>
   </footer>
 </template>
 
