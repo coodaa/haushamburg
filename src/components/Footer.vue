@@ -16,6 +16,7 @@
       <router-link to="/kontakt">Kontakt</router-link>
     </div>
     <p>&copy; 2025 Haus Hamburg. Alle Rechte vorbehalten.</p>
+    <p class="made-by">Entwickelt von <a href="https://coodaa.de" target="_blank" rel="noopener noreferrer">Florian Schneider · coodaa.de</a></p>
   </footer>
 </template>
 
@@ -77,6 +78,22 @@ export default {
 .footer p {
   margin: 0;
   font-size: 0.9rem;
+}
+
+.made-by {
+  font-size: 0.75rem;
+  opacity: 0.5;
+}
+
+.made-by a {
+  color: #fff;
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+}
+
+.made-by a:hover {
+  opacity: 1;
+  color: var(--gold);
 }
 
 /* Mobile Anpassungen */
