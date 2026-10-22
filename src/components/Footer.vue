@@ -43,13 +43,19 @@ export default {
 
 .social-media {
   display: flex;
-  gap: 1.5rem; /* Abstand zwischen den Icons */
+  gap: 0.5rem; /* Abstand zwischen den Icons (Tippflächen sind selbst 44px) */
   justify-content: center;
 }
 
 .social-media a {
   color: #fff; /* Weiße Icons */
   font-size: 1.5rem;
+  /* größere Tippfläche fürs Handy */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
   transition: color 0.3s ease;
 }
 

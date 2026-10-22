@@ -47,7 +47,8 @@
             <li>
               <router-link to="/reservierung" @click="closeMenu">
                 <button class="cta-button btn-shop" aria-label="Tisch reservieren" title="Tisch reservieren">
-                  <i class="fas fa-fish"></i>
+                  <i class="fas fa-fish icon-wide" aria-hidden="true"></i>
+                  <i class="fas fa-calendar-check icon-narrow" aria-hidden="true"></i>
                   <span class="cta-text">Reservieren</span>
                 </button>
               </router-link>
@@ -171,9 +172,9 @@ const closeMenu = () => {
 </script>
 
 <style scoped>
-/* Basis-Schriftart für das mobile Menü */
+/* Basis-Schriftart für das mobile Menü (Icons ausgenommen, sonst erscheint ein leeres Kästchen) */
 .mobile-menu,
-.mobile-menu * {
+.mobile-menu *:not(i) {
   font-family: 'Helvetica Neue', Arial, sans-serif;
 }
 
@@ -615,7 +616,21 @@ body.no-scroll {
   box-shadow: 0 1px 3px rgba(0,0,0,0.3);
 }
 
-/* Stelle sicher, dass der Text im Online Shop-Button im mobilen Menü sichtbar ist */
+/* Reservieren-Button: auf schmalen Bildschirmen ohne Text ein Kalender statt des Fischs,
+   damit erkennbar ist, wofür der Button steht */
+.icon-narrow {
+  display: none;
+}
+@media (max-width: 1199px) {
+  .nav-right .icon-wide {
+    display: none;
+  }
+  .nav-right .icon-narrow {
+    display: inline-block;
+  }
+}
+
+/* Stelle sicher, dass der Text im hervorgehobenen Button im mobilen Menü sichtbar ist */
 .mobile-menu .btn-shop .cta-text {
   display: inline !important;
 }

@@ -348,7 +348,8 @@ export default {
   font-size: 0.82rem;
   font-weight: 600;
   cursor: pointer;
-  padding: 0;
+  padding: 0.5rem 0;
+  margin: -0.5rem 0;
   text-decoration: underline;
   text-underline-offset: 2px;
   align-self: flex-start;
@@ -360,7 +361,7 @@ export default {
 .reviews-note {
   margin-top: 1rem;
   font-size: 0.75rem;
-  color: #999;
+  color: #6b6155;
   text-align: center;
 }
 
