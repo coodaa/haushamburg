@@ -173,7 +173,7 @@ const router = createRouter({
   },
 });
 
-const BASE_URL = "https://haus-hamburg-leer.de";
+const BASE_URL = "https://www.haus-hamburg-leer.de";
 
 function setMeta(selector, attrName, attrValue, content) {
   let el = document.querySelector(selector);
@@ -186,7 +186,7 @@ function setMeta(selector, attrName, attrValue, content) {
 }
 
 function setCanonical(href) {
-  let el = document.querySelector("link[rel=’canonical’]");
+  let el = document.querySelector("link[rel='canonical']");
   if (!el) {
     el = document.createElement("link");
     el.setAttribute("rel", "canonical");
@@ -200,20 +200,23 @@ router.afterEach((to) => {
   if (m.title) document.title = m.title;
 
   if (m.description) {
-    setMeta("meta[name=’description’]", "name", "description", m.description);
-    setMeta("meta[property=’og:description’]", "property", "og:description", m.description);
-    setMeta("meta[name=’twitter:description’]", "name", "twitter:description", m.description);
+    setMeta("meta[name='description']", "name", "description", m.description);
+    setMeta("meta[property='og:description']", "property", "og:description", m.description);
+    setMeta("meta[name='twitter:description']", "name", "twitter:description", m.description);
   }
 
   const ogTitle = m.title || document.title;
-  setMeta("meta[property=’og:title’]", "property", "og:title", ogTitle);
-  setMeta("meta[name=’twitter:title’]", "name", "twitter:title", ogTitle);
+  setMeta("meta[property='og:title']", "property", "og:title", ogTitle);
+  setMeta("meta[name='twitter:title']", "name", "twitter:title", ogTitle);
 
-  const canonical = `${BASE_URL}${to.path === "/" ? "" : to.path}`;
-  setMeta("meta[property=’og:url’]", "property", "og:url", canonical);
+  // 404-Seiten nicht indexieren lassen (der Server liefert hier technisch Status 200)
+  setMeta("meta[name='robots']", "name", "robots", to.name === "notfound" ? "noindex, follow" : "index, follow");
+
+  const canonical = `${BASE_URL}${to.path === "/" ? "/" : to.path}`;
+  setMeta("meta[property='og:url']", "property", "og:url", canonical);
   setCanonical(canonical);
 
-  setMeta("meta[name=’robots’]", "name", "robots",
+  setMeta("meta[name='robots']", "name", "robots",
     m.noindex ? "noindex, nofollow" : "index, follow"
   );
 });

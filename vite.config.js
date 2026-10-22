@@ -14,16 +14,16 @@ export default defineConfig(({ mode }) => {
     Sitemap({
       hostname: "https://www.haus-hamburg-leer.de", // Deine Domain
       exclude: ["/checkout-success"], // falls du bestimmte Seiten nicht willst
-      routes: [
-        // optional: wenn du eigene statische Routen definieren willst
-        { url: "/", changefreq: "daily", priority: 1.0 },
-        { url: "/speisekarte", changefreq: "weekly", priority: 0.9 },
-        { url: "/shop", changefreq: "daily", priority: 1.0 },
-        { url: "/catering", changefreq: "weekly", priority: 0.8 },
-        { url: "/reservierung", changefreq: "weekly", priority: 0.9 },
-        { url: "/kontakt", changefreq: "weekly", priority: 0.8 },
-        { url: "/impressum", changefreq: "monthly", priority: 0.5 },
-        { url: "/datenschutz", changefreq: "monthly", priority: 0.5 },
+      // Alle öffentlichen Seiten (der Shop ist pausiert und bewusst nicht enthalten)
+      dynamicRoutes: [
+        "/speisekarte",
+        "/catering",
+        "/reservierung",
+        "/ueber",
+        "/kontakt",
+        "/stellenangebote",
+        "/impressum",
+        "/datenschutz",
       ],
     }),
     // Lokale /api/reviews Route für npm run dev:
