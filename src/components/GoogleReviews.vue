@@ -1,5 +1,5 @@
 <template>
-  <div class="google-reviews">
+  <div v-if="!error" class="google-reviews">
 
     <!-- Loading -->
     <div v-if="loading" class="reviews-loading">
@@ -7,11 +7,6 @@
       <div class="reviews-grid">
         <div v-for="n in 3" :key="n" class="skeleton-card"></div>
       </div>
-    </div>
-
-    <!-- Fehler -->
-    <div v-else-if="error" class="reviews-error">
-      <p>Bewertungen konnten nicht geladen werden.</p>
     </div>
 
     <!-- Inhalt -->
@@ -110,6 +105,7 @@ export default {
       this.reviews = data.reviews.map((r) => ({ ...r, expanded: false }));
     } catch {
       this.error = true;
+      this.$emit("error");
     } finally {
       this.loading = false;
     }

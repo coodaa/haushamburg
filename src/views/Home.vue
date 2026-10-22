@@ -69,8 +69,8 @@
       </section>
 
       <!-- Kundenbewertungen -->
-      <section class="review-section">
-        <GoogleReviews />
+      <section class="review-section" v-show="!reviewsFailed">
+        <GoogleReviews @error="reviewsFailed = true" />
       </section>
     </main>
   </div>
@@ -90,6 +90,7 @@ export default {
   },
   data() {
     return {
+      reviewsFailed: false,
       words: ["Moin!", "Ahoi!", "Hallo!"],
       currentIndex: 0,
       currentWord: "Moin!",
