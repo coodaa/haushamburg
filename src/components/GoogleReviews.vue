@@ -118,7 +118,11 @@ export default {
       const list = live.length ? live : fallbackReviews;
       this.reviews = list.map((r) => ({ ...r, expanded: false }));
     } catch {
-      this.error = true;
+      // Google nicht erreichbar (z. B. Tageslimit): feste Bewertungen zeigen.
+      this.rating = "4.8";
+      this.user_ratings_total = 520;
+      this.usingFallback = true;
+      this.reviews = fallbackReviews.map((r) => ({ ...r, expanded: false }));
     } finally {
       this.loading = false;
     }
