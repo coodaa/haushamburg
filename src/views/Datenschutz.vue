@@ -129,7 +129,10 @@
         <h3>5. Analyse-Tools und Werbung</h3>
         <h4>Google Analytics</h4>
         <p>
-          Diese Website nutzt Funktionen des Webanalysedienstes Google Analytics. Anbieter ist die Google Inc., 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA.
+          Diese Website nutzt Funktionen des Webanalysedienstes Google Analytics. Anbieter ist die Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland.
+        </p>
+        <p>
+          Google Analytics wird nur geladen, wenn Sie im Cookie-Hinweis ausdrücklich auf „Akzeptieren“ klicken. Ohne Ihre Einwilligung wird keine Verbindung zu Google aufgebaut und es werden keine Analyse-Cookies gesetzt. Rechtsgrundlage ist Ihre Einwilligung gemäß Art. 6 Abs. 1 lit. a DSGVO und § 25 Abs. 1 TDDDG. Sie können Ihre Einwilligung jederzeit mit Wirkung für die Zukunft widerrufen, indem Sie unten auf der Seite „Cookie-Einstellungen“ öffnen und „Ablehnen“ wählen.
         </p>
         <p>
           Google Analytics verwendet sog. „Cookies“, Textdateien, die auf Ihrem Computer gespeichert werden und die eine Analyse der Benutzung der Website durch Sie ermöglichen. Die durch das Cookie erzeugten Informationen über Ihre Benutzung dieser Website werden in der Regel an einen Server von Google in den USA übertragen und dort gespeichert.
@@ -150,7 +153,7 @@
           Sie können darüber hinaus die Erfassung der durch das Cookie erzeugten und auf Ihre Nutzung der Website bezogenen Daten (inkl. Ihrer IP-Adresse) an Google sowie die Verarbeitung dieser Daten durch Google verhindern, indem Sie das unter dem folgenden Link verfügbare Browser-Plugin herunterladen und installieren: <a href="https://tools.google.com/dlpage/gaoptout?hl=de" target="_blank" rel="noopener noreferrer">Google Analytics Opt-Out</a>
         </p>
         <p>
-          Alternativ zum Browser-Plugin können Sie die Erfassung durch Google Analytics auch verhindern, indem Sie auf diesen Link klicken. Es wird ein Opt-Out-Cookie gesetzt, das die zukünftige Erfassung Ihrer Daten beim Besuch dieser Website verhindert: <a href="javascript:void(0);" @click="setGoogleAnalyticsOptOut">Google Analytics deaktivieren</a>
+          Alternativ zum Browser-Plugin können Sie die Erfassung durch Google Analytics auch verhindern, indem Sie auf diesen Link klicken. Es wird ein Opt-Out-Cookie gesetzt, das die zukünftige Erfassung Ihrer Daten beim Besuch dieser Website verhindert: <a href="#" @click.prevent="setGoogleAnalyticsOptOut">Google Analytics deaktivieren</a><span v-if="optOutDone"> – Google Analytics ist deaktiviert.</span>
         </p>
         <p>
           <strong>Hinweis:</strong> Wir weisen darauf hin, dass wir als Anbieter der Seiten keine Kenntnis vom Inhalt der übermittelten Daten sowie deren Nutzung durch Google erhalten.
@@ -251,6 +254,7 @@
 
 <script>
 import BasePage from "@/components/BasePage.vue";
+import { hasConsent, setConsent, disableAnalytics } from "@/analytics.js";
 
 export default {
   name: "Datenschutz",
@@ -307,13 +311,19 @@ export default {
         month: "long",
         day: "numeric",
       }),
+      optOutDone: false,
     };
   },
   methods: {
     setGoogleAnalyticsOptOut() {
-      document.cookie =
-        "ga-disable-UA-XXXXX-Y=true; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/";
-      alert("Google Analytics wurde deaktiviert.");
+      const wasAccepted = hasConsent();
+      setConsent(false);
+      disableAnalytics();
+      if (wasAccepted) {
+        window.location.reload();
+      } else {
+        this.optOutDone = true;
+      }
     },
   },
 };

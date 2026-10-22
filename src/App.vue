@@ -22,6 +22,7 @@
 import Navbar from './components/Navbar.vue';
 import Footer from './components/Footer.vue';
 import CookieBanner from './components/CookieBanner.vue';
+import { loadAnalytics, hasConsent } from './analytics.js';
 import OpenCartButton from '@/components/OpenCartButton.vue';
 import { useRouter } from 'vue-router';
 
@@ -65,9 +66,7 @@ export default {
     },
 
     loadGoogleAnalytics() {
-      if (window.gtag) {
-        window.gtag('consent', 'update', { analytics_storage: 'granted' });
-      }
+      loadAnalytics();
     },
 
     updateMeta(name, content) {
@@ -83,7 +82,7 @@ export default {
 
   mounted() {
     // Cookie-Zustimmung prüfen
-    if (localStorage.getItem("cookiesAccepted") === "true") {
+    if (hasConsent()) {
       this.loadGoogleAnalytics();
     }
 

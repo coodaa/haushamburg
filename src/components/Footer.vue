@@ -14,6 +14,7 @@
       <router-link to="/datenschutz">Datenschutz</router-link>
       <router-link to="/stellenangebote">Stellenangebote</router-link>
       <router-link to="/kontakt">Kontakt</router-link>
+      <button type="button" class="cookie-settings" @click="openCookieSettings">Cookie-Einstellungen</button>
     </div>
     <p>&copy; {{ new Date().getFullYear() }} Haus Hamburg. Alle Rechte vorbehalten.</p>
     <p class="made-by">Made by <a href="https://www.coodaa.de" target="_blank" rel="noopener noreferrer">coodaa</a></p>
@@ -21,9 +22,13 @@
 </template>
 
 <script>
+import { openCookieSettings } from "@/analytics.js";
 
 export default {
   name: "Footer",
+  methods: {
+    openCookieSettings,
+  },
 };
 </script>
 
@@ -77,6 +82,17 @@ export default {
   transition: color 0.3s ease;
 }
 
+.cookie-settings {
+  background: none;
+  border: none;
+  padding: 0;
+  color: #fff;
+  font: inherit;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+.cookie-settings:hover,
 .footer-links a:hover {
   color: var(--gold); /* Goldene Farbe beim Hover */
 }

@@ -1,17 +1,21 @@
 <template>
   <div v-if="showBanner" class="cookie-banner">
     <p>
-      Wir verwenden Cookies, um Ihnen das beste Nutzererlebnis auf unserer Website zu bieten.
-      Durch die Nutzung unserer Website stimmen Sie der Verwendung von Cookies zu.
+      Mit Ihrer Einwilligung nutzen wir Google Analytics, um zu verstehen, wie unsere Website genutzt wird.
+      Dabei werden Cookies gesetzt und Daten an Google übermittelt. Ohne Einwilligung findet keine Analyse statt.
+      Sie können Ihre Entscheidung jederzeit über „Cookie-Einstellungen“ im Seitenfuß ändern.
+      Mehr in der <router-link to="/datenschutz" class="banner-link">Datenschutzerklärung</router-link>.
     </p>
     <div class="button-group">
-      <button @click="acceptCookies">Akzeptieren</button>
       <button @click="declineCookies">Ablehnen</button>
+      <button @click="acceptCookies">Akzeptieren</button>
     </div>
   </div>
 </template>
 
 <script>
+import { hasConsent, setConsent, disableAnalytics } from "@/analytics.js";
+
 export default {
   name: "CookieBanner",
   data() {
@@ -20,25 +24,34 @@ export default {
     };
   },
   mounted() {
-    if (localStorage.getItem("cookiesAccepted") === null) {
-      this.showBanner = true;
+    let decided = false;
+    try {
+      decided = localStorage.getItem("cookiesAccepted") !== null;
+    } catch {
+      decided = false;
     }
+    this.showBanner = !decided;
+    window.addEventListener("open-cookie-settings", this.open);
+  },
+  beforeUnmount() {
+    window.removeEventListener("open-cookie-settings", this.open);
   },
   methods: {
+    open() {
+      this.showBanner = true;
+    },
     acceptCookies() {
-      localStorage.setItem("cookiesAccepted", "true");
+      setConsent(true);
       this.showBanner = false;
       this.$emit("cookiesAccepted");
     },
     declineCookies() {
-      localStorage.setItem("cookiesAccepted", "false");
+      const wasAccepted = hasConsent();
+      setConsent(false);
       this.showBanner = false;
-
-      const gaScript = document.querySelector('script[src*="googletagmanager.com/gtag/js"]');
-      if (gaScript) {
-        gaScript.remove();
-      }
-      window.gtag = undefined;
+      disableAnalytics();
+      // Bereits geladenes Analytics-Skript sicher entfernen: Seite einmal neu laden
+      if (wasAccepted) window.location.reload();
     },
   },
 };
@@ -84,6 +97,11 @@ export default {
   border-radius: 30px;
   font-size: 1rem;
   transition: background 0.3s ease;
+}
+
+.banner-link {
+  color: var(--gold);
+  text-decoration: underline;
 }
 
 .cookie-banner button:hover {
