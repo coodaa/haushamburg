@@ -30,7 +30,7 @@
 
             <div class="dish-entry">
               <div class="dish-description">
-                Vorspeise Haus-Hamburg
+                Vorspeise Haus-Hamburg<sup class="allergens" title="Allergene und Zusatzstoffe: 4">4</sup>
                 <div class="note">
                   (Matjesfilets, Aalrauch-Matjesfilets, Bismarckhering, Brathering, Salatgarnitur)
                 </div>
@@ -40,7 +40,7 @@
 
             <div class="dish-entry">
               <div class="dish-description">
-                Vorspeise Haus-Hamburg deluxe<br />
+                Vorspeise Haus-Hamburg deluxe<sup class="allergens" title="Allergene und Zusatzstoffe: 1,4,5">1,4,5</sup><br />
                 <div class="note">
                   (Matjesfilets, Aalrauch-Matjesfilets, Bismarckhering, Brathering,<br />
                   Räucherlachs und Greetsieler Kutterkrabben, Salatgarnitur)
@@ -75,14 +75,14 @@
 
             <div class="dish-entry">
               <div class="dish-description">
-                • mit Krabben
+                • mit Krabben<sup class="allergens" title="Allergene und Zusatzstoffe: 1,5">1,5</sup>
               </div>
               <span class="dish-price">26,50 €</span>
             </div>
 
             <div class="dish-entry">
               <div class="dish-description">
-                Fischplatte für 1 Person
+                Fischplatte für 1 Person<sup class="allergens" title="Allergene und Zusatzstoffe: 1,4,5">1,4,5</sup>
                 <div class="note">
                   (Auswahl unserer beliebtesten Fischfilets, Greetsieler Krabben, Bratkartoffeln, Salat)
                 </div>
@@ -100,12 +100,12 @@
           <h2 class="big-title-3">Von Weide und Feld</h2>
           <div class="card-content">
             <div class="dish-entry">
-              <div class="dish-description">Rahmschnitzel mit RAS Frites und Salat</div>
+              <div class="dish-description">Rahmschnitzel mit RAS Frites und Salat<sup class="allergens" title="Allergene und Zusatzstoffe: 2,3,4,6">2,3,4,6</sup></div>
               <span class="dish-price">17,50 €</span>
             </div>
 
             <div class="dish-entry">
-              <div class="dish-description">Tomahawk vom Ammerländer Edelschwein</div>
+              <div class="dish-description">Tomahawk vom Ammerländer Edelschwein<sup class="allergens" title="Allergene und Zusatzstoffe: 4,6">4,6</sup></div>
               <span class="dish-price">24,50 €</span>
               <div class="note">(mit RAS Frites und Salat)</div>
             </div>
@@ -118,40 +118,44 @@
             <div class="dish-entry">
               <div class="dish-description">
                 Ofenkartoffel<br />
-                • mit Sour-Cream
+                • mit Sour-Cream<sup class="allergens" title="Allergene und Zusatzstoffe: 2,4,6">2,4,6</sup>
               </div>
               <span class="dish-price">9,50 €</span>
             </div>
 
             <div class="dish-entry">
               <div class="dish-description">
-                • mit Räucherlachs und Sour-Cream
+                • mit Räucherlachs und Sour-Cream<sup class="allergens" title="Allergene und Zusatzstoffe: 2,4,6">2,4,6</sup>
               </div>
               <span class="dish-price">15,50 €</span>
             </div>
 
             <div class="dish-entry">
               <div class="dish-description">
-                • mit Sour-Cream und Greetsieler Krabben
+                • mit Sour-Cream und Greetsieler Krabben<sup class="allergens" title="Allergene und Zusatzstoffe: 1,2,4,5,6">1,2,4,5,6</sup>
               </div>
               <span class="dish-price">19,50 €</span>
             </div>
 
             <div class="dish-entry">
               <div class="dish-description">
-                Grünkohl mit Mettenden und Pinkel und Bratkartoffeln
+                Grünkohl mit Mettenden und Pinkel und Bratkartoffeln<sup class="allergens" title="Allergene und Zusatzstoffe: 1,4">1,4</sup>
               </div>
               <span class="dish-price">19,90 €</span>
             </div>
 
             <div class="dish-entry">
               <div class="dish-description">
-                Snirtjebraten mit Sauce und Bratkartoffeln
+                Snirtjebraten mit Sauce und Bratkartoffeln<sup class="allergens" title="Allergene und Zusatzstoffe: 1,3">1,3</sup>
               </div>
               <span class="dish-price">21,30 €</span>
             </div>
           </div>
         </section>
+        <p class="allergen-legend">
+          Allergene und Zusatzstoffe: 1 Konservierungsstoffe · 2 Laktose · 3 Gluten · 4 Senf · 5 Schalentiere · 6 Eier · 7 Gerste.
+          Bei Fragen zu Allergenen hilft Ihnen unser Team gern weiter.
+        </p>
       </div>
 
       <div class="pdf-container">
@@ -313,6 +317,23 @@ export default {
 }
 
 /* Button zum Öffnen des PDF-Modals */
+.allergens {
+  font-size: 0.65em;
+  margin-left: 0.15em;
+  color: inherit;
+  opacity: 0.75;
+  font-weight: normal;
+}
+
+.allergen-legend {
+  grid-column: 1 / -1;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  opacity: 0.85;
+  margin: 1rem 0 0;
+  text-align: center;
+}
+
 .pdf-container {
   display: flex;
   justify-content: center;
