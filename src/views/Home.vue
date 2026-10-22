@@ -2,7 +2,7 @@
   <div>
     <!-- Header-Bereich -->
     <header class="hero header-row">
-      <h1 class="title-base big-title">herz, küche,</h1>
+      <h1 class="title-base big-title">herz, küche,<span class="visually-hidden"> tisch – Haus Hamburg, Fischrestaurant in der Altstadt von Leer</span></h1>
       <div class="looping-bubble">
         <span
           v-if="previousWordVisible"
@@ -28,7 +28,7 @@
     <main>
       <!-- Bildcontainer mit H2 -->
       <section class="image-container">
-        <h2 class="title-base big-title big-title-2">tisch</h2>
+        <h2 class="title-base big-title big-title-2" aria-hidden="true">tisch</h2>
         <div class="home-container">
           <img
             src="/images/outside/haus-hamburg-leer-start.webp"
@@ -41,7 +41,7 @@
       <!-- Restaurant-Sektion -->
       <section class="restaurant-section">
         <div class="restaurant-content">
-          <h2 class="restaurant-heading big-title-3">das restaurant</h2>
+          <h2 class="restaurant-heading big-title-3">unser fisch&shy;restaurant in leer</h2>
           <div class="restaurant-text">
             <p>
               Willkommen im <strong>Haus Hamburg</strong> – Ihrem <strong>Fischrestaurant in Leer</strong>, Ostfriesland.
