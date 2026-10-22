@@ -79,6 +79,9 @@
           </button>
         </div>
       </div>
+      <p v-if="usingFallback && goodReviews.length" class="reviews-note">
+        Ausgewählte Bewertungen von Google. Wir prüfen nicht, ob die Bewertungen von Personen stammen, die bei uns gegessen haben.
+      </p>
     </template>
   </div>
 </template>
@@ -95,6 +98,7 @@ export default {
       rating: null,
       user_ratings_total: null,
       reviews: [],
+      usingFallback: false,
     };
   },
   computed: {
@@ -110,6 +114,7 @@ export default {
       this.rating = data.rating.toFixed(1);
       this.user_ratings_total = data.user_ratings_total;
       const live = (data.reviews || []).filter((r) => r.text);
+      this.usingFallback = !live.length;
       const list = live.length ? live : fallbackReviews;
       this.reviews = list.map((r) => ({ ...r, expanded: false }));
     } catch {
@@ -359,6 +364,13 @@ export default {
   color: var(--gold);
 }
 
+.reviews-note {
+  margin-top: 1rem;
+  font-size: 0.75rem;
+  color: #999;
+  text-align: center;
+}
+
 /* Responsive */
 @media (min-width: 640px) {
   .reviews-grid {
@@ -368,7 +380,7 @@ export default {
 
 @media (min-width: 1024px) {
   .reviews-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   }
   .google-reviews {
     padding: 2rem;
