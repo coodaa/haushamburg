@@ -175,7 +175,7 @@ const closeMenu = () => {
 /* Basis-Schriftart für das mobile Menü (Icons ausgenommen, sonst erscheint ein leeres Kästchen) */
 .mobile-menu,
 .mobile-menu *:not(i) {
-  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-family: var(--font-thunder);
 }
 
 /* Navbar-Grundstyles */
@@ -391,7 +391,7 @@ const closeMenu = () => {
   justify-content: center;
   width: 100%;
   padding: 0.8rem 1rem;
-  font-size: 1.6rem;
+  font-size: 2.2rem;
   text-transform: uppercase;
   font-weight: bold;
   border: none;
@@ -419,7 +419,7 @@ const closeMenu = () => {
 
 /* Hervorhebung für den "Online bestellen"-Button */
 .mobile-links button.cta-button.btn-shop {
-  font-size: 1.8rem;
+  font-size: 2.2rem;
   padding: 1rem 1.2rem;
   background-color: var(--gold);
   color: var(--blue);
@@ -633,5 +633,6 @@ body.no-scroll {
 /* Stelle sicher, dass der Text im hervorgehobenen Button im mobilen Menü sichtbar ist */
 .mobile-menu .btn-shop .cta-text {
   display: inline !important;
+  font-size: inherit;
 }
 </style>
