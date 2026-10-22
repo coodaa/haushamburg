@@ -46,7 +46,7 @@
 
       <!-- Review-Karten -->
       <div class="reviews-grid">
-        <div v-for="review in goodReviews" :key="review.author_name" class="review-card">
+        <div v-for="review in goodReviews" :key="review.author_name + review.text.slice(0, 20)" class="review-card">
           <div class="review-top">
             <div class="avatar-wrap">
               <img
@@ -84,6 +84,8 @@
 </template>
 
 <script>
+import fallbackReviews from "@/data/reviews.json";
+
 export default {
   name: "GoogleReviews",
   data() {
@@ -107,7 +109,9 @@ export default {
       const data = await res.json();
       this.rating = data.rating.toFixed(1);
       this.user_ratings_total = data.user_ratings_total;
-      this.reviews = data.reviews.map((r) => ({ ...r, expanded: false }));
+      const live = (data.reviews || []).filter((r) => r.text);
+      const list = live.length ? live : fallbackReviews;
+      this.reviews = list.map((r) => ({ ...r, expanded: false }));
     } catch {
       this.error = true;
     } finally {
