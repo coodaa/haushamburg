@@ -15,7 +15,7 @@
       <router-link to="/stellenangebote">Stellenangebote</router-link>
       <router-link to="/kontakt">Kontakt</router-link>
     </div>
-    <p>&copy; 2025 Haus Hamburg. Alle Rechte vorbehalten.</p>
+    <p>&copy; {{ new Date().getFullYear() }} Haus Hamburg. Alle Rechte vorbehalten.</p>
     <p class="made-by">Made by <a href="https://www.coodaa.de" target="_blank" rel="noopener noreferrer">coodaa</a></p>
   </footer>
 </template>

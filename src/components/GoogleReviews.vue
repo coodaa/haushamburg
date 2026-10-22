@@ -49,15 +49,6 @@
         <div v-for="review in goodReviews" :key="review.author_name + review.text.slice(0, 20)" class="review-card">
           <div class="review-top">
             <div class="avatar-wrap">
-              <img
-                v-if="review.profile_photo_url"
-                :src="review.profile_photo_url"
-                :alt="review.author_name"
-                class="reviewer-photo"
-                loading="lazy"
-                referrerpolicy="no-referrer"
-                @error="(e) => e.target.style.display = 'none'"
-              />
               <div class="reviewer-avatar">{{ review.author_name[0] }}</div>
             </div>
             <div class="reviewer-info">
@@ -81,8 +72,8 @@
           </button>
         </div>
       </div>
-      <p v-if="usingFallback && goodReviews.length" class="reviews-note">
-        Ausgewählte Bewertungen von Google. Wir prüfen nicht, ob die Bewertungen von Personen stammen, die bei uns gegessen haben.
+      <p v-if="goodReviews.length" class="reviews-note">
+        Bewertungen von Google, ausgewählt ab 4 Sternen. Wir prüfen nicht, ob die Bewertungen von Personen stammen, die bei uns gegessen haben.
       </p>
     </template>
   </div>
@@ -285,15 +276,6 @@ export default {
   width: 46px;
   height: 46px;
   flex-shrink: 0;
-}
-.reviewer-photo {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  object-fit: cover;
-  z-index: 2;
 }
 .reviewer-avatar {
   position: absolute;

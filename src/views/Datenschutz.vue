@@ -229,6 +229,22 @@
           Sie haben das Recht, jederzeit Auskunft über Ihre bei uns gespeicherten personenbezogenen Daten zu erhalten sowie deren Berichtigung, Löschung oder Einschränkung der Verarbeitung zu verlangen. Bitte wenden Sie sich hierzu an den oben genannten Verantwortlichen.
         </p>
       </section>
+
+      <section>
+        <h3>11. Anzeige von Google-Bewertungen</h3>
+        <p>
+          Auf unserer Startseite zeigen wir die Gesamtbewertung sowie ausgewählte Bewertungen, die Gäste auf Google Maps über unser Restaurant veröffentlicht haben. Anbieter von Google Maps ist die Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland.
+        </p>
+        <p>
+          Die Bewertungen werden von unserem Server über die Google Places API abgerufen und zwischengespeichert. Beim Besuch unserer Website wird dabei keine Verbindung zwischen Ihrem Browser und Google hergestellt; es werden keine personenbezogenen Daten von Ihnen an Google übermittelt. Profilbilder der Bewertenden werden nicht geladen. Angezeigt werden der von den Bewertenden selbst auf Google gewählte Anzeigename, die Sternebewertung, der Zeitpunkt und der Text der Bewertung.
+        </p>
+        <p>
+          Die Darstellung erfolgt auf Grundlage unseres berechtigten Interesses an einer ansprechenden Darstellung unseres Restaurants (Art. 6 Abs. 1 lit. f DSGVO). Wir prüfen nicht, ob die Bewertungen von Personen stammen, die unser Restaurant tatsächlich besucht haben.
+        </p>
+        <p>
+          Erst wenn Sie auf „Alle ansehen“ klicken, werden Sie zu Google Maps weitergeleitet. Dort gelten die Datenschutzbestimmungen von Google: <a href="https://policies.google.com/privacy?hl=de" target="_blank" rel="noopener noreferrer">policies.google.com/privacy</a>.
+        </p>
+      </section>
     </div>
   </BasePage>
 </template>

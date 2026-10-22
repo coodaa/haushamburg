@@ -410,7 +410,7 @@ if (
       const loadPayPal = () => new Promise((resolve, reject) => {
         if (window.paypal) { resolve(); return; }
         const script = document.createElement("script");
-        script.src = "https://www.paypal.com/sdk/js?client-id=ASVaWcLxdKrUNp95yTzwEeUmI3YvIw5YQpIczfHNe3m9EZJi6OjEw77jNTbedoov0Tu96CVLa9XOkxJl&currency=EUR&components=buttons,applepay,googlepay";
+        script.src = `https://www.paypal.com/sdk/js?client-id=${import.meta.env.VITE_PAYPAL_CLIENT_ID || "ASVaWcLxdKrUNp95yTzwEeUmI3YvIw5YQpIczfHNe3m9EZJi6OjEw77jNTbedoov0Tu96CVLa9XOkxJl"}&currency=EUR&components=buttons,applepay,googlepay`;
         script.onload = resolve;
         script.onerror = reject;
         document.head.appendChild(script);

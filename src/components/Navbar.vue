@@ -36,27 +36,22 @@
           </router-link>
         </div>
 
-        <!-- Rechte Seite: Kontakt, Reservieren und Shop -->
+        <!-- Rechte Seite: Kontakt und Reservieren -->
         <div class="nav-right">
           <ul class="nav-links">
             <!-- Kontakt-Link (wird auf Mobile ausgeblendet) -->
             <li class="Kontakt-link">
               <router-link to="/Kontakt">Kontakt</router-link>
             </li>
-            <!-- Reservieren-Link: Auf Desktop sichtbar, auf Mobilgeräten ausgeblendet -->
-            <li class="reservierung-link">
-              <router-link to="/reservierung">Reservieren</router-link>
-            </li>
-            <!-- Shop-Button -->
-
+            <!-- Reservieren als Hauptbutton (Online-Shop ist pausiert) -->
             <li>
-  <router-link to="/shop" @click="closeMenu">
-    <button class="cta-button btn-shop" aria-label="Shop" title="Shop">
-      <i class="fas fa-fish"></i>
-      <span class="cta-text">Online Shop</span>
-    </button>
-  </router-link>
-</li>
+              <router-link to="/reservierung" @click="closeMenu">
+                <button class="cta-button btn-shop" aria-label="Tisch reservieren" title="Tisch reservieren">
+                  <i class="fas fa-fish"></i>
+                  <span class="cta-text">Reservieren</span>
+                </button>
+              </router-link>
+            </li>
 
           </ul>
         </div>
@@ -86,18 +81,12 @@
               <button class="cta-button">Kontakt</button>
             </router-link>
           </li>
-          <!-- Reservieren-Link -->
+          <!-- Reservieren: Hervorgehoben (Online-Shop ist pausiert) -->
           <li>
             <router-link to="/reservierung" @click="closeMenu">
-              <button class="cta-button">Tisch buchen</button>
-            </router-link>
-          </li>
-          <!-- Online bestellen: Hervorgehoben -->
-          <li>
-            <router-link to="/shop" @click="closeMenu">
-              <button class="cta-button btn-shop" aria-label="Shop" title="Shop">
+              <button class="cta-button btn-shop" aria-label="Tisch reservieren" title="Tisch reservieren">
                 <i class="fas fa-fish"></i>
-                <span class="cta-text">Online bestellen</span>
+                <span class="cta-text">Tisch reservieren</span>
               </button>
             </router-link>
           </li>

@@ -33,7 +33,6 @@ export default async function handler(req, res) {
       rating: r.rating,
       relative_time_description: r.relativePublishTimeDescription || "",
       text: r.text?.text || r.originalText?.text || "",
-      profile_photo_url: r.authorAttribution?.photoUri || null,
     }));
 
     res.setHeader("Cache-Control", "s-maxage=21600, stale-while-revalidate=86400");
