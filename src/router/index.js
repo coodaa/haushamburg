@@ -159,6 +159,8 @@ const routes = [
     component: NotFound,
     meta: {
       title: "404 – Seite nicht gefunden",
+      // nicht indexieren: der Server liefert für unbekannte Adressen technisch Status 200
+      noindex: true,
       description: "Die Seite existiert leider nicht. Bitte zurück zur Startseite.",
       keywords: "Fehler 404, Seite nicht gefunden, Haus Hamburg Leer"
     },
@@ -208,9 +210,6 @@ router.afterEach((to) => {
   const ogTitle = m.title || document.title;
   setMeta("meta[property='og:title']", "property", "og:title", ogTitle);
   setMeta("meta[name='twitter:title']", "name", "twitter:title", ogTitle);
-
-  // 404-Seiten nicht indexieren lassen (der Server liefert hier technisch Status 200)
-  setMeta("meta[name='robots']", "name", "robots", to.name === "notfound" ? "noindex, follow" : "index, follow");
 
   const canonical = `${BASE_URL}${to.path === "/" ? "/" : to.path}`;
   setMeta("meta[property='og:url']", "property", "og:url", canonical);
