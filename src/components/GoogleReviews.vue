@@ -62,10 +62,12 @@
             </div>
             <div class="reviewer-info">
               <span class="reviewer-name">{{ review.author_name }}</span>
-              <span class="review-date">{{ review.relative_time_description }}</span>
-            </div>
-            <div class="review-stars-top">
-              <i v-for="n in 5" :key="n" class="fas fa-star" :class="{ dim: n > review.rating }"></i>
+              <div class="review-meta">
+                <span class="review-stars-top">
+                  <i v-for="n in 5" :key="n" class="fas fa-star" :class="{ dim: n > review.rating }"></i>
+                </span>
+                <span class="review-date">{{ review.relative_time_description }}</span>
+              </div>
             </div>
           </div>
           <p class="review-text" :class="{ expanded: review.expanded }">{{ review.text }}</p>
@@ -272,7 +274,7 @@ export default {
 /* Karten-Header */
 .review-top {
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: auto 1fr;
   align-items: center;
   gap: 0.75rem;
 }
@@ -318,14 +320,19 @@ export default {
   font-weight: 700;
   color: var(--blue);
   font-size: 0.92rem;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}
+.review-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.15rem 0.5rem;
+  margin-top: 0.2rem;
 }
 .review-date {
   font-size: 0.75rem;
   color: #aaa;
-  margin-top: 0.1rem;
 }
 
 .review-stars-top .fa-star {
