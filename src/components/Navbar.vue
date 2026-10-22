@@ -87,7 +87,7 @@
             <router-link to="/reservierung" @click="closeMenu">
               <button class="cta-button btn-shop" aria-label="Tisch reservieren" title="Tisch reservieren">
                 <i class="fas fa-fish"></i>
-                <span class="cta-text">Tisch reservieren</span>
+                <span class="cta-text">Reservieren</span>
               </button>
             </router-link>
           </li>
