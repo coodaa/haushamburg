@@ -152,11 +152,12 @@
             </div>
           </div>
         </section>
-        <p class="allergen-legend">
-          Allergene und Zusatzstoffe: 1 Konservierungsstoffe · 2 Laktose · 3 Gluten · 4 Senf · 5 Schalentiere · 6 Eier · 7 Gerste.
-          Bei Fragen zu Allergenen hilft Ihnen unser Team gern weiter.
-        </p>
       </div>
+
+      <p class="allergen-legend">
+        Allergene und Zusatzstoffe: 1 Konservierungsstoffe · 2 Laktose · 3 Gluten · 4 Senf · 5 Schalentiere · 6 Eier · 7 Gerste.
+        Bei Fragen zu Allergenen hilft Ihnen unser Team gern weiter.
+      </p>
 
       <div class="pdf-container">
         <button class="view-btn" @click="openModal">
@@ -298,6 +299,7 @@ export default {
 }
 
 .dish-price {
+  white-space: nowrap;
   font-weight: bold;
 }
 
@@ -326,7 +328,9 @@ export default {
 }
 
 .allergen-legend {
-  grid-column: 1 / -1;
+  max-width: 900px;
+  align-self: center;
+  padding: 0 1rem;
   font-size: 0.85rem;
   line-height: 1.5;
   opacity: 0.85;
@@ -375,6 +379,7 @@ export default {
   position: relative;
   width: 90%;
   max-width: 900px;
+  align-self: center;
   height: 90%;
   background: #fff;
   border-radius: 10px;
