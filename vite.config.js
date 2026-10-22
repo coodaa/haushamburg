@@ -26,37 +26,18 @@ export default defineConfig(({ mode }) => {
         { url: "/datenschutz", changefreq: "monthly", priority: 0.5 },
       ],
     }),
-    // Lokale /api/reviews Route für npm run dev
+    // Lokale /api/reviews Route für npm run dev:
+    // holt die Bewertungen von der Live-Seite (dort gecacht), damit lokale
+    // Reloads kein Google-Kontingent verbrauchen und es aussieht wie live.
     {
       name: "local-api",
       configureServer(server) {
         server.middlewares.use("/api/reviews", async (req, res) => {
           try {
-            const apiKey = env.GOOGLE_PLACES_API_KEY;
-            const placeId = "ChIJq-rTSsFNtkcRiRBEvjNAGAE";
-            const url = `https://places.googleapis.com/v1/places/${placeId}?languageCode=de`;
-            const response = await fetch(url, {
-              headers: {
-                "X-Goog-Api-Key": apiKey,
-                "X-Goog-FieldMask": "rating,userRatingCount,reviews",
-                "Referer": "https://haus-hamburg-leer.de",
-              },
-            });
-            const data = await response.json();
+            const response = await fetch("https://www.haus-hamburg-leer.de/api/reviews");
+            res.statusCode = response.status;
             res.setHeader("Content-Type", "application/json");
-            if (data.rating !== undefined) {
-              const reviews = (data.reviews || []).map((r) => ({
-                author_name: r.authorAttribution?.displayName || "Gast",
-                rating: r.rating,
-                relative_time_description: r.relativePublishTimeDescription || "",
-                text: r.text?.text || "",
-                profile_photo_url: r.authorAttribution?.photoUri || null,
-              }));
-              res.end(JSON.stringify({ rating: data.rating, user_ratings_total: data.userRatingCount, reviews }));
-            } else {
-              res.statusCode = 502;
-              res.end(JSON.stringify({ error: JSON.stringify(data) }));
-            }
+            res.end(await response.text());
           } catch (e) {
             res.statusCode = 500;
             res.end(JSON.stringify({ error: "Failed to fetch reviews" }));
