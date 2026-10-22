@@ -379,7 +379,6 @@ export default {
   position: relative;
   width: 90%;
   max-width: 900px;
-  align-self: center;
   height: 90%;
   background: #fff;
   border-radius: 10px;
