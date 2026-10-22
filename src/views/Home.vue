@@ -45,8 +45,8 @@
           <div class="restaurant-text">
             <p>
               Willkommen im <strong>Haus Hamburg</strong> – Ihrem <strong>Fischrestaurant in Leer</strong>, Ostfriesland.
-              Bei uns erwarten Sie <strong>frisch zubereitete Fischgerichte</strong>, <strong>vegetarische Spezialitäten</strong>
-              und ein <strong>Online-Bestellservice</strong> mit <strong>Lieferung nach Hause</strong> in Leer.
+              Bei uns erwarten Sie <strong>frisch zubereitete Fischgerichte</strong> und <strong>vegetarische Spezialitäten</strong>
+              mitten in der <strong>Altstadt von Leer</strong> – und mit unserem <strong>Catering</strong> kommen wir auch zu Ihnen.
             </p>
             <p>
               Auch Vegetarier sind bei uns herzlich willkommen. Unser Angebot umfasst eine Auswahl an
@@ -124,15 +124,15 @@ export default {
   },
   setup() {
     useHead({
-      title: "Haus Hamburg – Fischrestaurant in Leer | Online-Bestellung & Catering",
+      title: "Haus Hamburg – Fischrestaurant in der Altstadt von Leer | Catering",
       meta: [
         {
           name: "description",
-          content: "Fischrestaurant Haus Hamburg in Leer: Online-Bestellung mit PayPal, SEPA oder Kreditkarte. Frischer Fisch, vegetarisch, Catering-Service & Lieferung."
+          content: "Fischrestaurant Haus Hamburg in der Altstadt von Leer: frischer Fisch, vegetarische Gerichte, gemütliches Ambiente. Tisch reservieren oder Catering anfragen."
         },
         {
           name: "keywords",
-          content: "Haus Hamburg, Fischrestaurant Leer, Fisch bestellen Leer, Catering Leer, Online Fischbestellung, Altstadt Leer, vegetarisch, PayPal, Kreditkarte, SEPA"
+          content: "Haus Hamburg, Fischrestaurant Leer, Restaurant Altstadt Leer, Fisch essen Leer, Catering Leer, vegetarisch, Ostfriesland"
         },
         {
           property: "og:title",
@@ -140,7 +140,7 @@ export default {
         },
         {
           property: "og:description",
-          content: "Genießen Sie frischen Fisch & vegetarische Küche in Leer. Jetzt auch online bestellen oder Catering anfragen."
+          content: "Genießen Sie frischen Fisch & vegetarische Küche in der Altstadt von Leer. Tisch reservieren oder Catering anfragen."
         },
         {
           property: "og:image",

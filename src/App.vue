@@ -90,9 +90,9 @@ export default {
     // Dynamische Meta-Tags nach jeder Route
     const router = useRouter();
     router.afterEach((to) => {
-      const title = to.meta.title || "Haus Hamburg – Online Essen bestellen in Leer";
-      const description = to.meta.description || "Jetzt Essen online bestellen in Leer bei Haus Hamburg – Fisch, Fleisch, vegetarisch und Catering. Lieferung nach Hause in Ostfriesland.";
-      const keywords = to.meta.keywords || "Essen bestellen Leer, Fischrestaurant, Lieferservice, Catering, Haus Hamburg";
+      const title = to.meta.title || "Haus Hamburg – Fischrestaurant in Leer";
+      const description = to.meta.description || "Haus Hamburg – Fischrestaurant in der Altstadt von Leer: Fisch, Fleisch, vegetarisch und Catering in Ostfriesland.";
+      const keywords = to.meta.keywords || "Fischrestaurant Leer, Restaurant Altstadt Leer, Catering, Haus Hamburg";
 
       document.title = title;
       this.updateMeta("description", description);

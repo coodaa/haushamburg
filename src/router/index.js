@@ -25,7 +25,7 @@ const routes = [
     component: Home,
     meta: {
       title: "Haus Hamburg – Fischrestaurant in Leer, Ostfriesland",
-      description: "Genießen Sie frische Fischgerichte in der Altstadt von Leer. Fischrestaurant mit Lieferservice, Catering & gemütlicher Atmosphäre.",
+      description: "Genießen Sie frische Fischgerichte in der Altstadt von Leer. Fischrestaurant mit Catering & gemütlicher Atmosphäre.",
       keywords: "Haus Hamburg, Fischrestaurant Leer, Restaurant Altstadt, regionale Küche, Fischgerichte, Ostfriesland"
     },
   },
@@ -35,7 +35,7 @@ const routes = [
     component: Kontakt,
     meta: {
       title: "Kontakt – Haus Hamburg in Leer",
-      description: "Kontaktieren Sie unser Team bei Fragen zu Reservierungen, Catering oder Online-Bestellungen.",
+      description: "Kontaktieren Sie unser Team bei Fragen zu Reservierungen oder Catering.",
       keywords: "Kontakt Haus Hamburg, Telefonnummer Leer, Fischrestaurant, Catering Anfrage, Reservierung Leer"
     },
   },
